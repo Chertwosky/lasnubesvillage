@@ -1,0 +1,215 @@
+@charset "utf-8";
+@import url("./_ornament.css");
+
+:root {
+	/* Цвета */
+	--fontcolor-main: rgba(60, 60, 69, 1);
+	/* Основной цвет текста */
+	--fontcolor-secondary: rgba(108, 108, 108, 1);
+	/* Вторичный цвет текста */
+	--radio-color: rgba(70, 70, 70, 1);
+	/* Цвет радиокнопок */
+	--back-color: rgba(133, 174, 226, 1);
+	/* Цвет фона */
+	--error-color: rgba(235, 20, 73, 1);
+	/* Цвет ошибки */
+	--buttons-color: rgba(23, 23, 112, 1);
+	/* Цвет кнопок */
+	--stroke-color: rgba(54, 54, 142, 1);
+	/* Цвет обводки */
+	--line-color: rgba(219, 219, 219, 1);
+	/* Цвет линий */
+	--input-color: rgba(175, 175, 175, 1);
+	/* Цвет ввода */
+	--gray-color: rgba(240, 240, 240, 1);
+	/* Серый цвет */
+    --green-color: #46BE78;
+	/* Зеленый цвет */
+    --white-color: #FFFFFF;
+	/* Белый цвет */
+    --black-color: #000000;
+	/* Черный цвет */
+    --faded-color: #C6D2F1;
+	/* Черный цвет */
+
+
+	/* Размеры шрифта */
+	--fontsize-small: 14px;
+	/* Маленький размер шрифта */
+	--fontsize-secondary: 16px;
+	/* Вторичный размер шрифта */
+	--fontsize-primary: 18px;
+	/* Основной размер шрифта */
+	--fontsize-medium: 20px;
+	/* Средний размер шрифта */
+	--fontsize-unusual: 24px;
+	/* Необычный размер шрифта */
+	--fontsize-large: 32px;
+	/* Большой размер шрифта */
+	--fontsize-greater: 40px;
+	/* Очень большой размер шрифта */
+
+	/* Высота строки */
+	--fontheight-small: 118%;
+	/* Маленькая высота строки */
+	--fontheight-main: 140%;
+	/* Основная высота строки */
+	--fontheight-secondary: 150%;
+	/* Вторичная высота строки */
+	--fontheight-large: 160%;
+	/* Большая высота строки */
+
+	/* Толщина шрифта */
+	--font-weight-base: 300;
+	/* Базовая толщина шрифта */
+	--font-weight-normal: 400;
+	/* Нормальная толщина шрифта */
+	--font-weight-medium: 500;
+	/* Средняя толщина шрифта */
+	--font-weight-bold: 600;
+	/* Жирная толщина шрифта */
+	--font-weight-title: 700;
+	/* Толщина шрифта для заголовков */
+
+	/* Шрифты */
+	--font-main: "Franklin Gothic Medium", sans-serif;
+	/* Основной шрифт */
+	--font-secondary: "Oks Free", sans-serif;
+	/* Вторичный шрифт */
+    --font-core: "Nunito sans", sans-serif;
+
+	/* Цвета теней */
+	--box-shadow-color-light: rgba(0, 0, 0, 0.1);
+	/* Светлая тень */
+	--box-shadow-color-medium: rgba(0, 0, 0, 0.2);
+	/* Средняя тень */
+	--box-shadow-color-dark: rgba(0, 0, 0, 0.6);
+	/* Темная тень */
+
+	/* Длительность переходов */
+	--transition-dur-small: 0.3s;
+	/* Короткая длительность перехода */
+	--transition-dur-medium: 0.5s;
+	/* Средняя длительность перехода */
+
+	/* Радиусы скругления */
+	--border-radius-small: 4px;
+	/* Маленький радиус скругления */
+	--border-radius-menu: 12px;
+	/* Радиус скругления меню */
+	--border-radius-container: 16px;
+	/* Радиус скругления контейнера */
+	--border-radius-medium: 30px;
+	/* Средний радиус скругления */
+	--border-radius-large: 48px;
+	/* Большой радиус скругления */
+
+	/* Толщины границ */
+	--border-thin: 1.6px;
+	/* Тонкая граница */
+	--border-thin-small: 1px;
+	/* Очень тонкая граница */
+
+	/* Отступы */
+	--padding-small: 2px;
+	/* Маленький отступ */
+	--padding-tiny: 6px;
+	/* Очень маленький отступ */
+	--padding-classic: 12px;
+	/* Классический отступ */
+	--padding-normal: 18px;
+	/* Нормальный отступ */
+	--padding-large: 24px;
+	/* Большой отступ */
+	--padding-block: 28px;
+	/* Большой отступ в блоках */
+	--padding-greater: 32px;
+	/* Очень большой отступ */
+	--padding-semi-large: 45px;
+	/* Полубольшой отступ */
+	--padding-big: 55px;
+	/* Огромный отступ */
+
+	/* Маржины */
+	--margin-small: 2px;
+	/* Маленький маргин */
+	--margin-base: 12px;
+	/* Базовый маргин */
+	--margin-medium: 20px;
+	/* Средний маргин */
+	--margin-large: 32px;
+	/* Большой маргин */
+	--margin-greater: 45px;
+	/* Очень большой маргин */
+	--margin-big: 60px;
+	/* Огромный маргин */
+	--margin-section: 80px;
+	/* Маргин раздела */
+
+	/* Ширина контейнера */
+	--container-width: 1160px;
+	/* Ширина контейнера */
+
+	/* Размеры иконок */
+	--icon-size: 16px;
+	/* Размер иконок */
+
+	/* Промежутки между элементами */
+	--gap-small: 8px;
+	/* Маленький промежуток */
+	--gap-base: 20px;
+	/* Базовый промежуток */
+	--gap-medium: 30px;
+	/* Средний промежуток */
+	--gap-big: 48px;
+	/* Большой промежуток */
+
+	/* Обводка */
+	--no-stroke: none;
+	/* Отсутствие обводки */
+
+	/* Параметры букв */
+	--letter-spacing-minus: -2%;
+	/* Уменьшение расстояния между буквами */
+	--letter-spacing-plus: 4%;
+	/* увеличение расстояния между буквами */
+	--letter-spacing-small: 1%;
+}
+
+/* Стили для тела страницы */
+body {
+	margin: 0;
+	background-color: var(--back-color);
+	scroll-behavior: smooth;
+}
+
+a:hover {
+    opacity: 85%;
+}
+
+button:hover,
+a button:hover {
+  color: var(--green-color) !important;
+  background-color: var(--white-color) !important;
+}
+
+@font-face {
+    font-family: 'Oks Free';
+    src: url('@/assets/fonts/Oks_Free/Oks_Free.ttf') format('truetype');
+    font-weight: 200 800;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Franklin Gothic Medium';
+    src: url('@/assets/fonts/Franklin_Gothic_Medium/Franklin_Gothic_Medium.ttf') format('truetype');
+    font-weight: 200 800;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Nunito sans';
+    src: url('@/assets/fonts/Nunito_sans/Nunito_sans.ttf') format('truetype');
+    font-weight: 200 800;
+    font-style: normal;
+  }

@@ -1,0 +1,19 @@
+
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "blocks"
+    label: "Блоки страницы"
+    folder: "content/blocks"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Ключ секции", name: "key", widget: "string", hint: "например: about, gallery, contacts" }
+      - { label: "Название", name: "title", widget: "string" }
+      - { label: "Текст", name: "body", widget: "markdown" }
+      - { label: "Картинка", name: "image", widget: "image", required: false }

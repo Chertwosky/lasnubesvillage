@@ -1,0 +1,137 @@
+<template>
+    <section class="bath">
+      <div
+        v-for="(item, index) in items"
+        :key="index"
+        class="bath__block"
+        :id="item.id"
+      >
+        <div class="bath__block__left">
+          <h3 class="bath__block__left_title">{{ item.title }}</h3>
+          <img :src="item.img" alt="Баня" class="bath__block__left_reel" draggable="false" />
+          <BookingButton customClass="bath__block__left_btn">
+            Забронировать
+          </BookingButton>
+        </div>
+
+        <div class="bath__block__right">
+          <p class="bath__block__right_text">
+            <span class="bath__block__right_text-up">{{ item.upTitle }}</span>
+            {{ item.text }}
+          </p>
+          <div class="bath__block__right_bot">
+            <p class="bath__block__right_bot-text">{{ item.location }}</p>
+            <p class="bath__block__right_bot-text">{{ item.beds }}</p>
+            <div class="bath__block__right_bot_min">
+              <img :src="Man" alt="Иконка гостей" class="bath__block__right_bot_min-reel" draggable="false" />
+              <p class="bath__block__right_bot_min-text">{{ item.guests }}</p>
+            </div>
+          </div>
+        </div>
+        <Cloud width="156px" top="-60px" left="-30px" />
+        <Cloud width="118px" top="-45px" right="23%" />
+        <Cloud width="118px" bottom="39%" left="23%" />
+        <Cloud width="118px" bottom="-5%" left="13%" />
+        <Cloud width="161px" bottom="-30px" right="39px" flipped />
+      </div>
+    </section>
+  </template>
+
+  <script setup>
+  import Bath from '@/assets/images/core/bath/bath.svg'
+  import Man from '@/assets/images/core/bath/man.svg'
+  import BookingButton from '@/components/blocks/BookingButton.vue'
+    import Cloud from '@/components/blocks/Cloud.vue'
+
+  const items = [
+    {
+      id: 'bath',
+      title: 'Баня',
+      img: Bath,
+      upTitle: 'Баня',
+      text: ' — неотъемлемая часть загородного отдыха. Индивидуальная баня- бочка есть у большинства наших коттеджей. Вам не придется далеко идти и ждать своей очереди. Наши бани-бочки электрические, вы можете затопить их самостоятельно в любой момент отдыха.',
+      location: 'Локации: Черемыкино, Новожилово',
+      beds: '3 кровати, 1 диван',
+      guests: 'до 6 гостей',
+    },
+  ]
+  </script>
+
+<style scoped>
+
+img.bath__block__left_reel {
+    border-radius: 16px;
+}
+
+.bath {
+    margin: 33px auto 0 auto;
+    max-width: var(--container-width);
+    padding-top: 40px;
+}
+.bath__block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    margin: 0 0 50px 0
+}
+.bath__block__left,
+.bath__block__right {
+    display: flex;
+    flex-direction: column;
+}
+.bath__block__left {
+    align-items: flex-end;
+}
+.bath__block__left_btn {
+    background-color: var(--green-color);
+    text-transform: uppercase;
+    color: var(--white-color);
+    display: flex;
+    padding: 7px 20px 15px 20px;
+    border-radius: var(--border-radius-container);
+    font-size: 33px;
+    font-family: var(--font-secondary);
+    line-height: 100%;
+    letter-spacing: 0;
+    border: none;
+    width: fit-content;
+    margin-top: 10px;
+    cursor: pointer;
+}
+.bath__block__left_title {
+    font-size: calc(var(--fontsize-unusual)*2);
+    color: var(--white-color);
+    font-family: var(--font-secondary);
+    margin: 0 0 8px 0;
+}
+.bath__block__right_bot_min {
+    display: flex;
+    gap: 8px;
+}
+.bath__block__right_bot {
+    margin-left: 20px;
+    color: var(--faded-color);
+    font-weight: 200;
+    font-size: var(--fontsize-small);
+    font-family: var(--font-core);
+}
+.bath__block__right_text {
+    color: var(--white-color);
+    font-size: var(--fontsize-unusual);
+    max-width: 508px;
+    line-height: 140%;
+    font-family: var(--font-main);
+}
+.bath__block__right_text-up {
+    font-family: var(--font-secondary);
+    font-size: 36px;
+    text-transform: uppercase;
+}
+.bath__block__right_bot-text:first-of-type {
+    margin-bottom: 24px;
+}
+</style>
+```
+
+Если нужно ещё что-то изменить — дай знать!
