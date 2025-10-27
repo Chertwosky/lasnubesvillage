@@ -116,6 +116,8 @@
     max-width: var(--container-width);
     position: relative;
     margin-bottom: 115px;
+    padding: 0 24px;
+    box-sizing: border-box;
   }
 
   .villages__wrap {
@@ -176,5 +178,68 @@
 
   .villages__wrap_arrow.right {
     right: 0;
+  }
+
+  @media (max-width: 1024px) {
+    .villages {
+      padding: 0 32px;
+    }
+
+    .villages__wrap_block_reel {
+      height: 360px;
+    }
+
+    .villages__wrap_block_title {
+      font-size: calc(var(--fontsize-unusual) * 1.6);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .villages {
+      padding: 0 20px;
+      margin-bottom: 60px;
+    }
+
+    .villages__wrap_arrow {
+      width: 32px;
+    }
+
+    .villages__wrap_arrow.left {
+      left: 12px;
+    }
+
+    .villages__wrap_arrow.right {
+      right: 12px;
+    }
+
+    .villages__wrap_inner {
+      gap: 16px;
+    }
+
+    .villages__wrap_block {
+      gap: 8px;
+    }
+
+    .villages__wrap_block_reel {
+      height: 320px;
+    }
+
+    .villages__wrap_block_title {
+      font-size: calc(var(--fontsize-unusual) * 1.3);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .villages {
+      padding: 0 16px;
+    }
+
+    .villages__wrap_block_reel {
+      height: 260px;
+    }
+
+    .villages__wrap_block_title {
+      font-size: calc(var(--fontsize-unusual) * 1.1);
+    }
   }
   </style>

@@ -161,4 +161,38 @@
   .cloud_modal {
     z-index: 0 !important;
   }
+
+  @media (max-width: 768px) {
+    .modal {
+      padding: 24px 20px;
+      height: auto;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal__title {
+      position: static;
+      margin-top: 20px;
+      font-size: 22px;
+    }
+
+    .modal__logo {
+      width: 96px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .modal {
+      width: 95%;
+      padding: 20px 16px;
+    }
+
+    .modal__title {
+      font-size: 20px;
+    }
+
+    .modal__close {
+      font-size: 18px;
+    }
+  }
   </style>
