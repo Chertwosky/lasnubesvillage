@@ -36,13 +36,15 @@ import Games from '@/assets/images/core/pleasantly/games.svg'
     margin: 80px auto 0 auto;
     max-width: var(--container-width);
     position: relative;
-    padding: 80px 0;
+    padding: 80px 24px;
+    box-sizing: border-box;
 }
 
 .pleasantly__wrap {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: var(--gap-big);
 }
 
 .pleasantly__wrap_block {
@@ -84,6 +86,63 @@ color: var(--white-color);
     width: fit-content;
     margin-top: 10px;
     cursor: pointer;
+}
+
+@media (max-width: 1024px) {
+    .pleasantly {
+        padding: 60px 32px;
+    }
+
+    .pleasantly__wrap_block_title {
+        font-size: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .pleasantly {
+        padding: 60px 20px;
+    }
+
+    .pleasantly__wrap {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .pleasantly__wrap_block,
+    .pleasantly__wrap_img {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .pleasantly__wrap_block_title {
+        font-size: 32px;
+    }
+
+    .pleasantly__wrap_block_list {
+        font-size: var(--fontsize-secondary);
+    }
+
+    .pleasantly__wrap_img-reel {
+        width: min(360px, 90vw);
+    }
+
+    .pleasantly__wrap_block_btn {
+        font-size: 24px;
+        padding: 10px 24px;
+        margin: 20px auto 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .pleasantly {
+        padding: 48px 16px;
+    }
+
+    .pleasantly__wrap_block_btn {
+        width: 100%;
+        justify-content: center;
+    }
 }
 
 

@@ -48,6 +48,8 @@
   max-width: var(--container-width);
   position: relative;
   z-index: 0; /* секция сама "нулевой слой" */
+  padding: 0 24px;
+  box-sizing: border-box;
 }
 
 
@@ -56,6 +58,7 @@
     justify-content: space-between;
     position: relative;
     z-index: 1; /* контент поверх облаков */
+    gap: calc(var(--gap-medium) * 1.4);
 }
 
 .produce__wrap_left,
@@ -84,9 +87,12 @@
     max-width: 363px;
 }
 
-.produce__wrap_left_reel img,
-.produce__wrap_right_reel img {
+.produce__wrap_left_reel,
+.produce__wrap_right_reel {
     height: 273px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: var(--border-radius-container);
 }
 
 .produce__btn {
@@ -114,6 +120,7 @@
     padding-left: 31px;
     font-family: var(--font-main);
     font-weight: 200;
+    margin: 0;
 }
 
 @media (max-width:1280px) {
@@ -122,12 +129,77 @@
     }
 }
 
-@media (max-width:768px) {
+@media (max-width: 1024px) {
+  .produce {
+    padding: 0 32px;
+  }
 
-.produce__wrap {
-    flex-direction: column;
+  .produce__wrap {
+    gap: var(--gap-medium);
+  }
+
+  .produce__wrap_left,
+  .produce__wrap_right {
+    max-width: 100%;
+  }
 }
 
+@media (max-width: 768px) {
+  .produce {
+    padding: 0 20px;
+  }
+
+  .produce__wrap {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--gap-big);
+  }
+
+  .produce__wrap_left,
+  .produce__wrap_right {
+    align-items: center;
+    text-align: center;
+  }
+
+  .produce__wrap_left_list,
+  .produce__wrap_right_list {
+    padding-left: 0;
+    list-style-position: inside;
+    font-size: var(--fontsize-secondary);
+  }
+
+  .produce__wrap_left_list li,
+  .produce__wrap_right_list li {
+    margin-bottom: 12px;
+  }
+
+  .produce__wrap_left_reel,
+  .produce__wrap_right_reel {
+    width: min(320px, 90vw);
+    margin: 0 auto;
+  }
+
+  .produce__btn {
+    margin: 0 auto;
+    font-size: 24px;
+    padding: 10px 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .produce {
+    padding: 0 16px;
+  }
+
+  .produce__wrap_left_list,
+  .produce__wrap_right_list {
+    font-size: calc(var(--fontsize-secondary) * 0.95);
+  }
+
+  .produce__btn {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 </style>

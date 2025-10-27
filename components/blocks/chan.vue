@@ -64,13 +64,15 @@ img.chan__block__left_reel {
 .chan {
     margin: 33px auto 0 auto;
     max-width: var(--container-width);
-    padding-top: 40px;
+    padding: 40px 24px 0 24px;
+    box-sizing: border-box;
 }
 .chan__block {
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: relative;
+    gap: var(--gap-big);
 }
 .chan__block__left,
 .chan__block__right {
@@ -127,6 +129,70 @@ img.chan__block__left_reel {
 }
 .chan__block__right_bot-text:first-of-type {
     margin-bottom: 24px;
+}
+
+@media (max-width: 1024px) {
+    .chan {
+        padding: 40px 32px 0 32px;
+    }
+
+    .chan__block {
+        gap: var(--gap-medium);
+    }
+
+    .chan__block__right_text {
+        font-size: var(--fontsize-medium);
+    }
+}
+
+@media (max-width: 768px) {
+    .chan {
+        padding: 32px 20px 0 20px;
+    }
+
+    .chan__block {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .chan__block__left,
+    .chan__block__right {
+        align-items: center;
+    }
+
+    .chan__block__left_btn {
+        font-size: 24px;
+        padding: 10px 24px;
+    }
+
+    .chan__block__right_text {
+        max-width: 100%;
+        font-size: var(--fontsize-secondary);
+    }
+
+    .chan__block__right_bot {
+        margin-left: 0;
+    }
+
+    .chan__block__right_text-up {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 480px) {
+    .chan {
+        padding: 24px 16px 0 16px;
+    }
+
+    .chan__block__left_btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .chan__block__right_text-up {
+        font-size: 24px;
+    }
 }
 </style>
 ```

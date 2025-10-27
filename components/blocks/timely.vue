@@ -31,13 +31,15 @@
   margin: var(--margin-large) auto 0 auto;
   position: relative;
   max-width: var(--container-width);
+  padding: 0 24px;
+  box-sizing: border-box;
 }
 .timely__container {
   position: relative;
-  width: 663px; /* фиксированный размер */
+  width: min(663px, 100%);
 }
 .timely__container-reel {
-  width: 663px;
+  width: 100%;
   height: 500px;       /* задаём высоту */
   object-fit: cover;   /* обрезает картинку, сохраняя пропорции */
   display: block;
@@ -78,5 +80,48 @@
 }
 .timely__container_block-btn:hover {
   background: #2980b9;
+}
+
+@media (max-width: 768px) {
+  .timely {
+    padding: 0 20px;
+  }
+
+  .timely__container-reel {
+    height: auto;
+  }
+
+  .timely__container_block-title {
+    font-size: calc(var(--fontsize-large) * 2.5);
+  }
+
+  .timely__container_block-text {
+    font-size: var(--fontsize-secondary);
+    max-width: 100%;
+  }
+
+  .timely__container_block-btn {
+    padding: 10px 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .timely {
+    padding: 0 16px;
+  }
+
+  .timely__container_block {
+    width: 100%;
+  }
+
+  .timely__container_block-title {
+    font-size: calc(var(--fontsize-large) * 2);
+  }
+
+  .timely__container_block-btn {
+    width: 100%;
+    display: inline-flex;
+    justify-content: center;
+  }
 }
 </style>
