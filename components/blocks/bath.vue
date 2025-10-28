@@ -8,7 +8,7 @@
       >
         <div class="bath__block__left">
           <h3 class="bath__block__left_title">{{ item.title }}</h3>
-          <img :src="item.img" alt="Баня" class="bath__block__left_reel" draggable="false" />
+          <img :src="item.img" alt="Баня" class="bath__block__left_reel" draggable="false" loading="lazy" decoding="async" />
           <BookingButton customClass="bath__block__left_btn">
             Забронировать
           </BookingButton>
@@ -23,7 +23,7 @@
             <p class="bath__block__right_bot-text">{{ item.location }}</p>
             <p class="bath__block__right_bot-text">{{ item.beds }}</p>
             <div class="bath__block__right_bot_min">
-              <img :src="Man" alt="Иконка гостей" class="bath__block__right_bot_min-reel" draggable="false" />
+              <img :src="Man" alt="Иконка гостей" class="bath__block__right_bot_min-reel" draggable="false" loading="lazy" decoding="async" />
               <p class="bath__block__right_bot_min-text">{{ item.guests }}</p>
             </div>
           </div>
@@ -59,83 +59,86 @@
 
 <style scoped>
 
-img.bath__block__left_reel {
-    border-radius: 16px;
-}
-
 .bath {
     margin: 50px auto 0 auto;
     max-width: var(--container-width);
-    padding: 40px 20px 0 20px;
+    padding: 40px clamp(16px, 5vw, 24px) 0;
 }
 .bath__block {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     position: relative;
+    gap: clamp(24px, 6vw, 56px);
     margin: 0 0 50px 0;
-    gap: 40px;
 }
 .bath__block__left,
 .bath__block__right {
     display: flex;
     flex-direction: column;
+    gap: clamp(12px, 3vw, 24px);
 }
 .bath__block__left {
-    align-items: flex-end;
+    align-items: flex-start;
 }
 .bath__block__left_btn {
     background-color: var(--green-color);
     text-transform: uppercase;
     color: var(--white-color);
-    display: flex;
-    padding: 7px 20px 15px 20px;
+    display: inline-flex;
+    padding: 12px 32px;
     border-radius: var(--border-radius-container);
-    font-size: 33px;
+    font-size: clamp(20px, 2.3vw, 30px);
     font-family: var(--font-secondary);
-    line-height: 100%;
-    letter-spacing: 0;
+    line-height: 1;
     border: none;
-    width: fit-content;
-    margin-top: 10px;
+    margin-top: 8px;
     cursor: pointer;
 }
 .bath__block__left_title {
-    font-size: calc(var(--fontsize-unusual)*2);
+    font-size: clamp(32px, 4vw, 48px);
     color: var(--white-color);
     font-family: var(--font-secondary);
-    margin: 0 0 8px 0;
+    margin: 0;
 }
-.bath__block__right_bot_min {
-    display: flex;
-    gap: 8px;
-}
-.bath__block__right_bot {
-    margin-left: 20px;
-    color: var(--faded-color);
-    font-weight: 200;
-    font-size: var(--fontsize-small);
-    font-family: var(--font-core);
+.bath__block__left_reel {
+    border-radius: var(--border-radius-container);
+    width: clamp(260px, 40vw, 480px);
+    height: auto;
 }
 .bath__block__right_text {
     color: var(--white-color);
-    font-size: var(--fontsize-unusual);
-    max-width: 508px;
-    line-height: 140%;
+    font-size: clamp(18px, 2.2vw, 26px);
+    max-width: 520px;
+    line-height: 1.6;
     font-family: var(--font-main);
 }
 .bath__block__right_text-up {
     font-family: var(--font-secondary);
-    font-size: 36px;
+    font-size: clamp(26px, 3.2vw, 38px);
     text-transform: uppercase;
 }
-.bath__block__right_bot-text:first-of-type {
-    margin-bottom: 24px;
+.bath__block__right_bot {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    color: var(--faded-color);
+    font-size: clamp(14px, 1.5vw, 16px);
+    font-family: var(--font-core);
+}
+.bath__block__right_bot_min {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+.bath__block__right_bot_min-reel {
+    width: 20px;
+    height: 20px;
 }
 
 @media (max-width: 992px) {
     .bath {
-        padding: 40px 16px 0 16px;
+        padding: 40px 16px 0;
     }
 
     .bath__block {
@@ -153,15 +156,13 @@ img.bath__block__left_reel {
     }
 
     .bath__block__right_bot {
-        margin-left: 0;
-        display: flex;
-        gap: 16px;
+        justify-content: center;
     }
 }
 
 @media (max-width: 640px) {
     .bath {
-        padding: 32px 12px 0 12px;
+        padding: 32px 12px 0;
     }
 
     .bath__block__left_btn {
@@ -171,10 +172,6 @@ img.bath__block__left_reel {
 
     .bath__block__right_text {
         font-size: var(--fontsize-primary);
-    }
-
-    .bath__block__right_text-up {
-        font-size: calc(var(--fontsize-unusual) * 1.2);
     }
 }
 </style>

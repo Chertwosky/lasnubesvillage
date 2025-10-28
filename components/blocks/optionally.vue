@@ -10,6 +10,8 @@
             :src="Arrow"
             alt="Стрелка"
             class="optionally__wrap_carousel-arrow left"
+            loading="lazy"
+            decoding="async"
             @click="prevSlide"
           />
 
@@ -30,6 +32,8 @@
                   :alt="item.title"
                   class="optionally__wrap_carousel_block-reel"
                   draggable="false"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div class="optionally__wrap_carousel_block_bot">
                   <p class="optionally__wrap_carousel_block_bot-text">
@@ -49,6 +53,8 @@
             :src="Arrow"
             alt="Стрелка"
             class="optionally__wrap_carousel-arrow right"
+            loading="lazy"
+            decoding="async"
             @click="nextSlide"
           />
         </div>
@@ -132,20 +138,22 @@
     margin: 50px auto 0 auto;
     max-width: var(--container-width);
     position: relative;
-    padding: 0 20px;
+    padding: 0 clamp(16px, 5vw, 24px);
   }
 
   .optionally__wrap {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: clamp(20px, 4vw, 32px);
   }
 
   .optionally__wrap_title {
-    font-size: 48px;
+    font-size: clamp(36px, 5vw, 56px);
     color: var(--white-color);
     font-family: var(--font-secondary);
-    margin: 0 0 26px 0;
+    margin: 0;
+    text-align: center;
   }
 
   .optionally__wrap_carousel {
@@ -165,40 +173,43 @@
   .optionally__wrap_carousel_inner {
     display: flex;
     transition: transform 0.5s ease;
-    gap: 20px;
+    gap: clamp(18px, 3vw, 28px);
   }
 
   .optionally__wrap_carousel_block {
     flex-shrink: 0;
-    border-radius: 16px;
+    border-radius: var(--border-radius-container);
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 
   .optionally__wrap_carousel_block-reel {
     width: 100%;
-    height: 237px;
-    border-radius: 16px 16px 0 0;
+    height: clamp(220px, 35vw, 280px);
+    border-radius: var(--border-radius-container) var(--border-radius-container) 0 0;
     object-fit: cover;
   }
 
   .optionally__wrap_carousel_block_bot {
   background-color: #121d3c;
   color: var(--white-color);
-  font-size: 24px;
-  padding: 16px 20px;
-  border-radius: 0 0 16px 16px;
+  font-size: clamp(18px, 2vw, 24px);
+  padding: 18px 20px 24px;
+  border-radius: 0 0 var(--border-radius-container) var(--border-radius-container);
   position: relative;
   width: 100%;
   box-sizing: border-box;
-  height: 127px;
-  overflow: hidden; /* чтобы градиент не вылезал за границы */
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .optionally__wrap_carousel_block_bot::before {
   content: "";
   position: absolute;
-  top: -40px; /* насколько вверх «заходит» градиент */
+  top: -40px;
   left: 0;
   right: 0;
   height: 40px;
@@ -213,13 +224,11 @@
   .optionally__wrap_carousel_block_bot-text {
     margin: 0;
     font-family: var(--font-core);
-    font-weight: 200;
+    font-weight: 300;
   }
 
   .optionally__wrap_carousel_block_bot-text:last-of-type {
-    position: absolute;
-    right: 20px;
-    bottom: 36px;
+    align-self: flex-end;
   }
 
   .optionally__wrap_carousel-arrow {
@@ -228,6 +237,7 @@
     transform: translateY(-50%);
     cursor: pointer;
     z-index: 10;
+    width: clamp(32px, 5vw, 56px);
   }
 
   .optionally__wrap_carousel-arrow.left {
@@ -243,11 +253,11 @@
     background-color: var(--green-color);
     text-transform: uppercase;
     color: var(--white-color);
-    padding: 7px 20px 9px 20px;
+    padding: 12px 32px;
     border-radius: var(--border-radius-container);
-    font-size: 33px;
+    font-size: clamp(20px, 2.3vw, 30px);
     font-family: var(--font-secondary);
-    line-height: 100%;
+    line-height: 1;
     border: none;
     margin-top: 20px;
     cursor: pointer;
@@ -255,21 +265,12 @@
   }
 
   @media (max-width: 1024px) {
-    .optionally {
-      padding: 0 16px;
-    }
-
     .optionally__wrap_btn {
       align-self: center;
     }
 
-    .optionally__wrap_title {
-      font-size: 40px;
-      text-align: center;
-    }
-
     .optionally__wrap_carousel-arrow {
-      width: 48px;
+      width: clamp(28px, 8vw, 44px);
     }
   }
 
@@ -279,25 +280,13 @@
     }
 
     .optionally__wrap_carousel_block-reel {
-      height: 200px;
-    }
-
-    .optionally__wrap_carousel_block_bot {
-      font-size: var(--fontsize-primary);
-      min-height: 120px;
-    }
-
-    .optionally__wrap_carousel_block_bot-text:last-of-type {
-      bottom: 24px;
+      height: clamp(200px, 60vw, 260px);
     }
 
     .optionally__wrap_btn {
       font-size: 22px;
       padding: 10px 24px;
-    }
-
-    .optionally__wrap_carousel-arrow {
-      width: 36px;
+      align-self: center;
     }
   }
   </style>

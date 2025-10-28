@@ -2,7 +2,7 @@
     <section class="timely">
       <div class="timely__container">
         <!-- Большое центральное облако -->
-        <img :src="CloudSvg" alt="Дом" class="timely__container-reel" draggable="false" />
+        <img :src="CloudSvg" alt="Дом" class="timely__container-reel" draggable="false" loading="lazy" decoding="async" />
         <!-- Контент -->
         <div class="timely__container_block">
           <h3 class="timely__container_block-title">Упс..</h3>
@@ -31,103 +31,82 @@
   margin: 50px auto 0 auto;
   position: relative;
   max-width: var(--container-width);
-  padding: 0 20px;
+  padding: 0 clamp(16px, 5vw, 24px);
 }
 .timely__container {
   position: relative;
   width: 100%;
-  max-width: 663px; /* фиксированный размер */
+  max-width: 663px;
 }
 .timely__container-reel {
   width: 100%;
-  height: 500px;       /* задаём высоту */
-  object-fit: cover;   /* обрезает картинку, сохраняя пропорции */
+  height: clamp(320px, 58vw, 520px);
+  object-fit: cover;
   display: block;
   margin: 0 auto;
+  border-radius: var(--border-radius-container);
 }
 .timely__container_block {
   position: absolute;
-  top: 43%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
   color: var(--black-color);
-  padding: 1rem;
+  padding: clamp(12px, 4vw, 24px);
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: var(--border-radius-container);
+  max-width: 90%;
 }
 .timely__container_block-title {
-  font-size: calc(var(--fontsize-large)*4);
+  font-size: clamp(32px, 6vw, 56px);
   font-weight: var(--font-weight-normal);
   font-family: var(--font-secondary);
   margin: 0;
 }
 .timely__container_block-text {
-  font-size: var(--fontsize-medium);
-  margin: 11px 0 21px;
+  font-size: clamp(16px, 2.4vw, 20px);
+  margin: 12px 0 24px;
   font-family: var(--font-main);
-  max-width: 294px;
-  line-height: var(--fontheight-main);
+  max-width: 320px;
+  line-height: 1.5;
+  margin-left: auto;
+  margin-right: auto;
 }
 .timely__container_block-btn {
   display: inline-block;
-  padding: 4px 58px;
+  padding: 8px 48px;
   background: var(--green-color);
   color: var(--white-color);
   border-radius: var(--border-radius-container);
   text-decoration: none;
   font-weight: var(--font-weight-bold);
-  transition: background 0.2s ease;
+  transition: filter 0.2s ease;
   font-family: var(--font-core);
+  font-size: clamp(16px, 2vw, 18px);
 }
-.timely__container_block-btn:hover {
-  background: #2980b9;
+.timely__container_block-btn:hover,
+.timely__container_block-btn:focus-visible {
+  filter: brightness(1.05);
 }
 
 @media (max-width: 768px) {
-  .timely {
-    padding: 0 16px;
-  }
-
-  .timely__container-reel {
-    height: auto;
-  }
-
   .timely__container_block {
-    top: 45%;
-  }
-
-  .timely__container_block-title {
-    font-size: calc(var(--fontsize-large) * 2.4);
-  }
-
-  .timely__container_block-text {
-    font-size: var(--fontsize-primary);
+    top: 50%;
   }
 }
 
 @media (max-width: 540px) {
-  .timely {
-    padding: 0 12px;
-  }
-
   .timely__container {
     max-width: 420px;
   }
 
   .timely__container_block {
-    top: 48%;
-  }
-
-  .timely__container_block-title {
-    font-size: calc(var(--fontsize-large) * 1.6);
-  }
-
-  .timely__container_block-text {
-    font-size: var(--fontsize-secondary);
+    padding: 16px;
   }
 
   .timely__container_block-btn {
-    padding: 6px 32px;
-    font-size: var(--fontsize-primary);
+    padding: 10px 32px;
   }
 }
 </style>

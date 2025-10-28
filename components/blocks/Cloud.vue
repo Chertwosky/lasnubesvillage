@@ -5,6 +5,8 @@
       class="cloud"
       :style="styleObject"
       draggable="false"
+      loading="lazy"
+      decoding="async"
     />
   </template>
 

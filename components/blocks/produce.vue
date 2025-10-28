@@ -2,7 +2,7 @@
     <section class="produce">
         <div class="produce__wrap">
             <div class="produce__wrap_left">
-                <img :src="People" alt="Дом" class="produce__wrap_left_reel" draggable="false" />
+                <img :src="People" alt="Дом" class="produce__wrap_left_reel" draggable="false" loading="lazy" decoding="async" />
                 <ul class="produce__wrap_left_list">
                     <li>Душ и туалет в каждом доме</li>
                     <li>WIFI и SMART TV</li>
@@ -13,7 +13,7 @@
             </div>
 
             <div class="produce__wrap_right">
-                <img :src="Comfort" alt="Обстановка" class="produce__wrap_right_reel" draggable="false" />
+                <img :src="Comfort" alt="Обстановка" class="produce__wrap_right_reel" draggable="false" loading="lazy" decoding="async" />
                 <ul class="produce__wrap_right_list">
                     <li>Самостоятельное заселение и выселение с помощью электронного доступа - без участия персонала</li>
                     <li>Бытовая техника: от микроволновки и плиты до посудомоечной и стиральной машины</li>
@@ -46,76 +46,77 @@
 .produce {
   margin: 50px auto 0 auto;
   max-width: var(--container-width);
-  padding: 0 20px;
+  padding: 0 clamp(16px, 5vw, 24px);
   position: relative;
-  z-index: 0; /* секция сама "нулевой слой" */
+  z-index: 0;
 }
-
 
 .produce__wrap {
-    display: flex;
-    justify-content: space-between;
-    position: relative;
-    z-index: 1; /* контент поверх облаков */
-    gap: 40px;
-}
-
-.produce__wrap_left,
-.produce__wrap_right,
-.produce__btn,
-.produce__wrap_left img,
-.produce__wrap_right img,
-.produce__wrap_left_list,
-.produce__wrap_right_list {
+  display: flex;
+  justify-content: space-between;
   position: relative;
-  z-index: 1; /* явно указываем, что текст/картинки сверху */
+  z-index: 1;
+  gap: clamp(24px, 5vw, 56px);
+  align-items: flex-start;
 }
 
 .produce__wrap_left,
 .produce__wrap_right {
-    display: flex;
-    flex-direction: column;
-    gap: calc(var(--gap-medium)*0.835);
-}
-
-.produce__wrap_right {
-    max-width: 742px;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 3vw, 32px);
+  position: relative;
+  z-index: 1;
 }
 
 .produce__wrap_left {
-    max-width: 363px;
+  max-width: 360px;
 }
 
-.produce__wrap_left_reel img,
-.produce__wrap_right_reel img {
-    height: 273px;
+.produce__wrap_right {
+  max-width: 720px;
 }
 
-.produce__btn {
-    background-color: var(--green-color);
-    text-transform: uppercase;
-    color: var(--white-color);
-    display: flex;
-    padding: 7px 20px 13px 20px;
-    border-radius: var(--border-radius-container);
-    font-size: 33px;
-    font-family: var(--font-secondary);
-    line-height: 100%;
-    letter-spacing: 0;
-    border: none;
-    width: fit-content;
-    margin-left: 31px;
-    margin-top: -30px;
-    cursor: pointer;
+.produce__wrap_left_reel,
+.produce__wrap_right_reel {
+  width: 100%;
+  max-width: 360px;
+  height: auto;
+  border-radius: var(--border-radius-container);
 }
 
 .produce__wrap_left_list,
 .produce__wrap_right_list {
-    font-size: var(--fontsize-medium);
-    color: var(--white-color);
-    padding-left: 31px;
-    font-family: var(--font-main);
-    font-weight: 200;
+  font-size: clamp(17px, 1.6vw, 20px);
+  color: var(--white-color);
+  padding-left: 24px;
+  font-family: var(--font-main);
+  font-weight: 300;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.produce__wrap_left_list li,
+.produce__wrap_right_list li {
+  text-align: left;
+}
+
+.produce__btn {
+  background-color: var(--green-color);
+  text-transform: uppercase;
+  color: var(--white-color);
+  display: inline-flex;
+  padding: 12px 32px;
+  border-radius: var(--border-radius-container);
+  font-size: clamp(18px, 2vw, 28px);
+  font-family: var(--font-secondary);
+  line-height: 1;
+  border: none;
+  margin-left: 0;
+  cursor: pointer;
+  align-self: flex-start;
 }
 
 @media (max-width: 992px) {
@@ -134,23 +135,23 @@
   .produce__wrap_left_list,
   .produce__wrap_right_list {
     padding-left: 0;
+    align-items: center;
+  }
+
+  .produce__wrap_left_list li,
+  .produce__wrap_right_list li {
+    text-align: center;
   }
 
   .produce__btn {
-    margin-left: 0;
+    align-self: center;
   }
 }
 
 @media (max-width: 640px) {
-  .produce {
-    padding: 0 16px;
-  }
-
   .produce__wrap_left_reel,
   .produce__wrap_right_reel {
-    width: 100%;
-    max-width: 320px;
-    margin: 0 auto;
+    max-width: 300px;
   }
 
   .produce__wrap_left_list,

@@ -9,6 +9,8 @@
           :src="Arrow"
           alt="Стрелка"
           class="villages__wrap_arrow left"
+          loading="lazy"
+          decoding="async"
           @click="prevSlide"
         />
 
@@ -25,7 +27,7 @@
               :style="{ width: slideWidth + 'px' }"
             >
               <NuxtLink :to="{ path: '/cottages', hash: item.hash }">
-                <img :src="item.img" alt="Домик" class="villages__wrap_block_reel" draggable="false" />
+                <img :src="item.img" alt="Домик" class="villages__wrap_block_reel" draggable="false" loading="lazy" decoding="async" />
               </NuxtLink>
               <NuxtLink :to="{ path: '/cottages', hash: item.hash }" class="villages__wrap_block_title">
                 <span>{{ item.title }}</span>
@@ -40,6 +42,8 @@
           :src="Arrow"
           alt="Стрелка"
           class="villages__wrap_arrow right"
+          loading="lazy"
+          decoding="async"
           @click="nextSlide"
         />
 
@@ -114,7 +118,7 @@
   .villages {
     margin: 50px auto 0 auto;
     max-width: var(--container-width);
-    padding: 0 20px;
+    padding: 0 clamp(16px, 5vw, 24px);
     position: relative;
   }
 
@@ -125,6 +129,7 @@
     width: 100%;
     max-width: 1160px;
     margin: 0 auto;
+    gap: 16px;
   }
 
   .villages__wrap_view {
@@ -135,27 +140,27 @@
   .villages__wrap_inner {
     display: flex;
     transition: transform 0.5s ease;
-    gap: 30px;
+    gap: clamp(18px, 3vw, 32px);
   }
 
   .villages__wrap_block {
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
-    gap: 11px;
+    gap: 12px;
   }
 
   .villages__wrap_block_reel {
     width: 100%;
-    height: 458px;
-    border-radius: 16px;
+    height: clamp(260px, 42vw, 460px);
+    border-radius: var(--border-radius-container);
     object-fit: cover;
   }
 
   .villages__wrap_block_title {
     font-family: var(--font-secondary);
     color: var(--white-color);
-    font-size: calc(var(--fontsize-unusual) * 2);
+    font-size: clamp(22px, 3vw, 36px);
     text-align: center;
     text-transform: uppercase;
     text-decoration: none;
@@ -167,6 +172,7 @@
     transform: translateY(-50%);
     cursor: pointer;
     z-index: 10;
+    width: clamp(32px, 5vw, 56px);
   }
 
   .villages__wrap_arrow.left {
@@ -179,34 +185,18 @@
   }
 
   @media (max-width: 768px) {
-    .villages {
-      padding: 0 16px;
-    }
-
-    .villages__wrap_block_reel {
-      height: 320px;
-    }
-
-    .villages__wrap_block_title {
-      font-size: calc(var(--fontsize-unusual) * 1.4);
-    }
-
     .villages__wrap_arrow {
-      width: 44px;
+      width: clamp(28px, 10vw, 44px);
     }
   }
 
   @media (max-width: 540px) {
     .villages__wrap {
-      padding: 0 8px;
+      gap: 8px;
     }
 
     .villages__wrap_block_reel {
-      height: 240px;
-    }
-
-    .villages__wrap_arrow {
-      width: 36px;
+      height: clamp(220px, 58vw, 320px);
     }
   }
   </style>

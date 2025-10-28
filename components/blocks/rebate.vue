@@ -8,6 +8,8 @@
           :src="Arrow"
           alt="Стрелка"
           class="rebate__wrap_arrow left"
+          loading="lazy"
+          decoding="async"
           @click="prevSlide"
         />
 
@@ -26,7 +28,7 @@
               <div class="rebate__wrap_block_rct">
                 <p>{{ item.label }}</p>
               </div>
-              <img :src="item.img" :alt="item.label" class="rebate__wrap_block_reel" draggable="false" />
+              <img :src="item.img" :alt="item.label" class="rebate__wrap_block_reel" draggable="false" loading="lazy" decoding="async" />
               <span class="rebate__wrap_block_text">{{ item.text }}</span>
             </div>
           </div>
@@ -38,6 +40,8 @@
           :src="Arrow"
           alt="Стрелка"
           class="rebate__wrap_arrow right"
+          loading="lazy"
+          decoding="async"
           @click="nextSlide"
         />
       </div>
@@ -122,7 +126,7 @@
   .rebate {
     margin: 50px auto 0 auto;
     max-width: var(--container-width);
-    padding: 0 20px;
+    padding: 0 clamp(16px, 5vw, 24px);
     position: relative;
   }
 
@@ -133,6 +137,7 @@
     width: 100%;
     max-width: 1160px;
     margin: 0 auto;
+    gap: 16px;
   }
 
   .rebate__wrap_view {
@@ -143,14 +148,14 @@
   .rebate__wrap_inner {
     display: flex;
     transition: transform 0.5s ease;
-    gap: 30px;
+    gap: clamp(18px, 3vw, 32px);
   }
 
   .rebate__wrap_block {
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
-    gap: 9px;
+    gap: 12px;
     position: relative;
   }
 
@@ -158,20 +163,20 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: fit-content;
-    height: 46px;
+    min-width: 82px;
+    height: 48px;
     background-color: var(--green-color);
-    min-width: 86px;
     border-radius: var(--border-radius-container) 0;
     align-items: center;
-    display: flex;
+    display: inline-flex;
     justify-content: center;
+    padding: 0 18px;
     z-index: 1;
   }
 
   .rebate__wrap_block_rct p {
     color: var(--white-color);
-    font-size: var(--fontsize-medium);
+    font-size: clamp(16px, 1.5vw, 20px);
     text-transform: uppercase;
     margin: 0;
     font-family: var(--font-core);
@@ -179,17 +184,18 @@
 
   .rebate__wrap_block_reel {
     width: 100%;
-    height: 221px;
+    height: clamp(220px, 38vw, 300px);
     border-radius: var(--border-radius-container) var(--border-radius-container) 0 0;
     object-fit: cover;
   }
 
   .rebate__wrap_block_text {
     color: var(--white-color);
-    font-size: var(--fontsize-unusual);
+    font-size: clamp(18px, 2.2vw, 28px);
     text-align: left;
     font-family: var(--font-main);
-    max-width: 350px;
+    max-width: 360px;
+    line-height: 1.5;
   }
 
   .rebate__wrap_arrow {
@@ -198,66 +204,44 @@
     transform: translateY(-50%);
     cursor: pointer;
     z-index: 10;
+    width: clamp(32px, 5vw, 56px);
   }
 
   .rebate__wrap_arrow.left {
-    left: 2.5%;
+    left: 0;
     transform: rotate(180deg) translateY(50%);
   }
 
   .rebate__wrap_arrow.right {
-    right: 0%;
+    right: 0;
   }
 
   @media (max-width: 768px) {
-    .rebate {
-      padding: 0 16px;
-    }
-
-    .rebate__wrap_block_rct {
-      height: 36px;
-      min-width: 72px;
-    }
-
-    .rebate__wrap_block_rct p {
-      font-size: var(--fontsize-secondary);
-    }
-
-    .rebate__wrap_block_reel {
-      height: 180px;
+    .rebate__wrap_arrow {
+      width: clamp(28px, 10vw, 44px);
     }
 
     .rebate__wrap_block_text {
-      font-size: var(--fontsize-primary);
       text-align: center;
       max-width: 100%;
-    }
-
-    .rebate__wrap_arrow {
-      width: 44px;
     }
   }
 
   @media (max-width: 540px) {
     .rebate__wrap {
-      padding: 0 8px;
+      gap: 8px;
     }
 
     .rebate__wrap_block_rct {
-      height: 32px;
+      height: 40px;
     }
 
     .rebate__wrap_block_reel {
-      height: 160px;
+      height: clamp(200px, 60vw, 260px);
     }
 
     .rebate__wrap_block_text {
       font-size: var(--fontsize-secondary);
-      text-align: center;
-    }
-
-    .rebate__wrap_arrow {
-      width: 32px;
     }
   }
   </style>

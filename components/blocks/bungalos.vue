@@ -21,6 +21,8 @@
               :src="Arrow"
               alt="Стрелка"
               class="bungalos__carousel-arrow left"
+              loading="lazy"
+              decoding="async"
               @click="prevSlide(item.id, item.photos.length)"
             />
             <div class="bungalos__carousel_view">
@@ -35,6 +37,8 @@
                     :src="photo"
                     alt="Фото дома"
                     class="bungalos__carousel_img"
+                    loading="lazy"
+                    decoding="async"
                     @click="openLightbox(item.photos, pIndex)"
                   />
                 </div>
@@ -45,6 +49,8 @@
               :src="Arrow"
               alt="Стрелка"
               class="bungalos__carousel-arrow right"
+              loading="lazy"
+              decoding="async"
               @click="nextSlide(item.id, item.photos.length)"
             />
           </div>
@@ -64,7 +70,7 @@
             <p class="bungaloswrap_blockright_bot-text">{{ item.location }}</p>
             <p class="bungaloswrap_blockright_bot-text">{{ item.beds }}</p>
             <div class="bungaloswrap_blockright_bot_min">
-              <img :src="Man" alt="Иконка гостей" class="bungaloswrap_blockright_bot_min-reel" />
+              <img :src="Man" alt="Иконка гостей" class="bungaloswrap_blockright_bot_min-reel" loading="lazy" decoding="async" />
               <p class="bungaloswrap_blockright_bot_min-text">{{ item.guests }}</p>
             </div>
           </div>
@@ -81,7 +87,7 @@
     <!-- Лайтбокс -->
     <div v-if="lightbox.open" class="lightbox" @click.self="closeLightbox">
       <button class="lightbox__close" @click="closeLightbox">×</button>
-      <img :src="currentPhoto" alt="Фото" class="lightbox__img" />
+      <img :src="currentPhoto" alt="Фото" class="lightbox__img" loading="lazy" decoding="async" />
       <button v-if="lightbox.index > 0" class="lightbox__arrow left" @click="prevLightbox">‹</button>
       <button v-if="lightbox.index < lightbox.photos.length - 1" class="lightbox__arrow right" @click="nextLightbox">›</button>
     </div>
@@ -163,81 +169,201 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped>
-.bungalos { margin: 50px auto 0 auto; max-width: var(--container-width); padding: 0 20px; }
+.bungalos {
+  margin: 50px auto 0 auto;
+  max-width: var(--container-width);
+  padding: 0 clamp(16px, 5vw, 24px);
+}
+
 .bungalos__wrap {
   display: flex;
   flex-direction: column;
-  gap: 80px; /* любое нужное значение */
+  gap: clamp(48px, 8vw, 96px);
 }
-.bungalos__wrap_block { position: relative; display: flex; justify-content: space-between; align-items: center; gap: 40px; }
+
+.bungalos__wrap_block {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: clamp(24px, 6vw, 56px);
+}
 
 /* Левая колонка */
-.bungaloswrap_blockleft { align-items: flex-end; display: flex; flex-direction: column; width: 100%; max-width: 508px; }
-.bungaloswrap_blockleft_title {
-  font-family: var(--font-secondary); /* 👈 теперь тот же шрифт, что и upTitle */
-  font-size: calc(var(--fontsize-unusual)*2);
-  color: var(--white-color);
-  margin: 0 0 8px 0;
-  align-self: flex-end;
-  text-align: right;
+.bungaloswrap_blockleft {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 3vw, 28px);
+  width: 100%;
+  max-width: 520px;
 }
+
+.bungaloswrap_blockleft_title {
+  font-family: var(--font-secondary);
+  font-size: clamp(32px, 4vw, 48px);
+  color: var(--white-color);
+  margin: 0;
+  text-align: left;
+}
+
 .bungaloswrap_blockleft_btn {
   background-color: var(--green-color);
-    text-transform: uppercase;
-    color: var(--white-color);
-    padding: 7px 20px 15px 20px;
-    border-radius: var(--border-radius-container);
-    font-size: 33px;
-    font-family: var(--font-secondary);
-    line-height: 100%;
-    border: none;
-    margin-top: 20px;
-    cursor: pointer;
-    align-self: flex-start;
+  text-transform: uppercase;
+  color: var(--white-color);
+  padding: 12px 32px;
+  border-radius: var(--border-radius-container);
+  font-size: clamp(20px, 2.3vw, 30px);
+  font-family: var(--font-secondary);
+  line-height: 1;
+  border: none;
+  margin-top: 8px;
+  cursor: pointer;
+  align-self: flex-start;
 }
 
-
-
 /* Правая колонка */
-.bungaloswrap_blockright_text { color: var(--white-color); font-size: var(--fontsize-unusual); max-width: 508px; font-family: var(--font-main); }
-.bungaloswrap_blockright_text-up { font-family: var(--font-secondary); font-size: 36px; text-transform: uppercase; }
-.bungaloswrap_blockright_bot_min { display: flex; gap: 8px; }
-.bungaloswrap_blockright_bot { margin-left: 0 px; color: var(--faded-color); font-size: var(--fontsize-small); font-family: var(--font-core); }
+.bungaloswrap_blockright {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(14px, 3vw, 28px);
+  max-width: 520px;
+}
+
+.bungaloswrap_blockright_text {
+  color: var(--white-color);
+  font-size: clamp(18px, 2.2vw, 26px);
+  font-family: var(--font-main);
+  line-height: 1.6;
+}
+
+.bungaloswrap_blockright_text-up {
+  font-family: var(--font-secondary);
+  font-size: clamp(26px, 3.2vw, 38px);
+  text-transform: uppercase;
+}
+
+.bungaloswrap_blockright_bot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  color: var(--faded-color);
+  font-size: clamp(14px, 1.5vw, 16px);
+  font-family: var(--font-core);
+}
+
+.bungaloswrap_blockright_bot_min {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.bungaloswrap_blockright_bot_min-reel {
+  width: 20px;
+  height: 20px;
+}
+
 /* Слайдер */
-.bungalos__carousel { position: relative; display: flex; align-items: center; overflow: hidden; width: 100%; }
-.bungalos__carousel_view { overflow: hidden; width: 100%; }
-.bungalos__carousel_inner { display: flex; transition: transform 0.5s ease; }
-.bungalos__carousel_slide { flex-shrink: 0; border-radius: 16px; overflow: hidden; }
+.bungalos__carousel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  width: 100%;
+}
+
+.bungalos__carousel_view {
+  overflow: hidden;
+  width: 100%;
+}
+
+.bungalos__carousel_inner {
+  display: flex;
+  transition: transform 0.5s ease;
+  gap: 16px;
+}
+
+.bungalos__carousel_slide {
+  flex-shrink: 0;
+  border-radius: var(--border-radius-container);
+  overflow: hidden;
+}
+
 .bungalos__carousel_img {
   width: 100%;
   height: var(--bung-photo-h, 500px);
   object-fit: cover;
   cursor: pointer;
-  border-radius: 16px;
+  border-radius: var(--border-radius-container);
 }
+
 .bungalos__carousel-arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
   z-index: 10;
-  width: 60px;
-  height: 60px;
+  width: clamp(36px, 5vw, 60px);
+  height: clamp(36px, 5vw, 60px);
 }
-.bungalos__carousel-arrow.left { left: 0; transform: rotate(180deg) translateY(50%); }
-.bungalos__carousel-arrow.right { right: 0; }
+
+.bungalos__carousel-arrow.left {
+  left: 0;
+  transform: rotate(180deg) translateY(50%);
+}
+
+.bungalos__carousel-arrow.right {
+  right: 0;
+}
 
 /* Лайтбокс */
-.lightbox { position: fixed; inset: 0; background: rgba(0,0,0,.85); display: flex; align-items: center; justify-content: center; z-index: 9999; padding: 20px; }
-.lightbox__img { max-width: 100%; max-height: 100%; border-radius: 12px; }
-.lightbox__close { position: fixed; top: 14px; right: 18px; font-size: 40px; color: #fff; background: transparent; border: none; cursor: pointer; }
-.lightbox__arrow { position: fixed; top: 50%; transform: translateY(-50%); font-size: 60px; color: #fff; background: transparent; border: none; cursor: pointer; }
-.lightbox__arrow.left { left: 20px; }
-.lightbox__arrow.right { right: 20px; }
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+}
+
+.lightbox__img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 12px;
+}
+
+.lightbox__close {
+  position: fixed;
+  top: 14px;
+  right: 18px;
+  font-size: 40px;
+  color: #fff;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.lightbox__arrow {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 60px;
+  color: #fff;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.lightbox__arrow.left {
+  left: 20px;
+}
+
+.lightbox__arrow.right {
+  right: 20px;
+}
 
 @media (max-width: 992px) {
-  .bungalos { padding: 0 16px; }
-
   .bungalos__wrap_block {
     flex-direction: column;
     align-items: center;
@@ -250,11 +376,6 @@ onBeforeUnmount(() => {
     max-width: 100%;
   }
 
-  .bungaloswrap_blockleft_title {
-    align-self: center;
-    text-align: center;
-  }
-
   .bungaloswrap_blockleft_btn {
     align-self: center;
   }
@@ -264,26 +385,13 @@ onBeforeUnmount(() => {
   }
 
   .bungaloswrap_blockright_bot {
-    margin-left: 0;
-    display: flex;
-    gap: 16px;
-  }
-
-  .bungalos__carousel-arrow {
-    width: 48px;
-    height: 48px;
+    justify-content: center;
   }
 }
 
 @media (max-width: 640px) {
-  .bungalos { padding: 0 12px; }
-
-  .bungaloswrap_blockleft_title {
-    font-size: calc(var(--fontsize-unusual) * 1.5);
-  }
-
-  .bungaloswrap_blockright_text {
-    font-size: var(--fontsize-primary);
+  .bungalos {
+    padding: 0 12px;
   }
 
   .bungaloswrap_blockleft_btn {
@@ -291,13 +399,13 @@ onBeforeUnmount(() => {
     padding: 10px 24px;
   }
 
-  .bungalos__carousel-arrow {
-    width: 36px;
-    height: 36px;
+  .bungalos__carousel_img {
+    height: var(--bung-photo-h, 360px);
   }
 
-  .bungaloswrap_blockright_text-up {
-    font-size: calc(var(--fontsize-unusual) * 1.2);
+  .bungalos__carousel-arrow {
+    width: clamp(32px, 12vw, 44px);
+    height: clamp(32px, 12vw, 44px);
   }
 }
 </style>
