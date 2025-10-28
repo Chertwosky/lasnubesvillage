@@ -133,6 +133,17 @@ const scrollTo = (id: string) => {
     .heading__wrap_block_bot {
         font-size: var(--fontsize-primary);
     }
+
+    .heading__wrap_img {
+        margin: 20px auto 0;
+        max-width: 260px;
+    }
+
+    .heading__wrap_img_reel {
+        width: 100%;
+        max-width: 260px;
+        height: auto;
+    }
 }
 
 

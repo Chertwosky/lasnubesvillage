@@ -290,4 +290,10 @@ onBeforeUnmount(() => {
     font-size: calc(var(--fontsize-unusual) * 1.2);
   }
 }
+
+@media (max-width: 540px) {
+  .bungalos__carousel_img {
+    height: 260px;
+  }
+}
 </style>

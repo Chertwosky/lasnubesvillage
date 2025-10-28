@@ -178,9 +178,14 @@
 
 /* Стили для тела страницы */
 body {
-	margin: 0;
-	background-color: var(--back-color);
-	scroll-behavior: smooth;
+        margin: 0;
+        background-color: var(--back-color);
+        scroll-behavior: smooth;
+}
+
+main.page-content section {
+        margin-top: 40px !important;
+        margin-bottom: 0 !important;
 }
 
 a:hover {
