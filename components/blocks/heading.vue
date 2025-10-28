@@ -39,7 +39,7 @@ const scrollTo = (id: string) => {
 <style scoped>
 
 .heading {
-    margin: 33px auto 0 auto;
+    margin: 40px auto 0 auto;
     max-width: var(--container-width);
     padding: 0 20px;
 }

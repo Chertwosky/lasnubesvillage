@@ -32,7 +32,7 @@ const scrollTo = (id: string) => {
 </script>
 <style scoped>
 .amenities {
-    margin: 33px auto 0 auto;
+    margin: 40px auto 0 auto;
     max-width: var(--container-width);
     padding: 0 20px;
 }
