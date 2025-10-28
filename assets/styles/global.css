@@ -2,52 +2,52 @@
 @import url("./_ornament.css");
 
 :root {
-	/* Цвета */
-	--fontcolor-main: rgba(60, 60, 69, 1);
-	/* Основной цвет текста */
-	--fontcolor-secondary: rgba(108, 108, 108, 1);
-	/* Вторичный цвет текста */
-	--radio-color: rgba(70, 70, 70, 1);
-	/* Цвет радиокнопок */
-	--back-color: rgba(133, 174, 226, 1);
-	/* Цвет фона */
-	--error-color: rgba(235, 20, 73, 1);
-	/* Цвет ошибки */
-	--buttons-color: rgba(23, 23, 112, 1);
-	/* Цвет кнопок */
-	--stroke-color: rgba(54, 54, 142, 1);
-	/* Цвет обводки */
-	--line-color: rgba(219, 219, 219, 1);
-	/* Цвет линий */
-	--input-color: rgba(175, 175, 175, 1);
-	/* Цвет ввода */
-	--gray-color: rgba(240, 240, 240, 1);
-	/* Серый цвет */
+        /* Цвета */
+        --fontcolor-main: rgba(60, 60, 69, 1);
+        /* Основной цвет текста */
+        --fontcolor-secondary: rgba(108, 108, 108, 1);
+        /* Вторичный цвет текста */
+        --radio-color: rgba(70, 70, 70, 1);
+        /* Цвет радиокнопок */
+        --back-color: rgba(133, 174, 226, 1);
+        /* Цвет фона */
+        --error-color: rgba(235, 20, 73, 1);
+        /* Цвет ошибки */
+        --buttons-color: rgba(23, 23, 112, 1);
+        /* Цвет кнопок */
+        --stroke-color: rgba(54, 54, 142, 1);
+        /* Цвет обводки */
+        --line-color: rgba(219, 219, 219, 1);
+        /* Цвет линий */
+        --input-color: rgba(175, 175, 175, 1);
+        /* Цвет ввода */
+        --gray-color: rgba(240, 240, 240, 1);
+        /* Серый цвет */
     --green-color: #46BE78;
-	/* Зеленый цвет */
+        /* Зеленый цвет */
     --white-color: #FFFFFF;
-	/* Белый цвет */
+        /* Белый цвет */
     --black-color: #000000;
-	/* Черный цвет */
+        /* Черный цвет */
     --faded-color: #C6D2F1;
-	/* Черный цвет */
+        /* Черный цвет */
 
 
-	/* Размеры шрифта */
-	--fontsize-small: 14px;
-	/* Маленький размер шрифта */
-	--fontsize-secondary: 16px;
-	/* Вторичный размер шрифта */
-	--fontsize-primary: 18px;
-	/* Основной размер шрифта */
-	--fontsize-medium: 20px;
-	/* Средний размер шрифта */
-	--fontsize-unusual: 24px;
-	/* Необычный размер шрифта */
-	--fontsize-large: 32px;
-	/* Большой размер шрифта */
-	--fontsize-greater: 40px;
-	/* Очень большой размер шрифта */
+        /* Размеры шрифта */
+        --fontsize-small: clamp(0.75rem, 0.68rem + 0.4vw, 0.875rem);
+        /* Маленький размер шрифта */
+        --fontsize-secondary: clamp(0.875rem, 0.8rem + 0.5vw, 1rem);
+        /* Вторичный размер шрифта */
+        --fontsize-primary: clamp(1rem, 0.9rem + 0.6vw, 1.125rem);
+        /* Основной размер шрифта */
+        --fontsize-medium: clamp(1.125rem, 1rem + 0.7vw, 1.375rem);
+        /* Средний размер шрифта */
+        --fontsize-unusual: clamp(1.25rem, 1.05rem + 0.9vw, 1.5rem);
+        /* Необычный размер шрифта */
+        --fontsize-large: clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem);
+        /* Большой размер шрифта */
+        --fontsize-greater: clamp(1.75rem, 1.4rem + 1.6vw, 2.75rem);
+        /* Очень большой размер шрифта */
 
 	/* Высота строки */
 	--fontheight-small: 118%;
@@ -143,12 +143,12 @@
 	/* Очень большой маргин */
 	--margin-big: 60px;
 	/* Огромный маргин */
-	--margin-section: 80px;
-	/* Маргин раздела */
+        --margin-section: clamp(3.5rem, 2.5rem + 3vw, 5rem);
+        /* Маргин раздела */
 
-	/* Ширина контейнера */
-	--container-width: 1160px;
-	/* Ширина контейнера */
+        /* Ширина контейнера */
+        --container-width: min(1160px, 100% - 40px);
+        /* Ширина контейнера */
 
 	/* Размеры иконок */
 	--icon-size: 16px;
@@ -178,9 +178,24 @@
 
 /* Стили для тела страницы */
 body {
-	margin: 0;
-	background-color: var(--back-color);
-	scroll-behavior: smooth;
+        margin: 0;
+        background-color: var(--back-color);
+        scroll-behavior: smooth;
+        font-family: var(--font-core);
+        font-size: var(--fontsize-secondary);
+        line-height: var(--fontheight-secondary);
+        color: var(--white-color);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+html.no-scroll,
+html.no-scroll body {
+  overflow: hidden;
 }
 
 a:hover {

@@ -11,6 +11,8 @@
             alt="Стрелка"
             class="optionally__wrap_carousel-arrow left"
             @click="prevSlide"
+            loading="lazy"
+            decoding="async"
           />
 
           <!-- Контейнер со слайдами -->
@@ -30,6 +32,8 @@
                   :alt="item.title"
                   class="optionally__wrap_carousel_block-reel"
                   draggable="false"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div class="optionally__wrap_carousel_block_bot">
                   <p class="optionally__wrap_carousel_block_bot-text">
@@ -50,6 +54,8 @@
             alt="Стрелка"
             class="optionally__wrap_carousel-arrow right"
             @click="nextSlide"
+            loading="lazy"
+            decoding="async"
           />
         </div>
         <BookingButton customClass="optionally__wrap_btn">

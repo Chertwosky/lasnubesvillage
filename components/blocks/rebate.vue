@@ -9,6 +9,8 @@
           alt="Стрелка"
           class="rebate__wrap_arrow left"
           @click="prevSlide"
+          loading="lazy"
+          decoding="async"
         />
 
         <!-- Контейнер слайдера -->
@@ -26,7 +28,7 @@
               <div class="rebate__wrap_block_rct">
                 <p>{{ item.label }}</p>
               </div>
-              <img :src="item.img" :alt="item.label" class="rebate__wrap_block_reel" draggable="false" />
+              <img :src="item.img" :alt="item.label" class="rebate__wrap_block_reel" draggable="false" loading="lazy" decoding="async" />
               <span class="rebate__wrap_block_text">{{ item.text }}</span>
             </div>
           </div>
@@ -39,6 +41,8 @@
           alt="Стрелка"
           class="rebate__wrap_arrow right"
           @click="nextSlide"
+          loading="lazy"
+          decoding="async"
         />
       </div>
 
@@ -175,18 +179,19 @@
     text-transform: uppercase;
     margin: 0;
     font-family: var(--font-core);
+    letter-spacing: 0.04em;
   }
 
   .rebate__wrap_block_reel {
     width: 100%;
-    height: 221px;
+    height: clamp(200px, 30vw, 240px);
     border-radius: var(--border-radius-container) var(--border-radius-container) 0 0;
     object-fit: cover;
   }
 
   .rebate__wrap_block_text {
     color: var(--white-color);
-    font-size: var(--fontsize-unusual);
+    font-size: clamp(1.25rem, 1rem + 0.8vw, 1.75rem);
     text-align: left;
     font-family: var(--font-main);
     max-width: 350px;

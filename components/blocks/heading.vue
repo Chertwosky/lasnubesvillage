@@ -16,7 +16,7 @@
                 <p class="heading__wrap_block_bot">LAS NUBES VILLAGE — посуточная аренда коттеджей</p>
             </div>
             <div class="heading__wrap_img">
-                <img :src="House" alt="Дом" class="heading__wrap_img_reel" draggable="false" />
+                <img :src="House" alt="Дом" class="heading__wrap_img_reel" draggable="false" loading="lazy" decoding="async" />
             </div>
         </div>
 
@@ -58,7 +58,7 @@ const scrollTo = (id: string) => {
 }
 
 .heading__wrap_block_title {
-    font-size: calc(var(--fontsize-large)*1.7);
+    font-size: clamp(2.25rem, 1.8rem + 1vw, 3rem);
     color: var(--white-color);
     font-family: var(--font-secondary);
     letter-spacing: 0;
@@ -78,7 +78,7 @@ const scrollTo = (id: string) => {
 
 .heading__wrap_block_name {
     font-family: var(--font-secondary);
-    font-size: var(--fontsize-large);
+    font-size: clamp(1.5rem, 1.2rem + 0.8vw, 2rem);
     margin: 0 0 10px 0;
     cursor: pointer;
 }
@@ -87,7 +87,7 @@ const scrollTo = (id: string) => {
     font-family: var(--font-secondary);
     color: var(--white-color);
     font-size: var(--fontsize-medium);
-    margin: 190px 0 0 0;
+    margin: clamp(80px, 15vw, 190px) 0 0 0;
     max-width: 500px;
 }
 

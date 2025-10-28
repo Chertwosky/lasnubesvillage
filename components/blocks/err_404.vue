@@ -2,7 +2,7 @@
     <section class="err_404">
       <div class="err_404__container">
         <!-- Большое центральное облако -->
-        <img :src="CloudSvg" alt="Дом" class="err_404__container-reel" draggable="false" />
+        <img :src="CloudSvg" alt="Дом" class="err_404__container-reel" draggable="false" loading="lazy" decoding="async" />
 
         <!-- Контент -->
         <div class="err_404__container_block">

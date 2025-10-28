@@ -1,9 +1,23 @@
 <template>
     <section class="sky">
-        <img :src="Sky" alt="Небо" class="sky__reel" draggable="false" />
+        <img
+          :src="Sky"
+          alt="Небо"
+          class="sky__reel"
+          draggable="false"
+          loading="lazy"
+          decoding="async"
+        />
         <div class="sky__wrap">
         <div class="sky__wrap_block">
-            <img :src="Logo" alt="Лого" class="sky__wrap_block_reel" draggable="false" />
+            <img
+              :src="Logo"
+              alt="Лого"
+              class="sky__wrap_block_reel"
+              draggable="false"
+              loading="lazy"
+              decoding="async"
+            />
             <span class="sky__wrap_block_text">Там, где горы встречают облака</span>
         </div>
     </div>
@@ -24,98 +38,68 @@
 
   .sky__wrap {
     position: absolute;
+    inset: 0;
     max-width: var(--container-width);
     width: 100%;
     margin: 0 auto;
     display: flex;
-    z-index: 10000;
     align-items: center;
-    align-self: center;
-    left: 50%;
-    top: 50%;
-    transform: translateX(-50%);
-    justify-content: end;
-}
+    justify-content: flex-end;
+    padding: clamp(16px, 4vw, 80px);
+  }
 
   .sky__reel {
-    width: 99.2vw;       /* на всю ширину экрана */
-    max-height: 600px;  /* ограничиваем по высоте */
-    object-fit: cover;  /* обрезает/масштабирует картинку по контейнеру */
+    width: 100%;
+    max-height: 620px;
+    object-fit: cover;
     display: block;
   }
 
   .sky__wrap_block {
     display: flex;
     align-items: center;
+    gap: clamp(16px, 4vw, 40px);
+    background: linear-gradient(118deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0));
+    padding: clamp(18px, 3vw, 36px);
+    border-radius: var(--border-radius-large);
+  }
+
+  .sky__wrap_block_reel {
+    width: clamp(120px, 16vw, 260px);
+    height: auto;
   }
 
   .sky__wrap_block_text {
     font-family: var(--font-secondary);
-    font-size: calc(var(--fontsize-secondary)*4.25);
+    font-size: clamp(1.75rem, 1.2rem + 2vw, 3rem);
     color: var(--white-color);
-    max-width: 340px;
-}
-
-
-
-
-@media (max-width:1024px) {
-    .sky {
-        width: 100vw;
-    }
-    .sky__reel {
-    width: 99.99vw;       /* на всю ширину экрана */
+    max-width: 380px;
+    line-height: 1.2;
   }
 
-  .sky__wrap_block_reel {
-    width: 250px;
+@media (max-width: 900px) {
+  .sky__wrap {
+    justify-content: center;
   }
 
-  .sky__wrap_block_text {
-
-    font-size: calc(var(--fontsize-secondary)*3.25);
-    max-width: 340px;
+  .sky__wrap_block {
+    flex-direction: column;
+    text-align: center;
+  }
 }
 
-.sky__wrap {
-    left: 28%;
-    top: 48%;
-}
+@media (max-width: 600px) {
+  .sky {
+    margin-top: 24px;
+  }
 
-
-}
-
-@media (max-width:800px) {
-
-
-.sky__wrap {
-
-left: 41%;
-top: 39%;
-
-}
-
-}
-
-@media (max-width:540px) {
-    .sky__wrap_block_reel {
-    width: 100px;
+  .sky__wrap {
+    padding: 24px;
   }
 
   .sky__wrap_block_text {
-
-font-size: calc(var(--fontsize-secondary)*1.25);
-max-width: 340px;
+    font-size: clamp(1.5rem, 1.2rem + 3vw, 2.2rem);
+  }
 }
-
-.sky__wrap {
-
-left: 41%;
-top: 40%;
-
-}
-
-}
-
 
   </style>

@@ -16,7 +16,7 @@
                 <p class="amenities__wrap_block_bot">LAS NUBES VILLAGE — посуточная аренда коттеджей</p>
             </div>
             <div class="amenities__wrap_img">
-                <img :src="House" alt="Дом" class="amenities__wrap_img_reel" draggable="false" />
+                <img :src="House" alt="Дом" class="amenities__wrap_img_reel" draggable="false" loading="lazy" decoding="async" />
             </div>
         </div>
     </section>

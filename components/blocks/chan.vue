@@ -8,7 +8,7 @@
       >
         <div class="chan__block__left">
           <h3 class="chan__block__left_title">{{ item.title }}</h3>
-          <img :src="item.img" alt="Баня" class="chan__block__left_reel" draggable="false" />
+          <img :src="item.img" alt="Баня" class="chan__block__left_reel" draggable="false" loading="lazy" decoding="async" />
           <BookingButton customClass="chan__block__left_btn">
             Забронировать
           </BookingButton>
@@ -23,7 +23,7 @@
             <p class="chan__block__right_bot-text">{{ item.location }}</p>
             <p class="chan__block__right_bot-text">{{ item.beds }}</p>
             <div class="chan__block__right_bot_min">
-              <img :src="Man" alt="Иконка гостей" class="chan__block__right_bot_min-reel" draggable="false" />
+              <img :src="Man" alt="Иконка гостей" class="chan__block__right_bot_min-reel" draggable="false" loading="lazy" decoding="async" />
               <p class="chan__block__right_bot_min-text">{{ item.guests }}</p>
             </div>
           </div>

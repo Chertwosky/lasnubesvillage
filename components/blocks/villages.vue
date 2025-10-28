@@ -10,6 +10,8 @@
           alt="Стрелка"
           class="villages__wrap_arrow left"
           @click="prevSlide"
+          loading="lazy"
+          decoding="async"
         />
 
         <!-- Контейнер слайдера -->
@@ -25,7 +27,7 @@
               :style="{ width: slideWidth + 'px' }"
             >
               <NuxtLink :to="{ path: '/cottages', hash: item.hash }">
-                <img :src="item.img" alt="Домик" class="villages__wrap_block_reel" draggable="false" />
+                <img :src="item.img" alt="Домик" class="villages__wrap_block_reel" draggable="false" loading="lazy" decoding="async" />
               </NuxtLink>
               <NuxtLink :to="{ path: '/cottages', hash: item.hash }" class="villages__wrap_block_title">
                 <span>{{ item.title }}</span>
@@ -41,6 +43,8 @@
           alt="Стрелка"
           class="villages__wrap_arrow right"
           @click="nextSlide"
+          loading="lazy"
+          decoding="async"
         />
 
       </div>
@@ -147,15 +151,15 @@
 
   .villages__wrap_block_reel {
     width: 100%;
-    height: 458px;
-    border-radius: 16px;
+    height: clamp(320px, 45vw, 460px);
+    border-radius: var(--border-radius-container);
     object-fit: cover;
   }
 
   .villages__wrap_block_title {
     font-family: var(--font-secondary);
     color: var(--white-color);
-    font-size: calc(var(--fontsize-unusual) * 2);
+    font-size: clamp(1.75rem, 1.2rem + 1.4vw, 2.5rem);
     text-align: center;
     text-transform: uppercase;
     text-decoration: none;

@@ -1,21 +1,20 @@
 <template>
-  <section class="Partners" id="Partners">
+  <section class="partners" id="Partners">
     <div class="partners__wrap">
-      <h3 class="partners__wrap_title"> Партнеры </h3>
+      <h3 class="partners__wrap_title">Партнеры</h3>
 
-      <!-- 👇 общий контейнер для слайдера и кнопки -->
       <div class="partners__wrap_carousel-container">
         <div class="partners__wrap_carousel" :style="{ width: containerWidth + 'px' }">
-          <!-- Стрелка влево -->
           <img
             v-if="currentIndex > 0"
             :src="Arrow"
             alt="Стрелка"
             class="partners__wrap_carousel-arrow left"
             @click="prevSlide"
+            loading="lazy"
+            decoding="async"
           />
 
-          <!-- Контейнер со слайдами -->
           <div class="partners__wrap_carousel_view">
             <div
               class="partners__wrap_carousel_inner"
@@ -32,30 +31,28 @@
                   :alt="item.title"
                   class="partners__wrap_carousel_block-reel"
                   draggable="false"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div class="partners__wrap_carousel_block_bot">
-                  <p class="partners__wrap_carousel_block_bot-text">
-                    {{ item.title }}
-                  </p>
-                  <p class="partners__wrap_carousel_block_bot-text">
-                    {{ item.price }}
-                  </p>
+                  <p class="partners__wrap_carousel_block_text">{{ item.title }}</p>
+                  <p class="partners__wrap_carousel_block_text">{{ item.price }}</p>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Стрелка вправо -->
           <img
             v-if="currentIndex < maxIndex"
             :src="Arrow"
             alt="Стрелка"
             class="partners__wrap_carousel-arrow right"
             @click="nextSlide"
+            loading="lazy"
+            decoding="async"
           />
         </div>
 
-        <!-- Кнопка теперь внутри контейнера -->
         <BookingButton customClass="partners__wrap_btn">
           Забронировать
         </BookingButton>
@@ -144,22 +141,24 @@ onUnmounted(() => {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 24px;
 }
 
 .partners__wrap_title {
-  font-size: 48px;
+  font-size: clamp(2rem, 1.6rem + 1.2vw, 3rem);
   color: var(--white-color);
   font-family: var(--font-secondary);
-  margin: 0 0 26px 0;
+  margin: 0;
+  text-align: center;
 }
 
-/* 👇 новый контейнер */
 .partners__wrap_carousel-container {
   width: 100%;
-  max-width: 1160px; /* ширина слайдера */
+  max-width: 1160px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* кнопка теперь прижата к левому краю */
+  align-items: stretch;
+  gap: 20px;
 }
 
 .partners__wrap_carousel {
@@ -174,6 +173,7 @@ onUnmounted(() => {
   overflow: hidden;
   width: 100%;
 }
+
 .partners__wrap_carousel_inner {
   display: flex;
   transition: transform 0.5s ease;
@@ -182,55 +182,34 @@ onUnmounted(() => {
 
 .partners__wrap_carousel_block {
   flex-shrink: 0;
-  border-radius: 16px;
+  border-radius: var(--border-radius-container);
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  background: rgba(11, 25, 52, 0.78);
+  backdrop-filter: blur(6px);
 }
 
 .partners__wrap_carousel_block-reel {
   width: 100%;
-  height: 237px;
-  border-radius: 16px 16px 0 0;
+  height: clamp(200px, 32vw, 240px);
   object-fit: cover;
 }
 
 .partners__wrap_carousel_block_bot {
-  background-color: #121d3c;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px;
   color: var(--white-color);
-  font-size: 24px;
-  padding: 16px 20px;
-  border-radius: 0 0 16px 16px;
-  position: relative;
-  width: 100%;
-  box-sizing: border-box;
-  height: 127px;
-  overflow: hidden;
+  font-size: var(--fontsize-unusual);
+  font-family: var(--font-secondary);
 }
 
-.partners__wrap_carousel_block_bot::before {
-  content: "";
-  position: absolute;
-  top: -40px;
-  left: 0;
-  right: 0;
-  height: 40px;
-  background: linear-gradient(
-    to bottom,
-    rgba(18, 29, 60, 0) 0%,
-    rgba(18, 29, 60, 1) 100%
-  );
-}
-
-.partners__wrap_carousel_block_bot-text {
+.partners__wrap_carousel_block_text {
   margin: 0;
   font-family: var(--font-core);
-  font-weight: 200;
-}
-
-.partners__wrap_carousel_block_bot-text:last-of-type {
-  position: absolute;
-  right: 20px;
-  bottom: 36px;
+  font-weight: 300;
 }
 
 .partners__wrap_carousel-arrow {
@@ -239,6 +218,7 @@ onUnmounted(() => {
   transform: translateY(-50%);
   cursor: pointer;
   z-index: 10;
+  width: 52px;
 }
 
 .partners__wrap_carousel-arrow.left {
@@ -251,66 +231,37 @@ onUnmounted(() => {
 }
 
 .partners__wrap_btn {
-  background-color: var(--green-color);
-  text-transform: uppercase;
-  color: var(--white-color);
-  padding: 7px 20px 15px 20px;
-  border-radius: var(--border-radius-container);
-  font-size: 33px;
-  font-family: var(--font-secondary);
-  line-height: 100%;
-  border: none;
-  margin-top: 20px;
-  cursor: pointer;
+  align-self: center;
+  padding: 10px 40px;
+  font-size: var(--fontsize-unusual);
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 900px) {
+  .partners__wrap_carousel_block_bot {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
   .partners {
     padding: 0 16px;
   }
 
-  .partners__wrap_title {
-    text-align: center;
-  }
-
-  .partners__wrap_carousel-container {
-    align-items: center;
-  }
-
-  .partners__wrap_btn {
-    align-self: center;
-  }
-
   .partners__wrap_carousel-arrow {
-    width: 48px;
+    width: 44px;
   }
 }
 
-@media (max-width: 640px) {
-  .partners {
-    padding: 0 12px;
-  }
-
+@media (max-width: 540px) {
   .partners__wrap_carousel_block-reel {
-    height: 200px;
-  }
-
-  .partners__wrap_carousel_block_bot {
-    font-size: var(--fontsize-primary);
-    min-height: 120px;
-  }
-
-  .partners__wrap_carousel_block_bot-text:last-of-type {
-    bottom: 24px;
+    height: clamp(180px, 60vw, 220px);
   }
 
   .partners__wrap_btn {
-    font-size: 22px;
-    padding: 10px 24px;
-  }
-
-  .partners__wrap_carousel-arrow {
-    width: 36px;
+    width: 100%;
+    text-align: center;
   }
 }
 </style>

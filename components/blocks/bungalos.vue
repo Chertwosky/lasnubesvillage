@@ -15,14 +15,16 @@
           <h3 class="bungaloswrap_blockleft_title">{{ item.title }}</h3>
 
           <!-- Слайдер -->
-          <div class="bungalos__carousel" :style="{ width: containerWidth + 'px' }">
-            <img
-              v-if="currentIndexes[item.id] > 0"
-              :src="Arrow"
-              alt="Стрелка"
-              class="bungalos__carousel-arrow left"
-              @click="prevSlide(item.id, item.photos.length)"
-            />
+        <div class="bungalos__carousel" :style="{ width: containerWidth + 'px' }">
+          <img
+            v-if="currentIndexes[item.id] > 0"
+            :src="Arrow"
+            alt="Стрелка"
+            class="bungalos__carousel-arrow left"
+            @click="prevSlide(item.id, item.photos.length)"
+            loading="lazy"
+            decoding="async"
+          />
             <div class="bungalos__carousel_view">
               <div class="bungalos__carousel_inner" :style="innerStyle(item.id)">
                 <div
@@ -36,17 +38,21 @@
                     alt="Фото дома"
                     class="bungalos__carousel_img"
                     @click="openLightbox(item.photos, pIndex)"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </div>
             </div>
-            <img
-              v-if="currentIndexes[item.id] < item.photos.length - visibleSlides"
-              :src="Arrow"
-              alt="Стрелка"
-              class="bungalos__carousel-arrow right"
-              @click="nextSlide(item.id, item.photos.length)"
-            />
+          <img
+            v-if="currentIndexes[item.id] < item.photos.length - visibleSlides"
+            :src="Arrow"
+            alt="Стрелка"
+            class="bungalos__carousel-arrow right"
+            @click="nextSlide(item.id, item.photos.length)"
+            loading="lazy"
+            decoding="async"
+          />
           </div>
 
           <BookingButton customClass="bungaloswrap_blockleft_btn">
@@ -64,7 +70,7 @@
             <p class="bungaloswrap_blockright_bot-text">{{ item.location }}</p>
             <p class="bungaloswrap_blockright_bot-text">{{ item.beds }}</p>
             <div class="bungaloswrap_blockright_bot_min">
-              <img :src="Man" alt="Иконка гостей" class="bungaloswrap_blockright_bot_min-reel" />
+              <img :src="Man" alt="Иконка гостей" class="bungaloswrap_blockright_bot_min-reel" loading="lazy" decoding="async" />
               <p class="bungaloswrap_blockright_bot_min-text">{{ item.guests }}</p>
             </div>
           </div>
@@ -81,7 +87,7 @@
     <!-- Лайтбокс -->
     <div v-if="lightbox.open" class="lightbox" @click.self="closeLightbox">
       <button class="lightbox__close" @click="closeLightbox">×</button>
-      <img :src="currentPhoto" alt="Фото" class="lightbox__img" />
+      <img :src="currentPhoto" alt="Фото" class="lightbox__img" loading="lazy" decoding="async" />
       <button v-if="lightbox.index > 0" class="lightbox__arrow left" @click="prevLightbox">‹</button>
       <button v-if="lightbox.index < lightbox.photos.length - 1" class="lightbox__arrow right" @click="nextLightbox">›</button>
     </div>
