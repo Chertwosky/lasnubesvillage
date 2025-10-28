@@ -76,7 +76,7 @@ const openBooking = () => {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: var(--padding-classic) 0;
+    padding: var(--padding-classic) 20px;
     max-width: var(--container-width);
     margin: 0 auto;
   }
@@ -151,7 +151,8 @@ font-family: var(--font-core);
 
 @media (max-width:800px) {
     .header {
-        width: 93.75vw;
+        width: 100%;
+        padding: var(--padding-classic) 16px;
     }
 
     .header__feed_button {
@@ -174,6 +175,11 @@ font-family: var(--font-core);
     .header__nav,
     .header__feed {
         gap: 15px;
+    }
+
+    .header__nav a,
+    .header__feed_call {
+        font-size: var(--fontsize-primary);
     }
 
 
@@ -205,7 +211,12 @@ font-family: var(--font-core);
     .header {
         justify-content: space-around;
     }
- }
+
+    .header__feed_button {
+        font-size: var(--fontsize-secondary);
+        padding: 8px 18px;
+    }
+}
 
 
 

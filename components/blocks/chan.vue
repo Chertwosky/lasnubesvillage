@@ -64,13 +64,14 @@ img.chan__block__left_reel {
 .chan {
     margin: 33px auto 0 auto;
     max-width: var(--container-width);
-    padding-top: 40px;
+    padding: 40px 20px 0 20px;
 }
 .chan__block {
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: relative;
+    gap: 40px;
 }
 .chan__block__left,
 .chan__block__right {
@@ -127,6 +128,51 @@ img.chan__block__left_reel {
 }
 .chan__block__right_bot-text:first-of-type {
     margin-bottom: 24px;
+}
+
+@media (max-width: 992px) {
+    .chan {
+        padding: 40px 16px 0 16px;
+    }
+
+    .chan__block {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .chan__block__left,
+    .chan__block__right {
+        align-items: center;
+    }
+
+    .chan__block__left_btn {
+        align-self: center;
+    }
+
+    .chan__block__right_bot {
+        margin-left: 0;
+        display: flex;
+        gap: 16px;
+    }
+}
+
+@media (max-width: 640px) {
+    .chan {
+        padding: 32px 12px 0 12px;
+    }
+
+    .chan__block__left_btn {
+        font-size: 22px;
+        padding: 10px 24px;
+    }
+
+    .chan__block__right_text {
+        font-size: var(--fontsize-primary);
+    }
+
+    .chan__block__right_text-up {
+        font-size: calc(var(--fontsize-unusual) * 1.2);
+    }
 }
 </style>
 ```
