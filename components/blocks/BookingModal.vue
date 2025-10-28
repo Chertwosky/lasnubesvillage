@@ -25,10 +25,14 @@
   import logo from '@/assets/images/core/header/logo.svg'
   import Cloud from '@/components/blocks/Cloud.vue' // 👈 твой компонент облака
 
+  const WIDGET_CONTAINER_ID = '_bn_widget_'
+  const PRELOAD_CONTAINER_ID = '_bn_widget_preload'
+
   const isOpen = ref(false)
   const widgetReady = ref(false)
   let resolveWidgetReady
-  const widgetReadyPromise = new Promise((resolve) => { resolveWidgetReady = resolve })
+  const createWidgetReadyPromise = () => new Promise((resolve) => { resolveWidgetReady = resolve })
+  let widgetReadyPromise = createWidgetReadyPromise()
 
   const widgetConfig = {
     type: 'vertical',
@@ -76,12 +80,38 @@
     }
   }
 
+  const preloadWidget = () => {
+    if (window.Bnovo_Widget && typeof window.Bnovo_Widget.open === 'function') {
+      window.Bnovo_Widget.open(PRELOAD_CONTAINER_ID, widgetConfig)
+    }
+  }
+
+  const clearContainerById = (id) => {
+    if (typeof document === 'undefined') return
+
+    const container = document.getElementById(id)
+    if (container) {
+      container.innerHTML = ''
+    }
+  }
+
+  const clearWidgetContainer = () => {
+    clearContainerById(WIDGET_CONTAINER_ID)
+  }
+
+  const resetWidgetState = () => {
+    widgetReady.value = false
+    widgetReadyPromise = createWidgetReadyPromise()
+    clearContainerById(WIDGET_CONTAINER_ID)
+    clearContainerById(PRELOAD_CONTAINER_ID)
+  }
+
   const ensureWidgetLoaded = () => {
     if (typeof window === 'undefined' || widgetReady.value) return
 
     if (window.Bnovo_Widget && typeof window.Bnovo_Widget.init === 'function') {
       window.Bnovo_Widget.init(() => {
-        window.Bnovo_Widget.open('_bn_widget_preload', widgetConfig)
+        preloadWidget()
         markWidgetReady()
       })
     } else {
@@ -108,7 +138,8 @@
     await nextTick()
 
     if (window.Bnovo_Widget && typeof window.Bnovo_Widget.open === 'function') {
-      window.Bnovo_Widget.open('_bn_widget_', widgetConfig)
+      clearWidgetContainer()
+      window.Bnovo_Widget.open(WIDGET_CONTAINER_ID, widgetConfig)
     }
   }
 
@@ -116,6 +147,9 @@
     isOpen.value = false
     document.body.style.overflow = ''
     document.body.style.paddingRight = ''
+
+    resetWidgetState()
+    ensureWidgetLoaded()
   }
 
   onMounted(async () => {
