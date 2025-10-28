@@ -107,6 +107,10 @@ font-size: calc(var(--fontsize-secondary)*1.25);
 max-width: 340px;
 }
 
+  .sky__reel {
+    max-height: 360px;
+  }
+
 .sky__wrap {
 
 left: 41%;

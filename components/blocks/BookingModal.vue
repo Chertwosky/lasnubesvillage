@@ -1,5 +1,5 @@
 <template>
-    <div v-if="isOpen" class="modal-overlay" @click.self="close">
+    <div v-show="isOpen" class="modal-overlay" @click.self="close">
       <div class="modal">
         <button class="modal__close" @click="close">✖</button>
         <img :src="logo" alt="Логотип" class="modal__logo" draggable="false" />
@@ -20,11 +20,98 @@
   </template>
 
   <script setup>
-  import { ref, onMounted, nextTick } from 'vue'
+  import { ref, onMounted, nextTick, onBeforeUnmount, watch } from 'vue'
   import logo from '@/assets/images/core/header/logo.svg'
   import Cloud from '@/components/blocks/Cloud.vue' // 👈 твой компонент облака
+  import { useRoute } from '#imports'
 
   const isOpen = ref(false)
+  const widgetContainerId = '_bn_widget_'
+  const widgetOptions = {
+    type: 'vertical',
+    uid: '817121e0-85f0-452d-b0b2-265ca9a568c3',
+    lang: 'ru',
+    width: '300',
+    width_mobile: '300',
+    background: '#85AEE2',
+    background_mobile: '#ffffff',
+    bg_alpha: '100',
+    bg_alpha_mobile: '100',
+    border_color_mobile: '#C6CAD3',
+    padding: '24',
+    padding_mobile: '24',
+    border_radius: '16',
+    button_font_size: '14',
+    button_height: '42',
+    font_type: 'georgia',
+    title: 'Забронировать',
+    title_color: '#FFFFFF',
+    title_color_mobile: '#242742',
+    title_size: '28',
+    title_size_mobile: '22',
+    inp_color: '#000000',
+    inp_bordhover: '#dedfe3',
+    inp_bordcolor: '#BCBCBC',
+    inp_alpha: '100',
+    btn_background: '#46BE78',
+    btn_background_over: '#FFFFFF',
+    btn_textcolor: '#FFFFFF',
+    btn_textover: '#46BE78',
+    btn_bordcolor: '#46BE78',
+    btn_bordhover: '#46BE78',
+    min_age: '0',
+    max_age: '17',
+    adults_default: '1',
+    cancel_color: '#FFFFFF',
+    switch_mobiles_width: '800'
+  }
+
+  let widgetLoaded = false
+  let widgetTimer = null
+  const route = useRoute()
+  let stopRouteWatch = null
+
+  const openWidget = () => {
+    if (typeof window === 'undefined' || !window.Bnovo_Widget) return
+    window.Bnovo_Widget.init(() => {
+      window.Bnovo_Widget.open(widgetContainerId, widgetOptions)
+      widgetLoaded = true
+    })
+  }
+
+  const ensureWidgetInitialized = () => {
+    if (widgetLoaded) {
+      if (typeof window !== 'undefined' && window.Bnovo_Widget) {
+        window.Bnovo_Widget.open(widgetContainerId, widgetOptions)
+      }
+      return
+    }
+
+    if (typeof window === 'undefined') return
+
+    if (window.Bnovo_Widget) {
+      openWidget()
+      return
+    }
+
+    if (widgetTimer) return
+
+    widgetTimer = window.setInterval(() => {
+      if (window.Bnovo_Widget) {
+        clearInterval(widgetTimer)
+        widgetTimer = null
+        openWidget()
+      }
+    }, 250)
+  }
+
+  stopRouteWatch = watch(
+    () => route.fullPath,
+    () => {
+      widgetLoaded = false
+      ensureWidgetInitialized()
+    }
+  )
 
   const open = async () => {
     isOpen.value = true
@@ -33,49 +120,11 @@
     document.body.style.overflow = 'hidden'
     document.body.style.paddingRight = scrollBarWidth + 'px'
 
+    ensureWidgetInitialized()
     await nextTick()
 
     if (window.Bnovo_Widget) {
-      window.Bnovo_Widget.init(() => {
-        window.Bnovo_Widget.open('_bn_widget_', {
-            type: "vertical",
-        uid: "817121e0-85f0-452d-b0b2-265ca9a568c3",
-        lang: "ru",
-        width: "300",
-        width_mobile: "300",
-        background: "#85AEE2",
-        background_mobile: "#ffffff",
-        bg_alpha: "100",
-        bg_alpha_mobile: "100",
-        border_color_mobile: "#C6CAD3",
-        padding: "24",
-        padding_mobile: "24",
-        border_radius: "16",
-        button_font_size: "14",
-        button_height: "42",
-        font_type: "georgia",
-        title: "Забронировать",
-        title_color: "#FFFFFF",
-        title_color_mobile: "#242742",
-        title_size: "28",
-        title_size_mobile: "22",
-        inp_color: "#000000",
-        inp_bordhover: "#dedfe3",
-        inp_bordcolor: "#BCBCBC",
-        inp_alpha: "100",
-        btn_background: "#46BE78",
-        btn_background_over: "#FFFFFF",
-        btn_textcolor: "#FFFFFF",
-        btn_textover: "#46BE78",
-        btn_bordcolor: "#46BE78",
-        btn_bordhover: "#46BE78",
-        min_age: "0",
-        max_age: "17",
-        adults_default: "1",
-        cancel_color: "#FFFFFF",
-        switch_mobiles_width: "800",
-        })
-      })
+      window.Bnovo_Widget.open(widgetContainerId, widgetOptions)
     }
   }
 
@@ -87,6 +136,21 @@
 
   onMounted(() => {
     window.openBooking = open
+    ensureWidgetInitialized()
+
+  })
+
+  onBeforeUnmount(() => {
+    if (widgetTimer) {
+      clearInterval(widgetTimer)
+      widgetTimer = null
+    }
+
+    if (typeof stopRouteWatch === 'function') {
+      stopRouteWatch()
+    }
+
+    delete window.openBooking
   })
   </script>
 

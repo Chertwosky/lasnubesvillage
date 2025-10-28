@@ -224,7 +224,7 @@
     }
 
     .rebate__wrap_block_reel {
-      height: 180px;
+      height: 165px;
     }
 
     .rebate__wrap_block_text {
@@ -248,7 +248,7 @@
     }
 
     .rebate__wrap_block_reel {
-      height: 160px;
+      height: 140px;
     }
 
     .rebate__wrap_block_text {

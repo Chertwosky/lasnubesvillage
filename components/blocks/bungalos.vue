@@ -268,6 +268,8 @@ onBeforeUnmount(() => {
 @media (max-width: 640px) {
   .bungalos { padding: 0 12px; }
 
+  .bungalos { --bung-photo-h: 360px; }
+
   .bungaloswrap_blockleft_title {
     font-size: calc(var(--fontsize-unusual) * 1.5);
   }
@@ -289,5 +291,9 @@ onBeforeUnmount(() => {
   .bungaloswrap_blockright_text-up {
     font-size: calc(var(--fontsize-unusual) * 1.2);
   }
+}
+
+@media (max-width: 480px) {
+  .bungalos { --bung-photo-h: 280px; }
 }
 </style>
