@@ -86,9 +86,12 @@
     max-width: 363px;
 }
 
-.produce__wrap_left_reel img,
-.produce__wrap_right_reel img {
+.produce__wrap_left_reel,
+.produce__wrap_right_reel {
     height: 273px;
+    width: auto;
+    object-fit: cover;
+    border-radius: var(--border-radius-container);
 }
 
 .produce__btn {
@@ -149,7 +152,8 @@
   .produce__wrap_left_reel,
   .produce__wrap_right_reel {
     width: 100%;
-    max-width: 320px;
+    max-width: 280px;
+    height: 240px;
     margin: 0 auto;
   }
 
@@ -161,6 +165,14 @@
   .produce__btn {
     font-size: 20px;
     padding: 10px 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .produce__wrap_left_reel,
+  .produce__wrap_right_reel {
+    max-width: 240px;
+    height: 210px;
   }
 }
 

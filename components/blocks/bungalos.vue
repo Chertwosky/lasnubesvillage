@@ -153,7 +153,7 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped>
-.bungalos { margin: 33px auto 0 auto; max-width: var(--container-width); padding: 0 20px; }
+.bungalos { margin: 40px auto 0 auto; max-width: var(--container-width); padding: 0 20px; }
 .bungalos__wrap {
   display: flex;
   flex-direction: column;
@@ -266,7 +266,7 @@ onBeforeUnmount(() => {
 }
 
 @media (max-width: 640px) {
-  .bungalos { padding: 0 12px; }
+  .bungalos { padding: 0 12px; --bung-photo-h: 320px; }
 
   .bungaloswrap_blockleft_title {
     font-size: calc(var(--fontsize-unusual) * 1.5);
@@ -289,5 +289,9 @@ onBeforeUnmount(() => {
   .bungaloswrap_blockright_text-up {
     font-size: calc(var(--fontsize-unusual) * 1.2);
   }
+}
+
+@media (max-width: 480px) {
+  .bungalos { --bung-photo-h: 260px; }
 }
 </style>
