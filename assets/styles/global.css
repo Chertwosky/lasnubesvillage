@@ -154,15 +154,19 @@
 	--icon-size: 16px;
 	/* Размер иконок */
 
-	/* Промежутки между элементами */
-	--gap-small: 8px;
-	/* Маленький промежуток */
-	--gap-base: 20px;
-	/* Базовый промежуток */
-	--gap-medium: 30px;
-	/* Средний промежуток */
-	--gap-big: 48px;
-	/* Большой промежуток */
+        /* Промежутки между элементами */
+        --gap-small: 8px;
+        /* Маленький промежуток */
+        --gap-base: 20px;
+        /* Базовый промежуток */
+        --gap-medium: 30px;
+        /* Средний промежуток */
+        --gap-big: 48px;
+        /* Большой промежуток */
+
+        /* Отступы страницы */
+        --page-gutter: 32px;
+        --section-gap: 96px;
 
 	/* Обводка */
 	--no-stroke: none;
@@ -178,19 +182,88 @@
 
 /* Стили для тела страницы */
 body {
-	margin: 0;
-	background-color: var(--back-color);
-	scroll-behavior: smooth;
+        margin: 0;
+        background-color: var(--back-color);
+        scroll-behavior: smooth;
+        font-family: var(--font-core);
+        color: var(--white-color);
 }
 
 a:hover {
     opacity: 85%;
 }
 
+img {
+    max-width: 100%;
+    display: block;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: var(--section-gap);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin-block: 0;
+}
+
 button:hover,
 a button:hover {
   color: var(--green-color) !important;
   background-color: var(--white-color) !important;
+}
+
+@media (max-width: 1200px) {
+    :root {
+        --fontsize-greater: 36px;
+        --fontsize-large: 28px;
+        --fontsize-unusual: 22px;
+        --section-gap: 72px;
+        --page-gutter: 28px;
+    }
+}
+
+@media (max-width: 992px) {
+    :root {
+        --fontsize-greater: 32px;
+        --fontsize-large: 26px;
+        --fontsize-unusual: 20px;
+        --fontsize-medium: 18px;
+        --fontsize-primary: 16px;
+        --section-gap: 60px;
+        --page-gutter: 24px;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --fontsize-greater: 28px;
+        --fontsize-large: 24px;
+        --fontsize-unusual: 18px;
+        --fontsize-medium: 17px;
+        --fontsize-secondary: 15px;
+        --section-gap: 48px;
+        --page-gutter: 20px;
+    }
+}
+
+@media (max-width: 540px) {
+    :root {
+        --fontsize-greater: 24px;
+        --fontsize-large: 22px;
+        --fontsize-unusual: 17px;
+        --fontsize-medium: 16px;
+        --fontsize-primary: 15px;
+        --section-gap: 40px;
+        --page-gutter: 16px;
+    }
 }
 
 @font-face {
