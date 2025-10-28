@@ -59,10 +59,13 @@
 
 img.chan__block__left_reel {
     border-radius: 16px;
+    max-width: 420px;
+    width: 100%;
+    object-fit: cover;
 }
 
 .chan {
-    margin: 33px auto 0 auto;
+    margin: 40px auto 0 auto;
     max-width: var(--container-width);
     padding: 40px 20px 0 20px;
 }
@@ -158,7 +161,7 @@ img.chan__block__left_reel {
 
 @media (max-width: 640px) {
     .chan {
-        padding: 32px 12px 0 12px;
+        padding: 40px 12px 0 12px;
     }
 
     .chan__block__left_btn {
@@ -172,6 +175,10 @@ img.chan__block__left_reel {
 
     .chan__block__right_text-up {
         font-size: calc(var(--fontsize-unusual) * 1.2);
+    }
+
+    img.chan__block__left_reel {
+        max-width: 260px;
     }
 }
 </style>

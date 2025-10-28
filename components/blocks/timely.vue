@@ -28,7 +28,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: var(--margin-large) auto 0 auto;
+  margin: 40px auto 0 auto;
   position: relative;
   max-width: var(--container-width);
   padding: 0 20px;
@@ -89,6 +89,7 @@
 
   .timely__container-reel {
     height: auto;
+    max-height: 360px;
   }
 
   .timely__container_block {
@@ -115,6 +116,10 @@
 
   .timely__container_block {
     top: 48%;
+  }
+
+  .timely__container-reel {
+    max-height: 300px;
   }
 
   .timely__container_block-title {

@@ -116,7 +116,7 @@
     max-width: var(--container-width);
     padding: 0 20px;
     position: relative;
-    margin-bottom: 115px;
+    margin-bottom: 0;
   }
 
   .villages__wrap {
@@ -185,7 +185,7 @@
     }
 
     .villages__wrap_block_reel {
-      height: 320px;
+      height: 280px;
     }
 
     .villages__wrap_block_title {
@@ -203,7 +203,7 @@
     }
 
     .villages__wrap_block_reel {
-      height: 240px;
+      height: 200px;
     }
 
     .villages__wrap_arrow {

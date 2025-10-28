@@ -120,7 +120,7 @@
 
   <style scoped>
   .rebate {
-    margin: var(--margin-section) auto 145px auto;
+    margin: var(--margin-section) auto 0 auto;
     max-width: var(--container-width);
     padding: 0 20px;
     position: relative;
@@ -224,7 +224,7 @@
     }
 
     .rebate__wrap_block_reel {
-      height: 180px;
+      height: 170px;
     }
 
     .rebate__wrap_block_text {
@@ -248,7 +248,7 @@
     }
 
     .rebate__wrap_block_reel {
-      height: 160px;
+      height: 150px;
     }
 
     .rebate__wrap_block_text {

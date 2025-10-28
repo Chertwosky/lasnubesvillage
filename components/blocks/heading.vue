@@ -39,7 +39,7 @@ const scrollTo = (id: string) => {
 <style scoped>
 
 .heading {
-    margin: 33px auto 0 auto;
+    margin: 40px auto 0 auto;
     max-width: var(--container-width);
     padding: 0 20px;
 }
@@ -95,6 +95,13 @@ const scrollTo = (id: string) => {
     margin-top: 15px;
 }
 
+.heading__wrap_img_reel {
+    max-width: 420px;
+    width: 100%;
+    object-fit: cover;
+    display: block;
+}
+
 @media (max-width: 1028px) {
     .heading {
         width: 99vw;
@@ -132,6 +139,10 @@ const scrollTo = (id: string) => {
 
     .heading__wrap_block_bot {
         font-size: var(--fontsize-primary);
+    }
+
+    .heading__wrap_img_reel {
+        max-width: 260px;
     }
 }
 

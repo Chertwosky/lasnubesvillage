@@ -134,7 +134,7 @@ onUnmounted(() => {
 
 <style scoped>
 .partners {
-  margin: 80px auto 0 auto;
+  margin: 40px auto 0 auto;
   max-width: var(--container-width);
   position: relative;
   padding: 0 20px;
@@ -292,7 +292,7 @@ onUnmounted(() => {
   }
 
   .partners__wrap_carousel_block-reel {
-    height: 200px;
+    height: 180px;
   }
 
   .partners__wrap_carousel_block_bot {
@@ -311,6 +311,12 @@ onUnmounted(() => {
 
   .partners__wrap_carousel-arrow {
     width: 36px;
+  }
+}
+
+@media (max-width: 480px) {
+  .partners__wrap_carousel_block-reel {
+    height: 160px;
   }
 }
 </style>

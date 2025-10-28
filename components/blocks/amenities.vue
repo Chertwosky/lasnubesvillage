@@ -32,7 +32,7 @@ const scrollTo = (id: string) => {
 </script>
 <style scoped>
 .amenities {
-    margin: 33px auto 0 auto;
+    margin: 40px auto 0 auto;
     max-width: var(--container-width);
     padding: 0 20px;
 }
@@ -83,6 +83,13 @@ const scrollTo = (id: string) => {
     margin-top: 15px;
 }
 
+.amenities__wrap_img_reel {
+    max-width: 420px;
+    width: 100%;
+    object-fit: cover;
+    display: block;
+}
+
 @media (max-width: 768px) {
     .amenities__wrap {
         flex-direction: column;
@@ -110,6 +117,10 @@ const scrollTo = (id: string) => {
 
     .amenities__wrap_block_bot {
         font-size: var(--fontsize-primary);
+    }
+
+    .amenities__wrap_img_reel {
+        max-width: 260px;
     }
 }
 </style>

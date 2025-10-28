@@ -18,7 +18,8 @@
   <style scoped>
 
   .sky {
-position: relative;
+    position: relative;
+    margin: var(--margin-section) 0 0 0;
   }
 
   .sky__wrap {
@@ -113,6 +114,10 @@ left: 41%;
 top: 40%;
 
 }
+
+  .sky__reel {
+    max-height: 360px;
+  }
 
 }
 
