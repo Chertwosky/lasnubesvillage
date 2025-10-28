@@ -112,9 +112,9 @@
 
   <style scoped>
   .villages {
-    margin: 50px auto 0 auto;
-    max-width: var(--container-width);
-    padding: 0 20px;
+    margin: clamp(32px, 7vw, 70px) auto 0 auto;
+    max-width: min(var(--container-width), 100%);
+    padding: 0 var(--container-padding);
     position: relative;
   }
 
@@ -123,7 +123,6 @@
     align-items: center;
     position: relative;
     width: 100%;
-    max-width: 1160px;
     margin: 0 auto;
   }
 
@@ -135,30 +134,34 @@
   .villages__wrap_inner {
     display: flex;
     transition: transform 0.5s ease;
-    gap: 30px;
+    gap: clamp(18px, 4vw, 32px);
+    padding-block: clamp(8px, 2vw, 16px);
   }
 
   .villages__wrap_block {
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
-    gap: 11px;
+    gap: clamp(10px, 2vw, 18px);
+    align-items: center;
   }
 
   .villages__wrap_block_reel {
     width: 100%;
-    height: 458px;
-    border-radius: 16px;
+    height: clamp(260px, 48vw, 440px);
+    border-radius: var(--border-radius-container);
     object-fit: cover;
+    box-shadow: 0 18px 36px rgba(0, 0, 0, 0.25);
   }
 
   .villages__wrap_block_title {
     font-family: var(--font-secondary);
     color: var(--white-color);
-    font-size: calc(var(--fontsize-unusual) * 2);
+    font-size: clamp(20px, 2.6vw, 32px);
     text-align: center;
     text-transform: uppercase;
     text-decoration: none;
+    letter-spacing: 1px;
   }
 
   .villages__wrap_arrow {
@@ -167,46 +170,36 @@
     transform: translateY(-50%);
     cursor: pointer;
     z-index: 10;
+    width: clamp(36px, 7vw, 60px);
+    height: clamp(36px, 7vw, 60px);
   }
 
   .villages__wrap_arrow.left {
-    left: 0;
+    left: clamp(-12px, -1vw, 0px);
     transform: rotate(180deg) translateY(50%);
   }
 
   .villages__wrap_arrow.right {
-    right: 0;
+    right: clamp(-12px, -1vw, 0px);
   }
 
   @media (max-width: 768px) {
-    .villages {
-      padding: 0 16px;
-    }
-
     .villages__wrap_block_reel {
-      height: 320px;
-    }
-
-    .villages__wrap_block_title {
-      font-size: calc(var(--fontsize-unusual) * 1.4);
-    }
-
-    .villages__wrap_arrow {
-      width: 44px;
+      height: clamp(240px, 60vw, 320px);
     }
   }
 
   @media (max-width: 540px) {
-    .villages__wrap {
-      padding: 0 8px;
+    .villages {
+      padding-inline: clamp(12px, 4vw, 20px);
+    }
+
+    .villages__wrap_inner {
+      gap: clamp(14px, 6vw, 22px);
     }
 
     .villages__wrap_block_reel {
-      height: 240px;
-    }
-
-    .villages__wrap_arrow {
-      width: 36px;
+      height: clamp(220px, 68vw, 280px);
     }
   }
   </style>

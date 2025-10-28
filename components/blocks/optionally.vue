@@ -128,77 +128,82 @@
   </script>
 
   <style scoped>
-  .optionally {
-    margin: 50px auto 0 auto;
-    max-width: var(--container-width);
-    position: relative;
-    padding: 0 20px;
-  }
-
-  .optionally__wrap {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .optionally__wrap_title {
-    font-size: 48px;
-    color: var(--white-color);
-    font-family: var(--font-secondary);
-    margin: 0 0 26px 0;
-  }
-
-  .optionally__wrap_carousel {
-    display: flex;
-    align-items: center;
-    position: relative;
-    width: 100%;
-    max-width: 1160px;
-    overflow: hidden;
-  }
-
-  .optionally__wrap_carousel_view {
-    overflow: hidden;
-    width: 100%;
-  }
-
-  .optionally__wrap_carousel_inner {
-    display: flex;
-    transition: transform 0.5s ease;
-    gap: 20px;
-  }
-
-  .optionally__wrap_carousel_block {
-    flex-shrink: 0;
-    border-radius: 16px;
-    display: flex;
-    flex-direction: column;
+.optionally {
+  margin: clamp(32px, 7vw, 70px) auto 0 auto;
+  max-width: min(var(--container-width), 100%);
+  position: relative;
+  padding: 0 var(--container-padding);
 }
 
-  .optionally__wrap_carousel_block-reel {
-    width: 100%;
-    height: 237px;
-    border-radius: 16px 16px 0 0;
-    object-fit: cover;
-  }
+.optionally__wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(20px, 4vw, 36px);
+}
 
-  .optionally__wrap_carousel_block_bot {
-  background-color: #121d3c;
+.optionally__wrap_title {
+  font-size: clamp(30px, 4.5vw, 48px);
   color: var(--white-color);
-  font-size: 24px;
-  padding: 16px 20px;
-  border-radius: 0 0 16px 16px;
+  font-family: var(--font-secondary);
+  margin: 0;
+  text-align: center;
+}
+
+.optionally__wrap_carousel {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  max-width: min(var(--container-width), 100%);
+  overflow: hidden;
+}
+
+.optionally__wrap_carousel_view {
+  overflow: hidden;
+  width: 100%;
+}
+
+.optionally__wrap_carousel_inner {
+  display: flex;
+  transition: transform 0.5s ease;
+  gap: clamp(16px, 3vw, 24px);
+  padding-block: clamp(8px, 2vw, 16px);
+}
+
+.optionally__wrap_carousel_block {
+  flex-shrink: 0;
+  border-radius: var(--border-radius-container);
+  display: flex;
+  flex-direction: column;
+  background: rgba(14, 32, 78, 0.35);
+  overflow: hidden;
+}
+
+.optionally__wrap_carousel_block-reel {
+  width: 100%;
+  height: clamp(200px, 40vw, 260px);
+  border-radius: var(--border-radius-container) var(--border-radius-container) 0 0;
+  object-fit: cover;
+}
+
+.optionally__wrap_carousel_block_bot {
+  background-color: rgba(18, 29, 60, 0.9);
+  color: var(--white-color);
+  font-size: clamp(18px, 1.4vw + 12px, 24px);
+  padding: clamp(16px, 3vw, 24px);
+  border-radius: 0 0 var(--border-radius-container) var(--border-radius-container);
   position: relative;
   width: 100%;
   box-sizing: border-box;
-  height: 127px;
-  overflow: hidden; /* чтобы градиент не вылезал за границы */
+  min-height: clamp(110px, 22vw, 140px);
+  overflow: hidden;
 }
 
 .optionally__wrap_carousel_block_bot::before {
   content: "";
   position: absolute;
-  top: -40px; /* насколько вверх «заходит» градиент */
+  top: -40px;
   left: 0;
   right: 0;
   height: 40px;
@@ -209,95 +214,64 @@
   );
 }
 
+.optionally__wrap_carousel_block_bot-text {
+  margin: 0;
+  font-family: var(--font-core);
+  font-weight: 300;
+}
 
-  .optionally__wrap_carousel_block_bot-text {
-    margin: 0;
-    font-family: var(--font-core);
-    font-weight: 200;
+.optionally__wrap_carousel_block_bot-text:last-of-type {
+  position: absolute;
+  right: clamp(16px, 3vw, 24px);
+  bottom: clamp(16px, 3vw, 28px);
+}
+
+.optionally__wrap_carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  z-index: 10;
+  width: clamp(36px, 7vw, 60px);
+  height: clamp(36px, 7vw, 60px);
+}
+
+.optionally__wrap_carousel-arrow.left {
+  left: clamp(-12px, -1vw, 0px);
+  transform: rotate(180deg) translateY(50%);
+}
+
+.optionally__wrap_carousel-arrow.right {
+  right: clamp(-12px, -1vw, 0px);
+}
+
+.optionally__wrap_btn {
+  background-color: var(--green-color);
+  text-transform: uppercase;
+  color: var(--white-color);
+  padding: clamp(12px, 2vw, 18px) clamp(24px, 4vw, 40px);
+  border-radius: var(--border-radius-container);
+  font-size: clamp(18px, 1.6vw + 12px, 24px);
+  font-family: var(--font-secondary);
+  line-height: 1.05;
+  border: none;
+  margin-top: clamp(12px, 2vw, 24px);
+  cursor: pointer;
+  align-self: center;
+}
+
+@media (max-width: 640px) {
+  .optionally {
+    padding-inline: clamp(12px, 5vw, 20px);
   }
 
-  .optionally__wrap_carousel_block_bot-text:last-of-type {
-    position: absolute;
-    right: 20px;
-    bottom: 36px;
-  }
-
-  .optionally__wrap_carousel-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    z-index: 10;
-  }
-
-  .optionally__wrap_carousel-arrow.left {
-    left: 0;
-    transform: rotate(180deg) translateY(50%);
-  }
-
-  .optionally__wrap_carousel-arrow.right {
-    right: 0;
+  .optionally__wrap_carousel_block_bot {
+    font-size: clamp(16px, 4vw, 20px);
   }
 
   .optionally__wrap_btn {
-    background-color: var(--green-color);
-    text-transform: uppercase;
-    color: var(--white-color);
-    padding: 7px 20px 9px 20px;
-    border-radius: var(--border-radius-container);
-    font-size: 33px;
-    font-family: var(--font-secondary);
-    line-height: 100%;
-    border: none;
-    margin-top: 20px;
-    cursor: pointer;
-    align-self: flex-start;
+    width: 100%;
+    max-width: 320px;
   }
-
-  @media (max-width: 1024px) {
-    .optionally {
-      padding: 0 16px;
-    }
-
-    .optionally__wrap_btn {
-      align-self: center;
-    }
-
-    .optionally__wrap_title {
-      font-size: 40px;
-      text-align: center;
-    }
-
-    .optionally__wrap_carousel-arrow {
-      width: 48px;
-    }
-  }
-
-  @media (max-width: 640px) {
-    .optionally {
-      padding: 0 12px;
-    }
-
-    .optionally__wrap_carousel_block-reel {
-      height: 200px;
-    }
-
-    .optionally__wrap_carousel_block_bot {
-      font-size: var(--fontsize-primary);
-      min-height: 120px;
-    }
-
-    .optionally__wrap_carousel_block_bot-text:last-of-type {
-      bottom: 24px;
-    }
-
-    .optionally__wrap_btn {
-      font-size: 22px;
-      padding: 10px 24px;
-    }
-
-    .optionally__wrap_carousel-arrow {
-      width: 36px;
-    }
-  }
+}
   </style>

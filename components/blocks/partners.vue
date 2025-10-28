@@ -134,32 +134,34 @@ onUnmounted(() => {
 
 <style scoped>
 .partners {
-  margin: 50px auto 0 auto;
-  max-width: var(--container-width);
+  margin: clamp(32px, 7vw, 70px) auto 0 auto;
+  max-width: min(var(--container-width), 100%);
   position: relative;
-  padding: 0 20px;
+  padding: 0 var(--container-padding);
 }
 
 .partners__wrap {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: clamp(20px, 4vw, 36px);
 }
 
 .partners__wrap_title {
-  font-size: 48px;
+  font-size: clamp(30px, 4.5vw, 48px);
   color: var(--white-color);
   font-family: var(--font-secondary);
-  margin: 0 0 26px 0;
+  margin: 0;
+  text-align: center;
 }
 
-/* 👇 новый контейнер */
 .partners__wrap_carousel-container {
   width: 100%;
-  max-width: 1160px; /* ширина слайдера */
+  max-width: min(var(--container-width), 100%);
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* кнопка теперь прижата к левому краю */
+  align-items: stretch;
+  gap: clamp(16px, 3vw, 24px);
 }
 
 .partners__wrap_carousel {
@@ -174,36 +176,40 @@ onUnmounted(() => {
   overflow: hidden;
   width: 100%;
 }
+
 .partners__wrap_carousel_inner {
   display: flex;
   transition: transform 0.5s ease;
-  gap: 20px;
+  gap: clamp(16px, 3vw, 24px);
+  padding-block: clamp(8px, 2vw, 16px);
 }
 
 .partners__wrap_carousel_block {
   flex-shrink: 0;
-  border-radius: 16px;
+  border-radius: var(--border-radius-container);
   display: flex;
   flex-direction: column;
+  background: rgba(14, 32, 78, 0.35);
+  overflow: hidden;
 }
 
 .partners__wrap_carousel_block-reel {
   width: 100%;
-  height: 237px;
-  border-radius: 16px 16px 0 0;
+  height: clamp(200px, 40vw, 260px);
+  border-radius: var(--border-radius-container) var(--border-radius-container) 0 0;
   object-fit: cover;
 }
 
 .partners__wrap_carousel_block_bot {
-  background-color: #121d3c;
+  background-color: rgba(18, 29, 60, 0.9);
   color: var(--white-color);
-  font-size: 24px;
-  padding: 16px 20px;
-  border-radius: 0 0 16px 16px;
+  font-size: clamp(18px, 1.4vw + 12px, 24px);
+  padding: clamp(16px, 3vw, 24px);
+  border-radius: 0 0 var(--border-radius-container) var(--border-radius-container);
   position: relative;
   width: 100%;
   box-sizing: border-box;
-  height: 127px;
+  min-height: clamp(110px, 22vw, 140px);
   overflow: hidden;
 }
 
@@ -224,13 +230,13 @@ onUnmounted(() => {
 .partners__wrap_carousel_block_bot-text {
   margin: 0;
   font-family: var(--font-core);
-  font-weight: 200;
+  font-weight: 300;
 }
 
 .partners__wrap_carousel_block_bot-text:last-of-type {
   position: absolute;
-  right: 20px;
-  bottom: 36px;
+  right: clamp(16px, 3vw, 24px);
+  bottom: clamp(16px, 3vw, 28px);
 }
 
 .partners__wrap_carousel-arrow {
@@ -239,78 +245,41 @@ onUnmounted(() => {
   transform: translateY(-50%);
   cursor: pointer;
   z-index: 10;
+  width: clamp(36px, 7vw, 60px);
+  height: clamp(36px, 7vw, 60px);
 }
 
 .partners__wrap_carousel-arrow.left {
-  left: 0;
+  left: clamp(-12px, -1vw, 0px);
   transform: rotate(180deg) translateY(50%);
 }
 
 .partners__wrap_carousel-arrow.right {
-  right: 0;
+  right: clamp(-12px, -1vw, 0px);
 }
 
 .partners__wrap_btn {
   background-color: var(--green-color);
   text-transform: uppercase;
   color: var(--white-color);
-  padding: 7px 20px 15px 20px;
+  padding: clamp(12px, 2vw, 18px) clamp(24px, 4vw, 40px);
   border-radius: var(--border-radius-container);
-  font-size: 33px;
+  font-size: clamp(18px, 1.6vw + 12px, 24px);
   font-family: var(--font-secondary);
-  line-height: 100%;
+  line-height: 1.05;
   border: none;
-  margin-top: 20px;
   cursor: pointer;
-}
-
-@media (max-width: 1024px) {
-  .partners {
-    padding: 0 16px;
-  }
-
-  .partners__wrap_title {
-    text-align: center;
-  }
-
-  .partners__wrap_carousel-container {
-    align-items: center;
-  }
-
-  .partners__wrap_btn {
-    align-self: center;
-  }
-
-  .partners__wrap_carousel-arrow {
-    width: 48px;
-  }
+  align-self: center;
 }
 
 @media (max-width: 640px) {
   .partners {
-    padding: 0 12px;
-  }
-
-  .partners__wrap_carousel_block-reel {
-    height: 200px;
-  }
-
-  .partners__wrap_carousel_block_bot {
-    font-size: var(--fontsize-primary);
-    min-height: 120px;
-  }
-
-  .partners__wrap_carousel_block_bot-text:last-of-type {
-    bottom: 24px;
+    padding-inline: clamp(12px, 5vw, 20px);
   }
 
   .partners__wrap_btn {
-    font-size: 22px;
-    padding: 10px 24px;
-  }
-
-  .partners__wrap_carousel-arrow {
-    width: 36px;
+    width: 100%;
+    max-width: 320px;
   }
 }
 </style>

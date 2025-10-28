@@ -31,24 +31,24 @@ import Games from '@/assets/images/core/pleasantly/games.svg'
 </script>
 
 <style scoped>
-
 .pleasantly {
-    margin: 50px auto 0 auto;
-    max-width: var(--container-width);
+    margin: clamp(32px, 7vw, 70px) auto 0 auto;
+    max-width: min(var(--container-width), 100%);
     position: relative;
-    padding: 80px 20px;
+    padding: clamp(48px, 10vw, 80px) var(--container-padding);
 }
 
 .pleasantly__wrap {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 40px;
+    gap: clamp(24px, 5vw, 56px);
 }
 
 .pleasantly__wrap_block {
     display: flex;
     flex-direction: column;
+    gap: clamp(16px, 3vw, 28px);
 }
 
 .pleasantly__wrap_block_title,
@@ -58,15 +58,15 @@ color: var(--white-color);
 
 .pleasantly__wrap_block_title {
     font-family: var(--font-secondary);
-    font-size: 48px;
-    margin: 0 0 20px 0;
+    font-size: clamp(30px, 4.5vw, 48px);
+    margin: 0;
 }
 .pleasantly__wrap_block_list {
     list-style-type: none;
-    margin-top: 0;
-    font-size: 20px;
+    margin: 0;
+    font-size: clamp(18px, 1.4vw + 12px, 22px);
     padding-left: 0;
-    line-height: 140%;
+    line-height: 1.55;
     font-family: var(--font-main);
 }
 
@@ -74,22 +74,20 @@ color: var(--white-color);
     background-color: var(--green-color);
     text-transform: uppercase;
     color: var(--white-color);
-    display: flex;
-    padding: 7px 20px 9px 20px;
+    display: inline-flex;
+    padding: clamp(12px, 2vw, 18px) clamp(24px, 4vw, 40px);
     border-radius: var(--border-radius-container);
-    font-size: 33px;
+    font-size: clamp(18px, 1.6vw + 12px, 24px);
     font-family: var(--font-secondary);
-    line-height: 100%;
-    letter-spacing: 0;
+    line-height: 1.05;
     border: none;
-    width: fit-content;
-    margin-top: 10px;
+    margin-top: clamp(8px, 2vw, 20px);
     cursor: pointer;
 }
 
 @media (max-width: 900px) {
     .pleasantly {
-        padding: 60px 16px;
+        padding: clamp(40px, 10vw, 60px) clamp(16px, 5vw, 24px);
     }
 
     .pleasantly__wrap {
@@ -108,22 +106,17 @@ color: var(--white-color);
 
 @media (max-width: 640px) {
     .pleasantly {
-        padding: 48px 12px;
-    }
-
-    .pleasantly__wrap_block_title {
-        font-size: 36px;
+        padding-inline: clamp(12px, 5vw, 20px);
     }
 
     .pleasantly__wrap_block_list {
-        font-size: var(--fontsize-primary);
+        font-size: clamp(16px, 4vw, 20px);
     }
 
     .pleasantly__wrap_block_btn {
-        font-size: 22px;
-        padding: 10px 24px;
+        width: 100%;
+        max-width: 320px;
+        justify-content: center;
     }
 }
-
-
 </style>

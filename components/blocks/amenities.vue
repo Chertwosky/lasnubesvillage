@@ -32,84 +32,87 @@ const scrollTo = (id: string) => {
 </script>
 <style scoped>
 .amenities {
-    margin: 50px auto 0 auto;
-    max-width: var(--container-width);
-    padding: 0 20px;
+    margin: clamp(32px, 7vw, 70px) auto 0 auto;
+    max-width: min(var(--container-width), 100%);
+    padding: 0 var(--container-padding);
 }
 .amenities__wrap {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    gap: 40px;
+    gap: clamp(24px, 4vw, 48px);
+    align-items: flex-start;
 }
 .amenities__wrap_block {
     display: flex;
     flex-direction: column;
-    min-height: 522px;
+    gap: clamp(12px, 2vw, 20px);
 }
 .amenities__wrap_block_title {
-    font-size: calc(var(--fontsize-large)*2);
+    font-size: clamp(30px, 4.5vw, 48px);
     color: var(--white-color);
     font-family: var(--font-secondary);
-    letter-spacing: 0;
-    max-width: 361px;
+    letter-spacing: 0.5px;
+    max-width: 420px;
     margin: 0;
-}
-
-.amenities__wrap_block_sub {
-    font-family: var(--font-main);
 }
 
 .amenities__wrap_block_sub,
 .amenities__wrap_block_name {
-    font-size: var(--fontsize-unusual);
+    font-size: clamp(20px, 2.6vw, 30px);
     color: var(--white-color);
+}
+.amenities__wrap_block_sub {
+    font-family: var(--font-main);
 }
 .amenities__wrap_block_name {
     font-family: var(--font-secondary);
-    margin: 0 0 10px 0;
+    margin: 0;
     cursor: pointer;
-    font-size: 36px;
+    transition: opacity var(--transition-dur-small);
+}
+.amenities__wrap_block_name:hover {
+    opacity: 0.85;
 }
 .amenities__wrap_block_bot {
     font-family: var(--font-secondary);
     color: var(--white-color);
-    font-size: var(--fontsize-medium);
-    max-width: 500px;
-    margin: 120px 0 0 0;
+    font-size: clamp(18px, 1.6vw + 12px, 24px);
+    max-width: 520px;
+    margin-top: clamp(24px, 6vw, 56px);
+    line-height: 1.45;
 }
 
 .amenities__wrap_img {
-    margin-top: 15px;
+    flex: 1 1 45%;
+    display: flex;
+    justify-content: center;
 }
 
-@media (max-width: 768px) {
+.amenities__wrap_img_reel {
+    width: min(100%, 520px);
+    height: auto;
+}
+
+@media (max-width: 900px) {
     .amenities__wrap {
         flex-direction: column;
         align-items: center;
         text-align: center;
     }
 
-    .amenities__wrap_block {
-        align-items: center;
-    }
-
     .amenities__wrap_block_bot {
-        margin: 40px 0 0 0;
+        margin-top: clamp(24px, 6vw, 48px);
     }
 }
 
 @media (max-width: 540px) {
     .amenities {
-        padding: 0 16px;
+        padding-inline: clamp(12px, 5vw, 20px);
     }
 
     .amenities__wrap_block_name {
-        font-size: calc(var(--fontsize-large) * 0.9);
-    }
-
-    .amenities__wrap_block_bot {
-        font-size: var(--fontsize-primary);
+        font-size: clamp(20px, 4.5vw, 28px);
     }
 }
 </style>

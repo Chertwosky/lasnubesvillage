@@ -44,123 +44,100 @@
 <style scoped>
 
 .produce {
-  margin: 50px auto 0 auto;
-  max-width: var(--container-width);
-  padding: 0 20px;
+  margin: clamp(32px, 7vw, 70px) auto 0 auto;
+  max-width: min(var(--container-width), 100%);
+  padding: 0 var(--container-padding);
   position: relative;
-  z-index: 0; /* секция сама "нулевой слой" */
+  z-index: 0;
 }
-
 
 .produce__wrap {
-    display: flex;
-    justify-content: space-between;
-    position: relative;
-    z-index: 1; /* контент поверх облаков */
-    gap: 40px;
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: clamp(24px, 4vw, 48px);
+  align-items: start;
 }
 
 .produce__wrap_left,
-.produce__wrap_right,
-.produce__btn,
-.produce__wrap_left img,
-.produce__wrap_right img,
+.produce__wrap_right {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(18px, 3vw, 36px);
+}
+
+.produce__wrap_left_reel,
+.produce__wrap_right_reel {
+  width: min(100%, 420px);
+  height: auto;
+  border-radius: var(--border-radius-container);
+  object-fit: cover;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+}
+
 .produce__wrap_left_list,
 .produce__wrap_right_list {
-  position: relative;
-  z-index: 1; /* явно указываем, что текст/картинки сверху */
+  font-size: clamp(16px, 1.4vw + 10px, 20px);
+  color: var(--white-color);
+  padding-left: clamp(18px, 2vw, 28px);
+  font-family: var(--font-main);
+  font-weight: 300;
+  line-height: 1.55;
 }
 
-.produce__wrap_left,
-.produce__wrap_right {
-    display: flex;
-    flex-direction: column;
-    gap: calc(var(--gap-medium)*0.835);
-}
-
-.produce__wrap_right {
-    max-width: 742px;
-}
-
-.produce__wrap_left {
-    max-width: 363px;
-}
-
-.produce__wrap_left_reel img,
-.produce__wrap_right_reel img {
-    height: 273px;
+.produce__wrap_left_list li,
+.produce__wrap_right_list li {
+  margin-bottom: clamp(8px, 2vw, 16px);
 }
 
 .produce__btn {
-    background-color: var(--green-color);
-    text-transform: uppercase;
-    color: var(--white-color);
-    display: flex;
-    padding: 7px 20px 13px 20px;
-    border-radius: var(--border-radius-container);
-    font-size: 33px;
-    font-family: var(--font-secondary);
-    line-height: 100%;
-    letter-spacing: 0;
-    border: none;
-    width: fit-content;
-    margin-left: 31px;
-    margin-top: -30px;
-    cursor: pointer;
+  background-color: var(--green-color);
+  text-transform: uppercase;
+  color: var(--white-color);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: clamp(12px, 2vw, 16px) clamp(24px, 4vw, 44px);
+  border-radius: var(--border-radius-container);
+  font-size: clamp(18px, 1.6vw + 12px, 26px);
+  font-family: var(--font-secondary);
+  line-height: 1;
+  letter-spacing: 0.5px;
+  border: none;
+  cursor: pointer;
+  margin-top: clamp(8px, 2vw, 24px);
 }
 
-.produce__wrap_left_list,
-.produce__wrap_right_list {
-    font-size: var(--fontsize-medium);
-    color: var(--white-color);
-    padding-left: 31px;
-    font-family: var(--font-main);
-    font-weight: 200;
-}
-
-@media (max-width: 992px) {
-  .produce__wrap {
-    flex-direction: column;
-    align-items: center;
+@media (max-width: 768px) {
+  .produce {
     text-align: center;
   }
 
-  .produce__wrap_left,
-  .produce__wrap_right {
-    align-items: center;
-    max-width: 100%;
+  .produce__wrap {
+    justify-items: center;
   }
 
   .produce__wrap_left_list,
   .produce__wrap_right_list {
     padding-left: 0;
+    text-align: left;
   }
 
   .produce__btn {
-    margin-left: 0;
+    width: 100%;
+    max-width: 320px;
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 480px) {
   .produce {
-    padding: 0 16px;
-  }
-
-  .produce__wrap_left_reel,
-  .produce__wrap_right_reel {
-    width: 100%;
-    max-width: 320px;
-    margin: 0 auto;
+    padding-inline: clamp(12px, 5vw, 18px);
   }
 
   .produce__wrap_left_list,
   .produce__wrap_right_list {
-    font-size: var(--fontsize-secondary);
-  }
-
-  .produce__btn {
-    font-size: 20px;
-    padding: 10px 24px;
+    font-size: clamp(15px, 4vw, 18px);
   }
 }
 

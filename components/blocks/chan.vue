@@ -62,16 +62,16 @@ img.chan__block__left_reel {
 }
 
 .chan {
-    margin: 50px auto 0 auto;
-    max-width: var(--container-width);
-    padding: 40px 20px 0 20px;
+    margin: clamp(32px, 7vw, 70px) auto 0 auto;
+    max-width: min(var(--container-width), 100%);
+    padding: clamp(32px, 6vw, 48px) var(--container-padding) 0 var(--container-padding);
 }
 .chan__block {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     position: relative;
-    gap: 40px;
+    gap: clamp(24px, 5vw, 56px);
 }
 .chan__block__left,
 .chan__block__right {
@@ -80,59 +80,73 @@ img.chan__block__left_reel {
 }
 .chan__block__left {
     align-items: flex-end;
+    gap: clamp(16px, 3vw, 28px);
 }
 .chan__block__left_btn {
     background-color: var(--green-color);
     text-transform: uppercase;
     color: var(--white-color);
-    display: flex;
-    padding: 7px 20px 15px 20px;
+    display: inline-flex;
+    padding: clamp(12px, 2vw, 18px) clamp(24px, 4vw, 40px);
     border-radius: var(--border-radius-container);
-    font-size: 33px;
+    font-size: clamp(18px, 1.6vw + 12px, 24px);
     font-family: var(--font-secondary);
-    line-height: 100%;
-    letter-spacing: 0;
+    line-height: 1.05;
     border: none;
-    width: fit-content;
-    margin-top: 10px;
+    margin-top: clamp(12px, 2vw, 20px);
     cursor: pointer;
+    align-self: flex-start;
 }
 .chan__block__left_title {
-    font-size: calc(var(--fontsize-unusual)*2);
+    font-size: clamp(26px, 4vw, 40px);
     color: var(--white-color);
     font-family: var(--font-secondary);
-    margin: 0 0 8px 0;
+    margin: 0;
+}
+.chan__block__right {
+    gap: clamp(18px, 3vw, 32px);
+    max-width: 520px;
 }
 .chan__block__right_bot_min {
     display: flex;
     gap: 8px;
+    align-items: center;
+}
+.chan__block__right_bot_min-reel {
+    width: 22px;
+    height: 22px;
 }
 .chan__block__right_bot {
-    margin-left: 20px;
+    margin-left: clamp(12px, 2vw, 24px);
     color: var(--faded-color);
     font-weight: 200;
-    font-size: var(--fontsize-small);
+    font-size: clamp(14px, 1.2vw + 10px, 18px);
     font-family: var(--font-core);
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(12px, 2vw, 20px);
 }
 .chan__block__right_text {
     color: var(--white-color);
-    font-size: var(--fontsize-unusual);
+    font-size: clamp(18px, 1.4vw + 12px, 24px);
     max-width: 508px;
-    line-height: 140%;
+    line-height: 1.55;
     font-family: var(--font-main);
 }
 .chan__block__right_text-up {
     font-family: var(--font-secondary);
-    font-size: 36px;
+    font-size: clamp(24px, 3.4vw, 34px);
     text-transform: uppercase;
+    display: block;
+    margin-bottom: clamp(6px, 1.4vw, 12px);
 }
 .chan__block__right_bot-text:first-of-type {
-    margin-bottom: 24px;
+    margin-bottom: clamp(12px, 3vw, 20px);
 }
 
 @media (max-width: 992px) {
     .chan {
-        padding: 40px 16px 0 16px;
+        padding-inline: clamp(16px, 5vw, 24px);
     }
 
     .chan__block {
@@ -151,27 +165,23 @@ img.chan__block__left_reel {
 
     .chan__block__right_bot {
         margin-left: 0;
-        display: flex;
-        gap: 16px;
+        justify-content: center;
     }
 }
 
 @media (max-width: 640px) {
     .chan {
-        padding: 32px 12px 0 12px;
-    }
-
-    .chan__block__left_btn {
-        font-size: 22px;
-        padding: 10px 24px;
+        padding-inline: clamp(12px, 5vw, 20px);
     }
 
     .chan__block__right_text {
-        font-size: var(--fontsize-primary);
+        font-size: clamp(16px, 4vw, 20px);
     }
 
-    .chan__block__right_text-up {
-        font-size: calc(var(--fontsize-unusual) * 1.2);
+    .chan__block__left_btn {
+        width: 100%;
+        max-width: 320px;
+        justify-content: center;
     }
 }
 </style>
