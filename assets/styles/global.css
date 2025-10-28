@@ -147,8 +147,9 @@
 	/* Маргин раздела */
 
 	/* Ширина контейнера */
-	--container-width: 1160px;
-	/* Ширина контейнера */
+        --container-width: min(1160px, calc(100vw - 64px));
+        /* Ширина контейнера */
+        --container-padding: clamp(16px, 4vw, 32px);
 
 	/* Размеры иконок */
 	--icon-size: 16px;
@@ -178,9 +179,11 @@
 
 /* Стили для тела страницы */
 body {
-	margin: 0;
-	background-color: var(--back-color);
-	scroll-behavior: smooth;
+        margin: 0;
+        background-color: var(--back-color);
+        scroll-behavior: smooth;
+        font-family: var(--font-core);
+        color: var(--white-color);
 }
 
 a:hover {
@@ -198,7 +201,27 @@ a button:hover {
     src: url('@/assets/fonts/Oks_Free/Oks_Free.ttf') format('truetype');
     font-weight: 200 800;
     font-style: normal;
-  }
+}
+
+@media (max-width: 992px) {
+    :root {
+        --fontsize-large: 28px;
+        --fontsize-greater: 34px;
+        --fontsize-unusual: 22px;
+        --container-width: min(960px, calc(100vw - 48px));
+    }
+}
+
+@media (max-width: 640px) {
+    :root {
+        --fontsize-secondary: 15px;
+        --fontsize-primary: 16px;
+        --fontsize-medium: 18px;
+        --fontsize-large: 24px;
+        --fontsize-greater: 30px;
+        --container-width: calc(100vw - 32px);
+    }
+}
 
   @font-face {
     font-family: 'Franklin Gothic Medium';
