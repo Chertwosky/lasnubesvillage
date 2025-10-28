@@ -16,7 +16,7 @@
                 <p class="amenities__wrap_block_bot">LAS NUBES VILLAGE — посуточная аренда коттеджей</p>
             </div>
             <div class="amenities__wrap_img">
-                <img :src="House" alt="Дом" class="amenities__wrap_img_reel" draggable="false" />
+                <img :src="House" alt="Дом" class="amenities__wrap_img_reel" draggable="false" loading="lazy" decoding="async" />
             </div>
         </div>
     </section>
@@ -34,56 +34,62 @@ const scrollTo = (id: string) => {
 .amenities {
     margin: 50px auto 0 auto;
     max-width: var(--container-width);
-    padding: 0 20px;
+    padding: 0 clamp(16px, 5vw, 24px);
 }
 .amenities__wrap {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    gap: 40px;
+    gap: clamp(24px, 5vw, 56px);
+    align-items: flex-start;
 }
 .amenities__wrap_block {
     display: flex;
     flex-direction: column;
-    min-height: 522px;
+    gap: clamp(12px, 3vw, 24px);
 }
 .amenities__wrap_block_title {
-    font-size: calc(var(--fontsize-large)*2);
+    font-size: clamp(34px, 4.5vw, 60px);
     color: var(--white-color);
     font-family: var(--font-secondary);
     letter-spacing: 0;
-    max-width: 361px;
+    max-width: 420px;
     margin: 0;
 }
 
 .amenities__wrap_block_sub {
     font-family: var(--font-main);
-}
-
-.amenities__wrap_block_sub,
-.amenities__wrap_block_name {
-    font-size: var(--fontsize-unusual);
+    font-size: clamp(22px, 3vw, 30px);
     color: var(--white-color);
 }
+
 .amenities__wrap_block_name {
     font-family: var(--font-secondary);
-    margin: 0 0 10px 0;
+    margin: 0;
     cursor: pointer;
-    font-size: 36px;
+    font-size: clamp(26px, 3.2vw, 40px);
+    transition: color 0.2s ease;
 }
+
+.amenities__wrap_block_name:hover,
+.amenities__wrap_block_name:focus-visible {
+    color: #ffffffcc;
+}
+
 .amenities__wrap_block_bot {
     font-family: var(--font-secondary);
     color: var(--white-color);
-    font-size: var(--fontsize-medium);
-    max-width: 500px;
-    margin: 120px 0 0 0;
+    font-size: clamp(18px, 2.2vw, 24px);
+    max-width: 540px;
+    margin: clamp(32px, 6vw, 80px) 0 0 0;
 }
 
-.amenities__wrap_img {
-    margin-top: 15px;
+.amenities__wrap_img_reel {
+    width: clamp(220px, 36vw, 420px);
+    height: auto;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     .amenities__wrap {
         flex-direction: column;
         align-items: center;
@@ -100,14 +106,6 @@ const scrollTo = (id: string) => {
 }
 
 @media (max-width: 540px) {
-    .amenities {
-        padding: 0 16px;
-    }
-
-    .amenities__wrap_block_name {
-        font-size: calc(var(--fontsize-large) * 0.9);
-    }
-
     .amenities__wrap_block_bot {
         font-size: var(--fontsize-primary);
     }

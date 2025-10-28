@@ -15,7 +15,7 @@
         </BookingButton>
             </div>
             <div class="pleasantly__wrap_img">
-                <img :src="Games" alt="Игры" class="pleasantly__wrap_img-reel" draggable="false" />
+                <img :src="Games" alt="Игры" class="pleasantly__wrap_img-reel" draggable="false" loading="lazy" decoding="async" />
             </div>
         </div>
         <Cloud width="156px" top="-10%" left="-30px" />
@@ -36,19 +36,20 @@ import Games from '@/assets/images/core/pleasantly/games.svg'
     margin: 50px auto 0 auto;
     max-width: var(--container-width);
     position: relative;
-    padding: 80px 20px;
+    padding: clamp(48px, 8vw, 90px) clamp(16px, 5vw, 24px);
 }
 
 .pleasantly__wrap {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 40px;
+    gap: clamp(24px, 6vw, 56px);
 }
 
 .pleasantly__wrap_block {
     display: flex;
     flex-direction: column;
+    gap: clamp(16px, 3vw, 28px);
 }
 
 .pleasantly__wrap_block_title,
@@ -58,38 +59,44 @@ color: var(--white-color);
 
 .pleasantly__wrap_block_title {
     font-family: var(--font-secondary);
-    font-size: 48px;
-    margin: 0 0 20px 0;
+    font-size: clamp(34px, 5vw, 56px);
+    margin: 0;
 }
 .pleasantly__wrap_block_list {
     list-style-type: none;
     margin-top: 0;
-    font-size: 20px;
+    font-size: clamp(18px, 2.2vw, 24px);
     padding-left: 0;
-    line-height: 140%;
+    line-height: 1.6;
     font-family: var(--font-main);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
 .pleasantly__wrap_block_btn {
     background-color: var(--green-color);
     text-transform: uppercase;
     color: var(--white-color);
-    display: flex;
-    padding: 7px 20px 9px 20px;
+    display: inline-flex;
+    padding: 12px 32px;
     border-radius: var(--border-radius-container);
-    font-size: 33px;
+    font-size: clamp(20px, 2.3vw, 30px);
     font-family: var(--font-secondary);
-    line-height: 100%;
-    letter-spacing: 0;
+    line-height: 1;
     border: none;
-    width: fit-content;
     margin-top: 10px;
     cursor: pointer;
 }
 
+.pleasantly__wrap_img-reel {
+    width: clamp(220px, 36vw, 420px);
+    height: auto;
+}
+
 @media (max-width: 900px) {
     .pleasantly {
-        padding: 60px 16px;
+        padding: clamp(36px, 8vw, 60px) 16px;
     }
 
     .pleasantly__wrap {
@@ -108,11 +115,7 @@ color: var(--white-color);
 
 @media (max-width: 640px) {
     .pleasantly {
-        padding: 48px 12px;
-    }
-
-    .pleasantly__wrap_block_title {
-        font-size: 36px;
+        padding: 40px 12px;
     }
 
     .pleasantly__wrap_block_list {
