@@ -149,7 +149,7 @@
   .produce__wrap_left_reel,
   .produce__wrap_right_reel {
     width: 100%;
-    max-width: 320px;
+    max-width: 280px;
     margin: 0 auto;
   }
 

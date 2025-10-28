@@ -185,7 +185,7 @@
     }
 
     .villages__wrap_block_reel {
-      height: 320px;
+      height: 280px;
     }
 
     .villages__wrap_block_title {
@@ -203,7 +203,7 @@
     }
 
     .villages__wrap_block_reel {
-      height: 240px;
+      height: 210px;
     }
 
     .villages__wrap_arrow {
