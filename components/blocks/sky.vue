@@ -114,6 +114,10 @@ top: 40%;
 
 }
 
+  .sky__reel {
+    max-height: 420px;
+  }
+
 }
 
 

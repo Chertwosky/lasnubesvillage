@@ -300,4 +300,10 @@
       width: 36px;
     }
   }
+
+  @media (max-width: 540px) {
+    .optionally__wrap_carousel_block-reel {
+      height: 180px;
+    }
+  }
   </style>

@@ -125,5 +125,18 @@ color: var(--white-color);
     }
 }
 
+@media (max-width: 540px) {
+    .pleasantly__wrap_img {
+        max-width: 260px;
+        margin: 20px auto 0;
+    }
+
+    .pleasantly__wrap_img-reel {
+        width: 100%;
+        max-width: 260px;
+        height: auto;
+    }
+}
+
 
 </style>

@@ -177,6 +177,14 @@ img.bath__block__left_reel {
         font-size: calc(var(--fontsize-unusual) * 1.2);
     }
 }
+
+@media (max-width: 540px) {
+    .bath__block__left_reel {
+        width: 100%;
+        max-width: 260px;
+        height: auto;
+    }
+}
 </style>
 ```
 

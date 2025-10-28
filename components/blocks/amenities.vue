@@ -111,5 +111,18 @@ const scrollTo = (id: string) => {
     .amenities__wrap_block_bot {
         font-size: var(--fontsize-primary);
     }
+
+    .amenities__wrap_img {
+        margin: 20px auto 0;
+        max-width: 260px;
+    }
+
+    .amenities__wrap_img_reel {
+        width: 100%;
+        max-width: 260px;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+    }
 }
 </style>
