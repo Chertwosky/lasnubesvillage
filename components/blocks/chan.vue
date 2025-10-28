@@ -8,7 +8,7 @@
       >
         <div class="chan__block__left">
           <h3 class="chan__block__left_title">{{ item.title }}</h3>
-          <img :src="item.img" alt="Баня" class="chan__block__left_reel" draggable="false" />
+          <img :src="item.img" alt="Баня" class="chan__block__left_reel" draggable="false" loading="lazy" />
           <BookingButton customClass="chan__block__left_btn">
             Забронировать
           </BookingButton>
@@ -23,7 +23,7 @@
             <p class="chan__block__right_bot-text">{{ item.location }}</p>
             <p class="chan__block__right_bot-text">{{ item.beds }}</p>
             <div class="chan__block__right_bot_min">
-              <img :src="Man" alt="Иконка гостей" class="chan__block__right_bot_min-reel" draggable="false" />
+              <img :src="Man" alt="Иконка гостей" class="chan__block__right_bot_min-reel" draggable="false" loading="lazy" />
               <p class="chan__block__right_bot_min-text">{{ item.guests }}</p>
             </div>
           </div>
@@ -58,20 +58,24 @@
 <style scoped>
 
 img.chan__block__left_reel {
-    border-radius: 16px;
+    border-radius: 24px;
+    width: clamp(260px, 40vw, 400px);
+    height: clamp(220px, 32vw, 320px);
+    object-fit: cover;
+    box-shadow: 0 18px 42px rgba(0, 0, 0, 0.25);
 }
 
 .chan {
-    margin: 50px auto 0 auto;
-    max-width: var(--container-width);
-    padding: 40px 20px 0 20px;
+    margin: var(--layout-section-gap) auto 0 auto;
+    width: min(100%, var(--container-width));
+    padding: clamp(32px, 6vw, 48px) var(--layout-content-padding) 0 var(--layout-content-padding);
 }
 .chan__block {
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: relative;
-    gap: 40px;
+    gap: clamp(24px, 5vw, 56px);
 }
 .chan__block__left,
 .chan__block__right {
@@ -85,20 +89,20 @@ img.chan__block__left_reel {
     background-color: var(--green-color);
     text-transform: uppercase;
     color: var(--white-color);
-    display: flex;
-    padding: 7px 20px 15px 20px;
+    display: inline-flex;
+    padding: clamp(10px, 1.6vw, 16px) clamp(20px, 3.2vw, 40px);
     border-radius: var(--border-radius-container);
-    font-size: 33px;
+    font-size: clamp(20px, 2.6vw, 30px);
     font-family: var(--font-secondary);
-    line-height: 100%;
-    letter-spacing: 0;
+    line-height: 1;
     border: none;
     width: fit-content;
-    margin-top: 10px;
+    margin-top: 12px;
     cursor: pointer;
+    letter-spacing: 0.08em;
 }
 .chan__block__left_title {
-    font-size: calc(var(--fontsize-unusual)*2);
+    font-size: clamp(32px, 4.2vw, 52px);
     color: var(--white-color);
     font-family: var(--font-secondary);
     margin: 0 0 8px 0;
@@ -116,25 +120,22 @@ img.chan__block__left_reel {
 }
 .chan__block__right_text {
     color: var(--white-color);
-    font-size: var(--fontsize-unusual);
-    max-width: 508px;
-    line-height: 140%;
+    font-size: clamp(18px, 2vw, 26px);
+    max-width: clamp(320px, 50vw, 520px);
+    line-height: 1.6;
     font-family: var(--font-main);
 }
 .chan__block__right_text-up {
     font-family: var(--font-secondary);
-    font-size: 36px;
+    font-size: clamp(24px, 3vw, 36px);
     text-transform: uppercase;
+    letter-spacing: 0.08em;
 }
 .chan__block__right_bot-text:first-of-type {
     margin-bottom: 24px;
 }
 
 @media (max-width: 992px) {
-    .chan {
-        padding: 40px 16px 0 16px;
-    }
-
     .chan__block {
         flex-direction: column;
         text-align: center;
@@ -157,24 +158,17 @@ img.chan__block__left_reel {
 }
 
 @media (max-width: 640px) {
-    .chan {
-        padding: 32px 12px 0 12px;
-    }
-
     .chan__block__left_btn {
-        font-size: 22px;
+        font-size: clamp(18px, 5vw, 22px);
         padding: 10px 24px;
     }
 
     .chan__block__right_text {
-        font-size: var(--fontsize-primary);
+        font-size: clamp(16px, 4.5vw, 20px);
     }
 
     .chan__block__right_text-up {
-        font-size: calc(var(--fontsize-unusual) * 1.2);
+        font-size: clamp(20px, 5.8vw, 28px);
     }
 }
 </style>
-```
-
-Если нужно ещё что-то изменить — дай знать!

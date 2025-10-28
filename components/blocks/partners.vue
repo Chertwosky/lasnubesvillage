@@ -13,6 +13,7 @@
             alt="Стрелка"
             class="partners__wrap_carousel-arrow left"
             @click="prevSlide"
+            loading="lazy"
           />
 
           <!-- Контейнер со слайдами -->
@@ -32,6 +33,7 @@
                   :alt="item.title"
                   class="partners__wrap_carousel_block-reel"
                   draggable="false"
+                  loading="lazy"
                 />
                 <div class="partners__wrap_carousel_block_bot">
                   <p class="partners__wrap_carousel_block_bot-text">
@@ -52,6 +54,7 @@
             alt="Стрелка"
             class="partners__wrap_carousel-arrow right"
             @click="nextSlide"
+            loading="lazy"
           />
         </div>
 
@@ -134,10 +137,10 @@ onUnmounted(() => {
 
 <style scoped>
 .partners {
-  margin: 50px auto 0 auto;
-  max-width: var(--container-width);
+  margin: var(--layout-section-gap) auto 0 auto;
+  width: min(100%, var(--container-width));
   position: relative;
-  padding: 0 20px;
+  padding: 0 var(--layout-content-padding);
 }
 
 .partners__wrap {
@@ -177,7 +180,7 @@ onUnmounted(() => {
 .partners__wrap_carousel_inner {
   display: flex;
   transition: transform 0.5s ease;
-  gap: 20px;
+  gap: clamp(16px, 3vw, 32px);
 }
 
 .partners__wrap_carousel_block {

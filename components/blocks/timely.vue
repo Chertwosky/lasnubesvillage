@@ -2,7 +2,7 @@
     <section class="timely">
       <div class="timely__container">
         <!-- Большое центральное облако -->
-        <img :src="CloudSvg" alt="Дом" class="timely__container-reel" draggable="false" />
+        <img :src="CloudSvg" alt="Дом" class="timely__container-reel" draggable="false" loading="lazy" />
         <!-- Контент -->
         <div class="timely__container_block">
           <h3 class="timely__container_block-title">Упс..</h3>

@@ -154,15 +154,20 @@
 	--icon-size: 16px;
 	/* Размер иконок */
 
-	/* Промежутки между элементами */
-	--gap-small: 8px;
-	/* Маленький промежуток */
-	--gap-base: 20px;
-	/* Базовый промежуток */
-	--gap-medium: 30px;
-	/* Средний промежуток */
-	--gap-big: 48px;
-	/* Большой промежуток */
+        /* Промежутки между элементами */
+        --gap-small: 8px;
+        /* Маленький промежуток */
+        --gap-base: 20px;
+        /* Базовый промежуток */
+        --gap-medium: 30px;
+        /* Средний промежуток */
+        --gap-big: 48px;
+        /* Большой промежуток */
+
+        /* Общая компоновка */
+        --layout-content-padding: clamp(16px, 4vw, 48px);
+        --layout-section-gap: clamp(48px, 9vw, 128px);
+        --layout-header-height: clamp(72px, 8vw, 128px);
 
 	/* Обводка */
 	--no-stroke: none;
@@ -178,9 +183,40 @@
 
 /* Стили для тела страницы */
 body {
-	margin: 0;
-	background-color: var(--back-color);
-	scroll-behavior: smooth;
+        margin: 0;
+        background-color: var(--back-color);
+        scroll-behavior: smooth;
+        font-family: var(--font-core);
+        color: var(--white-color);
+        line-height: 1.6;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--layout-section-gap);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.page-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-content {
+  flex: 1 0 auto;
 }
 
 a:hover {

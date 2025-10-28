@@ -5,6 +5,7 @@
       class="cloud"
       :style="styleObject"
       draggable="false"
+      loading="lazy"
     />
   </template>
 

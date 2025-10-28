@@ -1,9 +1,9 @@
 <template>
     <section class="sky">
-        <img :src="Sky" alt="Небо" class="sky__reel" draggable="false" />
+        <img :src="Sky" alt="Небо" class="sky__reel" draggable="false" loading="lazy" />
         <div class="sky__wrap">
         <div class="sky__wrap_block">
-            <img :src="Logo" alt="Лого" class="sky__wrap_block_reel" draggable="false" />
+            <img :src="Logo" alt="Лого" class="sky__wrap_block_reel" draggable="false" loading="lazy" />
             <span class="sky__wrap_block_text">Там, где горы встречают облака</span>
         </div>
     </div>

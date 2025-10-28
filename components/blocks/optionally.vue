@@ -11,6 +11,7 @@
             alt="Стрелка"
             class="optionally__wrap_carousel-arrow left"
             @click="prevSlide"
+            loading="lazy"
           />
 
           <!-- Контейнер со слайдами -->
@@ -30,6 +31,7 @@
                   :alt="item.title"
                   class="optionally__wrap_carousel_block-reel"
                   draggable="false"
+                  loading="lazy"
                 />
                 <div class="optionally__wrap_carousel_block_bot">
                   <p class="optionally__wrap_carousel_block_bot-text">
@@ -50,6 +52,7 @@
             alt="Стрелка"
             class="optionally__wrap_carousel-arrow right"
             @click="nextSlide"
+            loading="lazy"
           />
         </div>
         <BookingButton customClass="optionally__wrap_btn">
@@ -129,10 +132,10 @@
 
   <style scoped>
   .optionally {
-    margin: 50px auto 0 auto;
-    max-width: var(--container-width);
+    margin: var(--layout-section-gap) auto 0 auto;
+    width: min(100%, var(--container-width));
     position: relative;
-    padding: 0 20px;
+    padding: 0 var(--layout-content-padding);
   }
 
   .optionally__wrap {
@@ -165,7 +168,7 @@
   .optionally__wrap_carousel_inner {
     display: flex;
     transition: transform 0.5s ease;
-    gap: 20px;
+    gap: clamp(16px, 3vw, 32px);
   }
 
   .optionally__wrap_carousel_block {
