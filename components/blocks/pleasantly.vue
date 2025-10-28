@@ -33,10 +33,10 @@ import Games from '@/assets/images/core/pleasantly/games.svg'
 <style scoped>
 
 .pleasantly {
-    margin: 80px auto 0 auto;
+    margin: 50px auto 0 auto;
     max-width: var(--container-width);
     position: relative;
-    padding: 80px 20px;
+    padding: 50px 20px 0 20px;
 }
 
 .pleasantly__wrap {
@@ -89,7 +89,7 @@ color: var(--white-color);
 
 @media (max-width: 900px) {
     .pleasantly {
-        padding: 60px 16px;
+        padding: 50px 16px 0 16px;
     }
 
     .pleasantly__wrap {
@@ -108,7 +108,12 @@ color: var(--white-color);
 
 @media (max-width: 640px) {
     .pleasantly {
-        padding: 48px 12px;
+        padding: 50px 12px 0 12px;
+    }
+
+    .pleasantly__wrap_img-reel {
+        width: 82%;
+        max-width: 260px;
     }
 
     .pleasantly__wrap_block_title {

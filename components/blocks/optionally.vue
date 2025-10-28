@@ -129,10 +129,10 @@
 
   <style scoped>
   .optionally {
-    margin: 80px auto 0 auto;
+    margin: 50px auto 0 auto;
     max-width: var(--container-width);
     position: relative;
-    padding: 0 20px;
+    padding: 50px 20px 0 20px;
   }
 
   .optionally__wrap {
@@ -256,7 +256,7 @@
 
   @media (max-width: 1024px) {
     .optionally {
-      padding: 0 16px;
+      padding: 50px 16px 0 16px;
     }
 
     .optionally__wrap_btn {
@@ -275,11 +275,11 @@
 
   @media (max-width: 640px) {
     .optionally {
-      padding: 0 12px;
+      padding: 50px 12px 0 12px;
     }
 
     .optionally__wrap_carousel_block-reel {
-      height: 200px;
+      height: 180px;
     }
 
     .optionally__wrap_carousel_block_bot {

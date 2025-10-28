@@ -28,10 +28,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: var(--margin-large) auto 0 auto;
+  margin: 50px auto 0 auto;
   position: relative;
   max-width: var(--container-width);
-  padding: 0 20px;
+  padding: 50px 20px 0 20px;
 }
 .timely__container {
   position: relative;
@@ -40,7 +40,7 @@
 }
 .timely__container-reel {
   width: 100%;
-  height: 500px;       /* задаём высоту */
+  height: 460px;       /* задаём высоту */
   object-fit: cover;   /* обрезает картинку, сохраняя пропорции */
   display: block;
   margin: 0 auto;
@@ -84,11 +84,11 @@
 
 @media (max-width: 768px) {
   .timely {
-    padding: 0 16px;
+    padding: 50px 16px 0 16px;
   }
 
   .timely__container-reel {
-    height: auto;
+    height: 420px;
   }
 
   .timely__container_block {
@@ -106,7 +106,7 @@
 
 @media (max-width: 540px) {
   .timely {
-    padding: 0 12px;
+    padding: 50px 12px 0 12px;
   }
 
   .timely__container {
@@ -115,6 +115,10 @@
 
   .timely__container_block {
     top: 48%;
+  }
+
+  .timely__container-reel {
+    height: 320px;
   }
 
   .timely__container_block-title {

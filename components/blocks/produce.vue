@@ -44,9 +44,9 @@
 <style scoped>
 
 .produce {
-  margin: var(--margin-section) auto 0 auto;
+  margin: 50px auto 0 auto;
   max-width: var(--container-width);
-  padding: 0 20px;
+  padding: 50px 20px 0 20px;
   position: relative;
   z-index: 0; /* секция сама "нулевой слой" */
 }
@@ -143,13 +143,13 @@
 
 @media (max-width: 640px) {
   .produce {
-    padding: 0 16px;
+    padding: 50px 16px 0 16px;
   }
 
   .produce__wrap_left_reel,
   .produce__wrap_right_reel {
-    width: 100%;
-    max-width: 320px;
+    width: 88%;
+    max-width: 280px;
     margin: 0 auto;
   }
 

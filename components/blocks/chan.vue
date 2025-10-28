@@ -62,9 +62,9 @@ img.chan__block__left_reel {
 }
 
 .chan {
-    margin: 33px auto 0 auto;
+    margin: 50px auto 0 auto;
     max-width: var(--container-width);
-    padding: 40px 20px 0 20px;
+    padding: 50px 20px 0 20px;
 }
 .chan__block {
     display: flex;
@@ -132,7 +132,7 @@ img.chan__block__left_reel {
 
 @media (max-width: 992px) {
     .chan {
-        padding: 40px 16px 0 16px;
+        padding: 50px 16px 0 16px;
     }
 
     .chan__block {
@@ -158,7 +158,12 @@ img.chan__block__left_reel {
 
 @media (max-width: 640px) {
     .chan {
-        padding: 32px 12px 0 12px;
+        padding: 50px 12px 0 12px;
+    }
+
+    .chan__block__left_reel {
+        width: 82%;
+        max-width: 260px;
     }
 
     .chan__block__left_btn {
@@ -175,6 +180,3 @@ img.chan__block__left_reel {
     }
 }
 </style>
-```
-
-Если нужно ещё что-то изменить — дай знать!

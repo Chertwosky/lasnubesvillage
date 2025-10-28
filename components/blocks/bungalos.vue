@@ -153,7 +153,7 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped>
-.bungalos { margin: 33px auto 0 auto; max-width: var(--container-width); padding: 0 20px; }
+.bungalos { margin: 50px auto 0 auto; max-width: var(--container-width); padding: 50px 20px 0 20px; }
 .bungalos__wrap {
   display: flex;
   flex-direction: column;
@@ -226,7 +226,7 @@ onBeforeUnmount(() => {
 .lightbox__arrow.right { right: 20px; }
 
 @media (max-width: 992px) {
-  .bungalos { padding: 0 16px; }
+  .bungalos { padding: 50px 16px 0 16px; }
 
   .bungalos__wrap_block {
     flex-direction: column;
@@ -266,7 +266,12 @@ onBeforeUnmount(() => {
 }
 
 @media (max-width: 640px) {
-  .bungalos { padding: 0 12px; }
+  .bungalos { padding: 50px 12px 0 12px; }
+
+  .bungalos__carousel_img {
+    height: calc(var(--bung-photo-h) * 0.85);
+    object-fit: cover;
+  }
 
   .bungaloswrap_blockleft_title {
     font-size: calc(var(--fontsize-unusual) * 1.5);

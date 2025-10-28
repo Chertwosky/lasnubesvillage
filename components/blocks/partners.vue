@@ -134,10 +134,10 @@ onUnmounted(() => {
 
 <style scoped>
 .partners {
-  margin: 80px auto 0 auto;
+  margin: 50px auto 0 auto;
   max-width: var(--container-width);
   position: relative;
-  padding: 0 20px;
+  padding: 50px 20px 0 20px;
 }
 
 .partners__wrap {
@@ -266,7 +266,7 @@ onUnmounted(() => {
 
 @media (max-width: 1024px) {
   .partners {
-    padding: 0 16px;
+    padding: 50px 16px 0 16px;
   }
 
   .partners__wrap_title {
@@ -288,11 +288,11 @@ onUnmounted(() => {
 
 @media (max-width: 640px) {
   .partners {
-    padding: 0 12px;
+    padding: 50px 12px 0 12px;
   }
 
   .partners__wrap_carousel_block-reel {
-    height: 200px;
+    height: 180px;
   }
 
   .partners__wrap_carousel_block_bot {
