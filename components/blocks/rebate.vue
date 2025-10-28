@@ -2,7 +2,6 @@
     <section class="rebate" id="stocks">
       <div class="rebate__wrap">
 
-        <!-- Левая стрелка -->
         <img
           v-if="currentIndex > 0"
           :src="Arrow"
@@ -11,11 +10,10 @@
           @click="prevSlide"
         />
 
-        <!-- Контейнер слайдера -->
         <div class="rebate__wrap_view">
           <div
             class="rebate__wrap_inner"
-            :style="{ transform: `translateX(-${currentIndex * (slideWidth + gap)}px)` }"
+            :style="{ transform: `translateX(-${currentIndex * (slideWidth + sliderGap)}px)`, gap: sliderGap + 'px' }"
           >
             <div
               v-for="(item, index) in items"
@@ -32,7 +30,6 @@
           </div>
         </div>
 
-        <!-- Правая стрелка -->
         <img
           v-if="currentIndex < maxIndex"
           :src="Arrow"
@@ -42,7 +39,6 @@
         />
       </div>
 
-      <!-- Облака -->
       <Cloud width="120px" top="-60px" left="6%" />
       <Cloud width="118px" top="0px" right="28%" />
       <Cloud width="118px" bottom="-21%" left="22%" />
@@ -78,14 +74,14 @@
 
   const containerWidth = ref(1160)
   const visibleSlides = ref(3)
-  const gap = 30
+  const sliderGap = ref(30)
 
   const slideWidth = computed(() => {
-    return (containerWidth.value - (visibleSlides.value - 1) * gap) / visibleSlides.value
+    return (containerWidth.value - (visibleSlides.value - 1) * sliderGap.value) / visibleSlides.value
   })
 
   const currentIndex = ref(0)
-  const maxIndex = computed(() => items.length - visibleSlides.value)
+  const maxIndex = computed(() => Math.max(items.length - visibleSlides.value, 0))
 
   const nextSlide = () => {
     if (currentIndex.value < maxIndex.value) currentIndex.value++
@@ -100,10 +96,13 @@
 
     if (w <= 800) {
       visibleSlides.value = 1
+      sliderGap.value = 16
     } else if (w <= 1028) {
       visibleSlides.value = 2
+      sliderGap.value = 24
     } else {
       visibleSlides.value = 3
+      sliderGap.value = 30
     }
 
     if (currentIndex.value > maxIndex.value) currentIndex.value = maxIndex.value
@@ -122,7 +121,7 @@
   .rebate {
     margin: 50px auto 0 auto;
     max-width: var(--container-width);
-    padding: 0 20px;
+    padding: 0 var(--page-gutter);
     position: relative;
   }
 
@@ -133,6 +132,7 @@
     width: 100%;
     max-width: 1160px;
     margin: 0 auto;
+    gap: clamp(12px, 3vw, 24px);
   }
 
   .rebate__wrap_view {
@@ -143,14 +143,13 @@
   .rebate__wrap_inner {
     display: flex;
     transition: transform 0.5s ease;
-    gap: 30px;
   }
 
   .rebate__wrap_block {
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
-    gap: 9px;
+    gap: 12px;
     position: relative;
   }
 
@@ -158,20 +157,19 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: fit-content;
-    height: 46px;
-    background-color: var(--green-color);
     min-width: 86px;
+    padding: 10px 18px;
+    background-color: var(--green-color);
     border-radius: var(--border-radius-container) 0;
-    align-items: center;
     display: flex;
     justify-content: center;
+    align-items: center;
     z-index: 1;
   }
 
   .rebate__wrap_block_rct p {
     color: var(--white-color);
-    font-size: var(--fontsize-medium);
+    font-size: clamp(14px, 2vw, 18px);
     text-transform: uppercase;
     margin: 0;
     font-family: var(--font-core);
@@ -179,85 +177,41 @@
 
   .rebate__wrap_block_reel {
     width: 100%;
-    height: 221px;
+    height: clamp(180px, 26vw, 260px);
     border-radius: var(--border-radius-container) var(--border-radius-container) 0 0;
     object-fit: cover;
   }
 
   .rebate__wrap_block_text {
     color: var(--white-color);
-    font-size: var(--fontsize-unusual);
+    font-size: clamp(16px, 2.2vw, 22px);
     text-align: left;
     font-family: var(--font-main);
-    max-width: 350px;
+    max-width: 360px;
   }
 
   .rebate__wrap_arrow {
-    position: absolute;
-    top: 45%;
-    transform: translateY(-50%);
+    position: relative;
     cursor: pointer;
     z-index: 10;
+    width: clamp(42px, 5vw, 56px);
+    flex-shrink: 0;
   }
 
   .rebate__wrap_arrow.left {
-    left: 2.5%;
-    transform: rotate(180deg) translateY(50%);
-  }
-
-  .rebate__wrap_arrow.right {
-    right: 0%;
+    transform: rotate(180deg);
   }
 
   @media (max-width: 768px) {
-    .rebate {
-      padding: 0 16px;
-    }
-
-    .rebate__wrap_block_rct {
-      height: 36px;
-      min-width: 72px;
-    }
-
-    .rebate__wrap_block_rct p {
-      font-size: var(--fontsize-secondary);
-    }
-
-    .rebate__wrap_block_reel {
-      height: 180px;
-    }
-
     .rebate__wrap_block_text {
-      font-size: var(--fontsize-primary);
       text-align: center;
       max-width: 100%;
-    }
-
-    .rebate__wrap_arrow {
-      width: 44px;
     }
   }
 
   @media (max-width: 540px) {
-    .rebate__wrap {
-      padding: 0 8px;
-    }
-
-    .rebate__wrap_block_rct {
-      height: 32px;
-    }
-
-    .rebate__wrap_block_reel {
-      height: 160px;
-    }
-
-    .rebate__wrap_block_text {
-      font-size: var(--fontsize-secondary);
-      text-align: center;
-    }
-
     .rebate__wrap_arrow {
-      width: 32px;
+      width: 40px;
     }
   }
   </style>

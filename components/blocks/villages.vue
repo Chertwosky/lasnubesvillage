@@ -3,7 +3,6 @@
       <OrnamentTitle :fullbleed="true">Название</OrnamentTitle>
       <div class="villages__wrap">
 
-        <!-- Левая стрелка -->
         <img
           v-if="currentIndex > 0"
           :src="Arrow"
@@ -12,11 +11,10 @@
           @click="prevSlide"
         />
 
-        <!-- Контейнер слайдера -->
         <div class="villages__wrap_view">
           <div
             class="villages__wrap_inner"
-            :style="{ transform: `translateX(-${currentIndex * (slideWidth + gap)}px)` }"
+            :style="{ transform: `translateX(-${currentIndex * (slideWidth + sliderGap)}px)`, gap: sliderGap + 'px' }"
           >
             <div
               v-for="(item, index) in items"
@@ -34,7 +32,6 @@
           </div>
         </div>
 
-        <!-- Правая стрелка -->
         <img
           v-if="currentIndex < maxIndex"
           :src="Arrow"
@@ -45,7 +42,6 @@
 
       </div>
 
-      <!-- Декоративные облака -->
       <Cloud width="156px" top="-70px" left="27%" />
       <Cloud width="118px" top="-40px" right="-4%" />
       <Cloud width="218px" bottom="39%" left="-6%" />
@@ -70,14 +66,14 @@
 
   const containerWidth = ref(1160)
   const visibleSlides = ref(3)
-  const gap = 30
+  const sliderGap = ref(30)
 
   const slideWidth = computed(() => {
-    return (containerWidth.value - (visibleSlides.value - 1) * gap) / visibleSlides.value
+    return (containerWidth.value - (visibleSlides.value - 1) * sliderGap.value) / visibleSlides.value
   })
 
   const currentIndex = ref(0)
-  const maxIndex = computed(() => items.length - visibleSlides.value)
+  const maxIndex = computed(() => Math.max(items.length - visibleSlides.value, 0))
 
   const nextSlide = () => {
     if (currentIndex.value < maxIndex.value) currentIndex.value++
@@ -92,10 +88,13 @@
 
     if (w <= 800) {
       visibleSlides.value = 1
+      sliderGap.value = 16
     } else if (w <= 1028) {
       visibleSlides.value = 2
+      sliderGap.value = 24
     } else {
       visibleSlides.value = 3
+      sliderGap.value = 30
     }
 
     if (currentIndex.value > maxIndex.value) currentIndex.value = maxIndex.value
@@ -114,7 +113,7 @@
   .villages {
     margin: 50px auto 0 auto;
     max-width: var(--container-width);
-    padding: 0 20px;
+    padding: 0 var(--page-gutter);
     position: relative;
   }
 
@@ -125,6 +124,7 @@
     width: 100%;
     max-width: 1160px;
     margin: 0 auto;
+    gap: clamp(12px, 3vw, 24px);
   }
 
   .villages__wrap_view {
@@ -135,7 +135,6 @@
   .villages__wrap_inner {
     display: flex;
     transition: transform 0.5s ease;
-    gap: 30px;
   }
 
   .villages__wrap_block {
@@ -147,66 +146,49 @@
 
   .villages__wrap_block_reel {
     width: 100%;
-    height: 458px;
-    border-radius: 16px;
+    height: clamp(240px, 32vw, 420px);
+    border-radius: 24px;
     object-fit: cover;
   }
 
   .villages__wrap_block_title {
     font-family: var(--font-secondary);
     color: var(--white-color);
-    font-size: calc(var(--fontsize-unusual) * 2);
+    font-size: clamp(22px, 3vw, 34px);
     text-align: center;
     text-transform: uppercase;
     text-decoration: none;
   }
 
   .villages__wrap_arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    position: relative;
     cursor: pointer;
     z-index: 10;
+    width: clamp(42px, 5vw, 56px);
+    flex-shrink: 0;
   }
 
   .villages__wrap_arrow.left {
-    left: 0;
-    transform: rotate(180deg) translateY(50%);
-  }
-
-  .villages__wrap_arrow.right {
-    right: 0;
+    transform: rotate(180deg);
   }
 
   @media (max-width: 768px) {
-    .villages {
-      padding: 0 16px;
+    .villages__wrap {
+      padding: 0;
     }
 
     .villages__wrap_block_reel {
-      height: 320px;
+      height: clamp(220px, 60vw, 340px);
     }
 
     .villages__wrap_block_title {
-      font-size: calc(var(--fontsize-unusual) * 1.4);
-    }
-
-    .villages__wrap_arrow {
-      width: 44px;
+      font-size: clamp(18px, 5vw, 28px);
     }
   }
 
   @media (max-width: 540px) {
-    .villages__wrap {
-      padding: 0 8px;
-    }
-
-    .villages__wrap_block_reel {
-      height: 240px;
-    }
-
     .villages__wrap_arrow {
-      width: 36px;
+      width: 40px;
     }
   }
   </style>
