@@ -114,6 +114,7 @@
   .villages {
     margin: var(--margin-section) auto 0 auto;
     max-width: var(--container-width);
+    padding: 0 20px;
     position: relative;
     margin-bottom: 115px;
   }
@@ -176,5 +177,37 @@
 
   .villages__wrap_arrow.right {
     right: 0;
+  }
+
+  @media (max-width: 768px) {
+    .villages {
+      padding: 0 16px;
+    }
+
+    .villages__wrap_block_reel {
+      height: 320px;
+    }
+
+    .villages__wrap_block_title {
+      font-size: calc(var(--fontsize-unusual) * 1.4);
+    }
+
+    .villages__wrap_arrow {
+      width: 44px;
+    }
+  }
+
+  @media (max-width: 540px) {
+    .villages__wrap {
+      padding: 0 8px;
+    }
+
+    .villages__wrap_block_reel {
+      height: 240px;
+    }
+
+    .villages__wrap_arrow {
+      width: 36px;
+    }
   }
   </style>

@@ -66,14 +66,15 @@ img.bath__block__left_reel {
 .bath {
     margin: 33px auto 0 auto;
     max-width: var(--container-width);
-    padding-top: 40px;
+    padding: 40px 20px 0 20px;
 }
 .bath__block {
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: relative;
-    margin: 0 0 50px 0
+    margin: 0 0 50px 0;
+    gap: 40px;
 }
 .bath__block__left,
 .bath__block__right {
@@ -130,6 +131,51 @@ img.bath__block__left_reel {
 }
 .bath__block__right_bot-text:first-of-type {
     margin-bottom: 24px;
+}
+
+@media (max-width: 992px) {
+    .bath {
+        padding: 40px 16px 0 16px;
+    }
+
+    .bath__block {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .bath__block__left,
+    .bath__block__right {
+        align-items: center;
+    }
+
+    .bath__block__left_btn {
+        align-self: center;
+    }
+
+    .bath__block__right_bot {
+        margin-left: 0;
+        display: flex;
+        gap: 16px;
+    }
+}
+
+@media (max-width: 640px) {
+    .bath {
+        padding: 32px 12px 0 12px;
+    }
+
+    .bath__block__left_btn {
+        font-size: 22px;
+        padding: 10px 24px;
+    }
+
+    .bath__block__right_text {
+        font-size: var(--fontsize-primary);
+    }
+
+    .bath__block__right_text-up {
+        font-size: calc(var(--fontsize-unusual) * 1.2);
+    }
 }
 </style>
 ```

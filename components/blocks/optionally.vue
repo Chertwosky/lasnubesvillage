@@ -3,7 +3,7 @@
       <div class="optionally__wrap">
         <h3 class="optionally__wrap_title">Дополнительные услуги</h3>
 
-        <div class="optionally__wrap_carousel">
+        <div class="optionally__wrap_carousel" :style="{ width: containerWidth + 'px' }">
           <!-- Стрелка влево -->
           <img
             v-if="currentIndex > 0"
@@ -17,12 +17,13 @@
           <div class="optionally__wrap_carousel_view">
             <div
               class="optionally__wrap_carousel_inner"
-              :style="{ transform: `translateX(-${currentIndex * slideWidth}px)` }"
+              :style="{ transform: `translateX(-${currentIndex * (slideWidth + gap)}px)` }"
             >
               <div
                 v-for="(item, index) in items"
                 :key="index"
                 class="optionally__wrap_carousel_block"
+                :style="{ width: slideWidth + 'px' }"
               >
                 <img
                   :src="item.img"
@@ -64,6 +65,7 @@
   </template>
 
   <script setup>
+  import { ref, computed, onMounted, onUnmounted } from 'vue'
   import Arrow from '@/assets/images/core/optionally/arrow.svg'
   import Grill from '@/assets/images/core/optionally/grill.svg'
   import Curd from '@/assets/images/core/optionally/curd.svg'
@@ -79,12 +81,15 @@
   ]
 
   // ширина контейнера и количество видимых карточек
-  const containerWidth = 1160
-  const visibleSlides = 3
-  const slideWidth = containerWidth / visibleSlides
+  const containerWidth = ref(1160)
+  const visibleSlides = ref(3)
+  const gap = 20
+  const slideWidth = computed(() =>
+    (containerWidth.value - (visibleSlides.value - 1) * gap) / visibleSlides.value
+  )
 
   const currentIndex = ref(0)
-  const maxIndex = computed(() => items.length - visibleSlides)
+  const maxIndex = computed(() => Math.max(0, items.length - visibleSlides.value))
 
   const nextSlide = () => {
     if (currentIndex.value < maxIndex.value) currentIndex.value++
@@ -92,6 +97,34 @@
   const prevSlide = () => {
     if (currentIndex.value > 0) currentIndex.value--
   }
+
+  const updateSlides = () => {
+    if (typeof window === 'undefined') return
+    const w = window.innerWidth
+    const width = Math.min(w * 0.9, 1160)
+    containerWidth.value = Math.max(320, width)
+
+    if (w <= 768) {
+      visibleSlides.value = 1
+    } else if (w <= 1024) {
+      visibleSlides.value = 2
+    } else {
+      visibleSlides.value = 3
+    }
+
+    if (currentIndex.value > maxIndex.value) {
+      currentIndex.value = maxIndex.value
+    }
+  }
+
+  onMounted(() => {
+    updateSlides()
+    window.addEventListener('resize', updateSlides)
+  })
+
+  onUnmounted(() => {
+    window.removeEventListener('resize', updateSlides)
+  })
   </script>
 
   <style scoped>
@@ -99,6 +132,7 @@
     margin: 80px auto 0 auto;
     max-width: var(--container-width);
     position: relative;
+    padding: 0 20px;
   }
 
   .optionally__wrap {
@@ -118,7 +152,8 @@
     display: flex;
     align-items: center;
     position: relative;
-    width: 1160px; /* ширина контейнера */
+    width: 100%;
+    max-width: 1160px;
     overflow: hidden;
   }
 
@@ -135,7 +170,6 @@
 
   .optionally__wrap_carousel_block {
     flex-shrink: 0;
-    width: calc((1160px / 3)*0.96);
     border-radius: 16px;
     display: flex;
     flex-direction: column;
@@ -218,5 +252,52 @@
     margin-top: 20px;
     cursor: pointer;
     align-self: flex-start;
+  }
+
+  @media (max-width: 1024px) {
+    .optionally {
+      padding: 0 16px;
+    }
+
+    .optionally__wrap_btn {
+      align-self: center;
+    }
+
+    .optionally__wrap_title {
+      font-size: 40px;
+      text-align: center;
+    }
+
+    .optionally__wrap_carousel-arrow {
+      width: 48px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .optionally {
+      padding: 0 12px;
+    }
+
+    .optionally__wrap_carousel_block-reel {
+      height: 200px;
+    }
+
+    .optionally__wrap_carousel_block_bot {
+      font-size: var(--fontsize-primary);
+      min-height: 120px;
+    }
+
+    .optionally__wrap_carousel_block_bot-text:last-of-type {
+      bottom: 24px;
+    }
+
+    .optionally__wrap_btn {
+      font-size: 22px;
+      padding: 10px 24px;
+    }
+
+    .optionally__wrap_carousel-arrow {
+      width: 36px;
+    }
   }
   </style>

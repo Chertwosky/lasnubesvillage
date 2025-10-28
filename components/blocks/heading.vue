@@ -41,12 +41,14 @@ const scrollTo = (id: string) => {
 .heading {
     margin: 33px auto 0 auto;
     max-width: var(--container-width);
+    padding: 0 20px;
 }
 
 .heading__wrap {
     display: flex;
     justify-content: space-between;
     width: 100%;
+    gap: 40px;
 }
 
 .heading__wrap_block {
@@ -102,10 +104,34 @@ const scrollTo = (id: string) => {
 @media (max-width: 768px) {
     .heading__wrap {
         flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
 
     .heading__wrap_block {
         align-items: center;
+    }
+
+    .heading__wrap_block_title {
+        max-width: none;
+    }
+
+    .heading__wrap_block_bot {
+        margin: 40px 0 0 0;
+    }
+}
+
+@media (max-width: 540px) {
+    .heading {
+        padding: 0 16px;
+    }
+
+    .heading__wrap_block_name {
+        font-size: calc(var(--fontsize-large) * 0.9);
+    }
+
+    .heading__wrap_block_bot {
+        font-size: var(--fontsize-primary);
     }
 }
 

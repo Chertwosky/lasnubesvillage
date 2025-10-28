@@ -5,7 +5,7 @@
 
       <!-- 👇 общий контейнер для слайдера и кнопки -->
       <div class="partners__wrap_carousel-container">
-        <div class="partners__wrap_carousel">
+        <div class="partners__wrap_carousel" :style="{ width: containerWidth + 'px' }">
           <!-- Стрелка влево -->
           <img
             v-if="currentIndex > 0"
@@ -19,12 +19,13 @@
           <div class="partners__wrap_carousel_view">
             <div
               class="partners__wrap_carousel_inner"
-              :style="{ transform: 'translateX(-' + currentIndex * slideWidth + 'px)' }"
+              :style="{ transform: `translateX(-${currentIndex * (slideWidth + gap)}px)` }"
             >
               <div
                 v-for="(item, index) in items"
                 :key="index"
                 class="partners__wrap_carousel_block"
+                :style="{ width: slideWidth + 'px' }"
               >
                 <img
                   :src="item.img"
@@ -70,6 +71,7 @@
 </template>
 
 <script setup>
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import Arrow from '@/assets/images/core/partners/arrow.svg'
 import Grill from '@/assets/images/core/partners/grill.svg'
 import Curd from '@/assets/images/core/partners/curd.svg'
@@ -84,12 +86,15 @@ const items = [
   { img: Grill, title: 'Для мангала XL', price: '700 ₽/ч' },
 ]
 
-const containerWidth = 1160
-const visibleSlides = 3
-const slideWidth = containerWidth / visibleSlides
+const containerWidth = ref(1160)
+const visibleSlides = ref(3)
+const gap = 20
+const slideWidth = computed(() =>
+  (containerWidth.value - (visibleSlides.value - 1) * gap) / visibleSlides.value
+)
 
 const currentIndex = ref(0)
-const maxIndex = computed(() => items.length - visibleSlides)
+const maxIndex = computed(() => Math.max(0, items.length - visibleSlides.value))
 
 const nextSlide = () => {
   if (currentIndex.value < maxIndex.value) currentIndex.value++
@@ -97,6 +102,34 @@ const nextSlide = () => {
 const prevSlide = () => {
   if (currentIndex.value > 0) currentIndex.value--
 }
+
+const updateSlides = () => {
+  if (typeof window === 'undefined') return
+  const w = window.innerWidth
+  const width = Math.min(w * 0.9, 1160)
+  containerWidth.value = Math.max(320, width)
+
+  if (w <= 768) {
+    visibleSlides.value = 1
+  } else if (w <= 1024) {
+    visibleSlides.value = 2
+  } else {
+    visibleSlides.value = 3
+  }
+
+  if (currentIndex.value > maxIndex.value) {
+    currentIndex.value = maxIndex.value
+  }
+}
+
+onMounted(() => {
+  updateSlides()
+  window.addEventListener('resize', updateSlides)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', updateSlides)
+})
 </script>
 
 <style scoped>
@@ -104,6 +137,7 @@ const prevSlide = () => {
   margin: 80px auto 0 auto;
   max-width: var(--container-width);
   position: relative;
+  padding: 0 20px;
 }
 
 .partners__wrap {
@@ -121,7 +155,8 @@ const prevSlide = () => {
 
 /* 👇 новый контейнер */
 .partners__wrap_carousel-container {
-  width: 1160px; /* ширина слайдера */
+  width: 100%;
+  max-width: 1160px; /* ширина слайдера */
   display: flex;
   flex-direction: column;
   align-items: flex-start; /* кнопка теперь прижата к левому краю */
@@ -131,7 +166,7 @@ const prevSlide = () => {
   display: flex;
   align-items: center;
   position: relative;
-  width: 1160px;
+  width: 100%;
   overflow: hidden;
 }
 
@@ -147,7 +182,6 @@ const prevSlide = () => {
 
 .partners__wrap_carousel_block {
   flex-shrink: 0;
-  width: calc((1160px / 3) * 0.96);
   border-radius: 16px;
   display: flex;
   flex-direction: column;
@@ -228,5 +262,55 @@ const prevSlide = () => {
   border: none;
   margin-top: 20px;
   cursor: pointer;
+}
+
+@media (max-width: 1024px) {
+  .partners {
+    padding: 0 16px;
+  }
+
+  .partners__wrap_title {
+    text-align: center;
+  }
+
+  .partners__wrap_carousel-container {
+    align-items: center;
+  }
+
+  .partners__wrap_btn {
+    align-self: center;
+  }
+
+  .partners__wrap_carousel-arrow {
+    width: 48px;
+  }
+}
+
+@media (max-width: 640px) {
+  .partners {
+    padding: 0 12px;
+  }
+
+  .partners__wrap_carousel_block-reel {
+    height: 200px;
+  }
+
+  .partners__wrap_carousel_block_bot {
+    font-size: var(--fontsize-primary);
+    min-height: 120px;
+  }
+
+  .partners__wrap_carousel_block_bot-text:last-of-type {
+    bottom: 24px;
+  }
+
+  .partners__wrap_btn {
+    font-size: 22px;
+    padding: 10px 24px;
+  }
+
+  .partners__wrap_carousel-arrow {
+    width: 36px;
+  }
 }
 </style>
