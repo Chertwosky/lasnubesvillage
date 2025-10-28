@@ -134,7 +134,7 @@ onUnmounted(() => {
 
 <style scoped>
 .partners {
-  margin: 80px auto 0 auto;
+  margin: 50px auto 0 auto;
   max-width: var(--container-width);
   position: relative;
   padding: 0 20px;
