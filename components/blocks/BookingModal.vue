@@ -1,5 +1,6 @@
 <template>
-    <div v-if="isOpen" class="modal-overlay" @click.self="close">
+    <div id="_bn_widget_preload" class="bn-widget bn-widget--preload" aria-hidden="true"></div>
+    <div v-show="isOpen" class="modal-overlay" @click.self="close">
       <div class="modal">
         <button class="modal__close" @click="close">✖</button>
         <img :src="logo" alt="Логотип" class="modal__logo" draggable="false" />
@@ -25,8 +26,79 @@
   import Cloud from '@/components/blocks/Cloud.vue' // 👈 твой компонент облака
 
   const isOpen = ref(false)
+  const widgetReady = ref(false)
+  let resolveWidgetReady
+  const widgetReadyPromise = new Promise((resolve) => { resolveWidgetReady = resolve })
+
+  const widgetConfig = {
+    type: 'vertical',
+    uid: '817121e0-85f0-452d-b0b2-265ca9a568c3',
+    lang: 'ru',
+    width: '300',
+    width_mobile: '300',
+    background: '#85AEE2',
+    background_mobile: '#ffffff',
+    bg_alpha: '100',
+    bg_alpha_mobile: '100',
+    border_color_mobile: '#C6CAD3',
+    padding: '24',
+    padding_mobile: '24',
+    border_radius: '16',
+    button_font_size: '14',
+    button_height: '42',
+    font_type: 'georgia',
+    title: 'Забронировать',
+    title_color: '#FFFFFF',
+    title_color_mobile: '#242742',
+    title_size: '28',
+    title_size_mobile: '22',
+    inp_color: '#000000',
+    inp_bordhover: '#dedfe3',
+    inp_bordcolor: '#BCBCBC',
+    inp_alpha: '100',
+    btn_background: '#46BE78',
+    btn_background_over: '#FFFFFF',
+    btn_textcolor: '#FFFFFF',
+    btn_textover: '#46BE78',
+    btn_bordcolor: '#46BE78',
+    btn_bordhover: '#46BE78',
+    min_age: '0',
+    max_age: '17',
+    adults_default: '1',
+    cancel_color: '#FFFFFF',
+    switch_mobiles_width: '800',
+  }
+
+  const markWidgetReady = () => {
+    if (!widgetReady.value) {
+      widgetReady.value = true
+      resolveWidgetReady?.()
+    }
+  }
+
+  const ensureWidgetLoaded = () => {
+    if (typeof window === 'undefined' || widgetReady.value) return
+
+    if (window.Bnovo_Widget && typeof window.Bnovo_Widget.init === 'function') {
+      window.Bnovo_Widget.init(() => {
+        window.Bnovo_Widget.open('_bn_widget_preload', widgetConfig)
+        markWidgetReady()
+      })
+    } else {
+      setTimeout(ensureWidgetLoaded, 300)
+    }
+  }
+
+  const waitForWidget = async () => {
+    if (!widgetReady.value) {
+      await widgetReadyPromise
+    }
+  }
 
   const open = async () => {
+    ensureWidgetLoaded()
+    await waitForWidget()
+
     isOpen.value = true
 
     const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth
@@ -35,47 +107,8 @@
 
     await nextTick()
 
-    if (window.Bnovo_Widget) {
-      window.Bnovo_Widget.init(() => {
-        window.Bnovo_Widget.open('_bn_widget_', {
-            type: "vertical",
-        uid: "817121e0-85f0-452d-b0b2-265ca9a568c3",
-        lang: "ru",
-        width: "300",
-        width_mobile: "300",
-        background: "#85AEE2",
-        background_mobile: "#ffffff",
-        bg_alpha: "100",
-        bg_alpha_mobile: "100",
-        border_color_mobile: "#C6CAD3",
-        padding: "24",
-        padding_mobile: "24",
-        border_radius: "16",
-        button_font_size: "14",
-        button_height: "42",
-        font_type: "georgia",
-        title: "Забронировать",
-        title_color: "#FFFFFF",
-        title_color_mobile: "#242742",
-        title_size: "28",
-        title_size_mobile: "22",
-        inp_color: "#000000",
-        inp_bordhover: "#dedfe3",
-        inp_bordcolor: "#BCBCBC",
-        inp_alpha: "100",
-        btn_background: "#46BE78",
-        btn_background_over: "#FFFFFF",
-        btn_textcolor: "#FFFFFF",
-        btn_textover: "#46BE78",
-        btn_bordcolor: "#46BE78",
-        btn_bordhover: "#46BE78",
-        min_age: "0",
-        max_age: "17",
-        adults_default: "1",
-        cancel_color: "#FFFFFF",
-        switch_mobiles_width: "800",
-        })
-      })
+    if (window.Bnovo_Widget && typeof window.Bnovo_Widget.open === 'function') {
+      window.Bnovo_Widget.open('_bn_widget_', widgetConfig)
     }
   }
 
@@ -85,7 +118,9 @@
     document.body.style.paddingRight = ''
   }
 
-  onMounted(() => {
+  onMounted(async () => {
+    await nextTick()
+    ensureWidgetLoaded()
     window.openBooking = open
   })
   </script>
@@ -122,6 +157,15 @@
   justify-content: center;
   overflow: visible;
   margin:  -10px auto 0 auto !important;  /* 👈 убираем скролл и не обрезаем */
+}
+
+.bn-widget--preload {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
 }
 
 

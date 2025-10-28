@@ -120,7 +120,7 @@
 
   <style scoped>
   .rebate {
-    margin: var(--margin-section) auto 145px auto;
+    margin: 50px auto 0 auto;
     max-width: var(--container-width);
     padding: 0 20px;
     position: relative;
