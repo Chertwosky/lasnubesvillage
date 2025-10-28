@@ -2,7 +2,7 @@
     <section class="produce">
         <div class="produce__wrap">
             <div class="produce__wrap_left">
-                <img :src="People" alt="Дом" class="produce__wrap_left_reel" draggable="false" />
+                <img :src="People" alt="Дом" class="produce__wrap_left_reel" draggable="false" loading="lazy" decoding="async" />
                 <ul class="produce__wrap_left_list">
                     <li>Душ и туалет в каждом доме</li>
                     <li>WIFI и SMART TV</li>
@@ -13,7 +13,7 @@
             </div>
 
             <div class="produce__wrap_right">
-                <img :src="Comfort" alt="Обстановка" class="produce__wrap_right_reel" draggable="false" />
+                <img :src="Comfort" alt="Обстановка" class="produce__wrap_right_reel" draggable="false" loading="lazy" decoding="async" />
                 <ul class="produce__wrap_right_list">
                     <li>Самостоятельное заселение и выселение с помощью электронного доступа - без участия персонала</li>
                     <li>Бытовая техника: от микроволновки и плиты до посудомоечной и стиральной машины</li>
@@ -57,7 +57,7 @@
     justify-content: space-between;
     position: relative;
     z-index: 1; /* контент поверх облаков */
-    gap: 40px;
+    gap: clamp(24px, 5vw, 60px);
 }
 
 .produce__wrap_left,
@@ -78,12 +78,13 @@
     gap: calc(var(--gap-medium)*0.835);
 }
 
+
 .produce__wrap_right {
-    max-width: 742px;
+    max-width: 680px;
 }
 
 .produce__wrap_left {
-    max-width: 363px;
+    max-width: 360px;
 }
 
 .produce__wrap_left_reel img,
@@ -96,26 +97,29 @@
     text-transform: uppercase;
     color: var(--white-color);
     display: flex;
-    padding: 7px 20px 13px 20px;
+    padding: 10px 32px;
     border-radius: var(--border-radius-container);
-    font-size: 33px;
+    font-size: clamp(1.125rem, 0.9rem + 1vw, 1.875rem);
     font-family: var(--font-secondary);
-    line-height: 100%;
-    letter-spacing: 0;
+    line-height: 1.1;
     border: none;
     width: fit-content;
     margin-left: 31px;
-    margin-top: -30px;
+    margin-top: -20px;
     cursor: pointer;
 }
 
 .produce__wrap_left_list,
 .produce__wrap_right_list {
+    display: flex;
+    flex-direction: column;
     font-size: var(--fontsize-medium);
     color: var(--white-color);
     padding-left: 31px;
     font-family: var(--font-main);
     font-weight: 200;
+    line-height: var(--fontheight-secondary);
+    gap: 12px;
 }
 
 @media (max-width: 992px) {
@@ -159,7 +163,7 @@
   }
 
   .produce__btn {
-    font-size: 20px;
+    font-size: var(--fontsize-unusual);
     padding: 10px 24px;
   }
 }

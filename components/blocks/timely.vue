@@ -2,7 +2,14 @@
     <section class="timely">
       <div class="timely__container">
         <!-- Большое центральное облако -->
-        <img :src="CloudSvg" alt="Дом" class="timely__container-reel" draggable="false" />
+        <img
+          :src="CloudSvg"
+          alt="Дом"
+          class="timely__container-reel"
+          draggable="false"
+          loading="lazy"
+          decoding="async"
+        />
         <!-- Контент -->
         <div class="timely__container_block">
           <h3 class="timely__container_block-title">Упс..</h3>
@@ -36,12 +43,13 @@
 .timely__container {
   position: relative;
   width: 100%;
-  max-width: 663px; /* фиксированный размер */
+  max-width: 640px;
 }
+
 .timely__container-reel {
   width: 100%;
-  height: 500px;       /* задаём высоту */
-  object-fit: cover;   /* обрезает картинку, сохраняя пропорции */
+  max-height: 460px;
+  object-fit: contain;
   display: block;
   margin: 0 auto;
 }
@@ -55,21 +63,23 @@
   padding: 1rem;
 }
 .timely__container_block-title {
-  font-size: calc(var(--fontsize-large)*4);
+  font-size: clamp(2.25rem, 1.6rem + 2vw, 3.75rem);
   font-weight: var(--font-weight-normal);
   font-family: var(--font-secondary);
   margin: 0;
 }
+
 .timely__container_block-text {
   font-size: var(--fontsize-medium);
   margin: 11px 0 21px;
   font-family: var(--font-main);
-  max-width: 294px;
+  max-width: 320px;
   line-height: var(--fontheight-main);
 }
+
 .timely__container_block-btn {
   display: inline-block;
-  padding: 4px 58px;
+  padding: 8px 48px;
   background: var(--green-color);
   color: var(--white-color);
   border-radius: var(--border-radius-container);
@@ -77,6 +87,7 @@
   font-weight: var(--font-weight-bold);
   transition: background 0.2s ease;
   font-family: var(--font-core);
+  font-size: var(--fontsize-secondary);
 }
 .timely__container_block-btn:hover {
   background: #2980b9;
@@ -87,16 +98,12 @@
     padding: 0 16px;
   }
 
-  .timely__container-reel {
-    height: auto;
-  }
-
   .timely__container_block {
-    top: 45%;
+    top: 48%;
   }
 
   .timely__container_block-title {
-    font-size: calc(var(--fontsize-large) * 2.4);
+    font-size: clamp(2rem, 1.4rem + 2vw, 3rem);
   }
 
   .timely__container_block-text {
@@ -118,7 +125,7 @@
   }
 
   .timely__container_block-title {
-    font-size: calc(var(--fontsize-large) * 1.6);
+    font-size: clamp(1.75rem, 1.3rem + 1.5vw, 2.4rem);
   }
 
   .timely__container_block-text {
@@ -126,8 +133,8 @@
   }
 
   .timely__container_block-btn {
-    padding: 6px 32px;
-    font-size: var(--fontsize-primary);
+    padding: 8px 28px;
+    font-size: var(--fontsize-secondary);
   }
 }
 </style>

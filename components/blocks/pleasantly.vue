@@ -15,7 +15,7 @@
         </BookingButton>
             </div>
             <div class="pleasantly__wrap_img">
-                <img :src="Games" alt="Игры" class="pleasantly__wrap_img-reel" draggable="false" />
+                <img :src="Games" alt="Игры" class="pleasantly__wrap_img-reel" draggable="false" loading="lazy" decoding="async" />
             </div>
         </div>
         <Cloud width="156px" top="-10%" left="-30px" />

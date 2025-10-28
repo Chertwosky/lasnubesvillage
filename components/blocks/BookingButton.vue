@@ -1,6 +1,6 @@
 <template>
     <!-- принимаем класс извне -->
-    <button :class="customClass" @click="openBooking">
+    <button :class="customClass" type="button" @click="handleClick">
       <slot>Забронировать</slot>
     </button>
   </template>
@@ -13,7 +13,10 @@
     }
   })
 
-  const openBooking = () => {
+  const emit = defineEmits(['click'])
+
+  const handleClick = (event) => {
+    emit('click', event)
     if (window.openBooking) {
       window.openBooking()
     } else {

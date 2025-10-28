@@ -8,7 +8,7 @@
       >
         <div class="bath__block__left">
           <h3 class="bath__block__left_title">{{ item.title }}</h3>
-          <img :src="item.img" alt="Баня" class="bath__block__left_reel" draggable="false" />
+          <img :src="item.img" alt="Баня" class="bath__block__left_reel" draggable="false" loading="lazy" decoding="async" />
           <BookingButton customClass="bath__block__left_btn">
             Забронировать
           </BookingButton>
@@ -23,7 +23,7 @@
             <p class="bath__block__right_bot-text">{{ item.location }}</p>
             <p class="bath__block__right_bot-text">{{ item.beds }}</p>
             <div class="bath__block__right_bot_min">
-              <img :src="Man" alt="Иконка гостей" class="bath__block__right_bot_min-reel" draggable="false" />
+              <img :src="Man" alt="Иконка гостей" class="bath__block__right_bot_min-reel" draggable="false" loading="lazy" decoding="async" />
               <p class="bath__block__right_bot_min-text">{{ item.guests }}</p>
             </div>
           </div>

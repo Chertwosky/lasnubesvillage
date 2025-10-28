@@ -3,7 +3,7 @@
     <div v-show="isOpen" class="modal-overlay" @click.self="close">
       <div class="modal">
         <button class="modal__close" @click="close">✖</button>
-        <img :src="logo" alt="Логотип" class="modal__logo" draggable="false" />
+        <img :src="logo" alt="Логотип" class="modal__logo" draggable="false" loading="lazy" decoding="async" />
 
         <!-- Облака -->
         <Cloud width="120px" top="4%" left="10%" flipped class="cloud_modal"/>
