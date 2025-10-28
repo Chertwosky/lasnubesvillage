@@ -44,7 +44,7 @@
 <style scoped>
 
 .produce {
-  margin: var(--margin-section) auto 0 auto;
+  margin: 50px auto 0 auto;
   max-width: var(--container-width);
   padding: 0 20px;
   position: relative;

@@ -95,7 +95,7 @@ import Man from '@/assets/images/core/bungalos/man.svg'
 import BookingButton from '@/components/blocks/BookingButton.vue'
 import Cloud from '@/components/blocks/Cloud.vue'
 /* Настройка */
-const photoHeight = 500
+const photoHeight = ref(500)
 const visibleSlides = 1
 const containerWidth = ref(508)
 const gap = 20
@@ -137,6 +137,16 @@ const updateContainerWidth = () => {
   const width = window.innerWidth
   const base = Math.min(508, width * 0.9)
   containerWidth.value = Math.max(280, base)
+
+  if (width <= 480) {
+    photoHeight.value = 300
+  } else if (width <= 640) {
+    photoHeight.value = 340
+  } else if (width <= 768) {
+    photoHeight.value = 420
+  } else {
+    photoHeight.value = 500
+  }
 }
 
 /* Закрытие по ESC */
@@ -153,7 +163,7 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped>
-.bungalos { margin: 33px auto 0 auto; max-width: var(--container-width); padding: 0 20px; }
+.bungalos { margin: 50px auto 0 auto; max-width: var(--container-width); padding: 0 20px; }
 .bungalos__wrap {
   display: flex;
   flex-direction: column;
