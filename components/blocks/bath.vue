@@ -64,7 +64,7 @@ img.bath__block__left_reel {
 }
 
 .bath {
-    margin: 33px auto 0 auto;
+    margin: 50px auto 0 auto;
     max-width: var(--container-width);
     padding: 40px 20px 0 20px;
 }

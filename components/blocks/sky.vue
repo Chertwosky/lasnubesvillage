@@ -18,7 +18,8 @@
   <style scoped>
 
   .sky {
-position: relative;
+    position: relative;
+    margin: 50px 0 0 0;
   }
 
   .sky__wrap {
