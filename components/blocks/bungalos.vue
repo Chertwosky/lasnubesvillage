@@ -153,7 +153,7 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped>
-.bungalos { margin: 33px auto 0 auto; max-width: var(--container-width); padding: 0 20px; }
+.bungalos { margin: 40px auto 0 auto; max-width: var(--container-width); padding: 0 20px; }
 .bungalos__wrap {
   display: flex;
   flex-direction: column;
@@ -270,6 +270,10 @@ onBeforeUnmount(() => {
 
   .bungaloswrap_blockleft_title {
     font-size: calc(var(--fontsize-unusual) * 1.5);
+  }
+
+  .bungalos__carousel_img {
+    height: min(360px, var(--bung-photo-h, 500px));
   }
 
   .bungaloswrap_blockright_text {

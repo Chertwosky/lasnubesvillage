@@ -28,7 +28,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: var(--margin-large) auto 0 auto;
+  margin: 40px auto 0 auto;
   position: relative;
   max-width: var(--container-width);
   padding: 0 20px;

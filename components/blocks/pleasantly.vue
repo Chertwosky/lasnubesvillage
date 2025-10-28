@@ -33,7 +33,7 @@ import Games from '@/assets/images/core/pleasantly/games.svg'
 <style scoped>
 
 .pleasantly {
-    margin: 80px auto 0 auto;
+    margin: 40px auto 0 auto;
     max-width: var(--container-width);
     position: relative;
     padding: 80px 20px;

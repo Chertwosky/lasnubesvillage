@@ -25,6 +25,31 @@
   import Cloud from '@/components/blocks/Cloud.vue' // 👈 твой компонент облака
 
   const isOpen = ref(false)
+  const widgetReady = ref(false)
+  let widgetInitPromise = null
+
+  const initWidget = () => {
+    if (typeof window === 'undefined') return Promise.resolve()
+    if (widgetReady.value) return Promise.resolve()
+    if (widgetInitPromise) return widgetInitPromise
+
+    widgetInitPromise = new Promise((resolve) => {
+      const tryInit = () => {
+        if (window.Bnovo_Widget && typeof window.Bnovo_Widget.init === 'function') {
+          window.Bnovo_Widget.init(() => {
+            widgetReady.value = true
+            resolve()
+          })
+        } else {
+          setTimeout(tryInit, 50)
+        }
+      }
+
+      tryInit()
+    })
+
+    return widgetInitPromise
+  }
 
   const open = async () => {
     isOpen.value = true
@@ -33,12 +58,15 @@
     document.body.style.overflow = 'hidden'
     document.body.style.paddingRight = scrollBarWidth + 'px'
 
+    const widgetPromise = initWidget()
+
     await nextTick()
 
-    if (window.Bnovo_Widget) {
-      window.Bnovo_Widget.init(() => {
-        window.Bnovo_Widget.open('_bn_widget_', {
-            type: "vertical",
+    await widgetPromise
+
+    if (window.Bnovo_Widget && widgetReady.value) {
+      window.Bnovo_Widget.open('_bn_widget_', {
+        type: "vertical",
         uid: "817121e0-85f0-452d-b0b2-265ca9a568c3",
         lang: "ru",
         width: "300",
@@ -74,7 +102,6 @@
         adults_default: "1",
         cancel_color: "#FFFFFF",
         switch_mobiles_width: "800",
-        })
       })
     }
   }
@@ -87,6 +114,7 @@
 
   onMounted(() => {
     window.openBooking = open
+    initWidget()
   })
   </script>
 
