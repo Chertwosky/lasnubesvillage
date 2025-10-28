@@ -38,11 +38,11 @@ const scrollTo = (id: string) => {
 
 <style scoped>
 
-.heading {
-    margin: 33px auto 0 auto;
-    max-width: var(--container-width);
-    padding: 0 20px;
-}
+  .heading {
+      margin: 50px auto 0 auto;
+      max-width: var(--container-width);
+      padding: 50px 20px 0 20px;
+  }
 
 .heading__wrap {
     display: flex;
@@ -123,7 +123,12 @@ const scrollTo = (id: string) => {
 
 @media (max-width: 540px) {
     .heading {
-        padding: 0 16px;
+        padding: 50px 16px 0 16px;
+    }
+
+    .heading__wrap_img_reel {
+        width: 85%;
+        max-width: 260px;
     }
 
     .heading__wrap_block_name {

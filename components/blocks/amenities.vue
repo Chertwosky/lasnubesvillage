@@ -32,9 +32,9 @@ const scrollTo = (id: string) => {
 </script>
 <style scoped>
 .amenities {
-    margin: 33px auto 0 auto;
+    margin: 50px auto 0 auto;
     max-width: var(--container-width);
-    padding: 0 20px;
+    padding: 50px 20px 0 20px;
 }
 .amenities__wrap {
     display: flex;
@@ -101,7 +101,12 @@ const scrollTo = (id: string) => {
 
 @media (max-width: 540px) {
     .amenities {
-        padding: 0 16px;
+        padding: 50px 16px 0 16px;
+    }
+
+    .amenities__wrap_img_reel {
+        width: 82%;
+        max-width: 240px;
     }
 
     .amenities__wrap_block_name {

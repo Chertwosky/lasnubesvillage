@@ -112,11 +112,11 @@
 
   <style scoped>
   .villages {
-    margin: var(--margin-section) auto 0 auto;
+    margin: 50px auto 0 auto;
     max-width: var(--container-width);
-    padding: 0 20px;
+    padding: 50px 20px 0 20px;
     position: relative;
-    margin-bottom: 115px;
+    margin-bottom: 0;
   }
 
   .villages__wrap {
@@ -181,11 +181,11 @@
 
   @media (max-width: 768px) {
     .villages {
-      padding: 0 16px;
+      padding: 50px 16px 0 16px;
     }
 
     .villages__wrap_block_reel {
-      height: 320px;
+      height: 300px;
     }
 
     .villages__wrap_block_title {
@@ -203,7 +203,7 @@
     }
 
     .villages__wrap_block_reel {
-      height: 240px;
+      height: 210px;
     }
 
     .villages__wrap_arrow {

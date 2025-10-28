@@ -64,9 +64,9 @@ img.bath__block__left_reel {
 }
 
 .bath {
-    margin: 33px auto 0 auto;
+    margin: 50px auto 0 auto;
     max-width: var(--container-width);
-    padding: 40px 20px 0 20px;
+    padding: 50px 20px 0 20px;
 }
 .bath__block {
     display: flex;
@@ -135,7 +135,7 @@ img.bath__block__left_reel {
 
 @media (max-width: 992px) {
     .bath {
-        padding: 40px 16px 0 16px;
+        padding: 50px 16px 0 16px;
     }
 
     .bath__block {
@@ -161,7 +161,12 @@ img.bath__block__left_reel {
 
 @media (max-width: 640px) {
     .bath {
-        padding: 32px 12px 0 12px;
+        padding: 50px 12px 0 12px;
+    }
+
+    .bath__block__left_reel {
+        width: 82%;
+        max-width: 260px;
     }
 
     .bath__block__left_btn {
@@ -178,6 +183,3 @@ img.bath__block__left_reel {
     }
 }
 </style>
-```
-
-Если нужно ещё что-то изменить — дай знать!
