@@ -16,7 +16,7 @@
                 <p class="heading__wrap_block_bot">LAS NUBES VILLAGE — посуточная аренда коттеджей</p>
             </div>
             <div class="heading__wrap_img">
-                <img :src="House" alt="Дом" class="heading__wrap_img_reel" draggable="false" />
+                <img :src="House" alt="Дом" class="heading__wrap_img_reel" draggable="false" loading="lazy" />
             </div>
         </div>
 
@@ -39,16 +39,17 @@ const scrollTo = (id: string) => {
 <style scoped>
 
 .heading {
-    margin: 50px auto 0 auto;
-    max-width: var(--container-width);
-    padding: 0 20px;
+    margin: var(--layout-section-gap) auto 0 auto;
+    width: min(100%, var(--container-width));
+    padding: 0 var(--layout-content-padding);
 }
 
 .heading__wrap {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    gap: 40px;
+    gap: clamp(24px, 5vw, 56px);
+    align-items: center;
 }
 
 .heading__wrap_block {
@@ -58,7 +59,7 @@ const scrollTo = (id: string) => {
 }
 
 .heading__wrap_block_title {
-    font-size: calc(var(--fontsize-large)*1.7);
+    font-size: clamp(32px, 4vw, 54px);
     color: var(--white-color);
     font-family: var(--font-secondary);
     letter-spacing: 0;
@@ -78,27 +79,23 @@ const scrollTo = (id: string) => {
 
 .heading__wrap_block_name {
     font-family: var(--font-secondary);
-    font-size: var(--fontsize-large);
-    margin: 0 0 10px 0;
+    font-size: clamp(22px, 2.6vw, 34px);
+    margin: 0 0 12px 0;
     cursor: pointer;
+    letter-spacing: 0.06em;
 }
 
 .heading__wrap_block_bot {
     font-family: var(--font-secondary);
     color: var(--white-color);
-    font-size: var(--fontsize-medium);
-    margin: 190px 0 0 0;
-    max-width: 500px;
+    font-size: clamp(18px, 1.8vw, 24px);
+    margin: clamp(40px, 8vw, 140px) 0 0 0;
+    max-width: 540px;
+    line-height: 1.5;
 }
 
 .heading__wrap_img {
     margin-top: 15px;
-}
-
-@media (max-width: 1028px) {
-    .heading {
-        width: 99vw;
-    }
 }
 
 @media (max-width: 768px) {
@@ -122,16 +119,12 @@ const scrollTo = (id: string) => {
 }
 
 @media (max-width: 540px) {
-    .heading {
-        padding: 0 16px;
-    }
-
     .heading__wrap_block_name {
-        font-size: calc(var(--fontsize-large) * 0.9);
+        font-size: clamp(20px, 6vw, 26px);
     }
 
     .heading__wrap_block_bot {
-        font-size: var(--fontsize-primary);
+        font-size: clamp(16px, 4.5vw, 20px);
     }
 }
 

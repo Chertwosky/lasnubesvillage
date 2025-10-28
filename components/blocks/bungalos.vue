@@ -22,6 +22,7 @@
               alt="Стрелка"
               class="bungalos__carousel-arrow left"
               @click="prevSlide(item.id, item.photos.length)"
+              loading="lazy"
             />
             <div class="bungalos__carousel_view">
               <div class="bungalos__carousel_inner" :style="innerStyle(item.id)">
@@ -36,6 +37,7 @@
                     alt="Фото дома"
                     class="bungalos__carousel_img"
                     @click="openLightbox(item.photos, pIndex)"
+                    loading="lazy"
                   />
                 </div>
               </div>
@@ -46,6 +48,7 @@
               alt="Стрелка"
               class="bungalos__carousel-arrow right"
               @click="nextSlide(item.id, item.photos.length)"
+              loading="lazy"
             />
           </div>
 
@@ -64,7 +67,7 @@
             <p class="bungaloswrap_blockright_bot-text">{{ item.location }}</p>
             <p class="bungaloswrap_blockright_bot-text">{{ item.beds }}</p>
             <div class="bungaloswrap_blockright_bot_min">
-              <img :src="Man" alt="Иконка гостей" class="bungaloswrap_blockright_bot_min-reel" />
+              <img :src="Man" alt="Иконка гостей" class="bungaloswrap_blockright_bot_min-reel" loading="lazy" />
               <p class="bungaloswrap_blockright_bot_min-text">{{ item.guests }}</p>
             </div>
           </div>
@@ -163,7 +166,7 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped>
-.bungalos { margin: 50px auto 0 auto; max-width: var(--container-width); padding: 0 20px; }
+.bungalos { margin: var(--layout-section-gap) auto 0 auto; width: min(100%, var(--container-width)); padding: 0 var(--layout-content-padding); }
 .bungalos__wrap {
   display: flex;
   flex-direction: column;

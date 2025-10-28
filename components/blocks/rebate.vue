@@ -9,6 +9,7 @@
           alt="Стрелка"
           class="rebate__wrap_arrow left"
           @click="prevSlide"
+          loading="lazy"
         />
 
         <!-- Контейнер слайдера -->
@@ -26,7 +27,7 @@
               <div class="rebate__wrap_block_rct">
                 <p>{{ item.label }}</p>
               </div>
-              <img :src="item.img" :alt="item.label" class="rebate__wrap_block_reel" draggable="false" />
+              <img :src="item.img" :alt="item.label" class="rebate__wrap_block_reel" draggable="false" loading="lazy" />
               <span class="rebate__wrap_block_text">{{ item.text }}</span>
             </div>
           </div>
@@ -39,6 +40,7 @@
           alt="Стрелка"
           class="rebate__wrap_arrow right"
           @click="nextSlide"
+          loading="lazy"
         />
       </div>
 
@@ -120,9 +122,9 @@
 
   <style scoped>
   .rebate {
-    margin: 50px auto 0 auto;
-    max-width: var(--container-width);
-    padding: 0 20px;
+    margin: var(--layout-section-gap) auto 0 auto;
+    width: min(100%, var(--container-width));
+    padding: 0 var(--layout-content-padding);
     position: relative;
   }
 
@@ -133,6 +135,7 @@
     width: 100%;
     max-width: 1160px;
     margin: 0 auto;
+    gap: clamp(16px, 4vw, 32px);
   }
 
   .rebate__wrap_view {
@@ -143,7 +146,7 @@
   .rebate__wrap_inner {
     display: flex;
     transition: transform 0.5s ease;
-    gap: 30px;
+    gap: clamp(16px, 3vw, 32px);
   }
 
   .rebate__wrap_block {
@@ -179,17 +182,19 @@
 
   .rebate__wrap_block_reel {
     width: 100%;
-    height: 221px;
+    height: clamp(200px, 32vw, 260px);
     border-radius: var(--border-radius-container) var(--border-radius-container) 0 0;
     object-fit: cover;
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.25);
   }
 
   .rebate__wrap_block_text {
     color: var(--white-color);
-    font-size: var(--fontsize-unusual);
+    font-size: clamp(18px, 2vw, 26px);
     text-align: left;
     font-family: var(--font-main);
-    max-width: 350px;
+    max-width: 360px;
+    line-height: 1.5;
   }
 
   .rebate__wrap_arrow {
@@ -210,10 +215,6 @@
   }
 
   @media (max-width: 768px) {
-    .rebate {
-      padding: 0 16px;
-    }
-
     .rebate__wrap_block_rct {
       height: 36px;
       min-width: 72px;
@@ -224,11 +225,11 @@
     }
 
     .rebate__wrap_block_reel {
-      height: 180px;
+      height: clamp(180px, 48vw, 220px);
     }
 
     .rebate__wrap_block_text {
-      font-size: var(--fontsize-primary);
+      font-size: clamp(16px, 3.4vw, 20px);
       text-align: center;
       max-width: 100%;
     }
@@ -239,8 +240,8 @@
   }
 
   @media (max-width: 540px) {
-    .rebate__wrap {
-      padding: 0 8px;
+    .rebate {
+      padding: 0 var(--layout-content-padding);
     }
 
     .rebate__wrap_block_rct {
@@ -248,11 +249,11 @@
     }
 
     .rebate__wrap_block_reel {
-      height: 160px;
+      height: clamp(160px, 52vw, 200px);
     }
 
     .rebate__wrap_block_text {
-      font-size: var(--fontsize-secondary);
+      font-size: clamp(15px, 4vw, 18px);
       text-align: center;
     }
 

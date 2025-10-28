@@ -16,7 +16,7 @@
                 <p class="amenities__wrap_block_bot">LAS NUBES VILLAGE — посуточная аренда коттеджей</p>
             </div>
             <div class="amenities__wrap_img">
-                <img :src="House" alt="Дом" class="amenities__wrap_img_reel" draggable="false" />
+                <img :src="House" alt="Дом" class="amenities__wrap_img_reel" draggable="false" loading="lazy" />
             </div>
         </div>
     </section>
@@ -32,15 +32,16 @@ const scrollTo = (id: string) => {
 </script>
 <style scoped>
 .amenities {
-    margin: 50px auto 0 auto;
-    max-width: var(--container-width);
-    padding: 0 20px;
+    margin: var(--layout-section-gap) auto 0 auto;
+    width: min(100%, var(--container-width));
+    padding: 0 var(--layout-content-padding);
 }
 .amenities__wrap {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    gap: 40px;
+    gap: clamp(24px, 5vw, 56px);
+    align-items: center;
 }
 .amenities__wrap_block {
     display: flex;
@@ -48,7 +49,7 @@ const scrollTo = (id: string) => {
     min-height: 522px;
 }
 .amenities__wrap_block_title {
-    font-size: calc(var(--fontsize-large)*2);
+    font-size: clamp(34px, 4.5vw, 58px);
     color: var(--white-color);
     font-family: var(--font-secondary);
     letter-spacing: 0;
@@ -67,16 +68,18 @@ const scrollTo = (id: string) => {
 }
 .amenities__wrap_block_name {
     font-family: var(--font-secondary);
-    margin: 0 0 10px 0;
+    margin: 0 0 12px 0;
     cursor: pointer;
-    font-size: 36px;
+    font-size: clamp(22px, 2.8vw, 36px);
+    letter-spacing: 0.06em;
 }
 .amenities__wrap_block_bot {
     font-family: var(--font-secondary);
     color: var(--white-color);
-    font-size: var(--fontsize-medium);
-    max-width: 500px;
-    margin: 120px 0 0 0;
+    font-size: clamp(18px, 1.8vw, 24px);
+    max-width: 540px;
+    margin: clamp(40px, 8vw, 140px) 0 0 0;
+    line-height: 1.5;
 }
 
 .amenities__wrap_img {
@@ -100,16 +103,12 @@ const scrollTo = (id: string) => {
 }
 
 @media (max-width: 540px) {
-    .amenities {
-        padding: 0 16px;
-    }
-
     .amenities__wrap_block_name {
-        font-size: calc(var(--fontsize-large) * 0.9);
+        font-size: clamp(20px, 6vw, 26px);
     }
 
     .amenities__wrap_block_bot {
-        font-size: var(--fontsize-primary);
+        font-size: clamp(16px, 4.5vw, 20px);
     }
 }
 </style>
