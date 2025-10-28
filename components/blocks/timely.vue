@@ -31,13 +31,15 @@
   margin: var(--margin-large) auto 0 auto;
   position: relative;
   max-width: var(--container-width);
+  padding: 0 20px;
 }
 .timely__container {
   position: relative;
-  width: 663px; /* фиксированный размер */
+  width: 100%;
+  max-width: 663px; /* фиксированный размер */
 }
 .timely__container-reel {
-  width: 663px;
+  width: 100%;
   height: 500px;       /* задаём высоту */
   object-fit: cover;   /* обрезает картинку, сохраняя пропорции */
   display: block;
@@ -78,5 +80,54 @@
 }
 .timely__container_block-btn:hover {
   background: #2980b9;
+}
+
+@media (max-width: 768px) {
+  .timely {
+    padding: 0 16px;
+  }
+
+  .timely__container-reel {
+    height: auto;
+  }
+
+  .timely__container_block {
+    top: 45%;
+  }
+
+  .timely__container_block-title {
+    font-size: calc(var(--fontsize-large) * 2.4);
+  }
+
+  .timely__container_block-text {
+    font-size: var(--fontsize-primary);
+  }
+}
+
+@media (max-width: 540px) {
+  .timely {
+    padding: 0 12px;
+  }
+
+  .timely__container {
+    max-width: 420px;
+  }
+
+  .timely__container_block {
+    top: 48%;
+  }
+
+  .timely__container_block-title {
+    font-size: calc(var(--fontsize-large) * 1.6);
+  }
+
+  .timely__container_block-text {
+    font-size: var(--fontsize-secondary);
+  }
+
+  .timely__container_block-btn {
+    padding: 6px 32px;
+    font-size: var(--fontsize-primary);
+  }
 }
 </style>

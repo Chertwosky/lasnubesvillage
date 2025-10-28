@@ -89,7 +89,7 @@
 </template>
 
 <script setup>
-import { reactive, computed, onMounted, onBeforeUnmount } from 'vue'
+import { reactive, ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import Arrow from '@/assets/images/core/partners/arrow.svg'
 import Man from '@/assets/images/core/bungalos/man.svg'
 import BookingButton from '@/components/blocks/BookingButton.vue'
@@ -97,10 +97,10 @@ import Cloud from '@/components/blocks/Cloud.vue'
 /* Настройка */
 const photoHeight = 500
 const visibleSlides = 1
-const containerWidth = 508
+const containerWidth = ref(508)
 const gap = 20
 const slideWidth = computed(() =>
-  containerWidth / visibleSlides - (gap * (visibleSlides - 1)) / visibleSlides
+  containerWidth.value / visibleSlides - (gap * (visibleSlides - 1)) / visibleSlides
 )
 
 /* Автоподгрузка фото */
@@ -132,23 +132,37 @@ const closeLightbox = () => { lightbox.open = false; lightbox.photos = []; light
 const nextLightbox = () => { if (lightbox.index < lightbox.photos.length - 1) lightbox.index++ }
 const prevLightbox = () => { if (lightbox.index > 0) lightbox.index-- }
 
+const updateContainerWidth = () => {
+  if (typeof window === 'undefined') return
+  const width = window.innerWidth
+  const base = Math.min(508, width * 0.9)
+  containerWidth.value = Math.max(280, base)
+}
+
 /* Закрытие по ESC */
 const onKey = (e) => { if (e.key === 'Escape') closeLightbox() }
-onMounted(() => document.addEventListener('keydown', onKey))
-onBeforeUnmount(() => document.removeEventListener('keydown', onKey))
+onMounted(() => {
+  document.addEventListener('keydown', onKey)
+  updateContainerWidth()
+  window.addEventListener('resize', updateContainerWidth)
+})
+onBeforeUnmount(() => {
+  document.removeEventListener('keydown', onKey)
+  window.removeEventListener('resize', updateContainerWidth)
+})
 </script>
 
 <style scoped>
-.bungalos { margin: 33px auto 0 auto; max-width: var(--container-width); }
+.bungalos { margin: 33px auto 0 auto; max-width: var(--container-width); padding: 0 20px; }
 .bungalos__wrap {
   display: flex;
   flex-direction: column;
   gap: 80px; /* любое нужное значение */
 }
-.bungalos__wrap_block { position: relative; display: flex; justify-content: space-between; align-items: center; }
+.bungalos__wrap_block { position: relative; display: flex; justify-content: space-between; align-items: center; gap: 40px; }
 
 /* Левая колонка */
-.bungaloswrap_blockleft { align-items: flex-end; display: flex; flex-direction: column; }
+.bungaloswrap_blockleft { align-items: flex-end; display: flex; flex-direction: column; width: 100%; max-width: 508px; }
 .bungaloswrap_blockleft_title {
   font-family: var(--font-secondary); /* 👈 теперь тот же шрифт, что и upTitle */
   font-size: calc(var(--fontsize-unusual)*2);
@@ -180,7 +194,7 @@ onBeforeUnmount(() => document.removeEventListener('keydown', onKey))
 .bungaloswrap_blockright_bot_min { display: flex; gap: 8px; }
 .bungaloswrap_blockright_bot { margin-left: 0 px; color: var(--faded-color); font-size: var(--fontsize-small); font-family: var(--font-core); }
 /* Слайдер */
-.bungalos__carousel { position: relative; display: flex; align-items: center; overflow: hidden; }
+.bungalos__carousel { position: relative; display: flex; align-items: center; overflow: hidden; width: 100%; }
 .bungalos__carousel_view { overflow: hidden; width: 100%; }
 .bungalos__carousel_inner { display: flex; transition: transform 0.5s ease; }
 .bungalos__carousel_slide { flex-shrink: 0; border-radius: 16px; overflow: hidden; }
@@ -210,4 +224,70 @@ onBeforeUnmount(() => document.removeEventListener('keydown', onKey))
 .lightbox__arrow { position: fixed; top: 50%; transform: translateY(-50%); font-size: 60px; color: #fff; background: transparent; border: none; cursor: pointer; }
 .lightbox__arrow.left { left: 20px; }
 .lightbox__arrow.right { right: 20px; }
+
+@media (max-width: 992px) {
+  .bungalos { padding: 0 16px; }
+
+  .bungalos__wrap_block {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .bungaloswrap_blockleft,
+  .bungaloswrap_blockright {
+    align-items: center;
+    max-width: 100%;
+  }
+
+  .bungaloswrap_blockleft_title {
+    align-self: center;
+    text-align: center;
+  }
+
+  .bungaloswrap_blockleft_btn {
+    align-self: center;
+  }
+
+  .bungaloswrap_blockright_text {
+    max-width: 100%;
+  }
+
+  .bungaloswrap_blockright_bot {
+    margin-left: 0;
+    display: flex;
+    gap: 16px;
+  }
+
+  .bungalos__carousel-arrow {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+@media (max-width: 640px) {
+  .bungalos { padding: 0 12px; }
+
+  .bungaloswrap_blockleft_title {
+    font-size: calc(var(--fontsize-unusual) * 1.5);
+  }
+
+  .bungaloswrap_blockright_text {
+    font-size: var(--fontsize-primary);
+  }
+
+  .bungaloswrap_blockleft_btn {
+    font-size: 22px;
+    padding: 10px 24px;
+  }
+
+  .bungalos__carousel-arrow {
+    width: 36px;
+    height: 36px;
+  }
+
+  .bungaloswrap_blockright_text-up {
+    font-size: calc(var(--fontsize-unusual) * 1.2);
+  }
+}
 </style>

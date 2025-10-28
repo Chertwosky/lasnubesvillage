@@ -36,13 +36,14 @@ import Games from '@/assets/images/core/pleasantly/games.svg'
     margin: 80px auto 0 auto;
     max-width: var(--container-width);
     position: relative;
-    padding: 80px 0;
+    padding: 80px 20px;
 }
 
 .pleasantly__wrap {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 40px;
 }
 
 .pleasantly__wrap_block {
@@ -84,6 +85,44 @@ color: var(--white-color);
     width: fit-content;
     margin-top: 10px;
     cursor: pointer;
+}
+
+@media (max-width: 900px) {
+    .pleasantly {
+        padding: 60px 16px;
+    }
+
+    .pleasantly__wrap {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .pleasantly__wrap_block {
+        align-items: center;
+    }
+
+    .pleasantly__wrap_block_btn {
+        align-self: center;
+    }
+}
+
+@media (max-width: 640px) {
+    .pleasantly {
+        padding: 48px 12px;
+    }
+
+    .pleasantly__wrap_block_title {
+        font-size: 36px;
+    }
+
+    .pleasantly__wrap_block_list {
+        font-size: var(--fontsize-primary);
+    }
+
+    .pleasantly__wrap_block_btn {
+        font-size: 22px;
+        padding: 10px 24px;
+    }
 }
 
 

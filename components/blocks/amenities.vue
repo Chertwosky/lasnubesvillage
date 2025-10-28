@@ -34,11 +34,13 @@ const scrollTo = (id: string) => {
 .amenities {
     margin: 33px auto 0 auto;
     max-width: var(--container-width);
+    padding: 0 20px;
 }
 .amenities__wrap {
     display: flex;
     justify-content: space-between;
     width: 100%;
+    gap: 40px;
 }
 .amenities__wrap_block {
     display: flex;
@@ -79,5 +81,35 @@ const scrollTo = (id: string) => {
 
 .amenities__wrap_img {
     margin-top: 15px;
+}
+
+@media (max-width: 768px) {
+    .amenities__wrap {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .amenities__wrap_block {
+        align-items: center;
+    }
+
+    .amenities__wrap_block_bot {
+        margin: 40px 0 0 0;
+    }
+}
+
+@media (max-width: 540px) {
+    .amenities {
+        padding: 0 16px;
+    }
+
+    .amenities__wrap_block_name {
+        font-size: calc(var(--fontsize-large) * 0.9);
+    }
+
+    .amenities__wrap_block_bot {
+        font-size: var(--fontsize-primary);
+    }
 }
 </style>
