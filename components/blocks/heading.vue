@@ -2,7 +2,11 @@
     <section class="heading">
         <div class="heading__wrap">
             <div class="heading__wrap_block">
-                <p class="heading__wrap_block_title"> Коттеджи A-frame</p>
+                <SectionBadge
+                  class="heading__badge"
+                  text="Коттеджи A-frame"
+                  background="linear-gradient(90deg, #162444 0%, #0e172f 100%)"
+                />
                 <p class="heading__wrap_block_sub"> </p>
                 <p class="heading__wrap_block_name" @click="scrollTo('sunset')">
                 A-frame SUNSET
@@ -26,6 +30,7 @@
 
 <script setup lang="ts">
 import House from '@/assets/images/core/heading/house.svg'
+import SectionBadge from '@/components/core/SectionBadge.vue'
 
 const scrollTo = (id: string) => {
   const el = document.getElementById(id)
@@ -55,15 +60,11 @@ const scrollTo = (id: string) => {
     display: flex;
     flex-direction: column;
     min-height: 522px;
+    align-items: flex-start;
 }
 
-.heading__wrap_block_title {
-    font-size: calc(var(--fontsize-large)*1.7);
-    color: var(--white-color);
-    font-family: var(--font-secondary);
-    letter-spacing: 0;
-    max-width: 361px;
-    margin: 0;
+.heading__badge {
+    margin: 0 0 24px 0;
 }
 
 .heading__wrap_block_sub,
@@ -104,16 +105,12 @@ const scrollTo = (id: string) => {
 @media (max-width: 768px) {
     .heading__wrap {
         flex-direction: column;
-        align-items: center;
-        text-align: center;
+        align-items: flex-start;
+        text-align: left;
     }
 
     .heading__wrap_block {
-        align-items: center;
-    }
-
-    .heading__wrap_block_title {
-        max-width: none;
+        align-items: flex-start;
     }
 
     .heading__wrap_block_bot {

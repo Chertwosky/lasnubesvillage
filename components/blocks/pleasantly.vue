@@ -2,7 +2,11 @@
     <section class="pleasantly" id="pleasantly">
         <div class="pleasantly__wrap">
             <div class="pleasantly__wrap_block">
-                <h3 class="pleasantly__wrap_block_title">Бесплатные услуги</h3>
+                <SectionBadge
+                  class="pleasantly__badge"
+                  text="Бесплатные услуги"
+                  background="linear-gradient(90deg, #253660 0%, #141d39 100%)"
+                />
                 <ul class="pleasantly__wrap_block_list">
                     <li>— Настольные игры от Gaga Games и КвизПлиз</li>
                     <li>— Зубные наборы, гели для душа, шампуни, тапочки</li>
@@ -26,8 +30,9 @@
 
 <script setup>
 import Games from '@/assets/images/core/pleasantly/games.svg'
-  import BookingButton from '@/components/blocks/BookingButton.vue'
-        import Cloud from '@/components/blocks/Cloud.vue'
+import BookingButton from '@/components/blocks/BookingButton.vue'
+import Cloud from '@/components/blocks/Cloud.vue'
+import SectionBadge from '@/components/core/SectionBadge.vue'
 </script>
 
 <style scoped>
@@ -49,17 +54,16 @@ import Games from '@/assets/images/core/pleasantly/games.svg'
 .pleasantly__wrap_block {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
 }
 
-.pleasantly__wrap_block_title,
+.pleasantly__badge,
 .pleasantly__wrap_block_list {
 color: var(--white-color);
 }
 
-.pleasantly__wrap_block_title {
-    font-family: var(--font-secondary);
-    font-size: 48px;
-    margin: 0 0 20px 0;
+.pleasantly__badge {
+    margin: 0 0 24px 0;
 }
 .pleasantly__wrap_block_list {
     list-style-type: none;
@@ -94,11 +98,11 @@ color: var(--white-color);
 
     .pleasantly__wrap {
         flex-direction: column;
-        text-align: center;
+        text-align: left;
     }
 
     .pleasantly__wrap_block {
-        align-items: center;
+        align-items: flex-start;
     }
 
     .pleasantly__wrap_block_btn {
@@ -109,10 +113,6 @@ color: var(--white-color);
 @media (max-width: 640px) {
     .pleasantly {
         padding: 48px 12px;
-    }
-
-    .pleasantly__wrap_block_title {
-        font-size: 36px;
     }
 
     .pleasantly__wrap_block_list {

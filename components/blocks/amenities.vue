@@ -2,7 +2,11 @@
     <section class="amenities">
         <div class="amenities__wrap">
             <div class="amenities__wrap_block">
-                <p class="amenities__wrap_block_title">Наши услуги</p>
+                <SectionBadge
+                  class="amenities__badge"
+                  text="Наши услуги"
+                  background="linear-gradient(90deg, #1b2c58 0%, #152140 100%)"
+                />
                 <p class="amenities__wrap_block_sub">Чтобы разнообразить отдых</p>
                 <p class="amenities__wrap_block_name" @click="scrollTo('bath')">
                     Баня
@@ -23,6 +27,7 @@
 </template>
 <script setup lang="ts">
 import House from '@/assets/images/core/amenities/house.svg'
+import SectionBadge from '@/components/core/SectionBadge.vue'
 const scrollTo = (id: string) => {
   const el = document.getElementById(id)
   if (el) {
@@ -46,14 +51,11 @@ const scrollTo = (id: string) => {
     display: flex;
     flex-direction: column;
     min-height: 522px;
+    align-items: flex-start;
 }
-.amenities__wrap_block_title {
-    font-size: calc(var(--fontsize-large)*2);
-    color: var(--white-color);
-    font-family: var(--font-secondary);
-    letter-spacing: 0;
-    max-width: 361px;
-    margin: 0;
+
+.amenities__badge {
+    margin: 0 0 24px 0;
 }
 
 .amenities__wrap_block_sub {
@@ -86,12 +88,12 @@ const scrollTo = (id: string) => {
 @media (max-width: 768px) {
     .amenities__wrap {
         flex-direction: column;
-        align-items: center;
-        text-align: center;
+        align-items: flex-start;
+        text-align: left;
     }
 
     .amenities__wrap_block {
-        align-items: center;
+        align-items: flex-start;
     }
 
     .amenities__wrap_block_bot {
