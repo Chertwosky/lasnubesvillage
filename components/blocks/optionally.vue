@@ -1,6 +1,11 @@
 <template>
     <section class="optionally" id="optionally">
       <div class="optionally__wrap">
+        <SectionBadge
+          text="Дополнительно"
+          gradient="linear-gradient(90deg,#0d3f52 0%, #02131a 100%)"
+          align="center"
+        />
         <h3 class="optionally__wrap_title">Дополнительные услуги</h3>
 
         <div class="optionally__wrap_carousel" :style="{ width: containerWidth + 'px' }">
@@ -71,7 +76,8 @@
   import Curd from '@/assets/images/core/optionally/curd.svg'
   import Vat from '@/assets/images/core/optionally/vat.svg'
   import BookingButton from '@/components/blocks/BookingButton.vue'
-      import Cloud from '@/components/blocks/Cloud.vue'
+  import Cloud from '@/components/blocks/Cloud.vue'
+  import SectionBadge from '@/components/ui/SectionBadge.vue'
 
   const items = [
     { img: Vat, title: 'Чаны', price: '5 000 ₽/1 использование' },
@@ -139,6 +145,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  .optionally__wrap .section-badge {
+    margin-bottom: 16px;
   }
 
   .optionally__wrap_title {

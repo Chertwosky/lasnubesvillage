@@ -1,5 +1,9 @@
 <template>
   <section class="bungalos" :style="{ '--bung-photo-h': photoHeight + 'px' }">
+    <SectionBadge
+      text="Коттеджи"
+      gradient="linear-gradient(90deg,#0b2d4d 0%, #020813 100%)"
+    />
     <div class="bungalos__wrap">
       <div
         v-for="(item, index) in items"
@@ -94,6 +98,7 @@ import Arrow from '@/assets/images/core/partners/arrow.svg'
 import Man from '@/assets/images/core/bungalos/man.svg'
 import BookingButton from '@/components/blocks/BookingButton.vue'
 import Cloud from '@/components/blocks/Cloud.vue'
+import SectionBadge from '@/components/ui/SectionBadge.vue'
 /* Настройка */
 const photoHeight = ref(500)
 const visibleSlides = 1

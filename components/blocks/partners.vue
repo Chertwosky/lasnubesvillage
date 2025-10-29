@@ -1,6 +1,11 @@
 <template>
   <section class="Partners" id="Partners">
     <div class="partners__wrap">
+      <SectionBadge
+        text="Партнеры"
+        gradient="linear-gradient(90deg,#08244e 0%, #010610 100%)"
+        align="center"
+      />
       <h3 class="partners__wrap_title"> Партнеры </h3>
 
       <!-- 👇 общий контейнер для слайдера и кнопки -->
@@ -78,6 +83,7 @@ import Curd from '@/assets/images/core/partners/curd.svg'
 import Vat from '@/assets/images/core/partners/vat.svg'
 import BookingButton from '@/components/blocks/BookingButton.vue'
 import Cloud from '@/components/blocks/Cloud.vue'
+import SectionBadge from '@/components/ui/SectionBadge.vue'
 
 const items = [
   { img: Vat, title: 'Чаны', price: '5 000 ₽/1 использование' },
@@ -144,6 +150,10 @@ onUnmounted(() => {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.partners__wrap .section-badge {
+  margin-bottom: 16px;
 }
 
 .partners__wrap_title {
