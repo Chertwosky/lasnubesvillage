@@ -1,5 +1,14 @@
 <template>
     <section class="produce">
+        <div class="produce__intro">
+            <h2
+                class="section-badge section-badge--fade produce__badge"
+                style="--badge-bg: linear-gradient(90deg, #123524 0%, #0a1d12 100%); --badge-min-w: 340px;"
+            >
+                Удобства
+            </h2>
+            <p class="produce__intro_text">Все для комфортного отдыха внутри каждого дома</p>
+        </div>
         <div class="produce__wrap">
             <div class="produce__wrap_left">
                 <img :src="People" alt="Дом" class="produce__wrap_left_reel" draggable="false" />
@@ -49,6 +58,22 @@
   padding: 0 20px;
   position: relative;
   z-index: 0; /* секция сама "нулевой слой" */
+}
+
+.produce__intro {
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.produce__badge {
+    margin: 0 auto 20px;
+}
+
+.produce__intro_text {
+    margin: 0;
+    font-size: var(--fontsize-medium);
+    font-family: var(--font-main);
+    color: var(--faded-color);
 }
 
 
