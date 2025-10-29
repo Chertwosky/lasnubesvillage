@@ -213,3 +213,50 @@ a button:hover {
     font-weight: 200 800;
     font-style: normal;
   }
+
+.section-badge {
+  --badge-bg: linear-gradient(90deg, #0e0b27 0%, #0a0820 100%);
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 28px;
+  border-radius: 999px;
+  background: var(--badge-bg);
+  color: var(--white-color);
+  font-family: var(--font-secondary);
+  font-size: calc(var(--fontsize-unusual) * 0.95);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  position: relative;
+  overflow: hidden;
+  margin: 0 0 32px;
+  box-shadow: 0 18px 45px rgba(8, 23, 52, 0.35);
+}
+
+.section-badge--fade::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0) 65%);
+  mix-blend-mode: screen;
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.section-badge--right {
+  margin-left: auto;
+}
+
+.section-badge--center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 768px) {
+  .section-badge {
+    font-size: var(--fontsize-primary);
+    letter-spacing: 0.12em;
+    padding: 10px 22px;
+    margin-bottom: 24px;
+  }
+}

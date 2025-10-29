@@ -2,6 +2,10 @@
     <section class="amenities">
         <div class="amenities__wrap">
             <div class="amenities__wrap_block">
+                <SectionBadge
+                  text="Услуги"
+                  gradient="linear-gradient(90deg,#162a57 0%, #050912 100%)"
+                />
                 <p class="amenities__wrap_block_title">Наши услуги</p>
                 <p class="amenities__wrap_block_sub">Чтобы разнообразить отдых</p>
                 <p class="amenities__wrap_block_name" @click="scrollTo('bath')">
@@ -23,6 +27,7 @@
 </template>
 <script setup lang="ts">
 import House from '@/assets/images/core/amenities/house.svg'
+import SectionBadge from '@/components/ui/SectionBadge.vue'
 const scrollTo = (id: string) => {
   const el = document.getElementById(id)
   if (el) {
@@ -46,6 +51,11 @@ const scrollTo = (id: string) => {
     display: flex;
     flex-direction: column;
     min-height: 522px;
+}
+
+.amenities__wrap_block .section-badge {
+    align-self: flex-start;
+    margin-bottom: 20px;
 }
 .amenities__wrap_block_title {
     font-size: calc(var(--fontsize-large)*2);

@@ -2,6 +2,10 @@
     <section class="heading">
         <div class="heading__wrap">
             <div class="heading__wrap_block">
+                <SectionBadge
+                  text="Коттеджи"
+                  gradient="linear-gradient(90deg,#0b2d4d 0%, #020813 100%)"
+                />
                 <p class="heading__wrap_block_title"> Коттеджи A-frame</p>
                 <p class="heading__wrap_block_sub"> </p>
                 <p class="heading__wrap_block_name" @click="scrollTo('sunset')">
@@ -26,6 +30,7 @@
 
 <script setup lang="ts">
 import House from '@/assets/images/core/heading/house.svg'
+import SectionBadge from '@/components/ui/SectionBadge.vue'
 
 const scrollTo = (id: string) => {
   const el = document.getElementById(id)
@@ -55,6 +60,11 @@ const scrollTo = (id: string) => {
     display: flex;
     flex-direction: column;
     min-height: 522px;
+}
+
+.heading__wrap_block .section-badge {
+    align-self: flex-start;
+    margin-bottom: 16px;
 }
 
 .heading__wrap_block_title {

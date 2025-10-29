@@ -2,6 +2,10 @@
     <section class="pleasantly" id="pleasantly">
         <div class="pleasantly__wrap">
             <div class="pleasantly__wrap_block">
+                <SectionBadge
+                  text="Бесплатно"
+                  gradient="linear-gradient(90deg,#36521a 0%, #101b05 100%)"
+                />
                 <h3 class="pleasantly__wrap_block_title">Бесплатные услуги</h3>
                 <ul class="pleasantly__wrap_block_list">
                     <li>— Настольные игры от Gaga Games и КвизПлиз</li>
@@ -26,8 +30,9 @@
 
 <script setup>
 import Games from '@/assets/images/core/pleasantly/games.svg'
-  import BookingButton from '@/components/blocks/BookingButton.vue'
-        import Cloud from '@/components/blocks/Cloud.vue'
+import BookingButton from '@/components/blocks/BookingButton.vue'
+import Cloud from '@/components/blocks/Cloud.vue'
+import SectionBadge from '@/components/ui/SectionBadge.vue'
 </script>
 
 <style scoped>
@@ -49,6 +54,11 @@ import Games from '@/assets/images/core/pleasantly/games.svg'
 .pleasantly__wrap_block {
     display: flex;
     flex-direction: column;
+}
+
+.pleasantly__wrap_block .section-badge {
+    margin-bottom: 16px;
+    align-self: flex-start;
 }
 
 .pleasantly__wrap_block_title,
@@ -99,6 +109,10 @@ color: var(--white-color);
 
     .pleasantly__wrap_block {
         align-items: center;
+    }
+
+    .pleasantly__wrap_block .section-badge {
+        align-self: center;
     }
 
     .pleasantly__wrap_block_btn {

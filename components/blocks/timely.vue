@@ -5,6 +5,12 @@
         <img :src="CloudSvg" alt="Дом" class="timely__container-reel" draggable="false" />
         <!-- Контент -->
         <div class="timely__container_block">
+          <SectionBadge
+            text="О нас"
+            align="center"
+            gradient="linear-gradient(90deg,#854c02 0%, #2b1600 100%)"
+            tag="h2"
+          />
           <h3 class="timely__container_block-title">Упс..</h3>
           <p class="timely__container_block-text">
            Страница "о нас" в разработке. Скоро вас порадуем!
@@ -22,6 +28,7 @@
   <script setup>
   import CloudSvg from '@/assets/images/core/error/cloud.svg'
   import Cloud from '@/components/blocks/Cloud.vue'
+  import SectionBadge from '@/components/ui/SectionBadge.vue'
   </script>
 <style scoped>
 .timely {
@@ -53,6 +60,11 @@
   text-align: center;
   color: var(--black-color);
   padding: 1rem;
+}
+
+.timely__container_block .section-badge {
+  margin-bottom: 16px;
+  box-shadow: none;
 }
 .timely__container_block-title {
   font-size: calc(var(--fontsize-large)*4);
