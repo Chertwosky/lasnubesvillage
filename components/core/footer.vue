@@ -63,6 +63,7 @@
             </div>
         </div>
         </div>
+        <img :src="FooterOrnament" alt="Декоративный орнамент" class="footer__ornament" draggable="false" />
         <Cloud width="156px" top="0px" right="12%" />
         <Cloud width="170px" bottom="15%" right="25%" flipped/>
     </footer>
@@ -75,6 +76,7 @@
   import Rusgram from '@/assets/images/core/footer/Rusgram.svg'
   import Telegram from '@/assets/images/core/footer/Telegram.svg'
   import WhatsApp from '@/assets/images/core/footer/Whatsapp.svg'
+  import FooterOrnament from '@/assets/images/core/footer/ornament.svg'
      import Cloud from '@/components/blocks/Cloud.vue'
 </script>
 
@@ -101,6 +103,13 @@
     flex-direction: row;
     display: flex;
     gap: 70px;
+}
+
+.footer__ornament {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    margin-top: 48px;
 }
 
 .footer__wrap_column1_reel {
