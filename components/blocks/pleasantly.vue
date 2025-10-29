@@ -1,5 +1,11 @@
 <template>
     <section class="pleasantly" id="pleasantly">
+        <h2
+          class="section-badge section-badge--fade"
+          style="--badge-bg: linear-gradient(90deg, #05220f 0%, #3fbf78 100%); --badge-min-w: 360px;"
+        >
+          Бесплатно для гостей
+        </h2>
         <div class="pleasantly__wrap">
             <div class="pleasantly__wrap_block">
                 <h3 class="pleasantly__wrap_block_title">Бесплатные услуги</h3>

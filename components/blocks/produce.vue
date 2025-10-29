@@ -1,5 +1,11 @@
 <template>
     <section class="produce">
+        <h2
+          class="section-badge section-badge--fade"
+          style="--badge-bg: linear-gradient(90deg, #1a0a00 0%, #b85b1f 100%); --badge-min-w: 320px;"
+        >
+          Комфорт
+        </h2>
         <div class="produce__wrap">
             <div class="produce__wrap_left">
                 <img :src="People" alt="Дом" class="produce__wrap_left_reel" draggable="false" />

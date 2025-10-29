@@ -1,5 +1,11 @@
 <template>
   <section class="bungalos" :style="{ '--bung-photo-h': photoHeight + 'px' }">
+    <h2
+      class="section-badge section-badge--fade"
+      style="--badge-bg: linear-gradient(90deg, #032621 0%, #1ca7a2 100%); --badge-min-w: 340px;"
+    >
+      Интерьеры
+    </h2>
     <div class="bungalos__wrap">
       <div
         v-for="(item, index) in items"

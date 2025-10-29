@@ -2,11 +2,17 @@
     <section class="sky">
         <img :src="Sky" alt="Небо" class="sky__reel" draggable="false" />
         <div class="sky__wrap">
-        <div class="sky__wrap_block">
+          <h2
+            class="section-badge section-badge--fade"
+            style="--badge-bg: linear-gradient(90deg, #03010d 0%, #1a2d68 100%); --badge-min-w: 280px;"
+          >
+            Небо
+          </h2>
+          <div class="sky__wrap_block">
             <img :src="Logo" alt="Лого" class="sky__wrap_block_reel" draggable="false" />
             <span class="sky__wrap_block_text">Там, где горы встречают облака</span>
+          </div>
         </div>
-    </div>
     </section>
   </template>
 
@@ -33,13 +39,15 @@
     position: absolute;
     inset: 0;
     display: flex;
-    align-items: center;
-    justify-content: flex-start;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
     max-width: var(--container-width);
     width: 100%;
     margin: 0 auto;
     padding: 0 clamp(20px, 6vw, 80px);
     box-sizing: border-box;
+    gap: 32px;
   }
 
   .sky__wrap_block {

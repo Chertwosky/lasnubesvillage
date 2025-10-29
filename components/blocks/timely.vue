@@ -1,5 +1,11 @@
 <template>
     <section class="timely">
+      <h2
+        class="section-badge section-badge--fade"
+        style="--badge-bg: linear-gradient(90deg, #1b0638 0%, #5b31a3 100%); --badge-min-w: 320px;"
+      >
+        О нас
+      </h2>
       <div class="timely__container">
         <!-- Большое центральное облако -->
         <img :src="CloudSvg" alt="Дом" class="timely__container-reel" draggable="false" />
@@ -26,17 +32,19 @@
 <style scoped>
 .timely {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   margin: 50px auto 0 auto;
   position: relative;
   max-width: var(--container-width);
   padding: 0 20px;
+  gap: 32px;
 }
 .timely__container {
   position: relative;
   width: 100%;
   max-width: 663px; /* фиксированный размер */
+  align-self: center;
 }
 .timely__container-reel {
   width: 100%;

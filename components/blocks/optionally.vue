@@ -1,7 +1,13 @@
 <template>
     <section class="optionally" id="optionally">
+      <h2
+        class="section-badge section-badge--fade"
+        style="--badge-bg: linear-gradient(90deg, #0a1438 0%, #a446ff 100%); --badge-min-w: 360px;"
+      >
+        Дополнительные услуги
+      </h2>
       <div class="optionally__wrap">
-        <h3 class="optionally__wrap_title">Дополнительные услуги</h3>
+        <h3 class="optionally__wrap_title">Опции для идеального отдыха</h3>
 
         <div class="optionally__wrap_carousel" :style="{ width: containerWidth + 'px' }">
           <!-- Стрелка влево -->

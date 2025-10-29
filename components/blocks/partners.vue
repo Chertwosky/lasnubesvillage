@@ -1,7 +1,13 @@
 <template>
   <section class="Partners" id="Partners">
+    <h2
+      class="section-badge section-badge--fade"
+      style="--badge-bg: linear-gradient(90deg, #041634 0%, #3974ff 100%); --badge-min-w: 320px;"
+    >
+      Партнёры
+    </h2>
     <div class="partners__wrap">
-      <h3 class="partners__wrap_title"> Партнеры </h3>
+      <h3 class="partners__wrap_title">Партнёрские услуги</h3>
 
       <!-- 👇 общий контейнер для слайдера и кнопки -->
       <div class="partners__wrap_carousel-container">

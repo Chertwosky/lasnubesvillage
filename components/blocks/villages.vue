@@ -1,8 +1,13 @@
 <template>
     <section class="villages">
       <div class="villages__intro">
-        <p class="villages__intro_label">A-frame</p>
-        <h2 class="villages__intro_title">Домики с панорамными окнами</h2>
+        <h2
+          class="section-badge section-badge--fade"
+          style="--badge-bg: linear-gradient(90deg, #0e0b27 0%, #0a0820 100%); --badge-pad-right: 80px;"
+        >
+          A-frame
+        </h2>
+        <h3 class="villages__intro_title">Домики с панорамными окнами</h3>
         <p class="villages__intro_text">Выберите дом и познакомьтесь с его атмосферой поближе.</p>
       </div>
 
@@ -76,17 +81,12 @@
   }
 
   .villages__intro {
-    text-align: center;
+    text-align: left;
     margin-bottom: 48px;
-  }
-
-  .villages__intro_label {
-    font-family: var(--font-secondary);
-    font-size: calc(var(--fontsize-unusual) * 1.2);
-    text-transform: uppercase;
-    color: var(--white-color);
-    margin: 0 0 8px 0;
-    letter-spacing: 0.12em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
   }
 
   .villages__intro_title {
