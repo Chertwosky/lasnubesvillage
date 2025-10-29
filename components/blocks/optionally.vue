@@ -1,5 +1,12 @@
 <template>
     <section class="optionally" id="optionally">
+      <SectionBadge
+        class="optionally__badge"
+        gradient="linear-gradient(90deg,#19364f 0%, #061222 100%)"
+        align="right"
+      >
+        Дополнительно
+      </SectionBadge>
       <div class="optionally__wrap">
         <h3 class="optionally__wrap_title">Дополнительные услуги</h3>
 
@@ -53,14 +60,14 @@
           />
         </div>
         <BookingButton customClass="optionally__wrap_btn">
-            Забронировать
+          Забронировать
         </BookingButton>
       </div>
       <Cloud width="156px" top="-20px" left="-30px" />
-        <Cloud width="118px" top="-35px" right="15%" />
-        <Cloud width="118px" bottom="39%" left="23%" />
-        <Cloud width="118px" bottom="-5%" left="7%" />
-        <Cloud width="161px" bottom="-30px" right="9%" flipped />
+      <Cloud width="118px" top="-35px" right="15%" />
+      <Cloud width="118px" bottom="39%" left="23%" />
+      <Cloud width="118px" bottom="-5%" left="7%" />
+      <Cloud width="161px" bottom="-30px" right="9%" flipped />
     </section>
   </template>
 
@@ -71,7 +78,8 @@
   import Curd from '@/assets/images/core/optionally/curd.svg'
   import Vat from '@/assets/images/core/optionally/vat.svg'
   import BookingButton from '@/components/blocks/BookingButton.vue'
-      import Cloud from '@/components/blocks/Cloud.vue'
+  import Cloud from '@/components/blocks/Cloud.vue'
+  import SectionBadge from '@/components/ui/SectionBadge.vue'
 
   const items = [
     { img: Vat, title: 'Чаны', price: '5 000 ₽/1 использование' },
@@ -132,7 +140,11 @@
     margin: 50px auto 0 auto;
     max-width: var(--container-width);
     position: relative;
-    padding: 0 20px;
+    padding: 0 20px 60px;
+  }
+
+  .optionally__badge {
+    margin-bottom: 32px;
   }
 
   .optionally__wrap {
