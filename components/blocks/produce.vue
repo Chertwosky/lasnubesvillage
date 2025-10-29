@@ -3,7 +3,7 @@
         <div class="produce__wrap">
             <div class="produce__wrap_left">
                 <img :src="People" alt="Дом" class="produce__wrap_left_reel" draggable="false" />
-                <ul class="produce__wrap_left_list">
+                <ul class="produce__wrap_left_list produce__list">
                     <li>Душ и туалет в каждом доме</li>
                     <li>WIFI и SMART TV</li>
                     <li>Панорамные окна</li>
@@ -14,8 +14,8 @@
 
             <div class="produce__wrap_right">
                 <img :src="Comfort" alt="Обстановка" class="produce__wrap_right_reel" draggable="false" />
-                <ul class="produce__wrap_right_list">
-                    <li>Самостоятельное заселение и выселение с помощью электронного доступа - без участия персонала</li>
+                <ul class="produce__wrap_right_list produce__list">
+                    <li>Самостоятельное заселение и выселение с помощью электронного доступа — без участия персонала</li>
                     <li>Бытовая техника: от микроволновки и плиты до посудомоечной и стиральной машины</li>
                     <li>Приятные мелочи: бумажные полотенца, стиральный порошок, соль, сахар, чай и кофе, банные наборы, настольные игры</li>
                 </ul>
@@ -86,9 +86,43 @@
     max-width: 363px;
 }
 
-.produce__wrap_left_reel img,
-.produce__wrap_right_reel img {
+.produce__wrap_left_reel,
+.produce__wrap_right_reel {
     height: 273px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 24px;
+    box-shadow: 0 18px 45px rgba(8, 23, 52, 0.25);
+    display: block;
+}
+
+.produce__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.produce__list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: var(--fontsize-medium);
+    color: var(--white-color);
+    line-height: 1.4;
+}
+
+.produce__list li::before {
+    content: '';
+    width: 12px;
+    height: 12px;
+    margin-top: 6px;
+    border-radius: 50%;
+    background: var(--white-color);
+    flex-shrink: 0;
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.2);
 }
 
 .produce__btn {
@@ -96,7 +130,7 @@
     text-transform: uppercase;
     color: var(--white-color);
     display: flex;
-    padding: 7px 20px 13px 20px;
+    padding: 10px 32px 16px;
     border-radius: var(--border-radius-container);
     font-size: 33px;
     font-family: var(--font-secondary);
@@ -104,16 +138,13 @@
     letter-spacing: 0;
     border: none;
     width: fit-content;
-    margin-left: 31px;
-    margin-top: -30px;
+    margin-left: 0;
+    margin-top: 16px;
     cursor: pointer;
 }
 
 .produce__wrap_left_list,
 .produce__wrap_right_list {
-    font-size: var(--fontsize-medium);
-    color: var(--white-color);
-    padding-left: 31px;
     font-family: var(--font-main);
     font-weight: 200;
 }
