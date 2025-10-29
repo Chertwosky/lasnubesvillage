@@ -1,7 +1,13 @@
 <template>
     <section class="villages">
+      <SectionBadge
+        class="villages__badge"
+        align="right"
+        gradient="linear-gradient(90deg, #0e0b27 0%, #0a0820 100%)"
+      >
+        A-frame
+      </SectionBadge>
       <div class="villages__intro">
-        <p class="villages__intro_label">A-frame</p>
         <h2 class="villages__intro_title">Домики с панорамными окнами</h2>
         <p class="villages__intro_text">Выберите дом и познакомьтесь с его атмосферой поближе.</p>
       </div>
@@ -44,6 +50,7 @@
   import SunsetCover from '@/assets/images/core/bungalos/sunset/f37cff56-8dc0-48b1-b924-805859b0349a.jpeg'
   import UltramarineCover from '@/assets/images/core/bungalos/ultramarine/239e530e-6494-423c-be71-bc5f34b144f5.jpeg'
   import EmeraldCover from '@/assets/images/core/bungalos/emerald/028865db-5e35-4f49-a589-c85b1a735da7.jpeg'
+  import SectionBadge from '@/components/ui/SectionBadge.vue'
 
   const cards = [
     {
@@ -75,18 +82,13 @@
     position: relative;
   }
 
+.villages__badge {
+  margin: 0 0 28px auto;
+}
+
   .villages__intro {
     text-align: center;
     margin-bottom: 48px;
-  }
-
-  .villages__intro_label {
-    font-family: var(--font-secondary);
-    font-size: calc(var(--fontsize-unusual) * 1.2);
-    text-transform: uppercase;
-    color: var(--white-color);
-    margin: 0 0 8px 0;
-    letter-spacing: 0.12em;
   }
 
   .villages__intro_title {
