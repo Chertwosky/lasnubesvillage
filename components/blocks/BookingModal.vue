@@ -14,7 +14,8 @@
         <Cloud width="170px" bottom="4%" right="65%" flipped class="cloud_modal"/>
 
         <!-- Контейнер под виджет -->
-        <div id="_bn_widget_" class="bn-widget"></div>
+        <div v-if="isWidgetLoading" class="modal__loader">Загружаем модуль бронирования…</div>
+        <div id="_bn_widget_" class="bn-widget" :aria-busy="isWidgetLoading"></div>
         <h3 class="modal__title"> LAS NUBES VILLAGE — посуточная аренда коттеджей </h3>
       </div>
     </div>
@@ -30,6 +31,7 @@
 
   const isOpen = ref(false)
   const widgetReady = ref(false)
+  const isWidgetLoading = ref(true)
   let resolveWidgetReady
   const createWidgetReadyPromise = () => new Promise((resolve) => { resolveWidgetReady = resolve })
   let widgetReadyPromise = createWidgetReadyPromise()
@@ -80,12 +82,6 @@
     }
   }
 
-  const preloadWidget = () => {
-    if (window.Bnovo_Widget && typeof window.Bnovo_Widget.open === 'function') {
-      window.Bnovo_Widget.open(PRELOAD_CONTAINER_ID, widgetConfig)
-    }
-  }
-
   const clearContainerById = (id) => {
     if (typeof document === 'undefined') return
 
@@ -99,11 +95,13 @@
     clearContainerById(WIDGET_CONTAINER_ID)
   }
 
-  const resetWidgetState = () => {
-    widgetReady.value = false
-    widgetReadyPromise = createWidgetReadyPromise()
-    clearContainerById(WIDGET_CONTAINER_ID)
-    clearContainerById(PRELOAD_CONTAINER_ID)
+  const preloadWidget = () => {
+    if (typeof document === 'undefined') return
+
+    if (window.Bnovo_Widget && typeof window.Bnovo_Widget.open === 'function') {
+      clearContainerById(PRELOAD_CONTAINER_ID)
+      window.Bnovo_Widget.open(PRELOAD_CONTAINER_ID, widgetConfig)
+    }
   }
 
   const ensureWidgetLoaded = () => {
@@ -127,8 +125,7 @@
 
   const open = async () => {
     ensureWidgetLoaded()
-    await waitForWidget()
-
+    isWidgetLoading.value = true
     isOpen.value = true
 
     const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth
@@ -136,11 +133,14 @@
     document.body.style.paddingRight = scrollBarWidth + 'px'
 
     await nextTick()
+    await waitForWidget()
 
     if (window.Bnovo_Widget && typeof window.Bnovo_Widget.open === 'function') {
       clearWidgetContainer()
       window.Bnovo_Widget.open(WIDGET_CONTAINER_ID, widgetConfig)
     }
+
+    isWidgetLoading.value = false
   }
 
   const close = () => {
@@ -148,8 +148,20 @@
     document.body.style.overflow = ''
     document.body.style.paddingRight = ''
 
-    resetWidgetState()
-    ensureWidgetLoaded()
+    clearWidgetContainer()
+    isWidgetLoading.value = true
+
+    if (widgetReady.value) {
+      if (typeof requestAnimationFrame === 'function') {
+        requestAnimationFrame(() => {
+          preloadWidget()
+        })
+      } else {
+        preloadWidget()
+      }
+    } else {
+      ensureWidgetLoaded()
+    }
   }
 
   onMounted(async () => {
@@ -191,6 +203,8 @@
   justify-content: center;
   overflow: visible;
   margin:  -10px auto 0 auto !important;  /* 👈 убираем скролл и не обрезаем */
+  min-height: 420px;
+  position: relative;
 }
 
 .bn-widget--preload {
@@ -204,8 +218,20 @@
 
 
 .modal__logo {
-    width: 120px;
-    margin: 0 auto;
+  width: 120px;
+  margin: 0 auto;
+}
+
+
+.modal__loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-main);
+  font-size: var(--fontsize-secondary);
+  color: var(--faded-color);
+  margin: 16px 0 24px;
+  text-align: center;
 }
 
 
