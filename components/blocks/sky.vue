@@ -1,6 +1,14 @@
 <template>
     <section class="sky">
-        <img :src="Sky" alt="Небо" class="sky__reel" draggable="false" />
+        <img
+          :src="Sky"
+          alt="Небо"
+          class="sky__reel"
+          draggable="false"
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
+        />
         <div class="sky__wrap">
         <SectionBadge
           class="sky__badge"
@@ -11,7 +19,15 @@
           Las Nubes Village
         </SectionBadge>
         <div class="sky__wrap_block">
-            <img :src="Logo" alt="Лого" class="sky__wrap_block_reel" draggable="false" />
+            <img
+              :src="Logo"
+              alt="Лого"
+              class="sky__wrap_block_reel"
+              draggable="false"
+              loading="eager"
+              decoding="async"
+              fetchpriority="high"
+            />
             <span class="sky__wrap_block_text">Там, где горы встречают облака</span>
         </div>
     </div>

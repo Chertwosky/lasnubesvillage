@@ -14,12 +14,19 @@
 
       <div class="villages__cards">
         <article
-          v-for="card in cards"
+          v-for="(card, index) in cards"
           :key="card.title"
           class="villages-card"
         >
           <NuxtLink :to="{ path: '/cottages', hash: card.hash }" class="villages-card__image">
-            <img :src="card.img" :alt="card.title" draggable="false" />
+            <img
+              :src="card.img"
+              :alt="card.title"
+              draggable="false"
+              :loading="index === 0 ? 'eager' : 'lazy'"
+              decoding="async"
+              :fetchpriority="index === 0 ? 'high' : 'low'"
+            />
           </NuxtLink>
           <div class="villages-card__body">
             <NuxtLink :to="{ path: '/cottages', hash: card.hash }" class="villages-card__title">

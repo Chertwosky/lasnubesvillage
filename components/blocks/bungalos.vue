@@ -42,6 +42,9 @@
                     :src="photo"
                     alt="Фото дома"
                     class="bungalos__carousel_img"
+                    :loading="getSlideLoading(item.id, pIndex)"
+                    decoding="async"
+                    :fetchpriority="getSlideFetchPriority(pIndex)"
                     @click="openLightbox(item.photos, pIndex)"
                   />
                 </div>
@@ -88,7 +91,7 @@
     <!-- Лайтбокс -->
     <div v-if="lightbox.open" class="lightbox" @click.self="closeLightbox">
       <button class="lightbox__close" @click="closeLightbox">×</button>
-      <img :src="currentPhoto" alt="Фото" class="lightbox__img" />
+      <img :src="currentPhoto" alt="Фото" class="lightbox__img" loading="eager" decoding="async" fetchpriority="high" />
       <button v-if="lightbox.index > 0" class="lightbox__arrow left" @click="prevLightbox">‹</button>
       <button v-if="lightbox.index < lightbox.photos.length - 1" class="lightbox__arrow right" @click="nextLightbox">›</button>
     </div>
@@ -129,6 +132,8 @@ const innerStyle = (id) => {
   const offset = currentIndexes[id] * (slideWidth.value + gap)
   return { transform: 'translateX(-' + offset + 'px)', gap: gap + 'px' }
 }
+const getSlideLoading = (id, index) => (currentIndexes[id] === index ? 'eager' : 'lazy')
+const getSlideFetchPriority = (index) => (index === 0 ? 'high' : 'low')
 const nextSlide = (id, length) => { if (currentIndexes[id] < length - visibleSlides) currentIndexes[id]++ }
 const prevSlide = (id, length) => { if (currentIndexes[id] > 0) currentIndexes[id]-- }
 
