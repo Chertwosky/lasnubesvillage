@@ -1,5 +1,12 @@
 <template>
     <section class="pleasantly" id="pleasantly">
+        <SectionBadge
+            class="pleasantly__badge"
+            gradient="linear-gradient(90deg,#1c3f3a 0%, #08211c 100%)"
+            align="right"
+        >
+            Бесплатно
+        </SectionBadge>
         <div class="pleasantly__wrap">
             <div class="pleasantly__wrap_block">
                 <h3 class="pleasantly__wrap_block_title">Бесплатные услуги</h3>
@@ -11,8 +18,8 @@
                     <li>— Детские раскраски</li>
                 </ul>
                 <BookingButton customClass="pleasantly__wrap_block_btn">
-            Забронировать
-        </BookingButton>
+                    Забронировать
+                </BookingButton>
             </div>
             <div class="pleasantly__wrap_img">
                 <img :src="Games" alt="Игры" class="pleasantly__wrap_img-reel" draggable="false" />
@@ -26,8 +33,9 @@
 
 <script setup>
 import Games from '@/assets/images/core/pleasantly/games.svg'
-  import BookingButton from '@/components/blocks/BookingButton.vue'
-        import Cloud from '@/components/blocks/Cloud.vue'
+import BookingButton from '@/components/blocks/BookingButton.vue'
+import Cloud from '@/components/blocks/Cloud.vue'
+import SectionBadge from '@/components/ui/SectionBadge.vue'
 </script>
 
 <style scoped>
@@ -37,6 +45,10 @@ import Games from '@/assets/images/core/pleasantly/games.svg'
     max-width: var(--container-width);
     position: relative;
     padding: 80px 20px;
+}
+
+.pleasantly__badge {
+    margin-bottom: 32px;
 }
 
 .pleasantly__wrap {
@@ -53,7 +65,7 @@ import Games from '@/assets/images/core/pleasantly/games.svg'
 
 .pleasantly__wrap_block_title,
 .pleasantly__wrap_block_list {
-color: var(--white-color);
+    color: var(--white-color);
 }
 
 .pleasantly__wrap_block_title {
