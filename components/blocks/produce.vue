@@ -1,5 +1,10 @@
 <template>
     <section class="produce">
+        <SectionBadge
+          class="produce__badge"
+          text="Комфорт и оснащение"
+          background="linear-gradient(90deg, #19254a 0%, #1d3764 100%)"
+        />
         <div class="produce__wrap">
             <div class="produce__wrap_left">
                 <img :src="People" alt="Дом" class="produce__wrap_left_reel" draggable="false" />
@@ -35,10 +40,11 @@
 </template>
 
 <script setup>
-    import People from '@/assets/images/core/produce/people.svg'
-    import Comfort from '@/assets/images/core/produce/comfort.svg'
-    import Cloud from '@/components/blocks/Cloud.vue'
-    import BookingButton from '@/components/blocks/BookingButton.vue'
+import People from '@/assets/images/core/produce/people.svg'
+import Comfort from '@/assets/images/core/produce/comfort.svg'
+import Cloud from '@/components/blocks/Cloud.vue'
+import BookingButton from '@/components/blocks/BookingButton.vue'
+import SectionBadge from '@/components/core/SectionBadge.vue'
 </script>
 
 <style scoped>
@@ -49,6 +55,11 @@
   padding: 0 20px;
   position: relative;
   z-index: 0; /* секция сама "нулевой слой" */
+}
+
+
+.produce__badge {
+  margin: 0 0 48px 0;
 }
 
 

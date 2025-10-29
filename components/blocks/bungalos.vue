@@ -1,5 +1,10 @@
 <template>
   <section class="bungalos" :style="{ '--bung-photo-h': photoHeight + 'px' }">
+    <SectionBadge
+      class="bungalos__badge"
+      text="Каталог A-frame"
+      background="linear-gradient(90deg, #11304b 0%, #071c31 100%)"
+    />
     <div class="bungalos__wrap">
       <div
         v-for="(item, index) in items"
@@ -94,6 +99,7 @@ import Arrow from '@/assets/images/core/partners/arrow.svg'
 import Man from '@/assets/images/core/bungalos/man.svg'
 import BookingButton from '@/components/blocks/BookingButton.vue'
 import Cloud from '@/components/blocks/Cloud.vue'
+import SectionBadge from '@/components/core/SectionBadge.vue'
 /* Настройка */
 const photoHeight = ref(500)
 const visibleSlides = 1
@@ -164,6 +170,7 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .bungalos { margin: 50px auto 0 auto; max-width: var(--container-width); padding: 0 20px; }
+.bungalos__badge { margin: 0 0 48px 0; }
 .bungalos__wrap {
   display: flex;
   flex-direction: column;

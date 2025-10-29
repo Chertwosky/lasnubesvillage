@@ -1,7 +1,11 @@
 <template>
     <section class="optionally" id="optionally">
       <div class="optionally__wrap">
-        <h3 class="optionally__wrap_title">Дополнительные услуги</h3>
+        <SectionBadge
+          class="optionally__badge"
+          text="Дополнительные услуги"
+          background="linear-gradient(90deg, #21345e 0%, #121b39 100%)"
+        />
 
         <div class="optionally__wrap_carousel" :style="{ width: containerWidth + 'px' }">
           <!-- Стрелка влево -->
@@ -71,7 +75,8 @@
   import Curd from '@/assets/images/core/optionally/curd.svg'
   import Vat from '@/assets/images/core/optionally/vat.svg'
   import BookingButton from '@/components/blocks/BookingButton.vue'
-      import Cloud from '@/components/blocks/Cloud.vue'
+  import Cloud from '@/components/blocks/Cloud.vue'
+  import SectionBadge from '@/components/core/SectionBadge.vue'
 
   const items = [
     { img: Vat, title: 'Чаны', price: '5 000 ₽/1 использование' },
@@ -138,14 +143,11 @@
   .optionally__wrap {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
   }
 
-  .optionally__wrap_title {
-    font-size: 48px;
-    color: var(--white-color);
-    font-family: var(--font-secondary);
-    margin: 0 0 26px 0;
+  .optionally__badge {
+    margin: 0 0 32px 0;
   }
 
   .optionally__wrap_carousel {
@@ -261,11 +263,6 @@
 
     .optionally__wrap_btn {
       align-self: center;
-    }
-
-    .optionally__wrap_title {
-      font-size: 40px;
-      text-align: center;
     }
 
     .optionally__wrap_carousel-arrow {

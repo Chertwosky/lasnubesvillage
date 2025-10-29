@@ -1,7 +1,11 @@
 <template>
   <section class="Partners" id="Partners">
     <div class="partners__wrap">
-      <h3 class="partners__wrap_title"> Партнеры </h3>
+      <SectionBadge
+        class="partners__badge"
+        text="Партнёры"
+        background="linear-gradient(90deg, #1c2b54 0%, #111a38 100%)"
+      />
 
       <!-- 👇 общий контейнер для слайдера и кнопки -->
       <div class="partners__wrap_carousel-container">
@@ -78,6 +82,7 @@ import Curd from '@/assets/images/core/partners/curd.svg'
 import Vat from '@/assets/images/core/partners/vat.svg'
 import BookingButton from '@/components/blocks/BookingButton.vue'
 import Cloud from '@/components/blocks/Cloud.vue'
+import SectionBadge from '@/components/core/SectionBadge.vue'
 
 const items = [
   { img: Vat, title: 'Чаны', price: '5 000 ₽/1 использование' },
@@ -143,24 +148,21 @@ onUnmounted(() => {
 .partners__wrap {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
 }
 
-.partners__wrap_title {
-  font-size: 48px;
-  color: var(--white-color);
-  font-family: var(--font-secondary);
-  margin: 0 0 26px 0;
+.partners__badge {
+  margin: 0 0 32px 0;
 }
 
 /* 👇 новый контейнер */
-.partners__wrap_carousel-container {
-  width: 100%;
-  max-width: 1160px; /* ширина слайдера */
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; /* кнопка теперь прижата к левому краю */
-}
+  .partners__wrap_carousel-container {
+    width: 100%;
+    max-width: 1160px; /* ширина слайдера */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* кнопка теперь прижата к левому краю */
+  }
 
 .partners__wrap_carousel {
   display: flex;
