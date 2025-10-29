@@ -1,5 +1,15 @@
 <template>
     <section class="produce">
+        <div class="produce__header">
+            <SectionBadge
+              class="produce__badge"
+              gradient="linear-gradient(90deg,#0d1d2c 0%, #123240 100%)"
+              pad-right="88px"
+            >
+              Комфорт
+            </SectionBadge>
+            <p class="produce__subtitle">Мы позаботились о деталях, чтобы отдых был расслабленным.</p>
+        </div>
         <div class="produce__wrap">
             <div class="produce__wrap_left">
                 <img :src="People" alt="Дом" class="produce__wrap_left_reel" draggable="false" />
@@ -39,6 +49,7 @@
     import Comfort from '@/assets/images/core/produce/comfort.svg'
     import Cloud from '@/components/blocks/Cloud.vue'
     import BookingButton from '@/components/blocks/BookingButton.vue'
+    import SectionBadge from '@/components/ui/SectionBadge.vue'
 </script>
 
 <style scoped>
@@ -49,6 +60,22 @@
   padding: 0 20px;
   position: relative;
   z-index: 0; /* секция сама "нулевой слой" */
+}
+
+.produce__header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.produce__subtitle {
+  margin: 0;
+  color: var(--faded-color);
+  font-family: var(--font-main);
+  font-size: var(--fontsize-medium);
+  max-width: 520px;
 }
 
 
@@ -153,6 +180,15 @@
   .produce__wrap {
     flex-direction: column;
     align-items: center;
+    text-align: center;
+  }
+
+  .produce__header {
+    align-items: center;
+    text-align: center;
+  }
+
+  .produce__subtitle {
     text-align: center;
   }
 

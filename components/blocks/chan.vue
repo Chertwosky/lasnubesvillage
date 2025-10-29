@@ -1,5 +1,14 @@
 <template>
     <section class="chan">
+      <div class="chan__header">
+        <SectionBadge
+          class="chan__badge"
+          gradient="linear-gradient(90deg,#1c2a33 0%, #1f3a44 100%)"
+          pad-right="96px"
+        >
+          Чаны
+        </SectionBadge>
+      </div>
       <div
         v-for="(item, index) in items"
         :key="index"
@@ -42,6 +51,7 @@
   import Man from '@/assets/images/core/chan/man.svg'
   import BookingButton from '@/components/blocks/BookingButton.vue'
     import Cloud from '@/components/blocks/Cloud.vue'
+  import SectionBadge from '@/components/ui/SectionBadge.vue'
 
   const items = [
     {
@@ -65,6 +75,16 @@ img.chan__block__left_reel {
     margin: 50px auto 0 auto;
     max-width: var(--container-width);
     padding: 40px 20px 0 20px;
+}
+
+.chan__header {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 32px;
+}
+
+.chan__badge {
+    margin: 0;
 }
 .chan__block {
     display: flex;
@@ -133,6 +153,10 @@ img.chan__block__left_reel {
 @media (max-width: 992px) {
     .chan {
         padding: 40px 16px 0 16px;
+    }
+
+    .chan__header {
+        justify-content: center;
     }
 
     .chan__block {

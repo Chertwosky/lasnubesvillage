@@ -1,7 +1,13 @@
 <template>
     <section class="villages">
       <div class="villages__intro">
-        <p class="villages__intro_label">A-frame</p>
+        <SectionBadge
+          class="villages__badge"
+          gradient="linear-gradient(90deg,#0e0b27 0%, #0a0820 100%)"
+          pad-right="112px"
+        >
+          A-frame
+        </SectionBadge>
         <h2 class="villages__intro_title">Домики с панорамными окнами</h2>
         <p class="villages__intro_text">Выберите дом и познакомьтесь с его атмосферой поближе.</p>
       </div>
@@ -41,6 +47,7 @@
   <script setup>
   import BookingButton from '@/components/blocks/BookingButton.vue'
   import Cloud from '@/components/blocks/Cloud.vue'
+  import SectionBadge from '@/components/ui/SectionBadge.vue'
   import SunsetCover from '@/assets/images/core/bungalos/sunset/f37cff56-8dc0-48b1-b924-805859b0349a.jpeg'
   import UltramarineCover from '@/assets/images/core/bungalos/ultramarine/239e530e-6494-423c-be71-bc5f34b144f5.jpeg'
   import EmeraldCover from '@/assets/images/core/bungalos/emerald/028865db-5e35-4f49-a589-c85b1a735da7.jpeg'
@@ -76,17 +83,16 @@
   }
 
   .villages__intro {
-    text-align: center;
+    text-align: left;
     margin-bottom: 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
   }
 
-  .villages__intro_label {
-    font-family: var(--font-secondary);
-    font-size: calc(var(--fontsize-unusual) * 1.2);
-    text-transform: uppercase;
-    color: var(--white-color);
-    margin: 0 0 8px 0;
-    letter-spacing: 0.12em;
+  .villages__badge {
+    margin-bottom: 4px;
   }
 
   .villages__intro_title {
@@ -193,6 +199,16 @@
   @media (max-width: 1024px) {
     .villages {
       padding: 0 16px 72px;
+    }
+
+    .villages__intro {
+      align-items: center;
+      text-align: center;
+    }
+
+    .villages__intro_title,
+    .villages__intro_text {
+      text-align: center;
     }
 
     .villages-card__image img {

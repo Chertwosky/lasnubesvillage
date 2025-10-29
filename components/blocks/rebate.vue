@@ -1,7 +1,13 @@
 <template>
     <section class="rebate" id="stocks">
       <div class="rebate__intro">
-        <p class="rebate__intro_label">Акции</p>
+        <SectionBadge
+          class="rebate__badge"
+          gradient="linear-gradient(90deg,#231308 0%, #3f1c0b 100%)"
+          pad-right="96px"
+        >
+          Акции
+        </SectionBadge>
         <h2 class="rebate__intro_title">Выгодные предложения для гостей</h2>
       </div>
 
@@ -25,6 +31,7 @@
   import Burthday from '@/assets/images/core/rebate/burthday.svg'
   import Feedback from '@/assets/images/core/rebate/feedback.svg'
   import Bathhouse from '@/assets/images/core/rebate/bathhouse.svg'
+  import SectionBadge from '@/components/ui/SectionBadge.vue'
 
   const items = [
     {
@@ -54,17 +61,16 @@
   }
 
   .rebate__intro {
-    text-align: center;
+    text-align: left;
     margin-bottom: 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
   }
 
-  .rebate__intro_label {
-    font-family: var(--font-secondary);
-    font-size: calc(var(--fontsize-unusual) * 1.2);
-    text-transform: uppercase;
-    color: var(--white-color);
-    margin: 0 0 8px 0;
-    letter-spacing: 0.16em;
+  .rebate__badge {
+    margin-bottom: 4px;
   }
 
   .rebate__intro_title {
@@ -130,6 +136,15 @@
   @media (max-width: 1024px) {
     .rebate {
       padding: 0 16px 72px;
+    }
+
+    .rebate__intro {
+      align-items: center;
+      text-align: center;
+    }
+
+    .rebate__intro_title {
+      text-align: center;
     }
 
     .rebate-card__badge {
