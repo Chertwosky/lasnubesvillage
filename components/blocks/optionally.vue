@@ -1,7 +1,16 @@
 <template>
     <section class="optionally" id="optionally">
       <div class="optionally__wrap">
-        <h3 class="optionally__wrap_title">Дополнительные услуги</h3>
+        <div class="optionally__header">
+          <SectionBadge
+            class="optionally__badge"
+            gradient="linear-gradient(90deg,#1c243a 0%, #29345a 100%)"
+            pad-right="120px"
+          >
+            Дополнительно
+          </SectionBadge>
+          <h3 class="optionally__wrap_title">Дополнительные услуги</h3>
+        </div>
 
         <div class="optionally__wrap_carousel" :style="{ width: containerWidth + 'px' }">
           <!-- Стрелка влево -->
@@ -72,6 +81,7 @@
   import Vat from '@/assets/images/core/optionally/vat.svg'
   import BookingButton from '@/components/blocks/BookingButton.vue'
       import Cloud from '@/components/blocks/Cloud.vue'
+  import SectionBadge from '@/components/ui/SectionBadge.vue'
 
   const items = [
     { img: Vat, title: 'Чаны', price: '5 000 ₽/1 использование' },
@@ -138,14 +148,27 @@
   .optionally__wrap {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+  }
+
+  .optionally__header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 24px;
+    width: 100%;
+  }
+
+  .optionally__badge {
+    margin-bottom: 4px;
   }
 
   .optionally__wrap_title {
     font-size: 48px;
     color: var(--white-color);
     font-family: var(--font-secondary);
-    margin: 0 0 26px 0;
+    margin: 0;
   }
 
   .optionally__wrap_carousel {
@@ -257,6 +280,12 @@
   @media (max-width: 1024px) {
     .optionally {
       padding: 0 16px;
+    }
+
+    .optionally__wrap,
+    .optionally__header {
+      align-items: center;
+      text-align: center;
     }
 
     .optionally__wrap_btn {

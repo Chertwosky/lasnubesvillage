@@ -1,5 +1,14 @@
 <template>
     <section class="bath">
+      <div class="bath__header">
+        <SectionBadge
+          class="bath__badge"
+          gradient="linear-gradient(90deg,#291a0f 0%, #402513 100%)"
+          pad-right="96px"
+        >
+          Баня
+        </SectionBadge>
+      </div>
       <div
         v-for="(item, index) in items"
         :key="index"
@@ -42,6 +51,7 @@
   import Man from '@/assets/images/core/bath/man.svg'
   import BookingButton from '@/components/blocks/BookingButton.vue'
     import Cloud from '@/components/blocks/Cloud.vue'
+  import SectionBadge from '@/components/ui/SectionBadge.vue'
 
   const items = [
     {
@@ -67,6 +77,16 @@ img.bath__block__left_reel {
     margin: 50px auto 0 auto;
     max-width: var(--container-width);
     padding: 40px 20px 0 20px;
+}
+
+.bath__header {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 32px;
+}
+
+.bath__badge {
+    margin: 0;
 }
 .bath__block {
     display: flex;
@@ -136,6 +156,10 @@ img.bath__block__left_reel {
 @media (max-width: 992px) {
     .bath {
         padding: 40px 16px 0 16px;
+    }
+
+    .bath__header {
+        justify-content: center;
     }
 
     .bath__block {

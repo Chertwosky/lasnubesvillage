@@ -1,5 +1,14 @@
 <template>
   <section class="bungalos" :style="{ '--bung-photo-h': photoHeight + 'px' }">
+    <div class="bungalos__header">
+      <SectionBadge
+        class="bungalos__badge"
+        gradient="linear-gradient(90deg,#0f2338 0%, #123b5a 100%)"
+        pad-right="124px"
+      >
+        Домики
+      </SectionBadge>
+    </div>
     <div class="bungalos__wrap">
       <div
         v-for="(item, index) in items"
@@ -94,6 +103,7 @@ import Arrow from '@/assets/images/core/partners/arrow.svg'
 import Man from '@/assets/images/core/bungalos/man.svg'
 import BookingButton from '@/components/blocks/BookingButton.vue'
 import Cloud from '@/components/blocks/Cloud.vue'
+import SectionBadge from '@/components/ui/SectionBadge.vue'
 /* Настройка */
 const photoHeight = ref(500)
 const visibleSlides = 1
@@ -164,6 +174,16 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .bungalos { margin: 50px auto 0 auto; max-width: var(--container-width); padding: 0 20px; }
+
+.bungalos__header {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 32px;
+}
+
+.bungalos__badge {
+  margin: 0;
+}
 .bungalos__wrap {
   display: flex;
   flex-direction: column;
@@ -237,6 +257,10 @@ onBeforeUnmount(() => {
 
 @media (max-width: 992px) {
   .bungalos { padding: 0 16px; }
+
+  .bungalos__header {
+    justify-content: center;
+  }
 
   .bungalos__wrap_block {
     flex-direction: column;

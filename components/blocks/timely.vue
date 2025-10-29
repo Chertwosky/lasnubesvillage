@@ -1,5 +1,14 @@
 <template>
     <section class="timely">
+      <div class="timely__header">
+        <SectionBadge
+          class="timely__badge"
+          gradient="linear-gradient(90deg,#1c1d3a 0%, #2b2f5f 100%)"
+          pad-right="112px"
+        >
+          О нас
+        </SectionBadge>
+      </div>
       <div class="timely__container">
         <!-- Большое центральное облако -->
         <img :src="CloudSvg" alt="Дом" class="timely__container-reel" draggable="false" />
@@ -22,16 +31,28 @@
   <script setup>
   import CloudSvg from '@/assets/images/core/error/cloud.svg'
   import Cloud from '@/components/blocks/Cloud.vue'
+  import SectionBadge from '@/components/ui/SectionBadge.vue'
   </script>
 <style scoped>
 .timely {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
   margin: 50px auto 0 auto;
   position: relative;
   max-width: var(--container-width);
   padding: 0 20px;
+  gap: 32px;
+}
+
+.timely__header {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.timely__badge {
+  margin: 0;
 }
 .timely__container {
   position: relative;
@@ -85,6 +106,10 @@
 @media (max-width: 768px) {
   .timely {
     padding: 0 16px;
+  }
+
+  .timely__header {
+    justify-content: center;
   }
 
   .timely__container-reel {
