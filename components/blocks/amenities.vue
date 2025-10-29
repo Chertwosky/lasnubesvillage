@@ -1,5 +1,11 @@
 <template>
     <section class="amenities">
+        <h2
+            class="section-badge section-badge--fade"
+            style="--badge-bg: linear-gradient(90deg, #2f1200 0%, #d18f1d 100%); --badge-min-w: 340px;"
+        >
+            Услуги
+        </h2>
         <div class="amenities__wrap">
             <div class="amenities__wrap_block">
                 <p class="amenities__wrap_block_title">Наши услуги</p>

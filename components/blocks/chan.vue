@@ -1,5 +1,11 @@
 <template>
     <section class="chan">
+      <h2
+        class="section-badge section-badge--fade"
+        style="--badge-bg: linear-gradient(90deg, #321300 0%, #f28b1d 100%); --badge-min-w: 320px;"
+      >
+        Чаны
+      </h2>
       <div
         v-for="(item, index) in items"
         :key="index"

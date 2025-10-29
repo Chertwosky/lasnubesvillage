@@ -1,5 +1,11 @@
 <template>
     <section class="bath">
+      <h2
+        class="section-badge section-badge--fade"
+        style="--badge-bg: linear-gradient(90deg, #260f00 0%, #d45c27 100%); --badge-min-w: 320px;"
+      >
+        Баня
+      </h2>
       <div
         v-for="(item, index) in items"
         :key="index"

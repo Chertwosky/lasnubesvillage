@@ -1,5 +1,11 @@
 <template>
     <section class="heading">
+        <h2
+            class="section-badge section-badge--fade"
+            style="--badge-bg: linear-gradient(90deg, #091430 0%, #1f3f85 100%); --badge-min-w: 340px;"
+        >
+            Коттеджи
+        </h2>
         <div class="heading__wrap">
             <div class="heading__wrap_block">
                 <p class="heading__wrap_block_title"> Коттеджи A-frame</p>
