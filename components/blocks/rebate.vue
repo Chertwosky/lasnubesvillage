@@ -1,5 +1,7 @@
 <template>
     <section class="rebate" id="stocks">
+      <OrnamentTitle :fullbleed="true">Акции</OrnamentTitle>
+      <p class="rebate__lead">Забронируйте домики Las Nubes Village с дополнительными бонусами и приятными подарками.</p>
       <div class="rebate__wrap">
 
         <!-- Левая стрелка -->
@@ -17,18 +19,17 @@
             class="rebate__wrap_inner"
             :style="{ transform: `translateX(-${currentIndex * (slideWidth + gap)}px)` }"
           >
-            <div
+            <article
               v-for="(item, index) in items"
               :key="index"
               class="rebate__wrap_block"
               :style="{ width: slideWidth + 'px' }"
             >
-              <div class="rebate__wrap_block_rct">
-                <p>{{ item.label }}</p>
-              </div>
+              <div class="rebate__badge">{{ item.label }}</div>
               <img :src="item.img" :alt="item.label" class="rebate__wrap_block_reel" draggable="false" />
-              <span class="rebate__wrap_block_text">{{ item.text }}</span>
-            </div>
+              <h3 class="rebate__wrap_block_title">{{ item.title }}</h3>
+              <p class="rebate__wrap_block_text">{{ item.text }}</p>
+            </article>
           </div>
         </div>
 
@@ -61,18 +62,21 @@
   const items = [
     {
       img: Burthday,
-      label: '-10%',
-      text: 'В день рождения или годовщину свадьбы дарим скидку 15%',
+      label: '-15%',
+      title: 'Праздничный заезд',
+      text: 'В день рождения или годовщину свадьбы дарим скидку 15% и комплимент от Las Nubes Village.',
     },
     {
       img: Feedback,
       label: '-10%',
-      text: 'За отзывы на яндекс картах дарим 10% скидку на следующий заезд',
+      title: 'Спасибо за отзыв',
+      text: 'Оставьте отзыв на Яндекс.Картах и получите 10% скидку на следующий заезд.',
     },
     {
       img: Bathhouse,
       label: 'Баня',
-      text: 'При бронировании от 3 дней предоставляется разовое бесплатное посещение бани',
+      title: 'Прогрев на двоих',
+      text: 'При бронировании от 3 дней — разовое бесплатное посещение бани или чана на выбор.',
     },
   ]
 
@@ -119,11 +123,35 @@
   </script>
 
   <style scoped>
+  :deep(.ornament-title) {
+    color: #f0f4ff;
+    font-family: var(--font-secondary);
+    font-size: 48px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-align: center;
+  }
+
+  :deep(.ornament-title)::before,
+  :deep(.ornament-title)::after {
+    filter: brightness(0) invert(1);
+    opacity: 0.45;
+  }
+
   .rebate {
-    margin: 50px auto 0 auto;
+    margin: 80px auto 0;
     max-width: var(--container-width);
     padding: 0 20px;
     position: relative;
+  }
+
+  .rebate__lead {
+    margin: 12px auto 40px;
+    max-width: 720px;
+    font-family: var(--font-main);
+    font-size: var(--fontsize-medium);
+    color: #f0f4ff;
+    text-align: center;
   }
 
   .rebate__wrap {
@@ -150,46 +178,46 @@
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
-    gap: 9px;
+    gap: 18px;
+    padding: 28px 28px 34px;
+    border-radius: 32px;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 32px 64px rgba(66, 104, 182, 0.25);
     position: relative;
   }
 
-  .rebate__wrap_block_rct {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: fit-content;
-    height: 46px;
-    background-color: var(--green-color);
-    min-width: 86px;
-    border-radius: var(--border-radius-container) 0;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    z-index: 1;
-  }
-
-  .rebate__wrap_block_rct p {
-    color: var(--white-color);
-    font-size: var(--fontsize-medium);
-    text-transform: uppercase;
-    margin: 0;
+  .rebate__badge {
+    align-self: flex-start;
+    padding: 6px 18px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #93baf8 0%, #7ca4e1 100%);
+    color: #2c4c8e;
     font-family: var(--font-core);
+    font-size: var(--fontsize-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
   }
 
   .rebate__wrap_block_reel {
     width: 100%;
-    height: 221px;
-    border-radius: var(--border-radius-container) var(--border-radius-container) 0 0;
+    height: 220px;
+    border-radius: 24px;
     object-fit: cover;
   }
 
+  .rebate__wrap_block_title {
+    margin: 0;
+    font-family: var(--font-secondary);
+    font-size: 28px;
+    color: #30519a;
+    text-transform: uppercase;
+  }
+
   .rebate__wrap_block_text {
-    color: var(--white-color);
-    font-size: var(--fontsize-unusual);
-    text-align: left;
+    color: #3f5aa1;
+    font-size: var(--fontsize-medium);
     font-family: var(--font-main);
-    max-width: 350px;
+    margin: 0;
   }
 
   .rebate__wrap_arrow {
@@ -198,66 +226,61 @@
     transform: translateY(-50%);
     cursor: pointer;
     z-index: 10;
+    width: 52px;
   }
 
   .rebate__wrap_arrow.left {
-    left: 2.5%;
+    left: -16px;
     transform: rotate(180deg) translateY(50%);
   }
 
   .rebate__wrap_arrow.right {
-    right: 0%;
+    right: -16px;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     .rebate {
       padding: 0 16px;
     }
 
-    .rebate__wrap_block_rct {
-      height: 36px;
-      min-width: 72px;
-    }
-
-    .rebate__wrap_block_rct p {
-      font-size: var(--fontsize-secondary);
+    .rebate__wrap_block {
+      padding: 24px 24px 30px;
     }
 
     .rebate__wrap_block_reel {
-      height: 180px;
+      height: 200px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .rebate__wrap_arrow {
+      width: 42px;
+    }
+
+    .rebate__wrap_block_title {
+      font-size: 24px;
     }
 
     .rebate__wrap_block_text {
       font-size: var(--fontsize-primary);
-      text-align: center;
-      max-width: 100%;
-    }
-
-    .rebate__wrap_arrow {
-      width: 44px;
     }
   }
 
-  @media (max-width: 540px) {
+  @media (max-width: 560px) {
+    .rebate {
+      padding: 0 12px;
+    }
+
     .rebate__wrap {
       padding: 0 8px;
     }
 
-    .rebate__wrap_block_rct {
-      height: 32px;
-    }
-
-    .rebate__wrap_block_reel {
-      height: 160px;
-    }
-
-    .rebate__wrap_block_text {
-      font-size: var(--fontsize-secondary);
-      text-align: center;
-    }
-
     .rebate__wrap_arrow {
-      width: 32px;
+      display: none;
+    }
+
+    .rebate__wrap_block {
+      padding: 24px 20px;
     }
   }
   </style>

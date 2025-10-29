@@ -1,46 +1,51 @@
 <template>
     <header class="header">
-        <a href="/" class="header_click" draggable="false">
-          <img :src="logo" alt="Логотип" class="header_logo" draggable="false" />
-        </a>
-        <nav class="header__nav">
-            <NuxtLink href="/cottages" class="header__wrap_link" draggable="false">Коттеджи</NuxtLink>
-            <NuxtLink href="/services" class="header__wrap_link" draggable="false">Услуги</NuxtLink>
-            <NuxtLink :to="{ path: '/', hash: '#stocks' }" class="header__wrap_link" draggable="false">Акции</NuxtLink>
-            <NuxtLink href="/about" class="header__wrap_link" draggable="false">О нас</NuxtLink>
-        </nav>
+        <div class="header__inner">
+            <a href="/" class="header_click" draggable="false">
+            <img :src="logo" alt="Логотип" class="header_logo" draggable="false" />
+            </a>
+            <nav class="header__nav">
+                <NuxtLink to="/cottages" class="header__wrap_link" draggable="false">Коттеджи</NuxtLink>
+                <NuxtLink to="/services" class="header__wrap_link" draggable="false">Услуги</NuxtLink>
+                <NuxtLink :to="{ path: '/', hash: '#stocks' }" class="header__wrap_link" draggable="false">Акции</NuxtLink>
+                <NuxtLink to="/about" class="header__wrap_link" draggable="false">О нас</NuxtLink>
+            </nav>
 
-        <div class="header__feed">
-            <a href="tel:+79224232070" class="header__feed_call" draggable="false">+7 (922) 423-20-70</a>
-            <div class="header__feed_social">
-                <a href="https://t.me/lasnubesvillage""
-                target="_blank"
-                rel="noreferrer noopener">
-                <img
-                    :src="Telegram"
-                    alt="Telegram"
-                    class="header__feed_social_reel"
-                    draggable="false"
-                />
-                </a>
-                <a href="https://wa.me/79224232070"
-                target="_blank"
-                rel="noreferrer noopener">
-                <img
-                    :src="phoneIcon"
-                    alt="WhatsApp"
-                    class="header__feed_social_reel"
-                    draggable="false"
-                />
-                </a>
+            <div class="header__feed">
+                <a href="tel:+79224232070" class="header__feed_call" draggable="false">+7 (922) 423-20-70</a>
+                <div class="header__feed_social">
+                    <a
+                    href="https://t.me/lasnubesvillage"
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    aria-label="Открыть Telegram"
+                    >
+                    <img
+                        :src="Telegram"
+                        alt="Telegram"
+                        class="header__feed_social_reel"
+                        draggable="false"
+                    />
+                    </a>
+                    <a
+                    href="https://wa.me/79224232070"
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    aria-label="Написать в WhatsApp"
+                    >
+                    <img
+                        :src="phoneIcon"
+                        alt="WhatsApp"
+                        class="header__feed_social_reel"
+                        draggable="false"
+                    />
+                    </a>
+                </div>
+                <BookingButton customClass="header__feed_button">
+      Забронировать
+    </BookingButton>
             </div>
-            <BookingButton customClass="header__feed_button">
-  Забронировать
-</BookingButton>
-
-
         </div>
-
     </header>
 </template>
 
@@ -73,20 +78,30 @@ const openBooking = () => {
 
 <style scoped>
   .header {
+    padding: 24px 20px 12px;
+  }
+
+  .header__inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: var(--padding-classic) 20px;
+    gap: 24px;
     max-width: var(--container-width);
     margin: 0 auto;
+    padding: 16px 32px;
+    background: rgba(255, 255, 255, 0.82);
+    border-radius: 999px;
+    box-shadow: 0 24px 60px rgba(66, 102, 168, 0.22);
+    backdrop-filter: blur(10px);
   }
 
 .header__nav,
 .header__feed {
     display: flex;
-    gap: var(--gap-medium);
+    gap: 28px;
     font-family: var(--font-core);
     color: var(--faded-color);
+    align-items: center;
 }
 
 .header__nav {
@@ -95,126 +110,137 @@ const openBooking = () => {
 
 .header__feed_social {
     display: flex;
-    gap: 6px;
+    gap: 10px;
+}
+
+.header__feed_social a {
+    display: inline-flex;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    background: rgba(64, 91, 165, 0.08);
+}
+
+.header__feed_social_reel {
+    width: 20px;
+    height: 20px;
 }
 
 .header__nav a,
 .header__feed_call {
     text-decoration: none;
     font-size: var(--fontsize-secondary);
-    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    color: #405ba5;
 }
 
 .header_click {
-    margin-right: 44px;
+    display: flex;
+    align-items: center;
 }
 
 .header__feed_call {
     align-self: center;
+    white-space: nowrap;
 }
 
 .header__feed_button {
-padding: var(--padding-tiny) var(--padding-semi-large);
-background-color: var(--green-color);
-color: var(--white-color);
-font-size: var(--fontsize-secondary);
-border-radius: var(--border-radius-container);
-border: none;
-cursor: pointer;
-font-family: var(--font-core);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 30px;
+  background: linear-gradient(135deg, #50c57d 0%, #3aa365 100%);
+  color: var(--white-color);
+  font-size: var(--fontsize-secondary);
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.header__feed_button:hover {
+  background: linear-gradient(135deg, #50c57d 0%, #3aa365 100%) !important;
+  color: var(--white-color) !important;
 }
 
 .header_logo {
-    object-fit: cover;
-    width: 100px;
-    width: 79px;
-    height: 108px;
-    -o-object-fit: cover;
-    object-fit: cover;
-    display: block;
-    /* margin: 0 auto; */
-    margin-left: -2px;
+    width: 92px;
+    height: 126px;
+    object-fit: contain;
 }
 
-@media (max-width:1280px) {
-    .header {
-        width: 100vw;
-    }
-}
-
-@media (max-width:1024px) {
-    .header {
-        width: 99vw;
-    }
-}
-
-
-@media (max-width:800px) {
-    .header {
-        width: 100%;
-        padding: var(--padding-classic) 16px;
-    }
-
-    .header__feed_button {
-        max-width: 180px;
-        align-items: center;
-        display: flex;
-        justify-content: center;
-        padding: 10px 20px;
-        height: fit-content;
-    }
-
-    .header__feed {
-        align-items: center;
-    }
-
-    .header__feed_social {
-        flex-direction: column;
+@media (max-width: 1100px) {
+    .header__inner {
+        padding: 16px 24px;
+        gap: 20px;
     }
 
     .header__nav,
     .header__feed {
-        gap: 15px;
-    }
-
-    .header__nav a,
-    .header__feed_call {
-        font-size: var(--fontsize-primary);
-    }
-
-
-
-    .header_click {
-        margin-right: 15px;
+        gap: 20px;
     }
 }
 
-@media (max-width:540px) {
-    .header__nav,
-    .header__feed {
-        flex-direction: column;
-    }
-
-    .header__feed_social {
-        flex-direction: row;
+@media (max-width: 900px) {
+    .header__inner {
+        flex-wrap: wrap;
+        border-radius: 32px;
+        row-gap: 16px;
     }
 
     .header__nav {
+        order: 3;
+        width: 100%;
+        justify-content: center;
         flex-wrap: wrap;
-        flex-direction: row;
-        max-width: 151px;
-        align-items: center;
-        align-self: center;
-        margin: 0 auto;
+        gap: 16px 24px;
     }
 
+    .header__feed {
+        margin-left: auto;
+        gap: 16px;
+    }
+}
+
+@media (max-width: 640px) {
     .header {
-        justify-content: space-around;
+        padding: 16px;
+    }
+
+    .header__inner {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+
+    .header__nav {
+        order: 2;
+    }
+
+    .header__feed {
+        order: 3;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .header__feed_social {
+        justify-content: center;
     }
 
     .header__feed_button {
-        font-size: var(--fontsize-secondary);
-        padding: 8px 18px;
+        width: 100%;
+        justify-content: center;
+        padding: 12px 20px;
+    }
+
+    .header_logo {
+        margin: 0 auto;
     }
 }
 
