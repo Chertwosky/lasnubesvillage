@@ -2,7 +2,13 @@
     <section class="sky">
         <img :src="Sky" alt="Небо" class="sky__reel" draggable="false" />
         <div class="sky__wrap">
-        <div class="sky__wrap_block">
+            <h2
+                class="section-badge section-badge--fade section-badge--right sky__badge"
+                style="--badge-bg: linear-gradient(90deg, rgba(34, 58, 110, 0.95) 0%, rgba(7, 17, 42, 0.95) 100%); --badge-pad-right: 100px; --badge-min-w: 340px;"
+            >
+                Las Nubes
+            </h2>
+            <div class="sky__wrap_block">
             <img :src="Logo" alt="Лого" class="sky__wrap_block_reel" draggable="false" />
             <span class="sky__wrap_block_text">Там, где горы встречают облака</span>
         </div>
@@ -33,13 +39,18 @@
     position: absolute;
     inset: 0;
     display: flex;
-    align-items: center;
-    justify-content: flex-start;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
     max-width: var(--container-width);
     width: 100%;
     margin: 0 auto;
     padding: 0 clamp(20px, 6vw, 80px);
     box-sizing: border-box;
+  }
+
+  .sky__badge {
+    margin: 0 0 32px;
   }
 
   .sky__wrap_block {
@@ -75,7 +86,7 @@
 
   @media (max-width: 768px) {
     .sky__wrap {
-      align-items: flex-end;
+      align-items: flex-start;
       padding-bottom: 36px;
     }
 
@@ -96,6 +107,11 @@
 
     .sky__wrap {
       padding: 0 16px 28px;
+    }
+
+    .sky__badge {
+      --badge-min-w: 280px;
+      font-size: calc(var(--fontsize-unusual) * 1.5);
     }
 
     .sky__wrap_block_reel {

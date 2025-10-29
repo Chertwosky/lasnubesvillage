@@ -1,7 +1,12 @@
 <template>
     <section class="rebate" id="stocks">
       <div class="rebate__intro">
-        <p class="rebate__intro_label">Акции</p>
+        <h2
+          class="section-badge section-badge--fade rebate__badge"
+          style="--badge-bg: linear-gradient(90deg, #1d3557 0%, #0a1b3d 100%); --badge-min-w: 320px;"
+        >
+          Акции
+        </h2>
         <h2 class="rebate__intro_title">Выгодные предложения для гостей</h2>
       </div>
 
@@ -58,13 +63,8 @@
     margin-bottom: 48px;
   }
 
-  .rebate__intro_label {
-    font-family: var(--font-secondary);
-    font-size: calc(var(--fontsize-unusual) * 1.2);
-    text-transform: uppercase;
-    color: var(--white-color);
-    margin: 0 0 8px 0;
-    letter-spacing: 0.16em;
+  .rebate__badge {
+    margin: 0 auto 24px;
   }
 
   .rebate__intro_title {
