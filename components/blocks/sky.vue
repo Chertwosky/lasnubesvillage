@@ -2,17 +2,22 @@
     <section class="sky">
         <img :src="Sky" alt="Небо" class="sky__reel" draggable="false" />
         <div class="sky__wrap">
-        <div class="sky__wrap_block">
-            <img :src="Logo" alt="Лого" class="sky__wrap_block_reel" draggable="false" />
-            <span class="sky__wrap_block_text">Там, где горы встречают облака</span>
+            <SectionBadge
+                label="Las Nubes Village"
+                gradient="linear-gradient(90deg, rgba(12, 18, 42, 0.85) 0%, rgba(32, 48, 102, 0.85) 100%)"
+            />
+            <div class="sky__wrap_block">
+                <img :src="Logo" alt="Лого" class="sky__wrap_block_reel" draggable="false" />
+                <span class="sky__wrap_block_text">Там, где горы встречают облака</span>
+            </div>
         </div>
-    </div>
     </section>
   </template>
 
   <script setup>
   import Sky from '@/assets/images/core/sky/sky.svg'
   import Logo from '@/assets/images/core/sky/logo.svg'
+  import SectionBadge from '@/components/core/SectionBadge.vue'
   </script>
 
   <style scoped>
@@ -33,12 +38,14 @@
     position: absolute;
     inset: 0;
     display: flex;
-    align-items: center;
-    justify-content: flex-start;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 32px;
     max-width: var(--container-width);
     width: 100%;
     margin: 0 auto;
-    padding: 0 clamp(20px, 6vw, 80px);
+    padding: clamp(24px, 6vw, 60px) clamp(20px, 6vw, 80px);
     box-sizing: border-box;
   }
 
@@ -69,14 +76,16 @@
     }
 
     .sky__wrap {
-      padding-inline: clamp(20px, 8vw, 60px);
+      padding: clamp(20px, 8vw, 48px) clamp(20px, 8vw, 60px);
+      gap: 24px;
     }
   }
 
   @media (max-width: 768px) {
     .sky__wrap {
-      align-items: flex-end;
+      align-items: flex-start;
       padding-bottom: 36px;
+      gap: 20px;
     }
 
     .sky__wrap_block {
@@ -95,7 +104,7 @@
     }
 
     .sky__wrap {
-      padding: 0 16px 28px;
+      padding: 16px 16px 28px;
     }
 
     .sky__wrap_block_reel {

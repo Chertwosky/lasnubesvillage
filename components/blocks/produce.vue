@@ -1,5 +1,9 @@
 <template>
     <section class="produce">
+        <SectionBadge
+            label="Комфорт"
+            gradient="linear-gradient(90deg, rgba(23, 61, 48, 0.95) 0%, rgba(70, 190, 120, 0.95) 100%)"
+        />
         <div class="produce__wrap">
             <div class="produce__wrap_left">
                 <img :src="People" alt="Дом" class="produce__wrap_left_reel" draggable="false" />
@@ -39,6 +43,7 @@
     import Comfort from '@/assets/images/core/produce/comfort.svg'
     import Cloud from '@/components/blocks/Cloud.vue'
     import BookingButton from '@/components/blocks/BookingButton.vue'
+    import SectionBadge from '@/components/core/SectionBadge.vue'
 </script>
 
 <style scoped>
