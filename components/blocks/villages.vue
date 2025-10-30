@@ -8,8 +8,8 @@
         A-frame
       </SectionBadge>
       <div class="villages__intro">
-        <h3 class="villages__intro_title">Домики с панорамными окнами</h3>
-        <p class="villages__intro_text">Выберите дом и познакомьтесь с его атмосферой поближе.</p>
+        <h3 class="villages__intro_title text-overlay text-overlay--block">Домики с панорамными окнами</h3>
+        <p class="villages__intro_text text-overlay text-overlay--block">Выберите дом и познакомьтесь с его атмосферой поближе.</p>
       </div>
 
       <div class="villages__cards">

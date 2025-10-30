@@ -9,18 +9,17 @@
         </SectionBadge>
         <div class="heading__wrap">
             <div class="heading__wrap_block">
-                <p class="heading__wrap_block_title">Коттеджи A-frame</p>
-                <p class="heading__wrap_block_sub"> </p>
-                <p class="heading__wrap_block_name" @click="scrollTo('sunset')">
+                <p class="heading__wrap_block_title text-overlay text-overlay--block">Коттеджи A-frame</p>
+                <p class="heading__wrap_block_name text-overlay" @click="scrollTo('sunset')">
                 A-frame SUNSET
                 </p>
-                <p class="heading__wrap_block_name" @click="scrollTo('ultramarine')">
+                <p class="heading__wrap_block_name text-overlay" @click="scrollTo('ultramarine')">
                 A-frame ULTRAMARINE
                 </p>
-                <p class="heading__wrap_block_name" @click="scrollTo('emerald')">
+                <p class="heading__wrap_block_name text-overlay" @click="scrollTo('emerald')">
                 A-frame EMERALD
                 </p>
-                <p class="heading__wrap_block_bot">LAS NUBES VILLAGE — посуточная аренда коттеджей</p>
+                <p class="heading__wrap_block_bot text-overlay text-overlay--block">LAS NUBES VILLAGE — посуточная аренда коттеджей</p>
             </div>
             <div class="heading__wrap_img">
                 <img :src="House" alt="Дом" class="heading__wrap_img_reel" draggable="false" />
@@ -78,14 +77,9 @@ const scrollTo = (id: string) => {
     margin: 0;
 }
 
-.heading__wrap_block_sub,
 .heading__wrap_block_name {
     font-size: var(--fontsize-unusual);
     color: var(--white-color);
-}
-
-.heading__wrap_block_sub {
-    font-family: var(--font-main);
 }
 
 .heading__wrap_block_name {

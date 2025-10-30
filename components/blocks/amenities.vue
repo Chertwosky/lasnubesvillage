@@ -1,26 +1,19 @@
 <template>
     <section class="amenities">
-        <SectionBadge
-            class="amenities__badge"
-            gradient="linear-gradient(90deg,#1d274b 0%, #0a0f24 100%)"
-            align="right"
-        >
-            Услуги
-        </SectionBadge>
         <div class="amenities__wrap">
             <div class="amenities__wrap_block">
-                <p class="amenities__wrap_block_title">Наши услуги</p>
-                <p class="amenities__wrap_block_sub">Чтобы разнообразить отдых</p>
-                <p class="amenities__wrap_block_name" @click="scrollTo('bath')">
+                <p class="amenities__wrap_block_title text-overlay text-overlay--block">Наши услуги</p>
+                <p class="amenities__wrap_block_sub text-overlay text-overlay--block">Чтобы разнообразить отдых</p>
+                <p class="amenities__wrap_block_name text-overlay" @click="scrollTo('bath')">
                     Баня
                 </p>
-                <p class="amenities__wrap_block_name" @click="scrollTo('optionally')">
+                <p class="amenities__wrap_block_name text-overlay" @click="scrollTo('optionally')">
                     Дополнительно
                 </p>
-                <p class="amenities__wrap_block_name" @click="scrollTo('pleasantly')">
+                <p class="amenities__wrap_block_name text-overlay" @click="scrollTo('pleasantly')">
                     Бесплатно
                 </p>
-                <p class="amenities__wrap_block_bot">LAS NUBES VILLAGE — посуточная аренда коттеджей</p>
+                <p class="amenities__wrap_block_bot text-overlay text-overlay--block">LAS NUBES VILLAGE — посуточная аренда коттеджей</p>
             </div>
             <div class="amenities__wrap_img">
                 <img :src="House" alt="Дом" class="amenities__wrap_img_reel" draggable="false" />
@@ -30,7 +23,6 @@
 </template>
 <script setup lang="ts">
 import House from '@/assets/images/core/amenities/house.svg'
-import SectionBadge from '@/components/ui/SectionBadge.vue'
 const scrollTo = (id: string) => {
   const el = document.getElementById(id)
   if (el) {
@@ -45,9 +37,6 @@ const scrollTo = (id: string) => {
     padding: 0 20px;
 }
 
-.amenities__badge {
-    margin-bottom: 32px;
-}
 .amenities__wrap {
     display: flex;
     justify-content: space-between;

@@ -1,12 +1,5 @@
 <template>
   <section class="bungalos" :style="{ '--bung-photo-h': photoHeight + 'px' }">
-    <SectionBadge
-      class="bungalos__badge"
-      gradient="linear-gradient(90deg,#101537 0%, #060714 100%)"
-      align="right"
-    >
-      Домики
-    </SectionBadge>
     <div class="bungalos__wrap">
       <div
         v-for="(item, index) in items"
@@ -14,65 +7,73 @@
         class="bungalos__wrap_block"
         :id="item.id"
       >
-        <!-- ЛЕВАЯ КОЛОНКА -->
-        <div
-          class="bungaloswrap_blockleft"
-          :style="{ width: containerWidth + 'px' }"
+        <SectionBadge
+          class="bungalos__item-badge"
+          gradient="linear-gradient(90deg,#101537 0%, #060714 100%)"
+          align="left"
         >
-          <h3 class="bungaloswrap_blockleft_title">{{ item.title }}</h3>
+          {{ item.title }}
+        </SectionBadge>
+        <div class="bungalos__columns">
+          <!-- ЛЕВАЯ КОЛОНКА -->
+          <div
+            class="bungaloswrap_blockleft"
+            :style="{ width: containerWidth + 'px' }"
+          >
 
-          <!-- Слайдер -->
-          <div class="bungalos__carousel" :style="{ width: containerWidth + 'px' }">
-            <img
-              v-if="currentIndexes[item.id] > 0"
-              :src="Arrow"
-              alt="Стрелка"
-              class="bungalos__carousel-arrow left"
-              @click="prevSlide(item.id, item.photos.length)"
-            />
-            <div class="bungalos__carousel_view">
-              <div class="bungalos__carousel_inner" :style="innerStyle(item.id)">
-                <div
-                  v-for="(photo, pIndex) in item.photos"
-                  :key="pIndex"
-                  class="bungalos__carousel_slide"
-                  :style="{ width: slideWidth + 'px' }"
-                >
-                  <img
-                    :src="photo"
-                    alt="Фото дома"
-                    class="bungalos__carousel_img"
-                    @click="openLightbox(item.photos, pIndex)"
-                  />
+            <!-- Слайдер -->
+            <div class="bungalos__carousel" :style="{ width: containerWidth + 'px' }">
+              <img
+                v-if="currentIndexes[item.id] > 0"
+                :src="Arrow"
+                alt="Стрелка"
+                class="bungalos__carousel-arrow left"
+                @click="prevSlide(item.id, item.photos.length)"
+              />
+              <div class="bungalos__carousel_view">
+                <div class="bungalos__carousel_inner" :style="innerStyle(item.id)">
+                  <div
+                    v-for="(photo, pIndex) in item.photos"
+                    :key="pIndex"
+                    class="bungalos__carousel_slide"
+                    :style="{ width: slideWidth + 'px' }"
+                  >
+                    <img
+                      :src="photo"
+                      alt="Фото дома"
+                      class="bungalos__carousel_img"
+                      @click="openLightbox(item.photos, pIndex)"
+                    />
+                  </div>
                 </div>
               </div>
+              <img
+                v-if="currentIndexes[item.id] < item.photos.length - visibleSlides"
+                :src="Arrow"
+                alt="Стрелка"
+                class="bungalos__carousel-arrow right"
+                @click="nextSlide(item.id, item.photos.length)"
+              />
             </div>
-            <img
-              v-if="currentIndexes[item.id] < item.photos.length - visibleSlides"
-              :src="Arrow"
-              alt="Стрелка"
-              class="bungalos__carousel-arrow right"
-              @click="nextSlide(item.id, item.photos.length)"
-            />
+
+            <BookingButton customClass="bungaloswrap_blockleft_btn">
+              Забронировать
+            </BookingButton>
           </div>
 
-          <BookingButton customClass="bungaloswrap_blockleft_btn">
-            Забронировать
-          </BookingButton>
-        </div>
-
-        <!-- ПРАВАЯ КОЛОНКА -->
-        <div class="bungaloswrap_blockright">
-          <p class="bungaloswrap_blockright_text">
-            <span class="bungaloswrap_blockright_text-up">{{ item.upTitle }}</span>
-            {{ item.text }}
-          </p>
-          <div class="bungaloswrap_blockright_bot">
-            <p class="bungaloswrap_blockright_bot-text">{{ item.location }}</p>
-            <p class="bungaloswrap_blockright_bot-text">{{ item.beds }}</p>
-            <div class="bungaloswrap_blockright_bot_min">
-              <img :src="Man" alt="Иконка гостей" class="bungaloswrap_blockright_bot_min-reel" />
-              <p class="bungaloswrap_blockright_bot_min-text">{{ item.guests }}</p>
+          <!-- ПРАВАЯ КОЛОНКА -->
+          <div class="bungaloswrap_blockright text-overlay text-overlay--block">
+            <p class="bungaloswrap_blockright_text">
+              <span class="bungaloswrap_blockright_text-up">{{ item.upTitle }}</span>
+              {{ item.text }}
+            </p>
+            <div class="bungaloswrap_blockright_bot text-overlay text-overlay--list">
+              <p class="bungaloswrap_blockright_bot-text">{{ item.location }}</p>
+              <p class="bungaloswrap_blockright_bot-text">{{ item.beds }}</p>
+              <div class="bungaloswrap_blockright_bot_min">
+                <img :src="Man" alt="Иконка гостей" class="bungaloswrap_blockright_bot_min-reel" />
+                <p class="bungaloswrap_blockright_bot_min-text">{{ item.guests }}</p>
+              </div>
             </div>
           </div>
         </div>
@@ -178,26 +179,31 @@ onBeforeUnmount(() => {
   position: relative;
 }
 
-.bungalos__badge {
-  margin-bottom: 40px;
-}
 .bungalos__wrap {
   display: flex;
   flex-direction: column;
   gap: 80px; /* любое нужное значение */
 }
-.bungalos__wrap_block { position: relative; display: flex; justify-content: space-between; align-items: center; gap: 40px; }
+.bungalos__wrap_block {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.bungalos__item-badge {
+  align-self: flex-start;
+}
+
+.bungalos__columns {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+}
 
 /* Левая колонка */
 .bungaloswrap_blockleft { align-items: flex-end; display: flex; flex-direction: column; width: 100%; max-width: 508px; }
-.bungaloswrap_blockleft_title {
-  font-family: var(--font-secondary); /* 👈 теперь тот же шрифт, что и upTitle */
-  font-size: calc(var(--fontsize-unusual)*2);
-  color: var(--white-color);
-  margin: 0 0 8px 0;
-  align-self: flex-end;
-  text-align: right;
-}
 .bungaloswrap_blockleft_btn {
   background-color: var(--green-color);
     text-transform: uppercase;
@@ -216,10 +222,19 @@ onBeforeUnmount(() => {
 
 
 /* Правая колонка */
-.bungaloswrap_blockright_text { color: var(--white-color); font-size: var(--fontsize-unusual); max-width: 508px; font-family: var(--font-main); }
+.bungaloswrap_blockright { width: 100%; max-width: 508px; box-sizing: border-box; }
+.bungaloswrap_blockright_text { color: var(--white-color); font-size: var(--fontsize-unusual); max-width: 100%; font-family: var(--font-main); }
 .bungaloswrap_blockright_text-up { font-family: var(--font-secondary); font-size: 36px; text-transform: uppercase; }
 .bungaloswrap_blockright_bot_min { display: flex; gap: 8px; }
-.bungaloswrap_blockright_bot { margin-left: 0 px; color: var(--faded-color); font-size: var(--fontsize-small); font-family: var(--font-core); }
+.bungaloswrap_blockright_bot {
+  margin: 20px 0 0;
+  color: var(--faded-color);
+  font-size: var(--fontsize-small);
+  font-family: var(--font-core);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 /* Слайдер */
 .bungalos__carousel { position: relative; display: flex; align-items: center; overflow: hidden; width: 100%; }
 .bungalos__carousel_view { overflow: hidden; width: 100%; }
@@ -256,9 +271,18 @@ onBeforeUnmount(() => {
   .bungalos { padding: 0 16px; }
 
   .bungalos__wrap_block {
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .bungalos__item-badge {
+    align-self: center;
+  }
+
+  .bungalos__columns {
     flex-direction: column;
     align-items: center;
-    text-align: center;
+    gap: 32px;
   }
 
   .bungaloswrap_blockleft,
@@ -267,24 +291,16 @@ onBeforeUnmount(() => {
     max-width: 100%;
   }
 
-  .bungaloswrap_blockleft_title {
-    align-self: center;
-    text-align: center;
-  }
-
   .bungaloswrap_blockleft_btn {
     align-self: center;
   }
 
   .bungaloswrap_blockright_text {
     max-width: 100%;
+    text-align: left;
   }
 
-  .bungaloswrap_blockright_bot {
-    margin-left: 0;
-    display: flex;
-    gap: 16px;
-  }
+  .bungaloswrap_blockright_bot { align-items: flex-start; }
 
   .bungalos__carousel-arrow {
     width: 48px;
@@ -295,12 +311,9 @@ onBeforeUnmount(() => {
 @media (max-width: 640px) {
   .bungalos { padding: 0 12px; }
 
-  .bungaloswrap_blockleft_title {
-    font-size: calc(var(--fontsize-unusual) * 1.5);
-  }
-
   .bungaloswrap_blockright_text {
     font-size: var(--fontsize-primary);
+    text-align: left;
   }
 
   .bungaloswrap_blockleft_btn {

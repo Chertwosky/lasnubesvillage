@@ -10,22 +10,26 @@
         <div class="produce__wrap">
             <div class="produce__wrap_left">
                 <img :src="People" alt="Дом" class="produce__wrap_left_reel" draggable="false" />
-                <ul class="produce__wrap_left_list produce__list">
-                    <li>Душ и туалет в каждом доме</li>
-                    <li>WIFI и SMART TV</li>
-                    <li>Панорамные окна</li>
-                    <li>Личная территория с беседками и барбекю зоной</li>
-                    <li>Баня и персональные чаны</li>
-                </ul>
+                <div class="produce__list-wrapper text-overlay text-overlay--block">
+                  <ul class="produce__wrap_left_list produce__list">
+                      <li>Душ и туалет в каждом доме</li>
+                      <li>WIFI и SMART TV</li>
+                      <li>Панорамные окна</li>
+                      <li>Личная территория с беседками и барбекю зоной</li>
+                      <li>Баня и персональные чаны</li>
+                  </ul>
+                </div>
             </div>
 
             <div class="produce__wrap_right">
                 <img :src="Comfort" alt="Обстановка" class="produce__wrap_right_reel" draggable="false" />
-                <ul class="produce__wrap_right_list produce__list">
-                    <li>Самостоятельное заселение и выселение с помощью электронного доступа — без участия персонала</li>
-                    <li>Бытовая техника: от микроволновки и плиты до посудомоечной и стиральной машины</li>
-                    <li>Приятные мелочи: бумажные полотенца, стиральный порошок, соль, сахар, чай и кофе, банные наборы, настольные игры</li>
-                </ul>
+                <div class="produce__list-wrapper text-overlay text-overlay--block">
+                  <ul class="produce__wrap_right_list produce__list">
+                      <li>Самостоятельное заселение и выселение с помощью электронного доступа — без участия персонала</li>
+                      <li>Бытовая техника: от микроволновки и плиты до посудомоечной и стиральной машины</li>
+                      <li>Приятные мелочи: бумажные полотенца, стиральный порошок, соль, сахар, чай и кофе, банные наборы, настольные игры</li>
+                  </ul>
+                </div>
                 <BookingButton customClass="produce__btn">
   Забронировать
 </BookingButton>
@@ -88,6 +92,11 @@
     display: flex;
     flex-direction: column;
     gap: calc(var(--gap-medium)*0.835);
+}
+
+.produce__list-wrapper {
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .produce__wrap_right {

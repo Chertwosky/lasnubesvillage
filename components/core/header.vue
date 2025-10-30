@@ -10,6 +10,20 @@
             <NuxtLink href="/about" class="header__wrap_link" draggable="false">О нас</NuxtLink>
         </nav>
 
+        <div class="header__nav-select">
+          <select
+            class="header__select"
+            :value="selectedNav"
+            aria-label="Навигация по разделам"
+            @change="onSelectChange"
+          >
+            <option value="">Меню</option>
+            <option v-for="item in navItems" :key="item.value" :value="item.value">
+              {{ item.label }}
+            </option>
+          </select>
+        </div>
+
         <div class="header__feed">
             <a href="tel:+79224232070" class="header__feed_call" draggable="false">+7 (922) 423-20-70</a>
             <div class="header__feed_social">
@@ -45,28 +59,39 @@
 </template>
 
 <script setup>
+import { computed } from 'vue'
+import { useRoute, useRouter } from '#imports'
 import logo from '@/assets/images/core/header/logo.svg'
 import phoneIcon from '@/assets/images/core/header/phone.svg'
 import Telegram from '@/assets/images/core/header/Telegram.svg'
 import BookingButton from '@/components/blocks/BookingButton.vue'
 
-const openBooking = () => {
-  if (window.Bnovo_Widget) {
-    window.Bnovo_Widget.open('_bn_widget_', {
-      type: "vertical",
-      uid: "817121e0-85f0-452d-b0b2-265ca9a568c3",
-      lang: "ru",
-      width: "300",
-      background: "#ffffff",
-      border_radius: "16",
-      font_type: "Nunito sans",
-      btn_background: "#46BE78",
-      btn_background_over: "#2e9e5d",
-      btn_textcolor: "#FFFFFF",
-      btn_textover: "#FFFFFF"
-    })
+const navItems = [
+  { label: 'Коттеджи', value: '/cottages' },
+  { label: 'Услуги', value: '/services' },
+  { label: 'Акции', value: '/#stocks' },
+  { label: 'О нас', value: '/about' },
+]
+
+const route = useRoute()
+const router = useRouter()
+
+const selectedNav = computed(() => {
+  if (route.path === '/cottages') return '/cottages'
+  if (route.path === '/services') return '/services'
+  if (route.path === '/about') return '/about'
+  if (route.path === '/' && route.hash === '#stocks') return '/#stocks'
+  return ''
+})
+
+const onSelectChange = (event) => {
+  const value = event.target.value
+  if (!value) return
+
+  if (value === '/#stocks') {
+    router.push({ path: '/', hash: '#stocks' })
   } else {
-    console.warn("Bnovo_Widget еще не загружен")
+    router.push(value)
   }
 }
 </script>
@@ -91,6 +116,30 @@ const openBooking = () => {
 
 .header__nav {
     margin-right: auto;
+}
+
+.header__nav-select {
+    display: none;
+    margin-right: auto;
+}
+
+.header__select {
+    appearance: none;
+    border: none;
+    border-radius: var(--border-radius-container);
+    background: rgba(8, 23, 52, 0.75);
+    color: var(--white-color);
+    font-family: var(--font-core);
+    font-size: var(--fontsize-secondary);
+    padding: 10px 44px 10px 16px;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0 12px 32px rgba(2, 7, 20, 0.35);
+}
+
+.header__select:focus-visible {
+    outline: 2px solid var(--green-color);
+    outline-offset: 2px;
 }
 
 .header__feed_social {
@@ -155,6 +204,15 @@ font-family: var(--font-core);
         padding: var(--padding-classic) 16px;
     }
 
+    .header__nav {
+        display: none;
+    }
+
+    .header__nav-select {
+        display: block;
+        margin-right: auto;
+    }
+
     .header__feed_button {
         max-width: 180px;
         align-items: center;
@@ -172,11 +230,6 @@ font-family: var(--font-core);
         flex-direction: column;
     }
 
-    .header__nav,
-    .header__feed {
-        gap: 15px;
-    }
-
     .header__nav a,
     .header__feed_call {
         font-size: var(--fontsize-primary);
@@ -190,9 +243,26 @@ font-family: var(--font-core);
 }
 
 @media (max-width:540px) {
-    .header__nav,
+    .header {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .header__nav-select {
+        width: 100%;
+        order: 3;
+    }
+
+    .header__select {
+        width: 100%;
+    }
+
     .header__feed {
-        flex-direction: column;
+        flex-direction: row;
+        justify-content: flex-end;
+        gap: 12px;
+        width: 100%;
+        order: 4;
     }
 
     .header__feed_social {

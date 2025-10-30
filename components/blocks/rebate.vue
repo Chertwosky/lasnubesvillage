@@ -8,7 +8,7 @@
         Акции
       </SectionBadge>
       <div class="rebate__intro">
-        <h3 class="rebate__intro_title">Выгодные предложения для гостей</h3>
+        <h3 class="rebate__intro_title text-overlay text-overlay--block">Выгодные предложения для гостей</h3>
       </div>
 
       <div class="rebate__cards">
