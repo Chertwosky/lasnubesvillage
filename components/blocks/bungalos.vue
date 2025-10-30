@@ -14,60 +14,71 @@
         class="bungalos__wrap_block"
         :id="item.id"
       >
+        <SectionBadge
+          class="bungalos__wrap_block_badge"
+          :gradient="item.badgeGradient"
+          align="left"
+          pad-right="36px"
+        >
+          {{ item.title }}
+        </SectionBadge>
+        <div class="bungalos__wrap_block_inner">
         <!-- ЛЕВАЯ КОЛОНКА -->
         <div
           class="bungaloswrap_blockleft"
           :style="{ width: containerWidth + 'px' }"
         >
-          <h3 class="bungaloswrap_blockleft_title">{{ item.title }}</h3>
-
-          <!-- Слайдер -->
-          <div class="bungalos__carousel" :style="{ width: containerWidth + 'px' }">
-            <img
-              v-if="currentIndexes[item.id] > 0"
-              :src="Arrow"
-              alt="Стрелка"
-              class="bungalos__carousel-arrow left"
-              @click="prevSlide(item.id, item.photos.length)"
-            />
-            <div class="bungalos__carousel_view">
-              <div class="bungalos__carousel_inner" :style="innerStyle(item.id)">
-                <div
-                  v-for="(photo, pIndex) in item.photos"
-                  :key="pIndex"
-                  class="bungalos__carousel_slide"
-                  :style="{ width: slideWidth + 'px' }"
-                >
-                  <img
-                    :src="photo"
-                    alt="Фото дома"
-                    class="bungalos__carousel_img"
-                    @click="openLightbox(item.photos, pIndex)"
-                  />
+          <div class="bungaloswrap_blockleft_media">
+            <!-- Слайдер -->
+            <div class="bungalos__carousel" :style="{ width: containerWidth + 'px' }">
+              <img
+                v-if="currentIndexes[item.id] > 0"
+                :src="Arrow"
+                alt="Стрелка"
+                class="bungalos__carousel-arrow left"
+                @click="prevSlide(item.id, item.photos.length)"
+              />
+              <div class="bungalos__carousel_view">
+                <div class="bungalos__carousel_inner" :style="innerStyle(item.id)">
+                  <div
+                    v-for="(photo, pIndex) in item.photos"
+                    :key="pIndex"
+                    class="bungalos__carousel_slide"
+                    :style="{ width: slideWidth + 'px' }"
+                  >
+                    <img
+                      :src="photo"
+                      alt="Фото дома"
+                      class="bungalos__carousel_img"
+                      @click="openLightbox(item.photos, pIndex)"
+                    />
+                  </div>
                 </div>
               </div>
+              <img
+                v-if="currentIndexes[item.id] < item.photos.length - visibleSlides"
+                :src="Arrow"
+                alt="Стрелка"
+                class="bungalos__carousel-arrow right"
+                @click="nextSlide(item.id, item.photos.length)"
+              />
             </div>
-            <img
-              v-if="currentIndexes[item.id] < item.photos.length - visibleSlides"
-              :src="Arrow"
-              alt="Стрелка"
-              class="bungalos__carousel-arrow right"
-              @click="nextSlide(item.id, item.photos.length)"
-            />
           </div>
 
-          <BookingButton customClass="bungaloswrap_blockleft_btn">
-            Забронировать
-          </BookingButton>
+          <div class="bungaloswrap_blockleft_actions text-panel">
+            <BookingButton customClass="bungaloswrap_blockleft_btn">
+              Забронировать
+            </BookingButton>
+          </div>
         </div>
 
         <!-- ПРАВАЯ КОЛОНКА -->
         <div class="bungaloswrap_blockright">
-          <p class="bungaloswrap_blockright_text">
+          <p class="bungaloswrap_blockright_text text-panel">
             <span class="bungaloswrap_blockright_text-up">{{ item.upTitle }}</span>
             {{ item.text }}
           </p>
-          <div class="bungaloswrap_blockright_bot">
+          <div class="bungaloswrap_blockright_bot text-panel">
             <p class="bungaloswrap_blockright_bot-text">{{ item.location }}</p>
             <p class="bungaloswrap_blockright_bot-text">{{ item.beds }}</p>
             <div class="bungaloswrap_blockright_bot_min">
@@ -75,6 +86,8 @@
               <p class="bungaloswrap_blockright_bot_min-text">{{ item.guests }}</p>
             </div>
           </div>
+        </div>
+
         </div>
 
         <!-- ОБЛАКА -->
@@ -118,9 +131,9 @@ const ultramarinePhotos = import.meta.glob('@/assets/images/core/bungalos/ultram
 const emeraldPhotos = import.meta.glob('@/assets/images/core/bungalos/emerald/*.{jpg,jpeg,png,svg}', { eager: true, import: 'default' })
 
 const items = [
-  { id: 'sunset', title: 'SUNSET A-frame', upTitle: '"Las nubes village"', text: ' — турбаза, расположенная в Адыгее...', location: 'Каменомостский', beds: '2 кровати, 1 диван', guests: 'до 6 гостей (из них 2 доп. места)', photos: toArray(sunsetPhotos) },
-  { id: 'ultramarine', title: 'ULTRAMARINE A-frame', upTitle: '"Las nubes village"', text: ' — турбаза, расположенная в Адыгее...', location: 'Каменомостский', beds: '2 кровати, 1 диван', guests: 'до 6 гостей (из них 2 доп. места)', photos: toArray(ultramarinePhotos) },
-  { id: 'emerald', title: 'EMERALD A-frame', upTitle: '"Las nubes village"', text: ' — турбаза, расположенная в Адыгее...', location: 'Каменомостский', beds: '2 кровати, 1 диван', guests: 'до 6 гостей (из них 2 доп. места)', photos: toArray(emeraldPhotos) },
+  { id: 'sunset', title: 'SUNSET A-frame', upTitle: '"Las nubes village"', text: ' — турбаза, расположенная в Адыгее...', location: 'Каменомостский', beds: '2 кровати, 1 диван', guests: 'до 6 гостей (из них 2 доп. места)', photos: toArray(sunsetPhotos), badgeGradient: 'linear-gradient(90deg,#0d1337 0%, #060714 100%)' },
+  { id: 'ultramarine', title: 'ULTRAMARINE A-frame', upTitle: '"Las nubes village"', text: ' — турбаза, расположенная в Адыгее...', location: 'Каменомостский', beds: '2 кровати, 1 диван', guests: 'до 6 гостей (из них 2 доп. места)', photos: toArray(ultramarinePhotos), badgeGradient: 'linear-gradient(90deg,#11293f 0%, #081020 100%)' },
+  { id: 'emerald', title: 'EMERALD A-frame', upTitle: '"Las nubes village"', text: ' — турбаза, расположенная в Адыгее...', location: 'Каменомостский', beds: '2 кровати, 1 диван', guests: 'до 6 гостей (из них 2 доп. места)', photos: toArray(emeraldPhotos), badgeGradient: 'linear-gradient(90deg,#123428 0%, #061513 100%)' },
 ]
 
 /* Слайдер */
@@ -181,50 +194,120 @@ onBeforeUnmount(() => {
 .bungalos__badge {
   margin-bottom: 40px;
 }
+
 .bungalos__wrap {
   display: flex;
   flex-direction: column;
-  gap: 80px; /* любое нужное значение */
+  gap: 80px;
 }
-.bungalos__wrap_block { position: relative; display: flex; justify-content: space-between; align-items: center; gap: 40px; }
 
-/* Левая колонка */
-.bungaloswrap_blockleft { align-items: flex-end; display: flex; flex-direction: column; width: 100%; max-width: 508px; }
-.bungaloswrap_blockleft_title {
-  font-family: var(--font-secondary); /* 👈 теперь тот же шрифт, что и upTitle */
-  font-size: calc(var(--fontsize-unusual)*2);
-  color: var(--white-color);
-  margin: 0 0 8px 0;
-  align-self: flex-end;
-  text-align: right;
+.bungalos__wrap_block {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
 }
+
+.bungalos__wrap_block_badge {
+  align-self: flex-start;
+  margin-bottom: 4px;
+}
+
+.bungalos__wrap_block_inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 40px;
+}
+
+.bungaloswrap_blockleft,
+.bungaloswrap_blockright {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 508px;
+}
+
+.bungaloswrap_blockleft_media {
+  width: 100%;
+}
+
+.bungaloswrap_blockleft_actions {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
 .bungaloswrap_blockleft_btn {
   background-color: var(--green-color);
-    text-transform: uppercase;
-    color: var(--white-color);
-    padding: 7px 20px 15px 20px;
-    border-radius: var(--border-radius-container);
-    font-size: 33px;
-    font-family: var(--font-secondary);
-    line-height: 100%;
-    border: none;
-    margin-top: 20px;
-    cursor: pointer;
-    align-self: flex-start;
+  text-transform: uppercase;
+  color: var(--white-color);
+  padding: 7px 20px 15px 20px;
+  border-radius: var(--border-radius-container);
+  font-size: 33px;
+  font-family: var(--font-secondary);
+  line-height: 100%;
+  border: none;
+  cursor: pointer;
+  width: fit-content;
 }
 
+.bungaloswrap_blockright_text {
+  color: var(--white-color);
+  font-size: var(--fontsize-unusual);
+  font-family: var(--font-main);
+  line-height: 140%;
+}
 
+.bungaloswrap_blockright_text-up {
+  font-family: var(--font-secondary);
+  font-size: 36px;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 12px;
+}
 
-/* Правая колонка */
-.bungaloswrap_blockright_text { color: var(--white-color); font-size: var(--fontsize-unusual); max-width: 508px; font-family: var(--font-main); }
-.bungaloswrap_blockright_text-up { font-family: var(--font-secondary); font-size: 36px; text-transform: uppercase; }
-.bungaloswrap_blockright_bot_min { display: flex; gap: 8px; }
-.bungaloswrap_blockright_bot { margin-left: 0 px; color: var(--faded-color); font-size: var(--fontsize-small); font-family: var(--font-core); }
+.bungaloswrap_blockright_bot {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  color: var(--faded-color);
+  font-size: var(--fontsize-small);
+  font-family: var(--font-core);
+}
+
+.bungaloswrap_blockright_bot_min {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
 /* Слайдер */
-.bungalos__carousel { position: relative; display: flex; align-items: center; overflow: hidden; width: 100%; }
-.bungalos__carousel_view { overflow: hidden; width: 100%; }
-.bungalos__carousel_inner { display: flex; transition: transform 0.5s ease; }
-.bungalos__carousel_slide { flex-shrink: 0; border-radius: 16px; overflow: hidden; }
+.bungalos__carousel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  width: 100%;
+}
+
+.bungalos__carousel_view {
+  overflow: hidden;
+  width: 100%;
+}
+
+.bungalos__carousel_inner {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.bungalos__carousel_slide {
+  flex-shrink: 0;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
 .bungalos__carousel_img {
   width: 100%;
   height: var(--bung-photo-h, 500px);
@@ -232,6 +315,7 @@ onBeforeUnmount(() => {
   cursor: pointer;
   border-radius: 16px;
 }
+
 .bungalos__carousel-arrow {
   position: absolute;
   top: 50%;
@@ -241,49 +325,88 @@ onBeforeUnmount(() => {
   width: 60px;
   height: 60px;
 }
-.bungalos__carousel-arrow.left { left: 0; transform: rotate(180deg) translateY(50%); }
-.bungalos__carousel-arrow.right { right: 0; }
+
+.bungalos__carousel-arrow.left {
+  left: 0;
+  transform: rotate(180deg) translateY(50%);
+}
+
+.bungalos__carousel-arrow.right {
+  right: 0;
+}
 
 /* Лайтбокс */
-.lightbox { position: fixed; inset: 0; background: rgba(0,0,0,.85); display: flex; align-items: center; justify-content: center; z-index: 9999; padding: 20px; }
-.lightbox__img { max-width: 100%; max-height: 100%; border-radius: 12px; }
-.lightbox__close { position: fixed; top: 14px; right: 18px; font-size: 40px; color: #fff; background: transparent; border: none; cursor: pointer; }
-.lightbox__arrow { position: fixed; top: 50%; transform: translateY(-50%); font-size: 60px; color: #fff; background: transparent; border: none; cursor: pointer; }
-.lightbox__arrow.left { left: 20px; }
-.lightbox__arrow.right { right: 20px; }
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+}
+
+.lightbox__img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 12px;
+}
+
+.lightbox__close {
+  position: fixed;
+  top: 14px;
+  right: 18px;
+  font-size: 40px;
+  color: #fff;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.lightbox__arrow {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 60px;
+  color: #fff;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.lightbox__arrow.left {
+  left: 20px;
+}
+
+.lightbox__arrow.right {
+  right: 20px;
+}
 
 @media (max-width: 992px) {
-  .bungalos { padding: 0 16px; }
+  .bungalos {
+    padding: 0 16px;
+  }
 
-  .bungalos__wrap_block {
+  .bungalos__wrap_block_inner {
     flex-direction: column;
     align-items: center;
-    text-align: center;
+    gap: 32px;
   }
 
   .bungaloswrap_blockleft,
   .bungaloswrap_blockright {
+    max-width: 100%;
     align-items: center;
-    max-width: 100%;
   }
 
-  .bungaloswrap_blockleft_title {
-    align-self: center;
-    text-align: center;
+  .bungaloswrap_blockleft_actions {
+    justify-content: center;
   }
 
-  .bungaloswrap_blockleft_btn {
-    align-self: center;
-  }
-
-  .bungaloswrap_blockright_text {
-    max-width: 100%;
-  }
-
+  .bungaloswrap_blockright_text,
   .bungaloswrap_blockright_bot {
-    margin-left: 0;
-    display: flex;
-    gap: 16px;
+    max-width: 100%;
   }
 
   .bungalos__carousel-arrow {
@@ -293,10 +416,12 @@ onBeforeUnmount(() => {
 }
 
 @media (max-width: 640px) {
-  .bungalos { padding: 0 12px; }
+  .bungalos {
+    padding: 0 12px;
+  }
 
-  .bungaloswrap_blockleft_title {
-    font-size: calc(var(--fontsize-unusual) * 1.5);
+  .bungalos__badge {
+    display: none;
   }
 
   .bungaloswrap_blockright_text {

@@ -22,11 +22,11 @@
         </div>
 
         <div class="bath__block__right">
-          <p class="bath__block__right_text">
+          <p class="bath__block__right_text text-panel">
             <span class="bath__block__right_text-up">{{ item.upTitle }}</span>
             {{ item.text }}
           </p>
-          <div class="bath__block__right_bot">
+          <div class="bath__block__right_bot text-panel">
             <p class="bath__block__right_bot-text">{{ item.location }}</p>
             <p class="bath__block__right_bot-text">{{ item.beds }}</p>
             <div class="bath__block__right_bot_min">
@@ -123,11 +123,14 @@ img.bath__block__left_reel {
     gap: 8px;
 }
 .bath__block__right_bot {
-    margin-left: 20px;
+    margin-left: 0;
     color: var(--faded-color);
     font-weight: 200;
     font-size: var(--fontsize-small);
     font-family: var(--font-core);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 .bath__block__right_text {
     color: var(--white-color);
@@ -174,6 +177,10 @@ img.bath__block__left_reel {
 @media (max-width: 640px) {
     .bath {
         padding: 32px 12px 0 12px;
+    }
+
+    .bath__badge {
+        display: none;
     }
 
     .bath__block__left_btn {

@@ -22,11 +22,11 @@
         </div>
 
         <div class="chan__block__right">
-          <p class="chan__block__right_text">
+          <p class="chan__block__right_text text-panel">
             <span class="chan__block__right_text-up">{{ item.upTitle }}</span>
             {{ item.text }}
           </p>
-          <div class="chan__block__right_bot">
+          <div class="chan__block__right_bot text-panel">
             <p class="chan__block__right_bot-text">{{ item.location }}</p>
             <p class="chan__block__right_bot-text">{{ item.beds }}</p>
             <div class="chan__block__right_bot_min">
@@ -120,11 +120,14 @@ img.chan__block__left_reel {
     gap: 8px;
 }
 .chan__block__right_bot {
-    margin-left: 20px;
+    margin-left: 0;
     color: var(--faded-color);
     font-weight: 200;
     font-size: var(--fontsize-small);
     font-family: var(--font-core);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 .chan__block__right_text {
     color: var(--white-color);
@@ -171,6 +174,10 @@ img.chan__block__left_reel {
 @media (max-width: 640px) {
     .chan {
         padding: 32px 12px 0 12px;
+    }
+
+    .chan__badge {
+        display: none;
     }
 
     .chan__block__left_btn {

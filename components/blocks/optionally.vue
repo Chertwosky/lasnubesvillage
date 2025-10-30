@@ -8,7 +8,7 @@
         Дополнительно
       </SectionBadge>
       <div class="optionally__wrap">
-        <h3 class="optionally__wrap_title">Дополнительные услуги</h3>
+        <h3 class="optionally__wrap_title text-panel">Дополнительные услуги</h3>
 
         <div class="optionally__wrap_carousel" :style="{ width: containerWidth + 'px' }">
           <!-- Стрелка влево -->
@@ -288,6 +288,10 @@
   @media (max-width: 640px) {
     .optionally {
       padding: 0 12px;
+    }
+
+    .optionally__badge {
+      display: none;
     }
 
     .optionally__wrap_carousel_block-reel {

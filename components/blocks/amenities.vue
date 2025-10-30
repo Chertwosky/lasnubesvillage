@@ -8,7 +8,7 @@
             Услуги
         </SectionBadge>
         <div class="amenities__wrap">
-            <div class="amenities__wrap_block">
+            <div class="amenities__wrap_block text-panel">
                 <p class="amenities__wrap_block_title">Наши услуги</p>
                 <p class="amenities__wrap_block_sub">Чтобы разнообразить отдых</p>
                 <p class="amenities__wrap_block_name" @click="scrollTo('bath')">
@@ -114,6 +114,10 @@ const scrollTo = (id: string) => {
 @media (max-width: 540px) {
     .amenities {
         padding: 0 16px;
+    }
+
+    .amenities__badge {
+        display: none;
     }
 
     .amenities__wrap_block_name {

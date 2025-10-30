@@ -8,7 +8,7 @@
             Коттеджи
         </SectionBadge>
         <div class="heading__wrap">
-            <div class="heading__wrap_block">
+            <div class="heading__wrap_block text-panel">
                 <p class="heading__wrap_block_title">Коттеджи A-frame</p>
                 <p class="heading__wrap_block_sub"> </p>
                 <p class="heading__wrap_block_name" @click="scrollTo('sunset')">
@@ -136,6 +136,10 @@ const scrollTo = (id: string) => {
 @media (max-width: 540px) {
     .heading {
         padding: 0 16px;
+    }
+
+    .heading__badge {
+        display: none;
     }
 
     .heading__wrap_block_name {

@@ -11,7 +11,7 @@
         <!-- Большое центральное облако -->
         <img :src="CloudSvg" alt="Дом" class="timely__container-reel" draggable="false" />
         <!-- Контент -->
-        <div class="timely__container_block">
+        <div class="timely__container_block text-panel">
           <h3 class="timely__container_block-title">Упс..</h3>
           <p class="timely__container_block-text">
            Страница "о нас" в разработке. Скоро вас порадуем!
@@ -65,7 +65,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  color: var(--black-color);
+  color: var(--white-color);
   padding: 1rem;
 }
 .timely__container_block-title {
@@ -121,6 +121,10 @@
 @media (max-width: 540px) {
   .timely {
     padding: 0 12px;
+  }
+
+  .timely__badge {
+    display: none;
   }
 
   .timely__container {

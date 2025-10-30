@@ -7,7 +7,7 @@
       >
         A-frame
       </SectionBadge>
-      <div class="villages__intro">
+      <div class="villages__intro text-panel">
         <h3 class="villages__intro_title">Домики с панорамными окнами</h3>
         <p class="villages__intro_text">Выберите дом и познакомьтесь с его атмосферой поближе.</p>
       </div>
@@ -89,6 +89,9 @@
   .villages__intro {
     margin-bottom: 48px;
     text-align: left;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 12px;
   }
 
   .villages__intro_title {
@@ -214,6 +217,10 @@
 
     .villages-card__body {
       padding: 20px;
+    }
+
+    .villages__badge {
+      display: none;
     }
   }
 
