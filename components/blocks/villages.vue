@@ -78,7 +78,7 @@
   .villages {
     margin: 60px auto 0 auto;
     max-width: var(--container-width);
-    padding: 0 20px 80px;
+    padding: 0 var(--section-padding-inline) 80px;
     position: relative;
   }
 
@@ -88,7 +88,7 @@
 
   .villages__intro {
     margin-bottom: 48px;
-    text-align: left;
+    text-align: center;
     padding: 24px 28px;
   }
 
@@ -195,7 +195,7 @@
 
   @media (max-width: 1024px) {
     .villages {
-      padding: 0 16px 72px;
+      padding-bottom: 72px;
     }
 
     .villages-card__image img {
@@ -222,14 +222,13 @@
     }
 
     .villages__intro {
-      text-align: center;
       padding: 18px 20px;
     }
   }
 
   @media (max-width: 540px) {
     .villages {
-      padding: 0 12px 60px;
+      padding-bottom: 60px;
     }
 
     .villages-card__image img {

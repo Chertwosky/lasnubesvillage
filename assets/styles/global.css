@@ -146,9 +146,13 @@
 	--margin-section: 80px;
 	/* Маргин раздела */
 
-	/* Ширина контейнера */
-	--container-width: 1160px;
-	/* Ширина контейнера */
+        /* Ширина контейнера */
+        --container-width: 1160px;
+        /* Ширина контейнера */
+
+        /* Базовые горизонтальные отступы секций */
+        --section-padding-inline: clamp(16px, 5vw, 48px);
+        /* Унифицированные отступы слева и справа */
 
 	/* Размеры иконок */
 	--icon-size: 16px;
@@ -191,6 +195,7 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    text-align: right;
     padding: clamp(10px, 3.5vw, 18px) clamp(18px, 8vw, 40px);
     border-radius: var(--badge-radius-small) var(--badge-radius-large) 0 var(--badge-radius-small);
     font-family: var(--font-secondary);
@@ -232,6 +237,7 @@ body {
 .section-badge--left {
     justify-content: flex-start;
     padding-right: 28px;
+    text-align: left;
 }
 
 @media (max-width: 640px) {
