@@ -27,7 +27,10 @@
 
   .sky {
     position: relative;
-    margin: 36px 0 0 0;
+    margin: 0;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    width: 100vw;
   }
 
   .sky__reel {
@@ -82,7 +85,7 @@
 
   @media (max-width: 1024px) {
     .sky {
-      margin-top: 24px;
+      margin-top: 0;
     }
 
     .sky__wrap {
