@@ -124,6 +124,10 @@
       font-size: clamp(22px, 7vw, 34px);
       letter-spacing: 0;
     }
+
+    .sky__badge {
+      display: none;
+    }
   }
 
 

@@ -189,19 +189,19 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 16px 28px;
+    padding: clamp(12px, 3.6vw, 20px) clamp(20px, 5.6vw, 40px);
     border-radius: 18px 90px 0 18px;
     font-family: var(--font-secondary);
-    font-size: calc(var(--fontsize-unusual) * 2);
+    font-size: clamp(20px, 6vw, calc(var(--fontsize-unusual) * 2));
     line-height: 1;
     text-transform: uppercase;
     letter-spacing: .02em;
     position: relative;
     overflow: hidden;
-    min-width: var(--badge-min-w, 360px);
-    min-height: var(--badge-min-h, 50px);
+    min-width: clamp(220px, 68vw, 420px);
+    min-height: clamp(44px, 12vw, 80px);
     margin: 0 0 32px;
-    padding-right: var(--badge-pad-right, 80px);
+    padding-right: var(--badge-pad-right, clamp(32px, 12vw, 80px));
 }
 
 .section-badge.section-badge--fade {
@@ -234,10 +234,26 @@ body {
 
 @media (max-width: 640px) {
     .section-badge {
-        font-size: calc(var(--fontsize-unusual) * 1.2);
-        min-width: auto;
-        padding: 14px 24px;
-        border-radius: 16px 72px 0 16px;
+        font-size: clamp(18px, 6.2vw, 28px);
+        min-width: clamp(180px, 86vw, 320px);
+        min-height: clamp(40px, 14vw, 64px);
+        padding: clamp(10px, 4.2vw, 16px) clamp(18px, 8vw, 28px);
+        border-radius: 16px 64px 0 16px;
+    }
+}
+
+.text-panel {
+    background: rgba(7, 13, 34, 0.76);
+    border-radius: 20px;
+    padding: 16px 22px;
+    box-shadow: 0 12px 34px rgba(2, 6, 20, 0.35);
+    backdrop-filter: blur(6px);
+}
+
+@media (max-width: 640px) {
+    .text-panel {
+        padding: 14px 18px;
+        border-radius: 16px;
     }
 }
 
