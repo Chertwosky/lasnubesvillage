@@ -105,11 +105,14 @@ onBeforeUnmount(() => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--padding-classic) 20px;
+  padding: var(--padding-classic) clamp(16px, 4vw, 32px);
   max-width: var(--container-width);
+  width: 100%;
   margin: 0 auto;
   position: relative;
   z-index: 20;
+  gap: clamp(12px, 2vw, 32px);
+  box-sizing: border-box;
 }
 
 .header__nav,
@@ -118,10 +121,18 @@ onBeforeUnmount(() => {
   gap: var(--gap-medium);
   font-family: var(--font-core);
   color: var(--faded-color);
+  align-items: center;
 }
 
 .header__nav {
   margin-right: auto;
+  flex-wrap: wrap;
+}
+
+.header__feed {
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  row-gap: 8px;
 }
 
 .header__menu-toggle {
@@ -181,6 +192,7 @@ onBeforeUnmount(() => {
   text-decoration: none;
   font-size: var(--fontsize-secondary);
   color: #ffffff;
+  white-space: nowrap;
 }
 
 .header_click {
@@ -200,6 +212,7 @@ onBeforeUnmount(() => {
   border: none;
   cursor: pointer;
   font-family: var(--font-core);
+  white-space: nowrap;
 }
 
 .header_logo {
@@ -211,19 +224,40 @@ onBeforeUnmount(() => {
 
 @media (max-width: 1280px) {
   .header {
-    width: 100vw;
+    width: 100%;
   }
 }
 
 @media (max-width: 1024px) {
   .header {
-    width: 99vw;
+    width: 100%;
+    flex-wrap: wrap;
+    row-gap: 20px;
+  }
+
+  .header__nav {
+    order: 3;
+    width: 100%;
+    margin-right: 0;
+    justify-content: center;
+    gap: clamp(12px, 3vw, 20px);
+  }
+
+  .header__feed {
+    order: 2;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: clamp(10px, 3vw, 16px);
+  }
+
+  .header_click {
+    margin-right: 0;
   }
 }
 
 @media (max-width: 800px) {
   .header {
-    width: 100%;
     padding: var(--padding-classic) 16px;
   }
 
@@ -252,10 +286,6 @@ onBeforeUnmount(() => {
   .header__nav a,
   .header__feed_call {
     font-size: var(--fontsize-primary);
-  }
-
-  .header_click {
-    margin-right: 15px;
   }
 }
 
@@ -304,6 +334,7 @@ onBeforeUnmount(() => {
   .header__feed {
     flex-direction: column;
     gap: 12px;
+    width: auto;
   }
 
   .header__feed_social {
