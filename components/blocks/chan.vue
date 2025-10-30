@@ -22,11 +22,11 @@
         </div>
 
         <div class="chan__block__right">
-          <p class="chan__block__right_text">
+          <p class="chan__block__right_text text-overlay">
             <span class="chan__block__right_text-up">{{ item.upTitle }}</span>
             {{ item.text }}
           </p>
-          <div class="chan__block__right_bot">
+          <div class="chan__block__right_bot text-overlay">
             <p class="chan__block__right_bot-text">{{ item.location }}</p>
             <p class="chan__block__right_bot-text">{{ item.beds }}</p>
             <div class="chan__block__right_bot_min">
@@ -125,6 +125,10 @@ img.chan__block__left_reel {
     font-weight: 200;
     font-size: var(--fontsize-small);
     font-family: var(--font-core);
+    padding: 18px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 .chan__block__right_text {
     color: var(--white-color);
@@ -132,6 +136,7 @@ img.chan__block__left_reel {
     max-width: 508px;
     line-height: 140%;
     font-family: var(--font-main);
+    padding: 24px 28px;
 }
 .chan__block__right_text-up {
     font-family: var(--font-secondary);
@@ -165,6 +170,8 @@ img.chan__block__left_reel {
         margin-left: 0;
         display: flex;
         gap: 16px;
+        align-items: center;
+        text-align: center;
     }
 }
 
@@ -180,6 +187,7 @@ img.chan__block__left_reel {
 
     .chan__block__right_text {
         font-size: var(--fontsize-primary);
+        padding: 18px 20px;
     }
 
     .chan__block__right_text-up {

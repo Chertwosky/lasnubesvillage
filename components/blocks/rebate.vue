@@ -7,7 +7,7 @@
       >
         Акции
       </SectionBadge>
-      <div class="rebate__intro">
+      <div class="rebate__intro text-overlay">
         <h3 class="rebate__intro_title">Выгодные предложения для гостей</h3>
       </div>
 
@@ -15,7 +15,7 @@
         <article v-for="(item, index) in items" :key="index" class="rebate-card">
           <div class="rebate-card__badge">{{ item.label }}</div>
           <img :src="item.img" :alt="item.label" class="rebate-card__image" draggable="false" />
-          <p class="rebate-card__text">{{ item.text }}</p>
+          <p class="rebate-card__text text-overlay">{{ item.text }}</p>
         </article>
       </div>
 
@@ -67,6 +67,7 @@
   .rebate__intro {
     margin-bottom: 48px;
     text-align: left;
+    padding: 24px 28px;
   }
 
   .rebate__intro_title {
@@ -127,6 +128,7 @@
     font-size: var(--fontsize-unusual);
     font-family: var(--font-main);
     line-height: 1.35;
+    padding: 18px 22px;
   }
 
   @media (max-width: 1024px) {
@@ -141,6 +143,10 @@
 
     .rebate-card__image {
       height: 200px;
+    }
+
+    .rebate__intro {
+      padding: 20px 22px;
     }
   }
 
@@ -163,6 +169,7 @@
       font-size: var(--fontsize-primary);
       margin: 20px;
       text-align: center;
+      padding: 16px 18px;
     }
   }
   </style>

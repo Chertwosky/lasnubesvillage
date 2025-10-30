@@ -8,7 +8,7 @@
             Бесплатно
         </SectionBadge>
         <div class="pleasantly__wrap">
-            <div class="pleasantly__wrap_block">
+            <div class="pleasantly__wrap_block text-overlay">
                 <h3 class="pleasantly__wrap_block_title">Бесплатные услуги</h3>
                 <ul class="pleasantly__wrap_block_list">
                     <li>— Настольные игры от Gaga Games и КвизПлиз</li>
@@ -61,6 +61,8 @@ import SectionBadge from '@/components/ui/SectionBadge.vue'
 .pleasantly__wrap_block {
     display: flex;
     flex-direction: column;
+    gap: 16px;
+    padding: 24px 28px;
 }
 
 .pleasantly__wrap_block_title,
@@ -111,6 +113,7 @@ import SectionBadge from '@/components/ui/SectionBadge.vue'
 
     .pleasantly__wrap_block {
         align-items: center;
+        padding: 20px 24px;
     }
 
     .pleasantly__wrap_block_btn {
@@ -129,6 +132,10 @@ import SectionBadge from '@/components/ui/SectionBadge.vue'
 
     .pleasantly__wrap_block_list {
         font-size: var(--fontsize-primary);
+    }
+
+    .pleasantly__wrap_block {
+        padding: 18px 20px;
     }
 
     .pleasantly__wrap_block_btn {
