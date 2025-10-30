@@ -40,7 +40,7 @@
   margin: 50px auto 0 auto;
   position: relative;
   max-width: var(--container-width);
-  padding: 0 20px;
+  padding: 0 var(--container-padding);
 }
 
 .timely__badge {
@@ -101,7 +101,7 @@
 
 @media (max-width: 768px) {
   .timely {
-    padding: 0 16px;
+    padding: 0 var(--container-padding);
   }
 
   .timely__container-reel {
@@ -123,7 +123,7 @@
 
 @media (max-width: 540px) {
   .timely {
-    padding: 0 12px;
+    padding: 0 var(--container-padding);
   }
 
   .timely__container {

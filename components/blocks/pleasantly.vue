@@ -44,7 +44,7 @@ import SectionBadge from '@/components/ui/SectionBadge.vue'
     margin: 50px auto 0 auto;
     max-width: var(--container-width);
     position: relative;
-    padding: 80px 20px;
+    padding: 80px var(--container-padding);
 }
 
 .pleasantly__badge {
@@ -103,27 +103,27 @@ import SectionBadge from '@/components/ui/SectionBadge.vue'
 
 @media (max-width: 900px) {
     .pleasantly {
-        padding: 60px 16px;
+        padding: 60px var(--container-padding);
     }
 
     .pleasantly__wrap {
         flex-direction: column;
-        text-align: center;
+        text-align: left;
     }
 
     .pleasantly__wrap_block {
-        align-items: center;
+        align-items: flex-start;
         padding: 20px 24px;
     }
 
     .pleasantly__wrap_block_btn {
-        align-self: center;
+        align-self: flex-start;
     }
 }
 
 @media (max-width: 640px) {
     .pleasantly {
-        padding: 48px 12px;
+        padding: 48px var(--container-padding);
     }
 
     .pleasantly__wrap_block_title {
