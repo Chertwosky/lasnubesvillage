@@ -8,7 +8,7 @@
             Услуги
         </SectionBadge>
         <div class="amenities__wrap">
-            <div class="amenities__wrap_block">
+            <div class="amenities__wrap_block text-overlay">
                 <p class="amenities__wrap_block_title">Наши услуги</p>
                 <p class="amenities__wrap_block_sub">Чтобы разнообразить отдых</p>
                 <p class="amenities__wrap_block_name" @click="scrollTo('bath')">
@@ -58,6 +58,8 @@ const scrollTo = (id: string) => {
     display: flex;
     flex-direction: column;
     min-height: 522px;
+    gap: 12px;
+    padding: 24px 28px;
 }
 .amenities__wrap_block_title {
     font-size: calc(var(--fontsize-large)*2);
@@ -88,7 +90,7 @@ const scrollTo = (id: string) => {
     color: var(--white-color);
     font-size: var(--fontsize-medium);
     max-width: 500px;
-    margin: 120px 0 0 0;
+    margin: 40px 0 0 0;
 }
 
 .amenities__wrap_img {
@@ -104,6 +106,7 @@ const scrollTo = (id: string) => {
 
     .amenities__wrap_block {
         align-items: center;
+        padding: 20px 22px;
     }
 
     .amenities__wrap_block_bot {
@@ -118,6 +121,10 @@ const scrollTo = (id: string) => {
 
     .amenities__wrap_block_name {
         font-size: calc(var(--fontsize-large) * 0.9);
+    }
+
+    .amenities__wrap_block {
+        padding: 18px 20px;
     }
 
     .amenities__wrap_block_bot {

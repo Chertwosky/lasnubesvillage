@@ -8,7 +8,7 @@
         Дополнительно
       </SectionBadge>
       <div class="optionally__wrap">
-        <h3 class="optionally__wrap_title">Дополнительные услуги</h3>
+      <h3 class="optionally__wrap_title text-overlay">Дополнительные услуги</h3>
 
         <div class="optionally__wrap_carousel" :style="{ width: containerWidth + 'px' }">
           <!-- Стрелка влево -->
@@ -158,6 +158,7 @@
     color: var(--white-color);
     font-family: var(--font-secondary);
     margin: 0 0 26px 0;
+    padding: 18px 24px;
   }
 
   .optionally__wrap_carousel {
@@ -278,6 +279,7 @@
     .optionally__wrap_title {
       font-size: 40px;
       text-align: center;
+      padding: 18px 20px;
     }
 
     .optionally__wrap_carousel-arrow {
@@ -310,6 +312,11 @@
 
     .optionally__wrap_carousel-arrow {
       width: 36px;
+    }
+
+    .optionally__wrap_title {
+      font-size: 32px;
+      padding: 16px 18px;
     }
   }
   </style>
