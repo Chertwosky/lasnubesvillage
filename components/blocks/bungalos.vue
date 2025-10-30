@@ -1,12 +1,5 @@
 <template>
   <section class="bungalos" :style="{ '--bung-photo-h': photoHeight + 'px' }">
-    <SectionBadge
-      class="bungalos__badge"
-      gradient="linear-gradient(90deg,#101537 0%, #060714 100%)"
-      align="right"
-    >
-      Домики
-    </SectionBadge>
     <div class="bungalos__wrap">
       <div
         v-for="(item, index) in items"
@@ -14,13 +7,19 @@
         class="bungalos__wrap_block"
         :id="item.id"
       >
+        <SectionBadge
+          class="bungalos__house-badge"
+          :gradient="item.badgeGradient"
+          align="right"
+        >
+          {{ item.title }}
+        </SectionBadge>
+        <div class="bungalos__wrap_content">
         <!-- ЛЕВАЯ КОЛОНКА -->
         <div
           class="bungaloswrap_blockleft"
           :style="{ width: containerWidth + 'px' }"
         >
-          <h3 class="bungaloswrap_blockleft_title">{{ item.title }}</h3>
-
           <!-- Слайдер -->
           <div class="bungalos__carousel" :style="{ width: containerWidth + 'px' }">
             <img
@@ -63,11 +62,11 @@
 
         <!-- ПРАВАЯ КОЛОНКА -->
         <div class="bungaloswrap_blockright">
-          <p class="bungaloswrap_blockright_text">
+          <p class="bungaloswrap_blockright_text text-overlay">
             <span class="bungaloswrap_blockright_text-up">{{ item.upTitle }}</span>
             {{ item.text }}
           </p>
-          <div class="bungaloswrap_blockright_bot">
+          <div class="bungaloswrap_blockright_bot text-overlay text-overlay--compact">
             <p class="bungaloswrap_blockright_bot-text">{{ item.location }}</p>
             <p class="bungaloswrap_blockright_bot-text">{{ item.beds }}</p>
             <div class="bungaloswrap_blockright_bot_min">
@@ -75,6 +74,7 @@
               <p class="bungaloswrap_blockright_bot_min-text">{{ item.guests }}</p>
             </div>
           </div>
+        </div>
         </div>
 
         <!-- ОБЛАКА -->
@@ -118,9 +118,9 @@ const ultramarinePhotos = import.meta.glob('@/assets/images/core/bungalos/ultram
 const emeraldPhotos = import.meta.glob('@/assets/images/core/bungalos/emerald/*.{jpg,jpeg,png,svg}', { eager: true, import: 'default' })
 
 const items = [
-  { id: 'sunset', title: 'SUNSET A-frame', upTitle: '"Las nubes village"', text: ' — турбаза, расположенная в Адыгее...', location: 'Каменомостский', beds: '2 кровати, 1 диван', guests: 'до 6 гостей (из них 2 доп. места)', photos: toArray(sunsetPhotos) },
-  { id: 'ultramarine', title: 'ULTRAMARINE A-frame', upTitle: '"Las nubes village"', text: ' — турбаза, расположенная в Адыгее...', location: 'Каменомостский', beds: '2 кровати, 1 диван', guests: 'до 6 гостей (из них 2 доп. места)', photos: toArray(ultramarinePhotos) },
-  { id: 'emerald', title: 'EMERALD A-frame', upTitle: '"Las nubes village"', text: ' — турбаза, расположенная в Адыгее...', location: 'Каменомостский', beds: '2 кровати, 1 диван', guests: 'до 6 гостей (из них 2 доп. места)', photos: toArray(emeraldPhotos) },
+  { id: 'sunset', title: 'SUNSET A-frame', badgeGradient: 'linear-gradient(90deg,#1e2b5e 0%, #0b132c 100%)', upTitle: '"Las nubes village"', text: ' — турбаза, расположенная в Адыгее...', location: 'Каменомостский', beds: '2 кровати, 1 диван', guests: 'до 6 гостей (из них 2 доп. места)', photos: toArray(sunsetPhotos) },
+  { id: 'ultramarine', title: 'ULTRAMARINE A-frame', badgeGradient: 'linear-gradient(90deg,#13304f 0%, #040713 100%)', upTitle: '"Las nubes village"', text: ' — турбаза, расположенная в Адыгее...', location: 'Каменомостский', beds: '2 кровати, 1 диван', guests: 'до 6 гостей (из них 2 доп. места)', photos: toArray(ultramarinePhotos) },
+  { id: 'emerald', title: 'EMERALD A-frame', badgeGradient: 'linear-gradient(90deg,#164232 0%, #04120b 100%)', upTitle: '"Las nubes village"', text: ' — турбаза, расположенная в Адыгее...', location: 'Каменомостский', beds: '2 кровати, 1 диван', guests: 'до 6 гостей (из них 2 доп. места)', photos: toArray(emeraldPhotos) },
 ]
 
 /* Слайдер */
@@ -178,26 +178,31 @@ onBeforeUnmount(() => {
   position: relative;
 }
 
-.bungalos__badge {
-  margin-bottom: 40px;
-}
 .bungalos__wrap {
   display: flex;
   flex-direction: column;
   gap: 80px; /* любое нужное значение */
 }
-.bungalos__wrap_block { position: relative; display: flex; justify-content: space-between; align-items: center; gap: 40px; }
+.bungalos__wrap_block {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.bungalos__house-badge {
+  align-self: flex-end;
+}
+
+.bungalos__wrap_content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+}
 
 /* Левая колонка */
 .bungaloswrap_blockleft { align-items: flex-end; display: flex; flex-direction: column; width: 100%; max-width: 508px; }
-.bungaloswrap_blockleft_title {
-  font-family: var(--font-secondary); /* 👈 теперь тот же шрифт, что и upTitle */
-  font-size: calc(var(--fontsize-unusual)*2);
-  color: var(--white-color);
-  margin: 0 0 8px 0;
-  align-self: flex-end;
-  text-align: right;
-}
 .bungaloswrap_blockleft_btn {
   background-color: var(--green-color);
     text-transform: uppercase;
@@ -216,10 +221,13 @@ onBeforeUnmount(() => {
 
 
 /* Правая колонка */
+.bungaloswrap_blockright { display: flex; flex-direction: column; gap: 16px; }
 .bungaloswrap_blockright_text { color: var(--white-color); font-size: var(--fontsize-unusual); max-width: 508px; font-family: var(--font-main); }
-.bungaloswrap_blockright_text-up { font-family: var(--font-secondary); font-size: 36px; text-transform: uppercase; }
+.bungaloswrap_blockright_text-up { font-family: var(--font-secondary); font-size: 36px; text-transform: uppercase; display: block; margin-bottom: 8px; }
 .bungaloswrap_blockright_bot_min { display: flex; gap: 8px; }
-.bungaloswrap_blockright_bot { margin-left: 0 px; color: var(--faded-color); font-size: var(--fontsize-small); font-family: var(--font-core); }
+.bungaloswrap_blockright_bot { margin-left: 0; color: var(--faded-color); font-size: var(--fontsize-small); font-family: var(--font-core); display: grid; gap: 10px; }
+.bungaloswrap_blockright_bot-text { margin: 0; color: var(--white-color); font-family: var(--font-secondary); font-size: var(--fontsize-secondary); }
+.bungaloswrap_blockright_bot_min-text { margin: 0; color: var(--white-color); font-family: var(--font-secondary); font-size: var(--fontsize-secondary); }
 /* Слайдер */
 .bungalos__carousel { position: relative; display: flex; align-items: center; overflow: hidden; width: 100%; }
 .bungalos__carousel_view { overflow: hidden; width: 100%; }
@@ -255,9 +263,14 @@ onBeforeUnmount(() => {
 @media (max-width: 992px) {
   .bungalos { padding: 0 16px; }
 
-  .bungalos__wrap_block {
+  .bungalos__house-badge {
+    align-self: center;
+  }
+
+  .bungalos__wrap_content {
     flex-direction: column;
     align-items: center;
+    gap: 32px;
     text-align: center;
   }
 
@@ -265,11 +278,6 @@ onBeforeUnmount(() => {
   .bungaloswrap_blockright {
     align-items: center;
     max-width: 100%;
-  }
-
-  .bungaloswrap_blockleft_title {
-    align-self: center;
-    text-align: center;
   }
 
   .bungaloswrap_blockleft_btn {
@@ -280,12 +288,6 @@ onBeforeUnmount(() => {
     max-width: 100%;
   }
 
-  .bungaloswrap_blockright_bot {
-    margin-left: 0;
-    display: flex;
-    gap: 16px;
-  }
-
   .bungalos__carousel-arrow {
     width: 48px;
     height: 48px;
@@ -294,10 +296,6 @@ onBeforeUnmount(() => {
 
 @media (max-width: 640px) {
   .bungalos { padding: 0 12px; }
-
-  .bungaloswrap_blockleft_title {
-    font-size: calc(var(--fontsize-unusual) * 1.5);
-  }
 
   .bungaloswrap_blockright_text {
     font-size: var(--fontsize-primary);

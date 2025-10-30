@@ -7,7 +7,7 @@
       >
         A-frame
       </SectionBadge>
-      <div class="villages__intro">
+      <div class="villages__intro text-overlay text-overlay--compact">
         <h3 class="villages__intro_title">Домики с панорамными окнами</h3>
         <p class="villages__intro_text">Выберите дом и познакомьтесь с его атмосферой поближе.</p>
       </div>
@@ -89,6 +89,10 @@
   .villages__intro {
     margin-bottom: 48px;
     text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 420px;
   }
 
   .villages__intro_title {
@@ -208,6 +212,11 @@
   }
 
   @media (max-width: 768px) {
+    .villages__intro {
+      align-items: center;
+      text-align: center;
+    }
+
     .villages__intro_title {
       font-size: calc(var(--fontsize-large) * 1.2);
     }

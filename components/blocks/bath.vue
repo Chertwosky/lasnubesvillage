@@ -14,7 +14,6 @@
         :id="item.id"
       >
         <div class="bath__block__left">
-          <h3 class="bath__block__left_title">{{ item.title }}</h3>
           <img :src="item.img" alt="Баня" class="bath__block__left_reel" draggable="false" />
           <BookingButton customClass="bath__block__left_btn">
             Забронировать
@@ -22,11 +21,11 @@
         </div>
 
         <div class="bath__block__right">
-          <p class="bath__block__right_text">
+          <p class="bath__block__right_text text-overlay">
             <span class="bath__block__right_text-up">{{ item.upTitle }}</span>
             {{ item.text }}
           </p>
-          <div class="bath__block__right_bot">
+          <div class="bath__block__right_bot text-overlay text-overlay--compact">
             <p class="bath__block__right_bot-text">{{ item.location }}</p>
             <p class="bath__block__right_bot-text">{{ item.beds }}</p>
             <div class="bath__block__right_bot_min">
@@ -112,22 +111,21 @@ img.bath__block__left_reel {
     margin-top: 10px;
     cursor: pointer;
 }
-.bath__block__left_title {
-    font-size: calc(var(--fontsize-unusual)*2);
-    color: var(--white-color);
-    font-family: var(--font-secondary);
-    margin: 0 0 8px 0;
-}
 .bath__block__right_bot_min {
     display: flex;
     gap: 8px;
 }
 .bath__block__right_bot {
-    margin-left: 20px;
+    margin-left: 0;
     color: var(--faded-color);
     font-weight: 200;
     font-size: var(--fontsize-small);
     font-family: var(--font-core);
+    display: grid;
+    gap: 10px;
+}
+.bath__block__right {
+    gap: 16px;
 }
 .bath__block__right_text {
     color: var(--white-color);
@@ -140,6 +138,13 @@ img.bath__block__left_reel {
     font-family: var(--font-secondary);
     font-size: 36px;
     text-transform: uppercase;
+}
+.bath__block__right_bot-text,
+.bath__block__right_bot_min-text {
+    margin: 0;
+    color: var(--white-color);
+    font-family: var(--font-secondary);
+    font-size: var(--fontsize-secondary);
 }
 .bath__block__right_bot-text:first-of-type {
     margin-bottom: 24px;
@@ -165,9 +170,7 @@ img.bath__block__left_reel {
     }
 
     .bath__block__right_bot {
-        margin-left: 0;
-        display: flex;
-        gap: 16px;
+        width: 100%;
     }
 }
 
