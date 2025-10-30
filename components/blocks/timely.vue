@@ -1,17 +1,10 @@
 <template>
     <section class="timely">
-      <SectionBadge
-        class="timely__badge"
-        gradient="linear-gradient(90deg,#214c7a 0%, #0b1f3a 100%)"
-        align="right"
-      >
-        О нас
-      </SectionBadge>
       <div class="timely__container">
         <!-- Большое центральное облако -->
         <img :src="CloudSvg" alt="Дом" class="timely__container-reel" draggable="false" />
         <!-- Контент -->
-        <div class="timely__container_block">
+        <div class="timely__container_block text-overlay text-overlay--block">
           <h3 class="timely__container_block-title">Упс..</h3>
           <p class="timely__container_block-text">
            Страница "о нас" в разработке. Скоро вас порадуем!
@@ -29,7 +22,6 @@
   <script setup>
   import CloudSvg from '@/assets/images/core/error/cloud.svg'
   import Cloud from '@/components/blocks/Cloud.vue'
-  import SectionBadge from '@/components/ui/SectionBadge.vue'
   </script>
 <style scoped>
 .timely {
@@ -43,10 +35,6 @@
   padding: 0 20px;
 }
 
-.timely__badge {
-  margin-bottom: 32px;
-  align-self: flex-start;
-}
 .timely__container {
   position: relative;
   width: 100%;
@@ -65,7 +53,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  color: var(--black-color);
+  color: var(--white-color);
   padding: 1rem;
 }
 .timely__container_block-title {

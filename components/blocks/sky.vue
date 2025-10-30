@@ -2,17 +2,9 @@
     <section class="sky">
         <img :src="Sky" alt="Небо" class="sky__reel" draggable="false" />
         <div class="sky__wrap">
-        <SectionBadge
-          class="sky__badge"
-          gradient="linear-gradient(90deg,#040213 0%, #0c1240 100%)"
-          align="left"
-          pad-right="48px"
-        >
-          Las Nubes Village
-        </SectionBadge>
         <div class="sky__wrap_block">
             <img :src="Logo" alt="Лого" class="sky__wrap_block_reel" draggable="false" />
-            <span class="sky__wrap_block_text">Там, где горы встречают облака</span>
+            <span class="sky__wrap_block_text text-overlay">Там, где горы встречают облака</span>
         </div>
     </div>
     </section>
@@ -21,7 +13,6 @@
   <script setup>
   import Sky from '@/assets/images/core/sky/sky.svg'
   import Logo from '@/assets/images/core/sky/logo.svg'
-  import SectionBadge from '@/components/ui/SectionBadge.vue'
   </script>
 
   <style scoped>
@@ -52,10 +43,6 @@
     flex-direction: column;
     gap: 32px;
     padding-top: clamp(24px, 6vw, 64px);
-  }
-
-  .sky__badge {
-    margin: 0;
   }
 
   .sky__wrap_block {
