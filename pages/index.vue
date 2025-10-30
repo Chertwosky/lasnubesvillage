@@ -1,6 +1,6 @@
 <template>
     <div>
-      <main>
+      <main class="home-main">
         <Sky />
         <Produce />
         <Villages />
@@ -53,5 +53,8 @@
   })
   </script>
 
-  <style scoped>
+  <style>
+  .home-main > * {
+    margin: 20px 0;
+  }
   </style>
