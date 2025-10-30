@@ -74,7 +74,7 @@ img.bath__block__left_reel {
 .bath {
     margin: 50px auto 0 auto;
     max-width: var(--container-width);
-    padding: 40px 20px 0 20px;
+    padding: 40px var(--container-padding) 0 var(--container-padding);
 }
 
 .bath__badge {
@@ -152,35 +152,35 @@ img.bath__block__left_reel {
 
 @media (max-width: 992px) {
     .bath {
-        padding: 40px 16px 0 16px;
+        padding: 40px var(--container-padding) 0 var(--container-padding);
     }
 
     .bath__block {
         flex-direction: column;
-        text-align: center;
+        text-align: left;
     }
 
     .bath__block__left,
     .bath__block__right {
-        align-items: center;
+        align-items: flex-start;
     }
 
     .bath__block__left_btn {
-        align-self: center;
+        align-self: flex-start;
     }
 
     .bath__block__right_bot {
         margin-left: 0;
         display: flex;
         gap: 16px;
-        align-items: center;
-        text-align: center;
+        align-items: flex-start;
+        text-align: left;
     }
 }
 
 @media (max-width: 640px) {
     .bath {
-        padding: 32px 12px 0 12px;
+        padding: 32px var(--container-padding) 0 var(--container-padding);
     }
 
     .bath__block__left_btn {

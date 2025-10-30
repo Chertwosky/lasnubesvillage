@@ -9,7 +9,6 @@
       >
         <SectionBadge
           class="bungalos__item-badge"
-          align="left"
           :gradient="item.badgeGradient"
         >
           {{ item.badge || item.title }}
@@ -208,7 +207,7 @@ onBeforeUnmount(() => {
 .bungalos {
   margin: 50px auto 0 auto;
   max-width: var(--container-width);
-  padding: 0 20px 60px;
+  padding: 0 var(--container-padding) 60px;
   position: relative;
 }
 
@@ -300,33 +299,33 @@ onBeforeUnmount(() => {
 .lightbox__arrow.right { right: 20px; }
 
 @media (max-width: 992px) {
-  .bungalos { padding: 0 16px; }
+  .bungalos { padding: 0 var(--container-padding); }
 
   .bungalos__wrap_block {
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+    align-items: stretch;
+    text-align: left;
   }
 
   .bungalos__content {
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
     gap: 24px;
   }
 
   .bungaloswrap_blockleft,
   .bungaloswrap_blockright {
-    align-items: center;
+    align-items: flex-start;
     max-width: 100%;
   }
 
   .bungaloswrap_blockleft_title {
-    align-self: center;
-    text-align: center;
+    align-self: flex-start;
+    text-align: left;
   }
 
   .bungaloswrap_blockleft_btn {
-    align-self: center;
+    align-self: flex-start;
   }
 
   .bungaloswrap_blockright_text {
@@ -339,8 +338,8 @@ onBeforeUnmount(() => {
     display: flex;
     gap: 16px;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
+    text-align: left;
   }
 
   .bungalos__carousel-arrow {
@@ -350,7 +349,7 @@ onBeforeUnmount(() => {
 }
 
 @media (max-width: 640px) {
-  .bungalos { padding: 0 12px; }
+  .bungalos { padding: 0 var(--container-padding); }
 
   .bungaloswrap_blockleft_title {
     font-size: calc(var(--fontsize-unusual) * 1.5);
@@ -376,7 +375,7 @@ onBeforeUnmount(() => {
   }
 
   .bungalos__item-badge {
-    align-self: center;
+    align-self: flex-start;
   }
 }
 </style>

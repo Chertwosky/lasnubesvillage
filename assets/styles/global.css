@@ -146,9 +146,15 @@
 	--margin-section: 80px;
 	/* Маргин раздела */
 
-	/* Ширина контейнера */
-	--container-width: 1160px;
-	/* Ширина контейнера */
+        /* Ширина контейнера */
+        --container-width: 1160px;
+        /* Ширина контейнера */
+
+        /* Горизонтальные отступы контейнера */
+        --container-padding-desktop: 20px;
+        --container-padding-tablet: 16px;
+        --container-padding-mobile: 12px;
+        --container-padding: var(--container-padding-desktop);
 
 	/* Размеры иконок */
 	--icon-size: 16px;
@@ -234,7 +240,17 @@ body {
     padding-right: 28px;
 }
 
+@media (max-width: 1024px) {
+    :root {
+        --container-padding: var(--container-padding-tablet);
+    }
+}
+
 @media (max-width: 640px) {
+    :root {
+        --container-padding: var(--container-padding-mobile);
+    }
+
     .section-badge {
         min-width: auto;
         padding-inline: clamp(16px, 8vw, 28px);

@@ -5,7 +5,6 @@
         <SectionBadge
           class="sky__badge"
           gradient="linear-gradient(90deg,#040213 0%, #0c1240 100%)"
-          align="left"
           pad-right="48px"
         >
           Las Nubes Village
@@ -47,7 +46,7 @@
     max-width: var(--container-width);
     width: 100%;
     margin: 0 auto;
-    padding: 0 clamp(20px, 6vw, 80px);
+    padding: 0 var(--container-padding);
     box-sizing: border-box;
     flex-direction: column;
     gap: 32px;
@@ -87,7 +86,7 @@
     }
 
     .sky__wrap {
-      padding-inline: clamp(20px, 8vw, 60px);
+      padding-inline: var(--container-padding);
       gap: 24px;
     }
   }
@@ -115,7 +114,7 @@
     }
 
     .sky__wrap {
-      padding: 0 16px 28px;
+      padding: 0 var(--container-padding) 28px;
       gap: 20px;
     }
 
