@@ -54,7 +54,7 @@
 .produce {
   margin: 50px auto 0 auto;
   max-width: var(--container-width);
-  padding: 0 20px;
+  padding: 0 var(--container-padding);
   position: relative;
   z-index: 0; /* секция сама "нулевой слой" */
 }
@@ -168,13 +168,13 @@
 @media (max-width: 992px) {
   .produce__wrap {
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+    align-items: stretch;
+    text-align: left;
   }
 
   .produce__wrap_left,
   .produce__wrap_right {
-    align-items: center;
+    align-items: flex-start;
     max-width: 100%;
   }
 
@@ -189,10 +189,6 @@
 }
 
 @media (max-width: 640px) {
-  .produce {
-    padding: 0 16px;
-  }
-
   .produce__wrap_left_reel,
   .produce__wrap_right_reel {
     width: 100%;

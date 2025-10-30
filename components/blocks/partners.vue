@@ -145,7 +145,7 @@ onUnmounted(() => {
   margin: 50px auto 0 auto;
   max-width: var(--container-width);
   position: relative;
-  padding: 0 20px 60px;
+  padding: 0 var(--container-padding) 60px;
 }
 
 .partners__badge {
@@ -155,7 +155,7 @@ onUnmounted(() => {
 .partners__wrap {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .partners__wrap_title {
@@ -279,20 +279,20 @@ onUnmounted(() => {
 
 @media (max-width: 1024px) {
   .partners {
-    padding: 0 16px;
+    padding: 0 var(--container-padding);
   }
 
   .partners__wrap_title {
-    text-align: center;
+    text-align: left;
     padding: 18px 20px;
   }
 
   .partners__wrap_carousel-container {
-    align-items: center;
+    align-items: flex-start;
   }
 
   .partners__wrap_btn {
-    align-self: center;
+    align-self: flex-start;
   }
 
   .partners__wrap_carousel-arrow {
@@ -302,7 +302,7 @@ onUnmounted(() => {
 
 @media (max-width: 640px) {
   .partners {
-    padding: 0 12px;
+    padding: 0 var(--container-padding);
   }
 
   .partners__wrap_carousel_block-reel {
@@ -330,6 +330,7 @@ onUnmounted(() => {
   .partners__wrap_title {
     font-size: 32px;
     padding: 16px 18px;
+    text-align: left;
   }
 }
 </style>

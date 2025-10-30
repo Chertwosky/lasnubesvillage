@@ -49,7 +49,7 @@ const scrollTo = (id: string) => {
 .heading {
     margin: 50px auto 0 auto;
     max-width: var(--container-width);
-    padding: 0 20px;
+    padding: 0 var(--container-padding);
 }
 
 .heading__badge {
@@ -109,21 +109,15 @@ const scrollTo = (id: string) => {
     margin-top: 15px;
 }
 
-@media (max-width: 1028px) {
-    .heading {
-        width: 99vw;
-    }
-}
-
 @media (max-width: 768px) {
     .heading__wrap {
         flex-direction: column;
-        align-items: center;
-        text-align: center;
+        align-items: flex-start;
+        text-align: left;
     }
 
     .heading__wrap_block {
-        align-items: center;
+        align-items: flex-start;
         padding: 20px 22px;
     }
 
@@ -138,7 +132,7 @@ const scrollTo = (id: string) => {
 
 @media (max-width: 540px) {
     .heading {
-        padding: 0 16px;
+        padding: 0 var(--container-padding);
     }
 
     .heading__wrap_block_name {
