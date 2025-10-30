@@ -10,7 +10,7 @@
         <div class="produce__wrap">
             <div class="produce__wrap_left">
                 <img :src="People" alt="Дом" class="produce__wrap_left_reel" draggable="false" />
-                <ul class="produce__wrap_left_list produce__list">
+                <ul class="produce__wrap_left_list produce__list text-overlay">
                     <li>Душ и туалет в каждом доме</li>
                     <li>WIFI и SMART TV</li>
                     <li>Панорамные окна</li>
@@ -21,7 +21,7 @@
 
             <div class="produce__wrap_right">
                 <img :src="Comfort" alt="Обстановка" class="produce__wrap_right_reel" draggable="false" />
-                <ul class="produce__wrap_right_list produce__list">
+                <ul class="produce__wrap_right_list produce__list text-overlay">
                     <li>Самостоятельное заселение и выселение с помощью электронного доступа — без участия персонала</li>
                     <li>Бытовая техника: от микроволновки и плиты до посудомоечной и стиральной машины</li>
                     <li>Приятные мелочи: бумажные полотенца, стиральный порошок, соль, сахар, чай и кофе, банные наборы, настольные игры</li>
@@ -117,6 +117,10 @@
     gap: 18px;
 }
 
+.produce__list.text-overlay {
+    padding: 20px 24px;
+}
+
 .produce__list li {
     display: flex;
     align-items: flex-start;
@@ -199,6 +203,7 @@
   .produce__wrap_left_list,
   .produce__wrap_right_list {
     font-size: var(--fontsize-secondary);
+    padding: 16px 18px;
   }
 
   .produce__btn {

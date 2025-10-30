@@ -8,7 +8,7 @@
             Коттеджи
         </SectionBadge>
         <div class="heading__wrap">
-            <div class="heading__wrap_block">
+            <div class="heading__wrap_block text-overlay">
                 <p class="heading__wrap_block_title">Коттеджи A-frame</p>
                 <p class="heading__wrap_block_sub"> </p>
                 <p class="heading__wrap_block_name" @click="scrollTo('sunset')">
@@ -67,6 +67,8 @@ const scrollTo = (id: string) => {
     display: flex;
     flex-direction: column;
     min-height: 522px;
+    gap: 12px;
+    padding: 24px 28px;
 }
 
 .heading__wrap_block_title {
@@ -99,7 +101,7 @@ const scrollTo = (id: string) => {
     font-family: var(--font-secondary);
     color: var(--white-color);
     font-size: var(--fontsize-medium);
-    margin: 190px 0 0 0;
+    margin: 40px 0 0 0;
     max-width: 500px;
 }
 
@@ -122,6 +124,7 @@ const scrollTo = (id: string) => {
 
     .heading__wrap_block {
         align-items: center;
+        padding: 20px 22px;
     }
 
     .heading__wrap_block_title {
@@ -144,6 +147,10 @@ const scrollTo = (id: string) => {
 
     .heading__wrap_block_bot {
         font-size: var(--fontsize-primary);
+    }
+
+    .heading__wrap_block {
+        padding: 18px 20px;
     }
 }
 

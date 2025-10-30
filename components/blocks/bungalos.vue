@@ -1,12 +1,5 @@
 <template>
   <section class="bungalos" :style="{ '--bung-photo-h': photoHeight + 'px' }">
-    <SectionBadge
-      class="bungalos__badge"
-      gradient="linear-gradient(90deg,#101537 0%, #060714 100%)"
-      align="right"
-    >
-      Домики
-    </SectionBadge>
     <div class="bungalos__wrap">
       <div
         v-for="(item, index) in items"
@@ -14,65 +7,73 @@
         class="bungalos__wrap_block"
         :id="item.id"
       >
-        <!-- ЛЕВАЯ КОЛОНКА -->
-        <div
-          class="bungaloswrap_blockleft"
-          :style="{ width: containerWidth + 'px' }"
+        <SectionBadge
+          class="bungalos__item-badge"
+          align="left"
+          :gradient="item.badgeGradient"
         >
-          <h3 class="bungaloswrap_blockleft_title">{{ item.title }}</h3>
+          {{ item.badge || item.title }}
+        </SectionBadge>
+        <!-- ЛЕВАЯ КОЛОНКА -->
+        <div class="bungalos__content">
+          <div
+            class="bungaloswrap_blockleft"
+            :style="{ width: containerWidth + 'px' }"
+          >
+            <h3 class="bungaloswrap_blockleft_title">{{ item.title }}</h3>
 
-          <!-- Слайдер -->
-          <div class="bungalos__carousel" :style="{ width: containerWidth + 'px' }">
-            <img
-              v-if="currentIndexes[item.id] > 0"
-              :src="Arrow"
-              alt="Стрелка"
-              class="bungalos__carousel-arrow left"
-              @click="prevSlide(item.id, item.photos.length)"
-            />
-            <div class="bungalos__carousel_view">
-              <div class="bungalos__carousel_inner" :style="innerStyle(item.id)">
-                <div
-                  v-for="(photo, pIndex) in item.photos"
-                  :key="pIndex"
-                  class="bungalos__carousel_slide"
-                  :style="{ width: slideWidth + 'px' }"
-                >
-                  <img
-                    :src="photo"
-                    alt="Фото дома"
-                    class="bungalos__carousel_img"
-                    @click="openLightbox(item.photos, pIndex)"
-                  />
+            <!-- Слайдер -->
+            <div class="bungalos__carousel" :style="{ width: containerWidth + 'px' }">
+              <img
+                v-if="currentIndexes[item.id] > 0"
+                :src="Arrow"
+                alt="Стрелка"
+                class="bungalos__carousel-arrow left"
+                @click="prevSlide(item.id, item.photos.length)"
+              />
+              <div class="bungalos__carousel_view">
+                <div class="bungalos__carousel_inner" :style="innerStyle(item.id)">
+                  <div
+                    v-for="(photo, pIndex) in item.photos"
+                    :key="pIndex"
+                    class="bungalos__carousel_slide"
+                    :style="{ width: slideWidth + 'px' }"
+                  >
+                    <img
+                      :src="photo"
+                      alt="Фото дома"
+                      class="bungalos__carousel_img"
+                      @click="openLightbox(item.photos, pIndex)"
+                    />
+                  </div>
                 </div>
               </div>
+              <img
+                v-if="currentIndexes[item.id] < item.photos.length - visibleSlides"
+                :src="Arrow"
+                alt="Стрелка"
+                class="bungalos__carousel-arrow right"
+                @click="nextSlide(item.id, item.photos.length)"
+              />
             </div>
-            <img
-              v-if="currentIndexes[item.id] < item.photos.length - visibleSlides"
-              :src="Arrow"
-              alt="Стрелка"
-              class="bungalos__carousel-arrow right"
-              @click="nextSlide(item.id, item.photos.length)"
-            />
+            <BookingButton customClass="bungaloswrap_blockleft_btn">
+              Забронировать
+            </BookingButton>
           </div>
-
-          <BookingButton customClass="bungaloswrap_blockleft_btn">
-            Забронировать
-          </BookingButton>
-        </div>
-
-        <!-- ПРАВАЯ КОЛОНКА -->
-        <div class="bungaloswrap_blockright">
-          <p class="bungaloswrap_blockright_text">
-            <span class="bungaloswrap_blockright_text-up">{{ item.upTitle }}</span>
-            {{ item.text }}
-          </p>
-          <div class="bungaloswrap_blockright_bot">
-            <p class="bungaloswrap_blockright_bot-text">{{ item.location }}</p>
-            <p class="bungaloswrap_blockright_bot-text">{{ item.beds }}</p>
-            <div class="bungaloswrap_blockright_bot_min">
-              <img :src="Man" alt="Иконка гостей" class="bungaloswrap_blockright_bot_min-reel" />
-              <p class="bungaloswrap_blockright_bot_min-text">{{ item.guests }}</p>
+        
+          <!-- ПРАВАЯ КОЛОНКА -->
+          <div class="bungaloswrap_blockright">
+            <p class="bungaloswrap_blockright_text text-overlay">
+              <span class="bungaloswrap_blockright_text-up">{{ item.upTitle }}</span>
+              {{ item.text }}
+            </p>
+            <div class="bungaloswrap_blockright_bot text-overlay">
+              <p class="bungaloswrap_blockright_bot-text">{{ item.location }}</p>
+              <p class="bungaloswrap_blockright_bot-text">{{ item.beds }}</p>
+              <div class="bungaloswrap_blockright_bot_min">
+                <img :src="Man" alt="Иконка гостей" class="bungaloswrap_blockright_bot_min-reel" />
+                <p class="bungaloswrap_blockright_bot_min-text">{{ item.guests }}</p>
+              </div>
             </div>
           </div>
         </div>
@@ -99,9 +100,9 @@
 import { reactive, ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import Arrow from '@/assets/images/core/partners/arrow.svg'
 import Man from '@/assets/images/core/bungalos/man.svg'
-  import BookingButton from '@/components/blocks/BookingButton.vue'
-  import Cloud from '@/components/blocks/Cloud.vue'
-  import SectionBadge from '@/components/ui/SectionBadge.vue'
+import BookingButton from '@/components/blocks/BookingButton.vue'
+import Cloud from '@/components/blocks/Cloud.vue'
+import SectionBadge from '@/components/ui/SectionBadge.vue'
 /* Настройка */
 const photoHeight = ref(500)
 const visibleSlides = 1
@@ -118,9 +119,42 @@ const ultramarinePhotos = import.meta.glob('@/assets/images/core/bungalos/ultram
 const emeraldPhotos = import.meta.glob('@/assets/images/core/bungalos/emerald/*.{jpg,jpeg,png,svg}', { eager: true, import: 'default' })
 
 const items = [
-  { id: 'sunset', title: 'SUNSET A-frame', upTitle: '"Las nubes village"', text: ' — турбаза, расположенная в Адыгее...', location: 'Каменомостский', beds: '2 кровати, 1 диван', guests: 'до 6 гостей (из них 2 доп. места)', photos: toArray(sunsetPhotos) },
-  { id: 'ultramarine', title: 'ULTRAMARINE A-frame', upTitle: '"Las nubes village"', text: ' — турбаза, расположенная в Адыгее...', location: 'Каменомостский', beds: '2 кровати, 1 диван', guests: 'до 6 гостей (из них 2 доп. места)', photos: toArray(ultramarinePhotos) },
-  { id: 'emerald', title: 'EMERALD A-frame', upTitle: '"Las nubes village"', text: ' — турбаза, расположенная в Адыгее...', location: 'Каменомостский', beds: '2 кровати, 1 диван', guests: 'до 6 гостей (из них 2 доп. места)', photos: toArray(emeraldPhotos) },
+  {
+    id: 'sunset',
+    badge: 'SUNSET A-frame',
+    badgeGradient: 'linear-gradient(90deg,#1d254d 0%, #0b0d26 100%)',
+    title: 'A-frame SUNSET',
+    upTitle: '"Las nubes village"',
+    text: ' — турбаза, расположенная в Адыгее...',
+    location: 'Каменомостский',
+    beds: '2 кровати, 1 диван',
+    guests: 'до 6 гостей (из них 2 доп. места)',
+    photos: toArray(sunsetPhotos),
+  },
+  {
+    id: 'ultramarine',
+    badge: 'ULTRAMARINE A-frame',
+    badgeGradient: 'linear-gradient(90deg,#0e2c5c 0%, #060a18 100%)',
+    title: 'A-frame ULTRAMARINE',
+    upTitle: '"Las nubes village"',
+    text: ' — турбаза, расположенная в Адыгее...',
+    location: 'Каменомостский',
+    beds: '2 кровати, 1 диван',
+    guests: 'до 6 гостей (из них 2 доп. места)',
+    photos: toArray(ultramarinePhotos),
+  },
+  {
+    id: 'emerald',
+    badge: 'EMERALD A-frame',
+    badgeGradient: 'linear-gradient(90deg,#114633 0%, #07140f 100%)',
+    title: 'A-frame EMERALD',
+    upTitle: '"Las nubes village"',
+    text: ' — турбаза, расположенная в Адыгее...',
+    location: 'Каменомостский',
+    beds: '2 кровати, 1 диван',
+    guests: 'до 6 гостей (из них 2 доп. места)',
+    photos: toArray(emeraldPhotos),
+  },
 ]
 
 /* Слайдер */
@@ -178,15 +212,28 @@ onBeforeUnmount(() => {
   position: relative;
 }
 
-.bungalos__badge {
-  margin-bottom: 40px;
-}
 .bungalos__wrap {
   display: flex;
   flex-direction: column;
   gap: 80px; /* любое нужное значение */
 }
-.bungalos__wrap_block { position: relative; display: flex; justify-content: space-between; align-items: center; gap: 40px; }
+.bungalos__wrap_block {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.bungalos__item-badge {
+  align-self: flex-start;
+}
+
+.bungalos__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+}
 
 /* Левая колонка */
 .bungaloswrap_blockleft { align-items: flex-end; display: flex; flex-direction: column; width: 100%; max-width: 508px; }
@@ -216,10 +263,10 @@ onBeforeUnmount(() => {
 
 
 /* Правая колонка */
-.bungaloswrap_blockright_text { color: var(--white-color); font-size: var(--fontsize-unusual); max-width: 508px; font-family: var(--font-main); }
+.bungaloswrap_blockright_text { color: var(--white-color); font-size: var(--fontsize-unusual); max-width: 508px; font-family: var(--font-main); padding: 24px 28px; }
 .bungaloswrap_blockright_text-up { font-family: var(--font-secondary); font-size: 36px; text-transform: uppercase; }
 .bungaloswrap_blockright_bot_min { display: flex; gap: 8px; }
-.bungaloswrap_blockright_bot { margin-left: 0 px; color: var(--faded-color); font-size: var(--fontsize-small); font-family: var(--font-core); }
+.bungaloswrap_blockright_bot { margin-left: 0px; color: var(--faded-color); font-size: var(--fontsize-small); font-family: var(--font-core); padding: 18px 24px; display: flex; flex-direction: column; gap: 12px; }
 /* Слайдер */
 .bungalos__carousel { position: relative; display: flex; align-items: center; overflow: hidden; width: 100%; }
 .bungalos__carousel_view { overflow: hidden; width: 100%; }
@@ -261,6 +308,12 @@ onBeforeUnmount(() => {
     text-align: center;
   }
 
+  .bungalos__content {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
   .bungaloswrap_blockleft,
   .bungaloswrap_blockright {
     align-items: center;
@@ -278,12 +331,16 @@ onBeforeUnmount(() => {
 
   .bungaloswrap_blockright_text {
     max-width: 100%;
+    padding: 20px 22px;
   }
 
   .bungaloswrap_blockright_bot {
     margin-left: 0;
     display: flex;
     gap: 16px;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
 
   .bungalos__carousel-arrow {
@@ -301,6 +358,7 @@ onBeforeUnmount(() => {
 
   .bungaloswrap_blockright_text {
     font-size: var(--fontsize-primary);
+    padding: 16px 18px;
   }
 
   .bungaloswrap_blockleft_btn {
@@ -315,6 +373,10 @@ onBeforeUnmount(() => {
 
   .bungaloswrap_blockright_text-up {
     font-size: calc(var(--fontsize-unusual) * 1.2);
+  }
+
+  .bungalos__item-badge {
+    align-self: center;
   }
 }
 </style>

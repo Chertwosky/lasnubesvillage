@@ -12,7 +12,7 @@
         </SectionBadge>
         <div class="sky__wrap_block">
             <img :src="Logo" alt="Лого" class="sky__wrap_block_reel" draggable="false" />
-            <span class="sky__wrap_block_text">Там, где горы встречают облака</span>
+            <span class="sky__wrap_block_text text-overlay">Там, где горы встречают облака</span>
         </div>
     </div>
     </section>
@@ -70,6 +70,7 @@
   }
 
   .sky__wrap_block_text {
+    display: inline-block;
     font-family: var(--font-secondary);
     font-size: clamp(32px, 4.5vw, 60px);
     color: var(--white-color);
@@ -77,7 +78,8 @@
     text-transform: uppercase;
     max-width: 440px;
     letter-spacing: var(--letter-spacing-minus);
-  }
+    padding: 20px 28px;
+}
 
   @media (max-width: 1024px) {
     .sky {
@@ -103,6 +105,7 @@
     .sky__wrap_block_text {
       font-size: clamp(26px, 6vw, 42px);
       max-width: 320px;
+      padding: 16px 22px;
     }
   }
 
@@ -123,6 +126,7 @@
     .sky__wrap_block_text {
       font-size: clamp(22px, 7vw, 34px);
       letter-spacing: 0;
+      padding: 14px 18px;
     }
   }
 
