@@ -42,7 +42,7 @@ const scrollTo = (id: string) => {
 .amenities {
     margin: 50px auto 0 auto;
     max-width: var(--container-width);
-    padding: 0 20px;
+    padding: 0 var(--container-padding);
 }
 
 .amenities__badge {
@@ -100,12 +100,12 @@ const scrollTo = (id: string) => {
 @media (max-width: 768px) {
     .amenities__wrap {
         flex-direction: column;
-        align-items: center;
-        text-align: center;
+        align-items: stretch;
+        text-align: left;
     }
 
     .amenities__wrap_block {
-        align-items: center;
+        align-items: flex-start;
         padding: 20px 22px;
     }
 
@@ -116,7 +116,7 @@ const scrollTo = (id: string) => {
 
 @media (max-width: 540px) {
     .amenities {
-        padding: 0 16px;
+        padding: 0 var(--container-padding);
     }
 
     .amenities__wrap_block_name {

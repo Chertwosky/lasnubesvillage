@@ -72,7 +72,7 @@ img.chan__block__left_reel {
 .chan {
     margin: 50px auto 0 auto;
     max-width: var(--container-width);
-    padding: 40px 20px 0 20px;
+    padding: 40px var(--container-padding) 0 var(--container-padding);
 }
 
 .chan__badge {
@@ -149,35 +149,35 @@ img.chan__block__left_reel {
 
 @media (max-width: 992px) {
     .chan {
-        padding: 40px 16px 0 16px;
+        padding: 40px var(--container-padding) 0 var(--container-padding);
     }
 
     .chan__block {
         flex-direction: column;
-        text-align: center;
+        text-align: left;
     }
 
     .chan__block__left,
     .chan__block__right {
-        align-items: center;
+        align-items: flex-start;
     }
 
     .chan__block__left_btn {
-        align-self: center;
+        align-self: flex-start;
     }
 
     .chan__block__right_bot {
         margin-left: 0;
         display: flex;
         gap: 16px;
-        align-items: center;
-        text-align: center;
+        align-items: flex-start;
+        text-align: left;
     }
 }
 
 @media (max-width: 640px) {
     .chan {
-        padding: 32px 12px 0 12px;
+        padding: 32px var(--container-padding) 0 var(--container-padding);
     }
 
     .chan__block__left_btn {

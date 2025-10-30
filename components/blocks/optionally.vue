@@ -140,7 +140,7 @@
     margin: 50px auto 0 auto;
     max-width: var(--container-width);
     position: relative;
-    padding: 0 20px 60px;
+    padding: 0 var(--container-padding) 60px;
   }
 
   .optionally__badge {
@@ -150,7 +150,7 @@
   .optionally__wrap {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
   }
 
   .optionally__wrap_title {
@@ -269,16 +269,16 @@
 
   @media (max-width: 1024px) {
     .optionally {
-      padding: 0 16px;
+      padding: 0 var(--container-padding);
     }
 
     .optionally__wrap_btn {
-      align-self: center;
+      align-self: flex-start;
     }
 
     .optionally__wrap_title {
       font-size: 40px;
-      text-align: center;
+      text-align: left;
       padding: 18px 20px;
     }
 
@@ -289,7 +289,7 @@
 
   @media (max-width: 640px) {
     .optionally {
-      padding: 0 12px;
+      padding: 0 var(--container-padding);
     }
 
     .optionally__wrap_carousel_block-reel {
@@ -317,6 +317,7 @@
     .optionally__wrap_title {
       font-size: 32px;
       padding: 16px 18px;
+      text-align: left;
     }
   }
   </style>
