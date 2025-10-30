@@ -8,9 +8,9 @@
             Услуги
         </SectionBadge>
         <div class="amenities__wrap">
-            <div class="amenities__wrap_block">
-                <p class="amenities__wrap_block_title">Наши услуги</p>
+            <div class="amenities__wrap_block text-overlay">
                 <p class="amenities__wrap_block_sub">Чтобы разнообразить отдых</p>
+                <div class="amenities__wrap_block_names">
                 <p class="amenities__wrap_block_name" @click="scrollTo('bath')">
                     Баня
                 </p>
@@ -20,6 +20,7 @@
                 <p class="amenities__wrap_block_name" @click="scrollTo('pleasantly')">
                     Бесплатно
                 </p>
+                </div>
                 <p class="amenities__wrap_block_bot">LAS NUBES VILLAGE — посуточная аренда коттеджей</p>
             </div>
             <div class="amenities__wrap_img">
@@ -57,19 +58,18 @@ const scrollTo = (id: string) => {
 .amenities__wrap_block {
     display: flex;
     flex-direction: column;
-    min-height: 522px;
-}
-.amenities__wrap_block_title {
-    font-size: calc(var(--fontsize-large)*2);
-    color: var(--white-color);
-    font-family: var(--font-secondary);
-    letter-spacing: 0;
-    max-width: 361px;
-    margin: 0;
+    gap: 24px;
+    min-width: clamp(260px, 45vw, 420px);
 }
 
 .amenities__wrap_block_sub {
     font-family: var(--font-main);
+}
+
+.amenities__wrap_block_names {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
 .amenities__wrap_block_sub,
@@ -79,7 +79,7 @@ const scrollTo = (id: string) => {
 }
 .amenities__wrap_block_name {
     font-family: var(--font-secondary);
-    margin: 0 0 10px 0;
+    margin: 0;
     cursor: pointer;
     font-size: 36px;
 }
@@ -88,7 +88,7 @@ const scrollTo = (id: string) => {
     color: var(--white-color);
     font-size: var(--fontsize-medium);
     max-width: 500px;
-    margin: 120px 0 0 0;
+    margin: 16px 0 0 0;
 }
 
 .amenities__wrap_img {
@@ -104,10 +104,11 @@ const scrollTo = (id: string) => {
 
     .amenities__wrap_block {
         align-items: center;
+        width: 100%;
     }
 
     .amenities__wrap_block_bot {
-        margin: 40px 0 0 0;
+        margin: 32px 0 0 0;
     }
 }
 

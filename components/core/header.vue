@@ -9,6 +9,19 @@
             <NuxtLink :to="{ path: '/', hash: '#stocks' }" class="header__wrap_link" draggable="false">Акции</NuxtLink>
             <NuxtLink href="/about" class="header__wrap_link" draggable="false">О нас</NuxtLink>
         </nav>
+        <label class="header__nav_select" aria-label="Выбор раздела сайта">
+            <span class="header__nav_select-text">Меню</span>
+            <select v-model="selectedMenu" @change="handleMenuChange" class="header__nav_select-control">
+                <option disabled value="">Выберите раздел</option>
+                <option
+                    v-for="item in menuItems"
+                    :key="item.value"
+                    :value="item.value"
+                >
+                    {{ item.label }}
+                </option>
+            </select>
+        </label>
 
         <div class="header__feed">
             <a href="tel:+79224232070" class="header__feed_call" draggable="false">+7 (922) 423-20-70</a>
@@ -45,29 +58,51 @@
 </template>
 
 <script setup>
+import { ref, watch } from 'vue'
+import { useRoute, useRouter } from '#imports'
 import logo from '@/assets/images/core/header/logo.svg'
 import phoneIcon from '@/assets/images/core/header/phone.svg'
 import Telegram from '@/assets/images/core/header/Telegram.svg'
 import BookingButton from '@/components/blocks/BookingButton.vue'
 
-const openBooking = () => {
-  if (window.Bnovo_Widget) {
-    window.Bnovo_Widget.open('_bn_widget_', {
-      type: "vertical",
-      uid: "817121e0-85f0-452d-b0b2-265ca9a568c3",
-      lang: "ru",
-      width: "300",
-      background: "#ffffff",
-      border_radius: "16",
-      font_type: "Nunito sans",
-      btn_background: "#46BE78",
-      btn_background_over: "#2e9e5d",
-      btn_textcolor: "#FFFFFF",
-      btn_textover: "#FFFFFF"
-    })
-  } else {
-    console.warn("Bnovo_Widget еще не загружен")
+const menuItems = [
+  { label: 'Коттеджи', value: '/cottages' },
+  { label: 'Услуги', value: '/services' },
+  { label: 'Акции', value: '/#stocks' },
+  { label: 'О нас', value: '/about' },
+]
+
+const router = useRouter()
+const route = useRoute()
+
+const getInitialValue = (fullPath, hash) => {
+  if (hash === '#stocks') {
+    return '/#stocks'
   }
+
+  const match = menuItems.find(item => item.value !== '/#stocks' && fullPath.startsWith(item.value))
+  return match ? match.value : ''
+}
+
+const selectedMenu = ref(getInitialValue(route.fullPath, route.hash))
+
+watch(
+  () => [route.fullPath, route.hash],
+  ([fullPath, hash]) => {
+    selectedMenu.value = getInitialValue(fullPath, hash)
+  }
+)
+
+const handleMenuChange = (event) => {
+  const value = event?.target?.value || selectedMenu.value
+  if (!value) return
+
+  if (value === '/#stocks') {
+    router.push({ path: '/', hash: '#stocks' })
+    return
+  }
+
+  router.push(value)
 }
 </script>
 
@@ -91,6 +126,40 @@ const openBooking = () => {
 
 .header__nav {
     margin-right: auto;
+}
+
+.header__nav_select {
+    display: none;
+    flex-direction: column;
+    margin-right: auto;
+    font-family: var(--font-core);
+    color: var(--white-color);
+}
+
+.header__nav_select-text {
+    font-size: var(--fontsize-primary);
+    margin-bottom: 6px;
+}
+
+.header__nav_select-control {
+    appearance: none;
+    background: rgba(12, 25, 51, 0.78);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    color: var(--white-color);
+    padding: 10px 36px 10px 14px;
+    font-size: var(--fontsize-secondary);
+    font-family: inherit;
+    position: relative;
+    background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="10" viewBox="0 0 16 10" fill="none"><path d="M1 1.5L8 8.5L15 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-size: 16px;
+}
+
+.header__nav_select-control:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.35);
 }
 
 .header__feed_social {
@@ -190,31 +259,36 @@ font-family: var(--font-core);
 }
 
 @media (max-width:540px) {
-    .header__nav,
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .header__nav {
+        display: none;
+    }
+
+    .header__nav_select {
+        display: flex;
+        width: 100%;
+    }
+
     .header__feed {
         flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
     }
 
     .header__feed_social {
         flex-direction: row;
     }
 
-    .header__nav {
-        flex-wrap: wrap;
-        flex-direction: row;
-        max-width: 151px;
-        align-items: center;
-        align-self: center;
-        margin: 0 auto;
-    }
-
-    .header {
-        justify-content: space-around;
-    }
-
     .header__feed_button {
+        width: 100%;
+        justify-content: center;
         font-size: var(--fontsize-secondary);
-        padding: 8px 18px;
+        padding: 10px 20px;
     }
 }
 
