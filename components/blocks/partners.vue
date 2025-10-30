@@ -8,7 +8,7 @@
       Партнёры
     </SectionBadge>
     <div class="partners__wrap">
-      <h3 class="partners__wrap_title"> Партнеры </h3>
+      <h3 class="partners__wrap_title text-overlay"> Партнеры </h3>
 
       <!-- 👇 общий контейнер для слайдера и кнопки -->
       <div class="partners__wrap_carousel-container">
@@ -163,6 +163,7 @@ onUnmounted(() => {
   color: var(--white-color);
   font-family: var(--font-secondary);
   margin: 0 0 26px 0;
+  padding: 18px 24px;
 }
 
 /* 👇 новый контейнер */
@@ -283,6 +284,7 @@ onUnmounted(() => {
 
   .partners__wrap_title {
     text-align: center;
+    padding: 18px 20px;
   }
 
   .partners__wrap_carousel-container {
@@ -323,6 +325,11 @@ onUnmounted(() => {
 
   .partners__wrap_carousel-arrow {
     width: 36px;
+  }
+
+  .partners__wrap_title {
+    font-size: 32px;
+    padding: 16px 18px;
   }
 }
 </style>
