@@ -56,7 +56,7 @@
   .rebate {
     margin: 60px auto 0 auto;
     max-width: var(--container-width);
-    padding: 0 20px 80px;
+    padding: 0 var(--section-padding-inline) 80px;
     position: relative;
   }
 
@@ -66,7 +66,7 @@
 
   .rebate__intro {
     margin-bottom: 48px;
-    text-align: left;
+    text-align: center;
     padding: 24px 28px;
   }
 
@@ -133,7 +133,7 @@
 
   @media (max-width: 1024px) {
     .rebate {
-      padding: 0 16px 72px;
+      padding-bottom: 72px;
     }
 
     .rebate-card__badge {
@@ -152,7 +152,7 @@
 
   @media (max-width: 640px) {
     .rebate {
-      padding: 0 12px 60px;
+      padding-bottom: 60px;
     }
 
     .rebate-card__badge {

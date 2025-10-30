@@ -5,7 +5,7 @@
         <SectionBadge
           class="sky__badge"
           gradient="linear-gradient(90deg,#040213 0%, #0c1240 100%)"
-          align="left"
+          align="right"
           pad-right="48px"
         >
           Las Nubes Village
@@ -47,11 +47,12 @@
     max-width: var(--container-width);
     width: 100%;
     margin: 0 auto;
-    padding: 0 clamp(20px, 6vw, 80px);
+    padding-inline: var(--section-padding-inline);
     box-sizing: border-box;
     flex-direction: column;
     gap: 32px;
     padding-top: clamp(24px, 6vw, 64px);
+    padding-bottom: clamp(20px, 6vw, 48px);
   }
 
   .sky__badge {
@@ -62,7 +63,8 @@
     display: flex;
     flex-direction: column;
     gap: 24px;
-    align-items: flex-start;
+    align-items: center;
+    text-align: center;
   }
 
   .sky__wrap_block_reel {
@@ -70,7 +72,7 @@
   }
 
   .sky__wrap_block_text {
-    display: inline-block;
+    display: block;
     font-family: var(--font-secondary);
     font-size: clamp(32px, 4.5vw, 60px);
     color: var(--white-color);
@@ -79,6 +81,8 @@
     max-width: 440px;
     letter-spacing: var(--letter-spacing-minus);
     padding: 20px 28px;
+    margin: 0 auto;
+    text-align: center;
 }
 
   @media (max-width: 1024px) {
@@ -87,7 +91,6 @@
     }
 
     .sky__wrap {
-      padding-inline: clamp(20px, 8vw, 60px);
       gap: 24px;
     }
   }
@@ -115,7 +118,7 @@
     }
 
     .sky__wrap {
-      padding: 0 16px 28px;
+      padding: 0 var(--section-padding-inline) 28px;
       gap: 20px;
     }
 

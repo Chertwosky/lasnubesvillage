@@ -54,7 +54,7 @@
 .produce {
   margin: 50px auto 0 auto;
   max-width: var(--container-width);
-  padding: 0 20px;
+  padding-inline: var(--section-padding-inline);
   position: relative;
   z-index: 0; /* секция сама "нулевой слой" */
 }
@@ -154,8 +154,7 @@
     letter-spacing: 0;
     border: none;
     width: fit-content;
-    margin-left: 0;
-    margin-top: 16px;
+    margin: 16px auto 0;
     cursor: pointer;
 }
 
@@ -184,15 +183,11 @@
   }
 
   .produce__btn {
-    margin-left: 0;
+    margin: 16px auto 0;
   }
 }
 
 @media (max-width: 640px) {
-  .produce {
-    padding: 0 16px;
-  }
-
   .produce__wrap_left_reel,
   .produce__wrap_right_reel {
     width: 100%;

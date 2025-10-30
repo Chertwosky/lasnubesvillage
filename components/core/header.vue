@@ -105,7 +105,7 @@ onBeforeUnmount(() => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--padding-classic) 20px;
+  padding: var(--padding-classic) var(--section-padding-inline);
   max-width: var(--container-width);
   margin: 0 auto;
   position: relative;
