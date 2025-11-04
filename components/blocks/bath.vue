@@ -45,11 +45,13 @@
   </template>
 
   <script setup>
-  import Bath from '@/assets/images/core/bath/bath.svg'
-  import Man from '@/assets/images/core/bath/man.svg'
+  import { resolveImage } from '@/utils/resolveImage'
   import BookingButton from '@/components/blocks/BookingButton.vue'
   import Cloud from '@/components/blocks/Cloud.vue'
   import SectionBadge from '@/components/ui/SectionBadge.vue'
+
+  const Bath = resolveImage('core/bath/bath')
+  const Man = resolveImage('core/bath/man')
 
   const items = [
     {

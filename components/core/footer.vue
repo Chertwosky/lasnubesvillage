@@ -82,14 +82,16 @@
 </template>
 
 <script setup>
-import Logo from '@/assets/images/core/footer/logo.svg'
-import Vk from '@/assets/images/core/footer/Vk.svg'
-import Youtube from '@/assets/images/core/footer/Youtube.svg'
-import Rusgram from '@/assets/images/core/footer/Rusgram.svg'
-import Telegram from '@/assets/images/core/footer/Telegram.svg'
-import WhatsApp from '@/assets/images/core/footer/Whatsapp.svg'
-import FooterOrnament from '@/assets/images/core/footer/ornament.svg'
+import { resolveImage } from '@/utils/resolveImage'
 import Cloud from '@/components/blocks/Cloud.vue'
+
+const Logo = resolveImage('core/footer/logo')
+const Vk = resolveImage('core/footer/Vk')
+const Youtube = resolveImage('core/footer/Youtube')
+const Rusgram = resolveImage('core/footer/Rusgram')
+const Telegram = resolveImage('core/footer/Telegram')
+const WhatsApp = resolveImage('core/footer/Whatsapp')
+const FooterOrnament = resolveImage('core/footer/ornament')
 </script>
 
 <style scoped>
