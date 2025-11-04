@@ -29,8 +29,10 @@
     </section>
 </template>
 <script setup lang="ts">
-import House from '@/assets/images/core/amenities/house.svg'
+import { resolveImage } from '@/utils/resolveImage'
 import SectionBadge from '@/components/ui/SectionBadge.vue'
+
+const House = resolveImage('core/amenities/house')
 const scrollTo = (id: string) => {
   const el = document.getElementById(id)
   if (el) {

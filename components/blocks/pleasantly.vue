@@ -32,10 +32,12 @@
 </template>
 
 <script setup>
-import Games from '@/assets/images/core/pleasantly/games.svg'
+import { resolveImage } from '@/utils/resolveImage'
 import BookingButton from '@/components/blocks/BookingButton.vue'
 import Cloud from '@/components/blocks/Cloud.vue'
 import SectionBadge from '@/components/ui/SectionBadge.vue'
+
+const Games = resolveImage('core/pleasantly/games')
 </script>
 
 <style scoped>

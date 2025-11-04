@@ -71,10 +71,12 @@
 
 <script setup>
 import { onBeforeUnmount, onMounted, ref } from 'vue'
-import logo from '@/assets/images/core/header/logo.svg'
-import phoneIcon from '@/assets/images/core/header/phone.svg'
-import Telegram from '@/assets/images/core/header/Telegram.svg'
+import { resolveImage } from '@/utils/resolveImage'
 import BookingButton from '@/components/blocks/BookingButton.vue'
+
+const logo = resolveImage('core/header/logo')
+const phoneIcon = resolveImage('core/header/phone')
+const Telegram = resolveImage('core/header/Telegram')
 
 const menuItems = [
   { label: 'Коттеджи', to: '/cottages' },
