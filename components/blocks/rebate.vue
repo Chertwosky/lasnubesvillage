@@ -27,11 +27,13 @@
   </template>
 
   <script setup>
+  import { resolveImage } from '@/utils/resolveImage'
   import Cloud from '@/components/blocks/Cloud.vue'
-  import Burthday from '@/assets/images/core/rebate/burthday.svg'
-  import Feedback from '@/assets/images/core/rebate/feedback.svg'
-  import Bathhouse from '@/assets/images/core/rebate/bathhouse.svg'
   import SectionBadge from '@/components/ui/SectionBadge.vue'
+
+  const Burthday = resolveImage('core/rebate/burthday')
+  const Feedback = resolveImage('core/rebate/feedback')
+  const Bathhouse = resolveImage('core/rebate/bathhouse')
 
   const items = [
     {

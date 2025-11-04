@@ -9,8 +9,10 @@
   </template>
 
   <script setup>
-  import cloud from '@/assets/images/core/cloud/cloud.svg'
+  import { resolveImage } from '@/utils/resolveImage'
   import { computed } from 'vue'
+
+  const cloud = resolveImage('core/cloud/cloud')
 
   const props = defineProps({
     width: { type: String, default: '150px' },

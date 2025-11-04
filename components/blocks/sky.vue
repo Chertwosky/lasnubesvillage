@@ -18,9 +18,11 @@
   </template>
 
   <script setup>
-  import Sky from '@/assets/images/core/sky/sky.svg'
-  import Logo from '@/assets/images/core/sky/logo.svg'
+  import { resolveImage } from '@/utils/resolveImage'
   import SectionBadge from '@/components/ui/SectionBadge.vue'
+
+  const Sky = resolveImage('core/sky/sky')
+  const Logo = resolveImage('core/sky/logo')
   </script>
 
   <style scoped>

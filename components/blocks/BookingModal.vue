@@ -22,8 +22,10 @@
 
   <script setup>
   import { ref, onMounted, nextTick } from 'vue'
-  import logo from '@/assets/images/core/header/logo.svg'
+  import { resolveImage } from '@/utils/resolveImage'
   import Cloud from '@/components/blocks/Cloud.vue' // 👈 твой компонент облака
+
+  const logo = resolveImage('core/header/logo')
 
   const WIDGET_CONTAINER_ID = '_bn_widget_'
   const PRELOAD_CONTAINER_ID = '_bn_widget_preload'

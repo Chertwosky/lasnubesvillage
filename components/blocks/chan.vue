@@ -45,11 +45,13 @@
   </template>
 
   <script setup>
-  import chan from '@/assets/images/core/chan/chan.svg'
-  import Man from '@/assets/images/core/chan/man.svg'
+  import { resolveImage } from '@/utils/resolveImage'
   import BookingButton from '@/components/blocks/BookingButton.vue'
   import Cloud from '@/components/blocks/Cloud.vue'
   import SectionBadge from '@/components/ui/SectionBadge.vue'
+
+  const chan = resolveImage('core/chan/chan')
+  const Man = resolveImage('core/chan/man')
 
   const items = [
     {

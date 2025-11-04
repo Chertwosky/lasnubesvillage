@@ -97,11 +97,13 @@
 
 <script setup>
 import { reactive, ref, computed, onMounted, onBeforeUnmount } from 'vue'
-import Arrow from '@/assets/images/core/partners/arrow.svg'
-import Man from '@/assets/images/core/bungalos/man.svg'
+import { resolveImage } from '@/utils/resolveImage'
 import BookingButton from '@/components/blocks/BookingButton.vue'
 import Cloud from '@/components/blocks/Cloud.vue'
 import SectionBadge from '@/components/ui/SectionBadge.vue'
+
+const Arrow = resolveImage('core/partners/arrow')
+const Man = resolveImage('core/bungalos/man')
 /* Настройка */
 const photoHeight = ref(500)
 const visibleSlides = 1
@@ -113,9 +115,18 @@ const slideWidth = computed(() =>
 
 /* Автоподгрузка фото */
 const toArray = (obj) => Object.values(obj)
-const sunsetPhotos = import.meta.glob('@/assets/images/core/bungalos/sunset/*.{jpg,jpeg,png,svg}', { eager: true, import: 'default' })
-const ultramarinePhotos = import.meta.glob('@/assets/images/core/bungalos/ultramarine/*.{jpg,jpeg,png,svg}', { eager: true, import: 'default' })
-const emeraldPhotos = import.meta.glob('@/assets/images/core/bungalos/emerald/*.{jpg,jpeg,png,svg}', { eager: true, import: 'default' })
+const sunsetPhotos = import.meta.glob(
+  '@/assets/images/core/bungalos/sunset/*.{jpg,jpeg,png,svg,webp,avif,gif,bmp,ico}',
+  { eager: true, import: 'default' }
+)
+const ultramarinePhotos = import.meta.glob(
+  '@/assets/images/core/bungalos/ultramarine/*.{jpg,jpeg,png,svg,webp,avif,gif,bmp,ico}',
+  { eager: true, import: 'default' }
+)
+const emeraldPhotos = import.meta.glob(
+  '@/assets/images/core/bungalos/emerald/*.{jpg,jpeg,png,svg,webp,avif,gif,bmp,ico}',
+  { eager: true, import: 'default' }
+)
 
 const items = [
   {

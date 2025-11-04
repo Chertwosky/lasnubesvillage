@@ -24,8 +24,10 @@
   </template>
 
   <script setup>
-  import CloudSvg from '@/assets/images/core/error/cloud.svg'
+  import { resolveImage } from '@/utils/resolveImage'
   import Cloud from '@/components/blocks/Cloud.vue'
+
+  const CloudSvg = resolveImage('core/error/cloud')
   </script>
 
 

@@ -73,13 +73,15 @@
 
   <script setup>
   import { ref, computed, onMounted, onUnmounted } from 'vue'
-  import Arrow from '@/assets/images/core/optionally/arrow.svg'
-  import Grill from '@/assets/images/core/optionally/grill.svg'
-  import Curd from '@/assets/images/core/optionally/curd.svg'
-  import Vat from '@/assets/images/core/optionally/vat.svg'
+  import { resolveImage } from '@/utils/resolveImage'
   import BookingButton from '@/components/blocks/BookingButton.vue'
   import Cloud from '@/components/blocks/Cloud.vue'
   import SectionBadge from '@/components/ui/SectionBadge.vue'
+
+  const Arrow = resolveImage('core/optionally/arrow')
+  const Grill = resolveImage('core/optionally/grill')
+  const Curd = resolveImage('core/optionally/curd')
+  const Vat = resolveImage('core/optionally/vat')
 
   const items = [
     { img: Vat, title: 'Чаны', price: '5 000 ₽/1 использование' },
