@@ -42,11 +42,13 @@
 </template>
 
 <script setup>
-    import People from '@/assets/images/core/produce/people.svg'
-    import Comfort from '@/assets/images/core/produce/comfort.svg'
+    import { resolveImage } from '@/utils/resolveImage'
     import Cloud from '@/components/blocks/Cloud.vue'
     import BookingButton from '@/components/blocks/BookingButton.vue'
     import SectionBadge from '@/components/ui/SectionBadge.vue'
+
+    const People = resolveImage('core/produce/people')
+    const Comfort = resolveImage('core/produce/comfort')
 </script>
 
 <style scoped>
