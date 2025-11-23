@@ -88,7 +88,9 @@
     <!-- Лайтбокс -->
     <div v-if="lightbox.open" class="lightbox" @click.self="closeLightbox">
       <button class="lightbox__close" @click="closeLightbox">×</button>
-      <img :src="currentPhoto" alt="Фото" class="lightbox__img" />
+      <div class="lightbox__viewport">
+        <img :src="currentPhoto" alt="Фото" class="lightbox__img" />
+      </div>
       <button v-if="lightbox.index > 0" class="lightbox__arrow left" @click="prevLightbox">‹</button>
       <button v-if="lightbox.index < lightbox.photos.length - 1" class="lightbox__arrow right" @click="nextLightbox">›</button>
     </div>
@@ -303,7 +305,8 @@ onBeforeUnmount(() => {
 
 /* Лайтбокс */
 .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,.85); display: flex; align-items: center; justify-content: center; z-index: 9999; padding: 20px; }
-.lightbox__img { max-width: 100%; max-height: 100%; border-radius: 12px; }
+.lightbox__viewport { max-width: 100%; max-height: 100%; overflow: auto; display: flex; align-items: center; justify-content: center; -webkit-overflow-scrolling: touch; touch-action: pan-x pan-y pinch-zoom; overscroll-behavior: contain; }
+.lightbox__img { max-width: 100%; max-height: 100%; border-radius: 12px; object-fit: contain; }
 .lightbox__close { position: fixed; top: 14px; right: 18px; font-size: 40px; color: #fff; background: transparent; border: none; cursor: pointer; }
 .lightbox__arrow { position: fixed; top: 50%; transform: translateY(-50%); font-size: 60px; color: #fff; background: transparent; border: none; cursor: pointer; }
 .lightbox__arrow.left { left: 20px; }
@@ -387,6 +390,21 @@ onBeforeUnmount(() => {
 
   .bungalos__item-badge {
     align-self: flex-start;
+  }
+
+  .lightbox {
+    padding: 0;
+  }
+
+  .lightbox__viewport {
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .lightbox__img {
+    width: 100vw;
+    height: auto;
+    max-height: none;
   }
 }
 </style>
