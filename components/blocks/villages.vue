@@ -248,8 +248,11 @@
     }
 
     .villages__cta {
-      font-size: 20px;
-      padding: 10px 22px;
+      font-size: 24px;
+      padding: 12px 24px;
+      width: 100%;
+      box-sizing: border-box;
+      justify-content: center;
     }
   }
   </style>

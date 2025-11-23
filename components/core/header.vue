@@ -346,6 +346,13 @@ onBeforeUnmount(() => {
     flex-direction: row;
   }
 
+  .header__feed_button {
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 18px;
+    justify-content: center;
+  }
+
   .header__mobile-backdrop {
     position: fixed;
     inset: 0;

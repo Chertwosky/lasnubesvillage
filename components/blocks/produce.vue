@@ -205,8 +205,10 @@
   }
 
   .produce__btn {
-    font-size: 20px;
-    padding: 10px 24px;
+    font-size: 24px;
+    padding: 12px 24px;
+    width: 100%;
+    justify-content: center;
   }
 }
 

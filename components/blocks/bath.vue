@@ -186,8 +186,10 @@ img.bath__block__left_reel {
     }
 
     .bath__block__left_btn {
-        font-size: 22px;
-        padding: 10px 24px;
+        font-size: 24px;
+        padding: 12px 24px;
+        width: 100%;
+        justify-content: center;
     }
 
     .bath__block__right_text {

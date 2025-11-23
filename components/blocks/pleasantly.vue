@@ -140,10 +140,12 @@ const Games = resolveImage('core/pleasantly/games')
         padding: 18px 20px;
     }
 
-    .pleasantly__wrap_block_btn {
-        font-size: 22px;
-        padding: 10px 24px;
-    }
+  .pleasantly__wrap_block_btn {
+    font-size: 24px;
+    padding: 12px 24px;
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 
