@@ -270,8 +270,6 @@ onBeforeUnmount(() => {
 @media (max-width: 540px) {
   .header {
     padding: 10px var(--container-padding-mobile);
-    flex-wrap: wrap;
-    row-gap: 12px;
   }
 
   .header__menu-toggle {
