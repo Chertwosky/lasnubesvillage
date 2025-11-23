@@ -111,6 +111,7 @@ onBeforeUnmount(() => {
   width: 100%;
   max-width: var(--container-width);
   margin: 0 auto;
+  box-sizing: border-box;
   position: relative;
   z-index: 20;
 }
@@ -317,8 +318,28 @@ onBeforeUnmount(() => {
   }
 
   .header__feed {
-    flex-direction: column;
+    flex: 1 1 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
     gap: 12px;
+    justify-content: space-between;
+  }
+
+  .header__feed_call {
+    font-size: 14px;
+    line-height: 1.4;
+    word-break: break-word;
+  }
+
+  .header__feed_social {
+    order: 3;
+  }
+
+  .header__feed_button {
+    flex: 1 1 180px;
+    width: auto;
+    text-align: center;
   }
 
   .header__feed_social {
