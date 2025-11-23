@@ -108,10 +108,11 @@ const FooterOrnament = resolveImage('core/footer/ornament')
 }
 
 .footer__background {
+    --footer-padding-inline: clamp(24px, 6vw, 64px);
     position: relative;
     display: flex;
     flex-direction: column;
-    padding: clamp(32px, 5vw, 56px) clamp(24px, 6vw, 64px) clamp(96px, 12vw, 133px);
+    padding: clamp(32px, 5vw, 56px) var(--footer-padding-inline) clamp(96px, 12vw, 133px);
     background: rgba(8, 12, 28, 0.7);
     border-radius: 18px;
     backdrop-filter: blur(4px);
@@ -130,9 +131,9 @@ const FooterOrnament = resolveImage('core/footer/ornament')
 
 .footer__ornament {
     display: block;
-    width: 100%;
-    max-width: 100%;
-    margin-top: 48px;
+    width: calc(100% + 2 * var(--footer-padding-inline));
+    max-width: none;
+    margin: 48px calc(-1 * var(--footer-padding-inline)) 0;
 }
 
 .footer__wrap_column1_reel {
@@ -258,17 +259,18 @@ const FooterOrnament = resolveImage('core/footer/ornament')
 
 @media (max-width: 1280px) {
     .footer {
-        width: 100vw;
+        width: 100%;
     }
 }
 
 @media (max-width: 1024px) {
     .footer {
-        width: 99vw;
+        width: 100%;
     }
 
     .footer__background {
-        padding: 40px 32px 104px;
+        --footer-padding-inline: 32px;
+        padding: 40px var(--footer-padding-inline) 104px;
     }
 
     .cloud:first-of-type {
@@ -279,7 +281,8 @@ const FooterOrnament = resolveImage('core/footer/ornament')
 
 @media (max-width: 768px) {
     .footer__background {
-        padding: 32px 24px 96px;
+        --footer-padding-inline: 24px;
+        padding: 32px var(--footer-padding-inline) 96px;
     }
 
     .cloud:first-of-type {
@@ -295,7 +298,8 @@ const FooterOrnament = resolveImage('core/footer/ornament')
 
 @media (max-width: 540px) {
     .footer__background {
-        padding: 28px 20px 72px;
+        --footer-padding-inline: 20px;
+        padding: 28px var(--footer-padding-inline) 72px;
     }
 
     .footer__wrap {
@@ -313,7 +317,9 @@ const FooterOrnament = resolveImage('core/footer/ornament')
     /* Контейнер для 2-й и 3-й колонок */
     .footer__wrap_columns-2-3 {
         display: flex;
-        gap: 40px;
+        flex-direction: column;
+        align-items: center;
+        gap: 28px;
         justify-content: center;
         width: 100%;
         order: 2;
@@ -322,6 +328,18 @@ const FooterOrnament = resolveImage('core/footer/ornament')
     .footer__wrap_column2,
     .footer__wrap_column3 {
         min-width: 0;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer__wrap_column3_list {
+        align-items: center;
+    }
+
+    .footer__wrap_column2_ws,
+    .footer__wrap_column2_tg {
+        width: 100%;
+        max-width: 260px;
     }
 
     .cloud:first-of-type {
