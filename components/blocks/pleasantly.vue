@@ -143,6 +143,8 @@ const Games = resolveImage('core/pleasantly/games')
     .pleasantly__wrap_block_btn {
         font-size: 22px;
         padding: 10px 24px;
+        width: 100%;
+        text-align: center;
     }
 }
 

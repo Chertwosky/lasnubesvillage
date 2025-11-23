@@ -338,8 +338,9 @@ onBeforeUnmount(() => {
 
   .header__feed_button {
     flex: 1 1 180px;
-    width: auto;
+    width: 100%;
     text-align: center;
+    font-size: 18px;
   }
 
   .header__feed_social {

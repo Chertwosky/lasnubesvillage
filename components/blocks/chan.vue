@@ -185,6 +185,8 @@ img.chan__block__left_reel {
     .chan__block__left_btn {
         font-size: 22px;
         padding: 10px 24px;
+        width: 100%;
+        text-align: center;
     }
 
     .chan__block__right_text {

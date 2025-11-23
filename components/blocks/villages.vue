@@ -250,6 +250,9 @@
     .villages__cta {
       font-size: 20px;
       padding: 10px 22px;
+      width: 100%;
+      justify-content: center;
+      text-align: center;
     }
   }
   </style>
