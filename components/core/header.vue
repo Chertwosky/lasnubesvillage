@@ -213,13 +213,13 @@ onBeforeUnmount(() => {
 
 @media (max-width: 1280px) {
   .header {
-    width: 100vw;
+    width: 100%;
   }
 }
 
 @media (max-width: 1024px) {
   .header {
-    width: 99vw;
+    width: 100%;
   }
 }
 
