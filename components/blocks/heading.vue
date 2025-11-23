@@ -111,6 +111,12 @@ const scrollTo = (id: string) => {
     margin-top: 15px;
 }
 
+.heading__wrap_img_reel {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
 @media (max-width: 768px) {
     .heading__wrap {
         flex-direction: column;
@@ -129,6 +135,10 @@ const scrollTo = (id: string) => {
 
     .heading__wrap_block_bot {
         margin: 40px 0 0 0;
+    }
+
+    .heading__wrap_img {
+        width: 100%;
     }
 }
 
