@@ -88,7 +88,9 @@
     <!-- Лайтбокс -->
     <div v-if="lightbox.open" class="lightbox" @click.self="closeLightbox">
       <button class="lightbox__close" @click="closeLightbox">×</button>
-      <img :src="currentPhoto" alt="Фото" class="lightbox__img" />
+      <div class="lightbox__viewport">
+        <img :src="currentPhoto" alt="Фото" class="lightbox__img" />
+      </div>
       <button v-if="lightbox.index > 0" class="lightbox__arrow left" @click="prevLightbox">‹</button>
       <button v-if="lightbox.index < lightbox.photos.length - 1" class="lightbox__arrow right" @click="nextLightbox">›</button>
     </div>
@@ -302,8 +304,9 @@ onBeforeUnmount(() => {
 .bungalos__carousel-arrow.right { right: 0; }
 
 /* Лайтбокс */
-.lightbox { position: fixed; inset: 0; background: rgba(0,0,0,.85); display: flex; align-items: center; justify-content: center; z-index: 9999; padding: 20px; }
-.lightbox__img { max-width: 100%; max-height: 100%; border-radius: 12px; }
+.lightbox { position: fixed; inset: 0; background: rgba(0,0,0,.85); display: grid; place-items: center; z-index: 9999; box-sizing: border-box; --lightbox-gap: clamp(20px, 3vw, 30px); padding: var(--lightbox-gap); }
+.lightbox__viewport { width: min(1200px, calc(100vw - (var(--lightbox-gap) * 2))); max-width: calc(100vw - (var(--lightbox-gap) * 2)); height: min(90vh, calc(100vh - (var(--lightbox-gap) * 2))); max-height: calc(100vh - (var(--lightbox-gap) * 2)); overflow: auto; display: flex; align-items: center; justify-content: center; margin: 0 auto; -webkit-overflow-scrolling: touch; touch-action: pan-x pan-y pinch-zoom; overscroll-behavior: contain; box-sizing: border-box; }
+.lightbox__img { display: block; width: auto; height: auto; max-width: 100%; max-height: 100%; border-radius: 12px; object-fit: contain; margin: 0 auto; }
 .lightbox__close { position: fixed; top: 14px; right: 18px; font-size: 40px; color: #fff; background: transparent; border: none; cursor: pointer; }
 .lightbox__arrow { position: fixed; top: 50%; transform: translateY(-50%); font-size: 60px; color: #fff; background: transparent; border: none; cursor: pointer; }
 .lightbox__arrow.left { left: 20px; }
@@ -387,6 +390,23 @@ onBeforeUnmount(() => {
 
   .bungalos__item-badge {
     align-self: flex-start;
+  }
+
+  .lightbox {
+    --lightbox-gap: clamp(20px, 5vw, 28px);
+    padding: var(--lightbox-gap);
+  }
+
+  .lightbox__viewport {
+    width: calc(100vw - (var(--lightbox-gap) * 2));
+    height: calc(100vh - (var(--lightbox-gap) * 2));
+  }
+
+  .lightbox__img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
   }
 }
 </style>
