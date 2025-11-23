@@ -304,8 +304,8 @@ onBeforeUnmount(() => {
 .bungalos__carousel-arrow.right { right: 0; }
 
 /* Лайтбокс */
-.lightbox { position: fixed; inset: 0; background: rgba(0,0,0,.85); display: flex; align-items: center; justify-content: center; z-index: 9999; padding: clamp(20px, 3vw, 30px); box-sizing: border-box; }
-.lightbox__viewport { width: min(1200px, calc(100vw - 40px)); max-width: 100%; height: min(90vh, calc(100vh - 40px)); max-height: calc(100vh - 40px); overflow: auto; display: flex; align-items: center; justify-content: center; margin: auto; -webkit-overflow-scrolling: touch; touch-action: pan-x pan-y pinch-zoom; overscroll-behavior: contain; box-sizing: border-box; }
+.lightbox { position: fixed; inset: 0; background: rgba(0,0,0,.85); display: grid; place-items: center; z-index: 9999; padding: clamp(20px, 4vw, 30px); box-sizing: border-box; }
+.lightbox__viewport { width: min(1200px, 100%); max-width: calc(100vw - clamp(40px, 8vw, 60px)); height: auto; max-height: calc(100vh - clamp(40px, 8vw, 60px)); overflow: auto; display: flex; align-items: center; justify-content: center; margin: 0 auto; -webkit-overflow-scrolling: touch; touch-action: pan-x pan-y pinch-zoom; overscroll-behavior: contain; box-sizing: border-box; }
 .lightbox__img { display: block; width: 100%; max-width: 100%; height: auto; max-height: 100%; border-radius: 12px; object-fit: contain; margin: 0 auto; }
 .lightbox__close { position: fixed; top: 14px; right: 18px; font-size: 40px; color: #fff; background: transparent; border: none; cursor: pointer; }
 .lightbox__arrow { position: fixed; top: 50%; transform: translateY(-50%); font-size: 60px; color: #fff; background: transparent; border: none; cursor: pointer; }
@@ -398,7 +398,9 @@ onBeforeUnmount(() => {
 
   .lightbox__viewport {
     width: calc(100vw - 40px);
+    max-width: calc(100vw - 40px);
     height: calc(100vh - 40px);
+    max-height: calc(100vh - 40px);
   }
 
   .lightbox__img {
