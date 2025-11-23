@@ -187,6 +187,7 @@ body {
         margin: 0;
         background-color: var(--back-color);
         scroll-behavior: smooth;
+        overflow-x: hidden;
 }
 
 .section-badge {
