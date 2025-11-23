@@ -88,9 +88,23 @@
     <!-- Лайтбокс -->
     <div v-if="lightbox.open" class="lightbox" @click.self="closeLightbox">
       <button class="lightbox__close" @click="closeLightbox">×</button>
-      <img :src="currentPhoto" alt="Фото" class="lightbox__img" />
-      <button v-if="lightbox.index > 0" class="lightbox__arrow left" @click="prevLightbox">‹</button>
-      <button v-if="lightbox.index < lightbox.photos.length - 1" class="lightbox__arrow right" @click="nextLightbox">›</button>
+      <div class="lightbox__viewport">
+        <button
+          v-if="lightbox.index > 0"
+          class="lightbox__arrow left"
+          @click.stop="prevLightbox"
+        >
+          ‹
+        </button>
+        <img :src="currentPhoto" alt="Фото" class="lightbox__img" />
+        <button
+          v-if="lightbox.index < lightbox.photos.length - 1"
+          class="lightbox__arrow right"
+          @click.stop="nextLightbox"
+        >
+          ›
+        </button>
+      </div>
     </div>
   </section>
 </template>
@@ -302,12 +316,13 @@ onBeforeUnmount(() => {
 .bungalos__carousel-arrow.right { right: 0; }
 
 /* Лайтбокс */
-.lightbox { position: fixed; inset: 0; background: rgba(0,0,0,.85); display: flex; align-items: center; justify-content: center; z-index: 9999; padding: 20px; }
-.lightbox__img { max-width: 100%; max-height: 100%; border-radius: 12px; }
+.lightbox { position: fixed; inset: 0; background: rgba(0,0,0,.85); display: grid; place-items: center; z-index: 9999; padding: clamp(20px, 4vw, 30px); box-sizing: border-box; }
+.lightbox__viewport { width: min(1200px, calc(100vw - clamp(40px, 8vw, 60px))); max-width: calc(100vw - clamp(40px, 8vw, 60px)); height: min(90vh, calc(100vh - clamp(40px, 8vw, 60px))); max-height: calc(100vh - clamp(40px, 8vw, 60px)); overflow: auto; display: flex; align-items: center; justify-content: center; margin: 0 auto; -webkit-overflow-scrolling: touch; touch-action: pan-x pan-y pinch-zoom; overscroll-behavior: contain; box-sizing: border-box; position: relative; }
+.lightbox__img { display: block; width: 100%; max-width: 100%; height: auto; max-height: 100%; border-radius: 12px; object-fit: contain; margin: 0 auto; }
 .lightbox__close { position: fixed; top: 14px; right: 18px; font-size: 40px; color: #fff; background: transparent; border: none; cursor: pointer; }
-.lightbox__arrow { position: fixed; top: 50%; transform: translateY(-50%); font-size: 60px; color: #fff; background: transparent; border: none; cursor: pointer; }
-.lightbox__arrow.left { left: 20px; }
-.lightbox__arrow.right { right: 20px; }
+.lightbox__arrow { position: absolute; top: 50%; transform: translateY(-50%); font-size: 60px; color: #fff; background: linear-gradient(90deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 100%); border: none; cursor: pointer; padding: 12px 10px; display: flex; align-items: center; justify-content: center; line-height: 1; }
+.lightbox__arrow.left { left: 0; border-top-left-radius: 10px; border-bottom-left-radius: 10px; }
+.lightbox__arrow.right { right: 0; border-top-right-radius: 10px; border-bottom-right-radius: 10px; background: linear-gradient(270deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 100%); }
 
 @media (max-width: 992px) {
   .bungalos { padding: 0 var(--container-padding); }
@@ -387,6 +402,28 @@ onBeforeUnmount(() => {
 
   .bungalos__item-badge {
     align-self: flex-start;
+  }
+
+  .lightbox {
+    padding: 20px;
+  }
+
+  .lightbox__viewport {
+    width: calc(100vw - 40px);
+    max-width: calc(100vw - 40px);
+    height: calc(100vh - 40px);
+    max-height: calc(100vh - 40px);
+  }
+
+  .lightbox__img {
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+  }
+
+  .lightbox__arrow {
+    font-size: 42px;
+    padding: 10px 8px;
   }
 }
 </style>
