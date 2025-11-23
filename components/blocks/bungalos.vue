@@ -304,9 +304,9 @@ onBeforeUnmount(() => {
 .bungalos__carousel-arrow.right { right: 0; }
 
 /* Лайтбокс */
-.lightbox { position: fixed; inset: 0; background: rgba(0,0,0,.85); display: flex; align-items: center; justify-content: center; z-index: 9999; padding: 20px; }
-.lightbox__viewport { width: 100%; max-width: min(1200px, 100vw); max-height: 100%; overflow: auto; display: flex; align-items: center; justify-content: center; margin: 0 auto; -webkit-overflow-scrolling: touch; touch-action: pan-x pan-y pinch-zoom; overscroll-behavior: contain; }
-.lightbox__img { display: block; width: auto; max-width: 100%; max-height: 100%; border-radius: 12px; object-fit: contain; margin: 0 auto; }
+.lightbox { position: fixed; inset: 0; background: rgba(0,0,0,.85); display: flex; align-items: center; justify-content: center; z-index: 9999; padding: 24px; box-sizing: border-box; }
+.lightbox__viewport { width: min(1200px, calc(100vw - 48px)); max-width: 100%; height: min(90vh, calc(100vh - 48px)); max-height: calc(100vh - 48px); overflow: auto; display: flex; align-items: center; justify-content: center; margin: 0 auto; -webkit-overflow-scrolling: touch; touch-action: pan-x pan-y pinch-zoom; overscroll-behavior: contain; box-sizing: border-box; }
+.lightbox__img { display: block; width: 100%; height: auto; max-height: 100%; border-radius: 12px; object-fit: contain; margin: 0 auto; }
 .lightbox__close { position: fixed; top: 14px; right: 18px; font-size: 40px; color: #fff; background: transparent; border: none; cursor: pointer; }
 .lightbox__arrow { position: fixed; top: 50%; transform: translateY(-50%); font-size: 60px; color: #fff; background: transparent; border: none; cursor: pointer; }
 .lightbox__arrow.left { left: 20px; }
@@ -393,18 +393,18 @@ onBeforeUnmount(() => {
   }
 
   .lightbox {
-    padding: 0;
+    padding: 20px;
   }
 
   .lightbox__viewport {
-    width: 100%;
-    height: 100vh;
+    width: calc(100vw - 40px);
+    height: calc(100vh - 40px);
   }
 
   .lightbox__img {
     width: 100%;
     height: auto;
-    max-height: none;
+    max-height: 100%;
   }
 }
 </style>
