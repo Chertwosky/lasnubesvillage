@@ -207,6 +207,8 @@
   .produce__btn {
     font-size: 20px;
     padding: 10px 24px;
+    width: 100%;
+    text-align: center;
   }
 }
 
