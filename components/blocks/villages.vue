@@ -48,27 +48,38 @@
   import BookingButton from '@/components/blocks/BookingButton.vue'
   import Cloud from '@/components/blocks/Cloud.vue'
   import SectionBadge from '@/components/ui/SectionBadge.vue'
-  import SunsetCover from '@/assets/images/core/bungalos/sunset/f37cff56-8dc0-48b1-b924-805859b0349a.jpeg'
-  import UltramarineCover from '@/assets/images/core/bungalos/ultramarine/239e530e-6494-423c-be71-bc5f34b144f5.jpeg'
-  import EmeraldCover from '@/assets/images/core/bungalos/emerald/028865db-5e35-4f49-a589-c85b1a735da7.jpeg'
+
+  const galleryImages = import.meta.glob(
+    '@/assets/images/core/bungalos/**/*.{png,jpeg,jpg,webp}',
+    {
+      eager: true,
+      import: 'default',
+    },
+  )
+
+  const getFirstImage = (folderName) =>
+    Object.entries(galleryImages)
+      .filter(([path]) => path.includes(`/bungalos/${folderName}/`))
+      .sort(([pathA], [pathB]) => pathA.localeCompare(pathB))
+      .map(([, src]) => src)[0]
 
   const cards = [
     {
       title: 'SUNSET A-frame',
       hash: '#sunset',
-      img: SunsetCover,
+      img: getFirstImage('sunset'),
       features: ['Панорамные окна и звёздное небо', 'До 6 гостей', 'Уютная терраса с мангалом'],
     },
     {
       title: 'ULTRAMARINE A-frame',
       hash: '#ultramarine',
-      img: UltramarineCover,
+      img: getFirstImage('ultramarine'),
       features: ['Вид на горы', '2 спальни и гостиная', 'Собственная баня-бочка'],
     },
     {
       title: 'EMERALD A-frame',
       hash: '#emerald',
-      img: EmeraldCover,
+      img: getFirstImage('emerald'),
       features: ['Просторная терраса', 'До 6 гостей', 'Светлая кухня-гостиная'],
     },
   ]
