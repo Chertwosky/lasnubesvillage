@@ -59,7 +59,6 @@ const scrollTo = (id: string) => {
 .amenities__wrap_block {
     display: flex;
     flex-direction: column;
-    min-height: 522px;
     gap: 12px;
     padding: 24px 28px;
 }
@@ -99,6 +98,13 @@ const scrollTo = (id: string) => {
     margin-top: 15px;
 }
 
+.amenities__wrap_img_reel {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
 @media (max-width: 768px) {
     .amenities__wrap {
         flex-direction: column;
@@ -109,6 +115,7 @@ const scrollTo = (id: string) => {
     .amenities__wrap_block {
         align-items: flex-start;
         padding: 20px 22px;
+        min-height: auto;
     }
 
     .amenities__wrap_block_bot {
