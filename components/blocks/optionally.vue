@@ -115,10 +115,8 @@
     const width = Math.min(w * 0.9, 1160)
     containerWidth.value = Math.max(320, width)
 
-    if (w <= 768) {
+    if (w <= 1024) {
       visibleSlides.value = 1
-    } else if (w <= 1024) {
-      visibleSlides.value = 2
     } else {
       visibleSlides.value = 3
     }

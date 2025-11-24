@@ -97,6 +97,13 @@ const scrollTo = (id: string) => {
 
 .amenities__wrap_img {
     margin-top: 15px;
+    max-width: 540px;
+}
+
+.amenities__wrap_img_reel {
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
 @media (max-width: 768px) {
@@ -109,10 +116,16 @@ const scrollTo = (id: string) => {
     .amenities__wrap_block {
         align-items: flex-start;
         padding: 20px 22px;
+        min-height: auto;
     }
 
     .amenities__wrap_block_bot {
         margin: 40px 0 0 0;
+    }
+
+    .amenities__wrap_img {
+        width: 100%;
+        margin: 10px 0 0;
     }
 }
 
