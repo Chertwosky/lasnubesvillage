@@ -136,13 +136,13 @@ if (!bathImages.length) {
 }
 
 const photoHeight = ref(500)
-const visibleSlides = 1
+const visibleSlides = ref(1)
 const containerWidth = ref(508)
 const gap = 20
 const slideWidth = computed(
   () =>
-    containerWidth.value / visibleSlides -
-    (gap * (visibleSlides - 1)) / visibleSlides
+    containerWidth.value / visibleSlides.value -
+    (gap * (visibleSlides.value - 1)) / visibleSlides.value
 )
 
 const items = [
@@ -166,8 +166,12 @@ const innerStyle = (id) => {
   const offset = currentIndexes[id] * (slideWidth.value + gap)
   return { transform: 'translateX(-' + offset + 'px)', gap: gap + 'px' }
 }
+const clampIndex = (id, length) => {
+  const maxIndex = Math.max(0, length - visibleSlides.value)
+  currentIndexes[id] = Math.min(currentIndexes[id], maxIndex)
+}
 const nextSlide = (id, length) => {
-  if (currentIndexes[id] < length - visibleSlides) currentIndexes[id]++
+  if (currentIndexes[id] < length - visibleSlides.value) currentIndexes[id]++
 }
 const prevSlide = (id, length) => {
   if (currentIndexes[id] > 0) currentIndexes[id]--
@@ -198,6 +202,14 @@ const updateContainerWidth = () => {
   const base = Math.min(508, width * 0.9)
   containerWidth.value = Math.max(280, base)
 
+  if (width <= 768) {
+    visibleSlides.value = 1
+  } else if (width <= 1024) {
+    visibleSlides.value = 2
+  } else {
+    visibleSlides.value = 3
+  }
+
   if (width <= 480) {
     photoHeight.value = 300
   } else if (width <= 640) {
@@ -207,6 +219,8 @@ const updateContainerWidth = () => {
   } else {
     photoHeight.value = 500
   }
+
+  items.forEach((item) => clampIndex(item.id, item.photos.length))
 }
 
 const onKey = (e) => {
