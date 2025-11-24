@@ -63,7 +63,12 @@
           <p class="chan__block__right_bot-text">{{ item.location }}</p>
           <p class="chan__block__right_bot-text">{{ item.beds }}</p>
           <div class="chan__block__right_bot_min">
-            <img :src="Man" alt="Иконка гостей" class="chan__block__right_bot_min-reel" draggable="false" />
+            <img
+              :src="Man"
+              alt="Иконка гостей"
+              class="chan__block__right_bot_min-reel"
+              draggable="false"
+            />
             <p class="chan__block__right_bot_min-text">{{ item.guests }}</p>
           </div>
         </div>
@@ -81,8 +86,20 @@
         <div class="lightbox__viewport">
           <img :src="currentPhoto" alt="Фото" class="lightbox__img" />
         </div>
-        <button v-if="lightbox.index > 0" class="lightbox__arrow left" @click="prevLightbox">‹</button>
-        <button v-if="lightbox.index < lightbox.photos.length - 1" class="lightbox__arrow right" @click="nextLightbox">›</button>
+        <button
+          v-if="lightbox.index > 0"
+          class="lightbox__arrow left"
+          @click="prevLightbox"
+        >
+          ‹
+        </button>
+        <button
+          v-if="lightbox.index < lightbox.photos.length - 1"
+          class="lightbox__arrow right"
+          @click="nextLightbox"
+        >
+          ›
+        </button>
       </div>
     </div>
   </section>
@@ -95,16 +112,38 @@ import BookingButton from '@/components/blocks/BookingButton.vue'
 import Cloud from '@/components/blocks/Cloud.vue'
 import SectionBadge from '@/components/ui/SectionBadge.vue'
 
+// Стрелка и иконка гостя — обычные статичные картинки
 const Arrow = resolveImage('core/partners/arrow')
-const chan = resolveImage('core/chan/chan')
 const Man = resolveImage('core/chan/man')
+
+// 🔥 Автоматически подхватываем ВСЕ фотки из папки core/chan
+// Поддерживаем форматы: png, jpg, jpeg, webp
+const chanImages = Object.entries(
+  import.meta.glob('@/assets/images/core/chan/*.{png,jpg,jpeg,webp}', {
+    eager: true,
+  })
+)
+  // сортируем по пути (а значит по имени файла) — алфавит
+  .sort(([pathA], [pathB]) => pathA.localeCompare(pathB))
+  // достаём сам src (default-экспорт модуля)
+  .map(([, mod]) => (mod && mod.default) || mod)
+  // если нужно убрать man.png / man.jpg из галереи — фильтруем по имени
+  .filter((src) => src && !src.includes('man'))
+
+// ⚠️ На всякий случай: если картинок нет, чтобы не упасть
+if (!chanImages.length) {
+  console.warn('[Chan] В папке core/chan не найдено ни одной картинки для галереи')
+}
 
 const photoHeight = ref(500)
 const visibleSlides = 1
 const containerWidth = ref(508)
 const gap = 20
-const slideWidth = computed(() =>
-  containerWidth.value / visibleSlides - (gap * (visibleSlides - 1)) / visibleSlides
+
+const slideWidth = computed(
+  () =>
+    containerWidth.value / visibleSlides -
+    (gap * (visibleSlides - 1)) / visibleSlides
 )
 
 const items = [
@@ -116,25 +155,53 @@ const items = [
     location: 'Рядом с коттеджем',
     beds: '—',
     guests: 'до 6 мест',
-    photos: [chan],
+    photos: chanImages, // <-- сюда подставляется весь массив фоток из папки
   },
 ]
 
-const currentIndexes = reactive(Object.fromEntries(items.map(it => [it.id, 0])))
+// Текущий индекс слайда по id блока
+const currentIndexes = reactive(
+  Object.fromEntries(items.map((it) => [it.id, 0]))
+)
+
 const innerStyle = (id) => {
   const offset = currentIndexes[id] * (slideWidth.value + gap)
   return { transform: 'translateX(-' + offset + 'px)', gap: gap + 'px' }
 }
-const nextSlide = (id, length) => { if (currentIndexes[id] < length - visibleSlides) currentIndexes[id]++ }
-const prevSlide = (id, length) => { if (currentIndexes[id] > 0) currentIndexes[id]-- }
 
+const nextSlide = (id, length) => {
+  if (currentIndexes[id] < length - visibleSlides) currentIndexes[id]++
+}
+
+const prevSlide = (id, length) => {
+  if (currentIndexes[id] > 0) currentIndexes[id]--
+}
+
+// Лайтбокс
 const lightbox = reactive({ open: false, photos: [], index: 0 })
 const currentPhoto = computed(() => lightbox.photos[lightbox.index])
-const openLightbox = (photos, index) => { lightbox.open = true; lightbox.photos = photos; lightbox.index = index }
-const closeLightbox = () => { lightbox.open = false; lightbox.photos = []; lightbox.index = 0 }
-const nextLightbox = () => { if (lightbox.index < lightbox.photos.length - 1) lightbox.index++ }
-const prevLightbox = () => { if (lightbox.index > 0) lightbox.index-- }
 
+const openLightbox = (photos, index) => {
+  lightbox.open = true
+  lightbox.photos = photos
+  lightbox.index = index
+}
+
+const closeLightbox = () => {
+  lightbox.open = false
+  lightbox.photos = []
+  lightbox.index = 0
+}
+
+const nextLightbox = () => {
+  if (lightbox.index < lightbox.photos.length - 1) lightbox.index++
+}
+
+const prevLightbox = () => {
+  if (lightbox.index > 0) lightbox.index--
+}
+
+// Респонсив по ширине окна
 const updateContainerWidth = () => {
   if (typeof window === 'undefined') return
   const width = window.innerWidth
@@ -152,12 +219,16 @@ const updateContainerWidth = () => {
   }
 }
 
-const onKey = (e) => { if (e.key === 'Escape') closeLightbox() }
+const onKey = (e) => {
+  if (e.key === 'Escape') closeLightbox()
+}
+
 onMounted(() => {
   document.addEventListener('keydown', onKey)
   updateContainerWidth()
   window.addEventListener('resize', updateContainerWidth)
 })
+
 onBeforeUnmount(() => {
   document.removeEventListener('keydown', onKey)
   window.removeEventListener('resize', updateContainerWidth)

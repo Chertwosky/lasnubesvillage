@@ -88,12 +88,13 @@ const Arrow = resolveImage('core/partners/arrow')
 const Grill = resolveImage('core/partners/grill')
 const Curd = resolveImage('core/partners/curd')
 const Vat = resolveImage('core/partners/vat')
+const Flowers = resolveImage('core/partners/flowers')
 
 const items = [
-  { img: Vat, title: 'Чаны', price: '5 000 ₽/1 использование' },
-  { img: Curd, title: 'Аренда ватрушки', price: '400 ₽/2 часа' },
-  { img: Grill, title: 'Для мангала', price: '500 ₽/ч' },
-  { img: Grill, title: 'Для мангала XL', price: '700 ₽/ч' },
+  { img: Vat, title: 'Джиппинг', price: 'от 2 000 ₽/чел.' },
+  { img: Curd, title: 'Конные прогулки', price: 'от 1 500 ₽/чел.' },
+  { img: Grill, title: 'Рафтинг', price: 'от 1700 ₽/чел.' },
+  { img: Flowers, title: 'Цветы', price: 'от 3000 ₽' },
 ]
 
 const containerWidth = ref(1160)
