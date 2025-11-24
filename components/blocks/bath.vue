@@ -13,9 +13,15 @@
       class="bath__block"
       :id="item.id"
     >
-      <div class="bath__block__left" :style="{ width: containerWidth + 'px' }">
+      <div
+        class="bath__block__left"
+        :style="{ width: containerWidth + 'px', maxWidth: '100%' }"
+      >
         <h3 class="bath__block__left_title">{{ item.title }}</h3>
-        <div class="bath__carousel" :style="{ width: containerWidth + 'px' }">
+        <div
+          class="bath__carousel"
+          :style="{ width: containerWidth + 'px', maxWidth: '100%' }"
+        >
           <img
             v-if="currentIndexes[item.id] > 0"
             :src="Arrow"
@@ -136,13 +142,13 @@ if (!bathImages.length) {
 }
 
 const photoHeight = ref(500)
-const visibleSlides = 1
+const visibleSlides = ref(3)
 const containerWidth = ref(508)
 const gap = 20
 const slideWidth = computed(
   () =>
-    containerWidth.value / visibleSlides -
-    (gap * (visibleSlides - 1)) / visibleSlides
+    containerWidth.value / visibleSlides.value -
+    (gap * (visibleSlides.value - 1)) / visibleSlides.value
 )
 
 const items = [
@@ -167,7 +173,7 @@ const innerStyle = (id) => {
   return { transform: 'translateX(-' + offset + 'px)', gap: gap + 'px' }
 }
 const nextSlide = (id, length) => {
-  if (currentIndexes[id] < length - visibleSlides) currentIndexes[id]++
+  if (currentIndexes[id] < length - visibleSlides.value) currentIndexes[id]++
 }
 const prevSlide = (id, length) => {
   if (currentIndexes[id] > 0) currentIndexes[id]--
@@ -195,18 +201,29 @@ const prevLightbox = () => {
 const updateContainerWidth = () => {
   if (typeof window === 'undefined') return
   const width = window.innerWidth
-  const base = Math.min(508, width * 0.9)
+  const base = Math.min(1160, width * 0.9)
   containerWidth.value = Math.max(280, base)
 
   if (width <= 480) {
     photoHeight.value = 300
+    visibleSlides.value = 1
   } else if (width <= 640) {
     photoHeight.value = 340
-  } else if (width <= 768) {
+    visibleSlides.value = 1
+  } else if (width <= 1024) {
     photoHeight.value = 420
+    visibleSlides.value = 2
   } else {
     photoHeight.value = 500
+    visibleSlides.value = 3
   }
+
+  items.forEach((item) => {
+    const maxIndex = Math.max(0, item.photos.length - visibleSlides.value)
+    if (currentIndexes[item.id] > maxIndex) {
+      currentIndexes[item.id] = maxIndex
+    }
+  })
 }
 
 const onKey = (e) => {
@@ -239,6 +256,8 @@ onBeforeUnmount(() => {
     align-items: center;
     position: relative;
     margin: 0 0 50px 0;
+    width: 100%;
+    box-sizing: border-box;
     gap: 40px;
 }
 .bath__block__left,
