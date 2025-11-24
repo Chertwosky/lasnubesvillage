@@ -92,8 +92,8 @@
       ]
 
   // ширина контейнера и количество видимых карточек
-  const containerWidth = ref(1160)
-  const visibleSlides = ref(3)
+  const containerWidth = ref(320)
+  const visibleSlides = ref(1)
   const gap = 20
   const slideWidth = computed(() =>
     (containerWidth.value - (visibleSlides.value - 1) * gap) / visibleSlides.value
