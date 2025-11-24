@@ -11,15 +11,18 @@
             <div class="amenities__wrap_block text-overlay">
                 <p class="amenities__wrap_block_title">Наши услуги</p>
                 <p class="amenities__wrap_block_sub">Чтобы разнообразить отдых</p>
-
+                
+                <p class="amenities__wrap_block_name" @click="scrollTo('chan')">
+                    Чаны
+                </p>
                 <p class="amenities__wrap_block_name" @click="scrollTo('bath')">
                     Баня
                 </p>
+                <p class="amenities__wrap_block_name" @click="scrollTo('partners')">
+                    Партнеры
+                </p>
                 <p class="amenities__wrap_block_name" @click="scrollTo('optionally')">
                     Дополнительно
-                </p>
-                <p class="amenities__wrap_block_name" @click="scrollTo('pleasantly')">
-                    Бесплатно
                 </p>
 
                 <p class="amenities__wrap_block_bot">
@@ -66,7 +69,7 @@ const scrollTo = (id: string) => {
 
 .amenities__wrap {
     display: flex;
-    justify-content: space-between;
+    
     width: 100%;
     gap: 40px;
 }
@@ -113,9 +116,11 @@ const scrollTo = (id: string) => {
     margin: 40px 0 0 0;
 }
 
-/* Картинка на ПК — стандартно */
+/* Картинка на ПК — в рамках */
 .amenities__wrap_img {
-    margin-top: 15px;
+    margin-left: 110px;
+    max-width: 570px;   /* рамка по ширине */
+    width: 100%;
 }
 
 .amenities__wrap_img_reel {
@@ -126,9 +131,14 @@ const scrollTo = (id: string) => {
     border-radius: 16px;
 }
 
-/* ================================
-   📱 Мобильная версия (<768px)
-   ================================ */
+/* 🔹 Планшеты и чуть уже десктопы */
+@media (max-width: 1024px) {
+    .amenities__wrap_img {
+        max-width: 520px;
+    }
+}
+
+/* 📱 Мобильная версия (<768px) */
 @media (max-width: 768px) {
     .amenities__wrap {
         flex-direction: column;
@@ -145,10 +155,10 @@ const scrollTo = (id: string) => {
         margin: 40px 0 0 0;
     }
 
-    /* Картинка: всегда влезает в экран — с отступом 20px */
     .amenities__wrap_img {
-        width: calc(100% - 40px); /* 20px слева + 20px справа */
-        margin: 20px auto 0 auto; /* центрирование */
+        max-width: 100%;
+        width: calc(100% - 40px); /* отступы по 20px */
+        margin: 20px auto 0 auto;
     }
 
     .amenities__wrap_img_reel {
@@ -156,11 +166,10 @@ const scrollTo = (id: string) => {
         max-width: 100%;
         height: auto;
         object-fit: cover;
-        border-radius: 16px;
     }
 }
 
-/* доп. тюнинг очень маленьких экранов */
+/* Очень маленькие экраны */
 @media (max-width: 540px) {
     .amenities {
         padding: 0 var(--container-padding);

@@ -231,6 +231,7 @@ onBeforeUnmount(() => {
 
 .bath__badge {
     margin-bottom: 36px;
+    --badge-min-w: 380px;
 }
 .bath__block {
     display: flex;

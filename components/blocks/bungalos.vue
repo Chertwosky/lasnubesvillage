@@ -135,9 +135,8 @@ const emeraldPhotos = import.meta.glob(
 const items = [
   {
     id: 'sunset',
-    badge: 'SUNSET A-frame',
-    badgeGradient: 'linear-gradient(90deg,#1d254d 0%, #0b0d26 100%)',
-    title: 'A-frame SUNSET',
+    badge: 'А-Фрейм Сансет',
+    badgeGradient: 'linear-gradient(90deg,#1d254d 0%, #fb9062 10%, #fb9062 100%)',
     upTitle: '"Las nubes village"',
     text: ' — турбаза, расположенная в Адыгее...',
     location: 'Каменомостский',
@@ -147,9 +146,8 @@ const items = [
   },
   {
     id: 'ultramarine',
-    badge: 'ULTRAMARINE A-frame',
+    badge: 'ULTRAMARINE',
     badgeGradient: 'linear-gradient(90deg,#0e2c5c 0%, #060a18 100%)',
-    title: 'A-frame ULTRAMARINE',
     upTitle: '"Las nubes village"',
     text: ' — турбаза, расположенная в Адыгее...',
     location: 'Каменомостский',
@@ -159,9 +157,8 @@ const items = [
   },
   {
     id: 'emerald',
-    badge: 'EMERALD A-frame',
+    badge: 'EMERALD',
     badgeGradient: 'linear-gradient(90deg,#114633 0%, #07140f 100%)',
-    title: 'A-frame EMERALD',
     upTitle: '"Las nubes village"',
     text: ' — турбаза, расположенная в Адыгее...',
     location: 'Каменомостский',
@@ -240,6 +237,7 @@ onBeforeUnmount(() => {
 
 .bungalos__item-badge {
   align-self: flex-start;
+  --badge-min-w: 1040px;
 }
 
 .bungalos__content {

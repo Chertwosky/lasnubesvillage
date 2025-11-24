@@ -10,7 +10,6 @@
           Las Nubes Village
         </SectionBadge>
         <div class="sky__wrap_block">
-            <img :src="Logo" alt="Лого" class="sky__wrap_block_reel" draggable="false" />
             <span class="sky__wrap_block_text text-overlay">Там, где горы встречают облака</span>
         </div>
     </div>
@@ -29,7 +28,7 @@
 
   .sky {
     position: relative;
-    margin: 36px 0 0 0;
+    margin: 0px 0 0 0;
   }
 
   .sky__reel {
@@ -52,7 +51,7 @@
     box-sizing: border-box;
     flex-direction: column;
     gap: 32px;
-    padding-top: clamp(24px, 6vw, 64px);
+    padding-top: clamp(380px, 12vw, 160px);
   }
 
   .sky__badge {
@@ -128,8 +127,9 @@
       font-size: clamp(22px, 7vw, 34px);
       letter-spacing: 0;
       padding: 14px 18px;
+       margin-top: 40px; /* можешь менять под нужную высоту */
     }
-  }
+      }
 
 
   </style>

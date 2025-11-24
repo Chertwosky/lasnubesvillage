@@ -36,8 +36,8 @@
         Забронировать
       </BookingButton>
 
-      <Cloud width="156px" top="-70px" left="6%" />
-      <Cloud width="118px" top="-40px" right="12%" />
+      <Cloud width="156px" top="80px" left="36%" />
+      <Cloud width="118px" top="170px" right="12%" />
       <Cloud width="218px" bottom="32%" left="-4%" />
       <Cloud width="118px" bottom="-10%" left="20%" />
       <Cloud width="161px" bottom="-12%" right="-8%" flipped />
@@ -87,7 +87,7 @@
 
   <style scoped>
   .villages {
-    margin: 60px auto 0 auto;
+    margin: 0px auto 0 auto;
     max-width: var(--container-width);
     padding: 0 var(--container-padding) 80px;
     position: relative;
@@ -95,6 +95,7 @@
 
   .villages__badge {
     margin-bottom: 40px;
+    --badge-min-w: 240px;
   }
 
   .villages__intro {

@@ -1,5 +1,5 @@
 <template>
-  <section class="partners" id="Partners">
+  <section class="partners" id="partners">
     <SectionBadge
       class="partners__badge"
       gradient="linear-gradient(90deg,#2a315b 0%, #0d1330 100%)"
@@ -151,6 +151,7 @@ onUnmounted(() => {
 
 .partners__badge {
   margin-bottom: 32px;
+  --badge-min-w: 245px;
 }
 
 .partners__wrap {

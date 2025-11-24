@@ -31,7 +31,7 @@
   import Cloud from '@/components/blocks/Cloud.vue'
   import SectionBadge from '@/components/ui/SectionBadge.vue'
 
-  const Burthday = resolveImage('core/rebate/burthday')
+  const Burthday = resolveImage('core/rebate/hold')
   const Feedback = resolveImage('core/rebate/feedback')
   const Bathhouse = resolveImage('core/rebate/bathhouse')
 
@@ -64,6 +64,7 @@
 
   .rebate__badge {
     margin-bottom: 36px;
+    --badge-min-w: 240px;
   }
 
   .rebate__intro {

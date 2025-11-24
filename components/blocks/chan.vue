@@ -243,6 +243,7 @@ onBeforeUnmount(() => {
 
 .chan__badge {
     margin-bottom: 36px;
+    --badge-min-w: 380px;
 }
 .chan__block {
     display: flex;

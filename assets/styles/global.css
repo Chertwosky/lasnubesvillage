@@ -192,7 +192,7 @@ body {
 
 .section-badge {
     --badge-radius-large: clamp(48px, 15vw, 90px);
-    --badge-radius-small: clamp(16px, 6vw, 24px);
+    --badge-radius-small: clamp(20px, 12vw, 32px);
     background: var(--badge-bg, #111);
     color: #fff;
     display: inline-flex;
