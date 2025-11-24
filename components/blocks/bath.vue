@@ -15,7 +15,11 @@
     >
       <div class="bath__block__left" :style="{ width: containerWidth + 'px' }">
         <h3 class="bath__block__left_title">{{ item.title }}</h3>
-        <div class="bath__carousel" :style="{ width: containerWidth + 'px' }">
+        <div
+          ref="carouselRef"
+          class="bath__carousel"
+          :style="{ width: containerWidth + 'px' }"
+        >
           <img
             v-if="currentIndexes[item.id] > 0"
             :src="Arrow"
@@ -139,6 +143,7 @@ const photoHeight = ref(500)
 const visibleSlides = 1
 const containerWidth = ref(508)
 const gap = 20
+const carouselRef = ref(null)
 const slideWidth = computed(
   () =>
     containerWidth.value / visibleSlides -
@@ -195,8 +200,9 @@ const prevLightbox = () => {
 const updateContainerWidth = () => {
   if (typeof window === 'undefined') return
   const width = window.innerWidth
-  const base = Math.min(508, width * 0.9)
-  containerWidth.value = Math.max(280, base)
+  const measuredWidth = carouselRef.value?.clientWidth || width - 32
+  const safeWidth = Math.min(measuredWidth, 1160)
+  containerWidth.value = Math.max(280, safeWidth)
 
   if (width <= 480) {
     photoHeight.value = 300
