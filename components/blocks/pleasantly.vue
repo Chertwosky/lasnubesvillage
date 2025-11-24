@@ -101,6 +101,20 @@ const Games = resolveImage('core/pleasantly/games')
     cursor: pointer;
 }
 
+.pleasantly__wrap_img {
+    width: 100%;
+    max-width: 520px;
+}
+
+.pleasantly__wrap_img-reel {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    object-fit: cover;
+    border-radius: var(--border-radius-container);
+}
+
 @media (max-width: 900px) {
     .pleasantly {
         padding: 60px var(--container-padding);

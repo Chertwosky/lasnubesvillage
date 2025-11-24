@@ -69,6 +69,7 @@ const scrollTo = (id: string) => {
     justify-content: space-between;
     width: 100%;
     gap: 40px;
+    align-items: center;
 }
 
 .amenities__wrap_block {
@@ -116,6 +117,16 @@ const scrollTo = (id: string) => {
 /* Картинка на ПК — стандартно */
 .amenities__wrap_img {
     margin-top: 15px;
+    width: 100%;
+    max-width: 480px;
+}
+.amenities__wrap_img_reel {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    object-fit: cover;
+    border-radius: var(--border-radius-container);
 }
 
 .amenities__wrap_img_reel {
@@ -134,6 +145,10 @@ const scrollTo = (id: string) => {
         flex-direction: column;
         align-items: stretch;
         text-align: left;
+    }
+
+    .amenities__wrap_img {
+        max-width: 100%;
     }
 
     .amenities__wrap_block {
