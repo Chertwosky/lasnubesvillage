@@ -1,5 +1,9 @@
 <template>
-  <section class="bath" :style="{ '--bath-photo-h': photoHeight + 'px' }">
+  <section
+    ref="bathSection"
+    class="bath"
+    :style="{ '--bath-photo-h': photoHeight + 'px' }"
+  >
     <SectionBadge
       class="bath__badge"
       gradient="linear-gradient(90deg,#2f1e16 0%, #120805 100%)"
@@ -135,6 +139,7 @@ if (!bathImages.length) {
   console.warn('[Bath] В папке core/bath не найдено ни одной картинки для галереи')
 }
 
+const bathSection = ref(null)
 const photoHeight = ref(500)
 const visibleSlides = 1
 const containerWidth = ref(508)
@@ -195,7 +200,13 @@ const prevLightbox = () => {
 const updateContainerWidth = () => {
   if (typeof window === 'undefined') return
   const width = window.innerWidth
-  const base = Math.min(508, width * 0.9)
+  const measuredWidth = bathSection.value?.getBoundingClientRect().width
+  const paddingX = bathSection.value
+    ? parseFloat(getComputedStyle(bathSection.value).paddingLeft || '0') +
+      parseFloat(getComputedStyle(bathSection.value).paddingRight || '0')
+    : 0
+  const availableWidth = measuredWidth ? measuredWidth - paddingX : width
+  const base = Math.min(508, availableWidth)
   containerWidth.value = Math.max(280, base)
 
   if (width <= 480) {
