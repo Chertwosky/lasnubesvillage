@@ -118,15 +118,9 @@ const updateSlides = () => {
   if (typeof window === 'undefined') return
   const w = window.innerWidth
   const width = Math.min(w * 0.9, 1160)
-  containerWidth.value = Math.max(320, width)
+  containerWidth.value = Math.max(280, width)
 
-  if (w <= 768) {
-    visibleSlides.value = 1
-  } else if (w <= 1024) {
-    visibleSlides.value = 2
-  } else {
-    visibleSlides.value = 3
-  }
+  visibleSlides.value = w <= 1024 ? 1 : 3
 
   if (currentIndex.value > maxIndex.value) {
     currentIndex.value = maxIndex.value
