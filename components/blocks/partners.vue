@@ -120,7 +120,7 @@ const updateSlides = () => {
   const width = Math.min(w * 0.9, 1160)
   containerWidth.value = Math.max(280, width)
 
-  visibleSlides.value = w <= 768 ? 1 : 3
+  visibleSlides.value = w <= 1024 ? 1 : 3
 
   if (currentIndex.value > maxIndex.value) {
     currentIndex.value = maxIndex.value
