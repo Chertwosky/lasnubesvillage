@@ -8,8 +8,6 @@
       Партнёры
     </SectionBadge>
     <div class="partners__wrap">
-      <h3 class="partners__wrap_title text-overlay"> Партнеры </h3>
-
       <!-- 👇 общий контейнер для слайдера и кнопки -->
       <div class="partners__wrap_carousel-container">
         <div class="partners__wrap_carousel" :style="{ width: containerWidth + 'px' }">

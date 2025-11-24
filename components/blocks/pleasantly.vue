@@ -11,12 +11,10 @@
             <div class="pleasantly__wrap_block text-overlay">
                 <h3 class="pleasantly__wrap_block_title">Бесплатные услуги</h3>
                 <ul class="pleasantly__wrap_block_list">
-                    <li>— Настольные игры от Gaga Games и КвизПлиз</li>
-                    <li>— Зубные наборы, гели для душа, шампуни, тапочки</li>
+                    <li>— Шампуни, тапочки</li>
+                    <li>— Зубные наборы, гели для душа </li>
                     <li>— Приветсвенный чай и кофе</li>
-                    <li>— Березовый банный веник при бронировании бани</li>
-                    <li>— Детские раскраски</li>
-                </ul>
+                     </ul>
                 <BookingButton customClass="pleasantly__wrap_block_btn">
                     Забронировать
                 </BookingButton>
