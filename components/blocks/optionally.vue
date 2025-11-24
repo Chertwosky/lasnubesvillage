@@ -2,14 +2,12 @@
     <section class="optionally" id="optionally">
       <SectionBadge
         class="optionally__badge"
-        gradient="linear-gradient(90deg,#19364f 0%, #061222 100%)"
+        gradient="linear-gradient(90deg, #061222 0%, #061222 100%)"
         align="right"
       >
-        Дополнительно
+        Удобства
       </SectionBadge>
       <div class="optionally__wrap">
-      <h3 class="optionally__wrap_title text-overlay">Дополнительные услуги</h3>
-
         <div class="optionally__wrap_carousel" :style="{ width: containerWidth + 'px' }">
           <!-- Стрелка влево -->
           <img
