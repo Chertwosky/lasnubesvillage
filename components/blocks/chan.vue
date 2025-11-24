@@ -1,5 +1,9 @@
 <template>
-  <section class="chan" :style="{ '--chan-photo-h': photoHeight + 'px' }">
+  <section
+    ref="chanSection"
+    class="chan"
+    :style="{ '--chan-photo-h': photoHeight + 'px' }"
+  >
     <SectionBadge
       class="chan__badge"
       gradient="linear-gradient(90deg,#2a1731 0%, #0d0716 100%)"
@@ -135,6 +139,7 @@ if (!chanImages.length) {
   console.warn('[Chan] В папке core/chan не найдено ни одной картинки для галереи')
 }
 
+const chanSection = ref(null)
 const photoHeight = ref(500)
 const visibleSlides = 1
 const containerWidth = ref(508)
@@ -205,7 +210,13 @@ const prevLightbox = () => {
 const updateContainerWidth = () => {
   if (typeof window === 'undefined') return
   const width = window.innerWidth
-  const base = Math.min(508, width * 0.9)
+  const measuredWidth = chanSection.value?.getBoundingClientRect().width
+  const paddingX = chanSection.value
+    ? parseFloat(getComputedStyle(chanSection.value).paddingLeft || '0') +
+      parseFloat(getComputedStyle(chanSection.value).paddingRight || '0')
+    : 0
+  const availableWidth = measuredWidth ? measuredWidth - paddingX : width
+  const base = Math.min(508, availableWidth)
   containerWidth.value = Math.max(280, base)
 
   if (width <= 480) {
