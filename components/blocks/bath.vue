@@ -192,10 +192,17 @@ const prevLightbox = () => {
   if (lightbox.index > 0) lightbox.index--
 }
 
+const getHorizontalPadding = () => {
+  if (typeof window === 'undefined') return 0
+  const rootStyles = getComputedStyle(document.documentElement)
+  const padding = parseFloat(rootStyles.getPropertyValue('--container-padding')) || 0
+  return padding * 2
+}
+
 const updateContainerWidth = () => {
   if (typeof window === 'undefined') return
-  const width = window.innerWidth
-  const base = Math.min(508, width * 0.9)
+  const width = Math.max(280, window.innerWidth - getHorizontalPadding())
+  const base = Math.min(508, width)
   containerWidth.value = Math.max(280, base)
 
   if (width <= 480) {
@@ -248,6 +255,7 @@ onBeforeUnmount(() => {
 }
 .bath__block__left {
     align-items: flex-end;
+    max-width: 100%;
 }
 .bath__block__left_btn {
     background-color: var(--green-color);
@@ -305,7 +313,7 @@ onBeforeUnmount(() => {
     margin-bottom: 24px;
 }
 
-.bath__carousel { position: relative; display: flex; align-items: center; overflow: hidden; width: 100%; }
+.bath__carousel { position: relative; display: flex; align-items: center; overflow: hidden; width: 100%; max-width: 100%; }
 .bath__carousel_view { overflow: hidden; width: 100%; }
 .bath__carousel_inner { display: flex; transition: transform 0.5s ease; }
 .bath__carousel_slide { flex-shrink: 0; border-radius: 16px; overflow: hidden; }

@@ -109,10 +109,18 @@
     if (currentIndex.value > 0) currentIndex.value--
   }
 
+  const getHorizontalPadding = () => {
+    if (typeof window === 'undefined') return 0
+    const padding = parseFloat(
+      getComputedStyle(document.documentElement).getPropertyValue('--container-padding')
+    ) || 0
+    return padding * 2
+  }
+
   const updateSlides = () => {
     if (typeof window === 'undefined') return
     const w = window.innerWidth
-    const width = Math.min(w * 0.9, 1160)
+    const width = Math.min(w * 0.9, 1160, w - getHorizontalPadding())
     containerWidth.value = Math.max(320, width)
 
     if (w <= 768) {
@@ -170,6 +178,7 @@
     position: relative;
     width: 100%;
     max-width: 1160px;
+    max-width: 100%;
     overflow: hidden;
   }
 
