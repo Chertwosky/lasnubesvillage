@@ -10,7 +10,7 @@
       <div class="optionally__wrap">
       <h3 class="optionally__wrap_title text-overlay">Дополнительные услуги</h3>
 
-        <div class="optionally__wrap_carousel" :style="{ width: containerWidth + 'px' }">
+        <div class="optionally__wrap_carousel" ref="carouselRef">
           <!-- Стрелка влево -->
           <img
             v-if="currentIndex > 0"
@@ -92,7 +92,7 @@
       ]
 
 // ширина контейнера и количество видимых карточек
-const containerWidth = ref(1160)
+const containerWidth = ref(320)
 const visibleSlides = ref(1)
   const gap = 20
   const slideWidth = computed(() =>
@@ -109,13 +109,16 @@ const visibleSlides = ref(1)
     if (currentIndex.value > 0) currentIndex.value--
   }
 
+  const carouselRef = ref(null)
+
   const updateSlides = () => {
     if (typeof window === 'undefined') return
-    const w = window.innerWidth
-    const width = Math.min(w * 0.9, 1160)
-    containerWidth.value = Math.max(280, width)
+    const viewportWidth = window.innerWidth
+    const measuredWidth = carouselRef.value?.clientWidth || viewportWidth - 32
+    const safeWidth = Math.min(measuredWidth, 1160)
+    containerWidth.value = Math.max(280, safeWidth)
 
-  visibleSlides.value = 1
+    visibleSlides.value = 1
 
     if (currentIndex.value > maxIndex.value) {
       currentIndex.value = maxIndex.value
