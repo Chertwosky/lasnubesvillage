@@ -99,6 +99,14 @@ const scrollTo = (id: string) => {
     margin-top: 15px;
 }
 
+.amenities__wrap_img_reel {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    display: block;
+    object-fit: cover;
+}
+
 @media (max-width: 768px) {
     .amenities__wrap {
         flex-direction: column;

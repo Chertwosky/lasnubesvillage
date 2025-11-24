@@ -60,6 +60,14 @@ const Games = resolveImage('core/pleasantly/games')
     gap: 40px;
 }
 
+.pleasantly__wrap_img-reel {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    display: block;
+    object-fit: cover;
+}
+
 .pleasantly__wrap_block {
     display: flex;
     flex-direction: column;

@@ -136,14 +136,13 @@ if (!chanImages.length) {
 }
 
 const photoHeight = ref(500)
-const visibleSlides = 1
+const visibleSlides = ref(3)
 const containerWidth = ref(508)
 const gap = 20
 
-const slideWidth = computed(
-  () =>
-    containerWidth.value / visibleSlides -
-    (gap * (visibleSlides - 1)) / visibleSlides
+const slideWidth = computed(() =>
+  (containerWidth.value - (visibleSlides.value - 1) * gap) /
+    visibleSlides.value
 )
 
 const items = [
@@ -170,7 +169,7 @@ const innerStyle = (id) => {
 }
 
 const nextSlide = (id, length) => {
-  if (currentIndexes[id] < length - visibleSlides) currentIndexes[id]++
+  if (currentIndexes[id] < length - visibleSlides.value) currentIndexes[id]++
 }
 
 const prevSlide = (id, length) => {
@@ -205,8 +204,16 @@ const prevLightbox = () => {
 const updateContainerWidth = () => {
   if (typeof window === 'undefined') return
   const width = window.innerWidth
-  const base = Math.min(508, width * 0.9)
-  containerWidth.value = Math.max(280, base)
+  const base = Math.min(1080, width * 0.9)
+  containerWidth.value = Math.max(320, base)
+
+  if (width <= 768) {
+    visibleSlides.value = 1
+  } else if (width <= 1100) {
+    visibleSlides.value = 2
+  } else {
+    visibleSlides.value = 3
+  }
 
   if (width <= 480) {
     photoHeight.value = 300
@@ -217,6 +224,13 @@ const updateContainerWidth = () => {
   } else {
     photoHeight.value = 500
   }
+
+  items.forEach((item) => {
+    const maxIndex = Math.max(0, (item.photos?.length || 0) - visibleSlides.value)
+    if (currentIndexes[item.id] > maxIndex) {
+      currentIndexes[item.id] = maxIndex
+    }
+  })
 }
 
 const onKey = (e) => {
@@ -259,6 +273,8 @@ onBeforeUnmount(() => {
 }
 .chan__block__left {
     align-items: flex-end;
+    max-width: 100%;
+    width: 100%;
 }
 .chan__block__left_btn {
     background-color: var(--green-color);
