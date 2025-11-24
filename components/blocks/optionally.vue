@@ -80,15 +80,16 @@
 
   const Arrow = resolveImage('core/optionally/arrow')
   const Grill = resolveImage('core/optionally/grill')
-  const Curd = resolveImage('core/optionally/curd')
-  const Vat = resolveImage('core/optionally/vat')
+  const Napch = resolveImage('core/optionally/napch')
+  const Hld = resolveImage('core/optionally/hld')
+  const Banya = resolveImage('core/optionally/Banya')
 
   const items = [
-    { img: Vat, title: 'Чаны', price: '5 000 ₽/1 использование' },
-    { img: Curd, title: 'Аренда ватрушки', price: '400 ₽/2 часа' },
-    { img: Grill, title: 'Для мангала', price: '500 ₽/ч' },
-    { img: Grill, title: 'Для мангала XL', price: '700 ₽/ч' },
-  ]
+    { img: Hld, title: 'Ваш праздник', price: 'от 3 000 ₽' },
+    { img: Napch, title: 'Наполнение чана', price: 'от 3 000 ₽' },
+    { img: Grill, title: 'Для мангала', price: 'от 500 ₽' },
+    { img: Banya, title: 'Для бани', price: 'от 500 ₽' },
+      ]
 
   // ширина контейнера и количество видимых карточек
   const containerWidth = ref(1160)
