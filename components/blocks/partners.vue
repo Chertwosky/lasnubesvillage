@@ -97,8 +97,8 @@ const items = [
   { img: Flowers, title: 'Цветы', price: 'от 3000 ₽' },
 ]
 
-const containerWidth = ref(1160)
-const visibleSlides = ref(3)
+const containerWidth = ref(320)
+const visibleSlides = ref(1)
 const gap = 20
 const slideWidth = computed(() =>
   (containerWidth.value - (visibleSlides.value - 1) * gap) / visibleSlides.value
