@@ -63,6 +63,7 @@
 
 .produce__badge {
   margin-bottom: 40px;
+  --badge-min-w: 235px;
 }
 
 

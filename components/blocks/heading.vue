@@ -35,7 +35,7 @@
 import { resolveImage } from '@/utils/resolveImage'
 import SectionBadge from '@/components/ui/SectionBadge.vue'
 
-const House = resolveImage('core/heading/house')
+const House = resolveImage('core/heading/intro')
 
 const scrollTo = (id: string) => {
   const el = document.getElementById(id)
@@ -68,7 +68,7 @@ const scrollTo = (id: string) => {
 .heading__wrap_block {
     display: flex;
     flex-direction: column;
-    min-height: 522px;
+    min-height: 340px;
     gap: 12px;
     padding: 24px 28px;
 }

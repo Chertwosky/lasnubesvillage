@@ -146,6 +146,7 @@
 
   .optionally__badge {
     margin-bottom: 32px;
+    --badge-min-w: 245px;
   }
 
   .optionally__wrap {

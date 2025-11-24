@@ -23,7 +23,7 @@
                 <img :src="Games" alt="Игры" class="pleasantly__wrap_img-reel" draggable="false" />
             </div>
         </div>
-        <Cloud width="156px" top="-10%" left="-30px" />
+        <Cloud width="156px" top="20%" left="-30px" />
         <Cloud width="161px" bottom="-39px" right="19%" />
         <Cloud width="118px" bottom="-5%" left="13%" />
     </section>
@@ -41,14 +41,16 @@ const Games = resolveImage('core/pleasantly/games')
 <style scoped>
 
 .pleasantly {
-    margin: 50px auto 0 auto;
+    margin: 0px auto 0 auto;
     max-width: var(--container-width);
     position: relative;
     padding: 80px var(--container-padding);
+    
 }
 
 .pleasantly__badge {
-    margin-bottom: 32px;
+    margin-bottom: 10px;
+    --badge-min-w: 270px;
 }
 
 .pleasantly__wrap {
