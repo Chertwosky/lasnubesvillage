@@ -12,7 +12,7 @@
 
       <!-- 👇 общий контейнер для слайдера и кнопки -->
       <div class="partners__wrap_carousel-container">
-        <div class="partners__wrap_carousel" :style="{ width: containerWidth + 'px' }">
+        <div class="partners__wrap_carousel" ref="carouselRef">
           <!-- Стрелка влево -->
           <img
             v-if="currentIndex > 0"
@@ -97,8 +97,8 @@ const items = [
   { img: Flowers, title: 'Цветы', price: 'от 3000 ₽' },
 ]
 
-const containerWidth = ref(1160)
-const visibleSlides = ref(3)
+const containerWidth = ref(320)
+const visibleSlides = ref(1)
 const gap = 20
 const slideWidth = computed(() =>
   (containerWidth.value - (visibleSlides.value - 1) * gap) / visibleSlides.value
@@ -114,19 +114,16 @@ const prevSlide = () => {
   if (currentIndex.value > 0) currentIndex.value--
 }
 
+const carouselRef = ref(null)
+
 const updateSlides = () => {
   if (typeof window === 'undefined') return
-  const w = window.innerWidth
-  const width = Math.min(w * 0.9, 1160)
-  containerWidth.value = Math.max(320, width)
+  const viewportWidth = window.innerWidth
+  const measuredWidth = carouselRef.value?.clientWidth || viewportWidth - 32
+  const safeWidth = Math.min(measuredWidth, 1160)
+  containerWidth.value = Math.max(280, safeWidth)
 
-  if (w <= 768) {
-    visibleSlides.value = 1
-  } else if (w <= 1024) {
-    visibleSlides.value = 2
-  } else {
-    visibleSlides.value = 3
-  }
+  visibleSlides.value = 1
 
   if (currentIndex.value > maxIndex.value) {
     currentIndex.value = maxIndex.value
