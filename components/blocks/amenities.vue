@@ -132,6 +132,21 @@ const scrollTo = (id: string) => {
     border-radius: 16px;
 }
 
+@media (min-width: 1025px) {
+    .amenities__wrap_block_sub,
+    .amenities__wrap_block_name {
+        font-size: calc(var(--fontsize-unusual) + 2px);
+    }
+
+    .amenities__wrap_block_name {
+        font-size: 38px;
+    }
+
+    .amenities__wrap_block_bot {
+        font-size: calc(var(--fontsize-medium) + 2px);
+    }
+}
+
 /* 🔹 Планшеты и чуть уже десктопы */
 @media (max-width: 1024px) {
     .amenities__wrap_img {

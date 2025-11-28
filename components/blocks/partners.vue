@@ -375,6 +375,40 @@ onUnmounted(() => {
   color: rgba(255, 255, 255, 0.85);
 }
 
+@media (min-width: 1025px) {
+  .partners__wrap_carousel_block_bot {
+    font-size: 20px;
+  }
+
+  .partners__wrap_carousel_block_bot-text--title {
+    font-size: 24px;
+  }
+
+  .partners__wrap_carousel_block_bot-text--description {
+    font-size: 18px;
+  }
+
+  .partners__wrap_carousel_block_bot-text--price {
+    font-size: 26px;
+  }
+
+  .partners__purchases_title {
+    font-size: 34px;
+  }
+
+  .partners__purchases_card-title {
+    font-size: 22px;
+  }
+
+  .partners__purchases_card-price {
+    font-size: 20px;
+  }
+
+  .partners__purchases_card-desc {
+    font-size: 18px;
+  }
+}
+
 @media (max-width: 1024px) {
   .partners {
     padding: 0 var(--container-padding);

@@ -121,6 +121,7 @@
 }
 
 .advantages__slider {
+    position: relative;
     display: grid;
     grid-template-columns: auto 1fr auto;
     align-items: center;
@@ -134,7 +135,7 @@
 .advantages__track {
     display: grid;
     grid-auto-flow: column;
-    grid-auto-columns: minmax(260px, 1fr);
+    grid-auto-columns: minmax(360px, 1fr);
     gap: 18px;
     padding: 6px 4px 12px;
     overflow-x: auto;
@@ -230,7 +231,7 @@
     }
 
     .advantages__track {
-        grid-auto-columns: minmax(240px, 1fr);
+        grid-auto-columns: minmax(320px, 1fr);
     }
 }
 
@@ -243,8 +244,12 @@
         margin-bottom: 24px;
     }
 
+    .advantages__slider {
+        padding: 0 36px;
+    }
+
     .advantages__track {
-        grid-auto-columns: minmax(210px, 1fr);
+        grid-auto-columns: minmax(230px, 1fr);
         gap: 14px;
     }
 
@@ -254,11 +259,32 @@
     }
 
     .advantages__title {
-        font-size: 18px;
+        font-size: 20px;
     }
 
     .advantages__text {
         font-size: var(--fontsize-secondary);
+    }
+
+    .advantages__arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 38px;
+        height: 38px;
+    }
+
+    .advantages__arrow:first-of-type {
+        left: 0;
+        transform: translateY(-50%) rotate(0deg);
+    }
+
+    .advantages__arrow:last-of-type {
+        right: 0;
+    }
+
+    .advantages__arrow:hover {
+        transform: translateY(-50%);
     }
 }
 </style>
