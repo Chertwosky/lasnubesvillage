@@ -195,9 +195,10 @@ body {
     --badge-radius-small: clamp(20px, 12vw, 32px);
     background: var(--badge-bg, #111);
     color: #fff;
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
     padding: clamp(10px, 3.5vw, 18px) clamp(18px, 8vw, 40px);
     border-radius: var(--badge-radius-small) var(--badge-radius-large) 0 var(--badge-radius-small);
     font-family: var(--font-secondary);
@@ -207,10 +208,10 @@ body {
     letter-spacing: .02em;
     position: relative;
     overflow: hidden;
-    min-width: var(--badge-min-w, clamp(220px, 72vw, 360px));
     min-height: var(--badge-min-h, clamp(44px, 14vw, 72px));
     margin: 0 0 24px;
-    padding-right: var(--badge-pad-right, clamp(32px, 12vw, 88px));
+    text-align: center;
+    box-sizing: border-box;
 }
 
 .section-badge.section-badge--fade {
@@ -233,12 +234,15 @@ body {
 }
 
 .section-badge--right {
-    justify-content: flex-end;
+    justify-content: center;
 }
 
 .section-badge--left {
-    justify-content: flex-start;
-    padding-right: 28px;
+    justify-content: center;
+}
+
+.section-badge--center {
+    justify-content: center;
 }
 
 @media (max-width: 1024px) {
