@@ -6,6 +6,7 @@
         <Advantages />
         <Villages />
         <Rebate />
+        <YandexWidgets />
       </main>
     </div>
   </template>
@@ -16,6 +17,7 @@
   import Sky from '~/components/blocks/sky.vue';
   import Villages from '~/components/blocks/villages.vue';
   import Rebate from '~/components/blocks/rebate.vue';
+  import YandexWidgets from '~/components/blocks/yandex-widgets.vue';
 
   useHead({
     title: 'Посуточная аренда гостевых домов в Адыгее | Las Nubes Village',
