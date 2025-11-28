@@ -61,6 +61,7 @@ const scrollTo = (id: string) => {
     margin: 50px auto 0 auto;
     max-width: var(--container-width);
     padding: 0 var(--container-padding);
+    display: none
 }
 
 .amenities__badge {
