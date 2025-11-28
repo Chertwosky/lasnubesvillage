@@ -60,6 +60,7 @@
     max-width: var(--container-width);
     padding: 0 var(--container-padding) 80px;
     position: relative;
+    display: none;
   }
 
   .rebate__badge {
