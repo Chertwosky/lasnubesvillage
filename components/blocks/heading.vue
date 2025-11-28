@@ -9,7 +9,7 @@
         </SectionBadge>
         <div class="heading__wrap">
             <div class="heading__wrap_block text-overlay">
-                <p class="heading__wrap_block_title">Коттеджи А-фрейм</p>
+                <p class="heading__wrap_block_title">Коттеджи А-фреймы</p>
                 <p class="heading__wrap_block_sub"> </p>
                 <p class="heading__wrap_block_name" @click="scrollTo('sunset')">
                 А-фрейм «Сансет»
