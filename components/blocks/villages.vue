@@ -249,11 +249,12 @@
     }
 
     .villages__cta {
-      font-size: 20px;
+      font-size: 22px;
       padding: 10px 22px;
       width: 100%;
       justify-content: center;
       text-align: center;
+      align-items: center;
     }
   }
   </style>
