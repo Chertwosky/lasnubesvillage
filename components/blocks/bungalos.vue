@@ -376,10 +376,13 @@ onBeforeUnmount(() => {
   }
 
   .bungaloswrap_blockleft_btn {
-    font-size: 22px;
+    font-size: 24px;
     padding: 10px 24px;
     width: 100%;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .bungalos__carousel-arrow {

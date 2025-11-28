@@ -381,12 +381,14 @@ onBeforeUnmount(() => {
         padding: 32px var(--container-padding) 0 var(--container-padding);
     }
 
-    .bath__block__left_btn {
-        font-size: 22px;
+  .bath__block__left_btn {
+        font-size: 24px;
         padding: 10px 24px;
         width: 100%;
         text-align: center;
-    }
+        justify-content: center;
+        align-items: center;
+  }
 
     .bath__block__right_text {
         font-size: var(--fontsize-primary);
