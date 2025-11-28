@@ -7,6 +7,7 @@
                         <img :src="Logo" alt="Лого" class="footer__wrap_column1_reel" draggable="false" />
                     </NuxtLink>
                     <p class="footer__wrap_column1_text one">© Лас Нубес Вилледж рент. Все права защищены.</p>
+                    <button type="button" class="footer__wrap_column1_text footer__rules" @click="openRules">Правила проживания</button>
                 </div>
                 <div class="footer__wrap_columns-2-3">
                     <div class="footer__wrap_column2">
@@ -100,6 +101,12 @@ const Rusgram = resolveImage('core/footer/Rusgram')
 const Telegram = resolveImage('core/footer/Telegram')
 const WhatsApp = resolveImage('core/footer/Whatsapp')
 const FooterOrnament = resolveImage('core/footer/ornament')
+
+const openRules = () => {
+    if (window.openRulesModal) {
+        window.openRulesModal()
+    }
+}
 </script>
 
 <style scoped>
@@ -246,6 +253,17 @@ const FooterOrnament = resolveImage('core/footer/ornament')
 
 .footer__wrap_column1_text.one {
     margin-bottom: 0;
+}
+
+.footer__rules {
+    margin-top: 8px;
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 0;
+    cursor: pointer;
+    text-decoration: underline;
+    color: inherit;
 }
 
 .footer__wrap_column2_link.phone {
