@@ -1,18 +1,17 @@
 <template>
     <div>
-       <main>
-        <Heading />
-        <Bungalos />
-     </main>
-
-
-
-     </div>
-   </template>
+        <main>
+            <Heading />
+            <Bungalos />
+            <Activities />
+        </main>
+    </div>
+</template>
 
 <script setup>
 import Bungalos from '~/components/blocks/bungalos.vue';
 import Heading from '~/components/blocks/heading.vue';
+import Activities from '~/components/blocks/activities.vue';
 
 useHead({
   title: 'Коттеджи A-frame. Адыгея | Las Nubes Village',
