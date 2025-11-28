@@ -284,6 +284,14 @@ onBeforeUnmount(() => {
     align-self: flex-end;
     text-align: right;
 }
+.chan__block__right_bot_min-reel {
+  width: 24px;   /* нужный размер по ширине */
+  height: 24px;  /* можно оставить авто, но так надёжнее */
+}
+.chan__block__right_bot_min-text {
+  margin: 0;            /* полностью убрать отступы */
+  font-size: 18px;
+}
 .chan__block__right_bot_min {
     display: flex;
     gap: 8px;
@@ -297,10 +305,14 @@ onBeforeUnmount(() => {
     padding: 18px 22px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    max-width: 420px;
+    gap: px;
+    width: 345px;
     align-self: flex-start;
 }
+.chan__block__right_bot-text {
+  font-size: 18px; /* твой размер */
+}
+
 .chan__block__right_text {
     color: var(--white-color);
     font-size: var(--fontsize-unusual);
@@ -311,11 +323,12 @@ onBeforeUnmount(() => {
 }
 .chan__block__right_text-up {
     font-family: var(--font-secondary);
-    font-size: 36px;
+    font-size: 40px;
     text-transform: uppercase;
 }
 .chan__block__right_bot-text:first-of-type {
-    margin-bottom: 24px;
+    margin-bottom: px;
+    margin: 0; 
 }
 
 .chan__carousel { position: relative; display: flex; align-items: center; overflow: hidden; width: 100%; }

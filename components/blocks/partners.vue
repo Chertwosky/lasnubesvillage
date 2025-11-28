@@ -198,7 +198,7 @@ onUnmounted(() => {
   margin: 50px auto 0 auto;
   max-width: var(--container-width);
   position: relative;
-  padding: 0 var(--container-padding) 60px;
+  padding: 0 var(--container-padding) 10px;
 }
 
 .partners__badge {
@@ -277,7 +277,7 @@ onUnmounted(() => {
 
 .partners__wrap_carousel_block_bot-text--title {
   font-family: var(--font-secondary);
-  font-size: 24px;
+  font-size: 32px;
   font-weight: 400;
 }
 

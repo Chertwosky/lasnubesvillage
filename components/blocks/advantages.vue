@@ -168,7 +168,7 @@
 
 .advantages__title {
     margin: 0;
-    font-size: 20px;
+    font-size: 32px;
     line-height: 1.3;
     font-family: var(--font-secondary);
     color: var(--black-color);

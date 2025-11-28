@@ -13,6 +13,7 @@
         >
           {{ item.badge || item.title }}
         </SectionBadge>
+
         <!-- ЛЕВАЯ КОЛОНКА -->
         <div class="bungalos__content">
           <div
@@ -55,6 +56,7 @@
                 @click="nextSlide(item.id, item.photos.length)"
               />
             </div>
+
             <BookingButton customClass="bungaloswrap_blockleft_btn">
               Забронировать
             </BookingButton>
@@ -70,7 +72,11 @@
               <p class="bungaloswrap_blockright_bot-text">{{ item.location }}</p>
               <p class="bungaloswrap_blockright_bot-text">{{ item.beds }}</p>
               <div class="bungaloswrap_blockright_bot_min">
-                <img :src="Man" alt="Иконка гостей" class="bungaloswrap_blockright_bot_min-reel" />
+                <img
+                  :src="Man"
+                  alt="Иконка гостей"
+                  class="bungaloswrap_blockright_bot_min-reel"
+                />
                 <p class="bungaloswrap_blockright_bot_min-text">{{ item.guests }}</p>
               </div>
             </div>
@@ -92,8 +98,20 @@
         <div class="lightbox__viewport">
           <img :src="currentPhoto" alt="Фото" class="lightbox__img" />
         </div>
-        <button v-if="lightbox.index > 0" class="lightbox__arrow left" @click="prevLightbox">‹</button>
-        <button v-if="lightbox.index < lightbox.photos.length - 1" class="lightbox__arrow right" @click="nextLightbox">›</button>
+        <button
+          v-if="lightbox.index > 0"
+          class="lightbox__arrow left"
+          @click="prevLightbox"
+        >
+          ‹
+        </button>
+        <button
+          v-if="lightbox.index < lightbox.photos.length - 1"
+          class="lightbox__arrow right"
+          @click="nextLightbox"
+        >
+          ›
+        </button>
       </div>
     </div>
   </section>
@@ -108,13 +126,15 @@ import SectionBadge from '@/components/ui/SectionBadge.vue'
 
 const Arrow = resolveImage('core/partners/arrow')
 const Man = resolveImage('core/bungalos/man')
-/* Настройка */
+
 const photoHeight = ref(500)
 const visibleSlides = 1
 const containerWidth = ref(508)
 const gap = 20
-const slideWidth = computed(() =>
-  containerWidth.value / visibleSlides - (gap * (visibleSlides - 1)) / visibleSlides
+const slideWidth = computed(
+  () =>
+    containerWidth.value / visibleSlides -
+    (gap * (visibleSlides - 1)) / visibleSlides
 )
 
 /* Автоподгрузка фото */
@@ -169,21 +189,41 @@ const items = [
 ]
 
 /* Слайдер */
-const currentIndexes = reactive(Object.fromEntries(items.map(it => [it.id, 0])))
+const currentIndexes = reactive(
+  Object.fromEntries(items.map((it) => [it.id, 0]))
+)
+
 const innerStyle = (id) => {
   const offset = currentIndexes[id] * (slideWidth.value + gap)
   return { transform: 'translateX(-' + offset + 'px)', gap: gap + 'px' }
 }
-const nextSlide = (id, length) => { if (currentIndexes[id] < length - visibleSlides) currentIndexes[id]++ }
-const prevSlide = (id, length) => { if (currentIndexes[id] > 0) currentIndexes[id]-- }
+const nextSlide = (id, length) => {
+  if (currentIndexes[id] < length - visibleSlides) currentIndexes[id]++
+}
+const prevSlide = (id, length) => {
+  if (currentIndexes[id] > 0) currentIndexes[id]--
+}
 
 /* Лайтбокс */
 const lightbox = reactive({ open: false, photos: [], index: 0 })
 const currentPhoto = computed(() => lightbox.photos[lightbox.index])
-const openLightbox = (photos, index) => { lightbox.open = true; lightbox.photos = photos; lightbox.index = index }
-const closeLightbox = () => { lightbox.open = false; lightbox.photos = []; lightbox.index = 0 }
-const nextLightbox = () => { if (lightbox.index < lightbox.photos.length - 1) lightbox.index++ }
-const prevLightbox = () => { if (lightbox.index > 0) lightbox.index-- }
+
+const openLightbox = (photos, index) => {
+  lightbox.open = true
+  lightbox.photos = photos
+  lightbox.index = index
+}
+const closeLightbox = () => {
+  lightbox.open = false
+  lightbox.photos = []
+  lightbox.index = 0
+}
+const nextLightbox = () => {
+  if (lightbox.index < lightbox.photos.length - 1) lightbox.index++
+}
+const prevLightbox = () => {
+  if (lightbox.index > 0) lightbox.index--
+}
 
 const updateContainerWidth = () => {
   if (typeof window === 'undefined') return
@@ -203,7 +243,9 @@ const updateContainerWidth = () => {
 }
 
 /* Закрытие по ESC */
-const onKey = (e) => { if (e.key === 'Escape') closeLightbox() }
+const onKey = (e) => {
+  if (e.key === 'Escape') closeLightbox()
+}
 onMounted(() => {
   document.addEventListener('keydown', onKey)
   updateContainerWidth()
@@ -226,8 +268,9 @@ onBeforeUnmount(() => {
 .bungalos__wrap {
   display: flex;
   flex-direction: column;
-  gap: 80px; /* любое нужное значение */
+  gap: 80px;
 }
+
 .bungalos__wrap_block {
   position: relative;
   display: flex;
@@ -248,42 +291,109 @@ onBeforeUnmount(() => {
 }
 
 /* Левая колонка */
-.bungaloswrap_blockleft { align-items: flex-end; display: flex; flex-direction: column; width: 100%; max-width: 508px; }
+.bungaloswrap_blockleft {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 508px;
+}
+
 .bungaloswrap_blockleft_title {
-  font-family: var(--font-secondary); /* 👈 теперь тот же шрифт, что и upTitle */
-  font-size: calc(var(--fontsize-unusual)*2);
+  font-family: var(--font-secondary);
+  font-size: calc(var(--fontsize-unusual) * 2);
   color: var(--white-color);
   margin: 0 0 8px 0;
   align-self: flex-end;
   text-align: right;
 }
+
 .bungaloswrap_blockleft_btn {
   background-color: var(--green-color);
-    text-transform: uppercase;
-    color: var(--white-color);
-    padding: 7px 20px 15px 20px;
-    border-radius: var(--border-radius-container);
-    font-size: 33px;
-    font-family: var(--font-secondary);
-    line-height: 100%;
-    border: none;
-    margin-top: 20px;
-    cursor: pointer;
-    align-self: flex-start;
+  text-transform: uppercase;
+  color: var(--white-color);
+  padding: 7px 20px 15px 20px;
+  border-radius: var(--border-radius-container);
+  font-size: 33px;
+  font-family: var(--font-secondary);
+  line-height: 100%;
+  border: none;
+  margin-top: 20px;
+  cursor: pointer;
+  align-self: flex-start;
 }
 
+/* Правая колонка — основной текст */
+.bungaloswrap_blockright_text {
+  color: var(--white-color);
+  font-size: var(--fontsize-unusual);
+  max-width: 508px;
+  font-family: var(--font-main);
+  padding: 24px 28px;
+  line-height: 1.5;
+}
 
+.bungaloswrap_blockright_text-up {
+  font-family: var(--font-secondary);
+  font-size: 36px;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 8px;
+}
 
-/* Правая колонка */
-.bungaloswrap_blockright_text { color: var(--white-color); font-size: var(--fontsize-unusual); max-width: 508px; font-family: var(--font-main); padding: 24px 28px; }
-.bungaloswrap_blockright_text-up { font-family: var(--font-secondary); font-size: 36px; text-transform: uppercase; }
-.bungaloswrap_blockright_bot_min { display: flex; gap: 8px; }
-.bungaloswrap_blockright_bot { margin-left: 0px; color: var(--faded-color); font-size: var(--fontsize-small); font-family: var(--font-core); padding: 18px 24px; display: flex; flex-direction: column; gap: 12px; }
+/* Доп. блок (location / beds / guests) — ТУТ МЕНЯЛИ */
+.bungaloswrap_blockright_bot {
+  margin-left: 0;
+  color: var(--faded-color);
+  font-size: 16px;       /* увеличили шрифт */
+  line-height: 1.35;     /* чуть плотнее строки */
+  font-family: var(--font-core);
+  padding: 18px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;              /* уменьшили расстояние между пунктами */
+}
+
+.bungaloswrap_blockright_bot-text {
+  margin: 0;             /* убрали лишние отступы у p */
+}
+
+.bungaloswrap_blockright_bot_min {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.bungaloswrap_blockright_bot_min-text {
+  margin: 0;
+  font-size: 16px;
+}
+
 /* Слайдер */
-.bungalos__carousel { position: relative; display: flex; align-items: center; overflow: hidden; width: 100%; }
-.bungalos__carousel_view { overflow: hidden; width: 100%; }
-.bungalos__carousel_inner { display: flex; transition: transform 0.5s ease; }
-.bungalos__carousel_slide { flex-shrink: 0; border-radius: 16px; overflow: hidden; }
+.bungalos__carousel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  width: 100%;
+}
+
+.bungalos__carousel_view {
+  overflow: hidden;
+  width: 100%;
+}
+
+.bungalos__carousel_inner {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.bungalos__carousel_slide {
+  flex-shrink: 0;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
 .bungalos__carousel_img {
   width: 100%;
   height: var(--bung-photo-h, 500px);
@@ -291,6 +401,7 @@ onBeforeUnmount(() => {
   cursor: pointer;
   border-radius: 16px;
 }
+
 .bungalos__carousel-arrow {
   position: absolute;
   top: 50%;
@@ -300,21 +411,106 @@ onBeforeUnmount(() => {
   width: 60px;
   height: 60px;
 }
-.bungalos__carousel-arrow.left { left: 0; transform: rotate(180deg) translateY(50%); }
-.bungalos__carousel-arrow.right { right: 0; }
+
+.bungalos__carousel-arrow.left {
+  left: 0;
+  transform: rotate(180deg) translateY(50%);
+}
+
+.bungalos__carousel-arrow.right {
+  right: 0;
+}
 
 /* Лайтбокс */
-.lightbox { position: fixed; inset: 0; background: rgba(0,0,0,.85); display: grid; place-items: center; z-index: 9999; padding: clamp(20px, 4vw, 30px); box-sizing: border-box; }
-.lightbox__frame { position: relative; width: min(1200px, calc(100vw - clamp(40px, 8vw, 60px))); max-width: calc(100vw - clamp(40px, 8vw, 60px)); height: min(90vh, calc(100vh - clamp(40px, 8vw, 60px))); max-height: calc(100vh - clamp(40px, 8vw, 60px)); display: flex; align-items: center; justify-content: center; box-sizing: border-box; }
-.lightbox__viewport { width: 100%; max-width: 100%; height: 100%; max-height: 100%; overflow: auto; display: flex; align-items: center; justify-content: center; margin: 0 auto; -webkit-overflow-scrolling: touch; touch-action: pan-x pan-y pinch-zoom; overscroll-behavior: contain; box-sizing: border-box; }
-.lightbox__img { display: block; width: 100%; max-width: 100%; height: auto; max-height: 100%; border-radius: 12px; object-fit: contain; margin: 0 auto; }
-.lightbox__close { position: fixed; top: 14px; right: 18px; font-size: 40px; color: #fff; background: transparent; border: none; cursor: pointer; }
-.lightbox__arrow { position: absolute; top: 50%; transform: translateY(-50%); font-size: 60px; color: #fff; background: transparent; border: none; cursor: pointer; padding: 6px; line-height: 1; display: flex; align-items: center; justify-content: center; }
-.lightbox__arrow.left { left: 6px; }
-.lightbox__arrow.right { right: 6px; }
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.85);
+  display: grid;
+  place-items: center;
+  z-index: 9999;
+  padding: clamp(20px, 4vw, 30px);
+  box-sizing: border-box;
+}
+
+.lightbox__frame {
+  position: relative;
+  width: min(1200px, calc(100vw - clamp(40px, 8vw, 60px)));
+  max-width: calc(100vw - clamp(40px, 8vw, 60px));
+  height: min(90vh, calc(100vh - clamp(40px, 8vw, 60px)));
+  max-height: calc(100vh - clamp(40px, 8vw, 60px));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.lightbox__viewport {
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  max-height: 100%;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x pan-y pinch-zoom;
+  overscroll-behavior: contain;
+  box-sizing: border-box;
+}
+
+.lightbox__img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+  border-radius: 12px;
+  object-fit: contain;
+  margin: 0 auto;
+}
+
+.lightbox__close {
+  position: fixed;
+  top: 14px;
+  right: 18px;
+  font-size: 40px;
+  color: #fff;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.lightbox__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 60px;
+  color: #fff;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox__arrow.left {
+  left: 6px;
+}
+
+.lightbox__arrow.right {
+  right: 6px;
+}
 
 @media (max-width: 992px) {
-  .bungalos { padding: 0 var(--container-padding); }
+  .bungalos {
+    padding: 0 var(--container-padding);
+  }
 
   .bungalos__wrap_block {
     flex-direction: column;
@@ -350,10 +546,7 @@ onBeforeUnmount(() => {
 
   .bungaloswrap_blockright_bot {
     margin-left: 0;
-    display: flex;
-    gap: 16px;
-    flex-direction: column;
-    align-items: flex-start;
+    gap: 10px;
     text-align: left;
   }
 
@@ -364,7 +557,9 @@ onBeforeUnmount(() => {
 }
 
 @media (max-width: 640px) {
-  .bungalos { padding: 0 var(--container-padding); }
+  .bungalos {
+    padding: 0 var(--container-padding);
+  }
 
   .bungaloswrap_blockleft_title {
     font-size: calc(var(--fontsize-unusual) * 1.5);
@@ -373,6 +568,7 @@ onBeforeUnmount(() => {
   .bungaloswrap_blockright_text {
     font-size: var(--fontsize-primary);
     padding: 16px 18px;
+    margin: 0;
   }
 
   .bungaloswrap_blockleft_btn {
@@ -392,6 +588,7 @@ onBeforeUnmount(() => {
 
   .bungaloswrap_blockright_text-up {
     font-size: calc(var(--fontsize-unusual) * 1.2);
+    margin: 0 0 6px 0;
   }
 
   .bungalos__item-badge {
