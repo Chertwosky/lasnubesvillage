@@ -117,6 +117,25 @@ const scrollTo = (id: string) => {
     margin: 40px 0 0 0;
 }
 
+@media (min-width: 1025px) {
+    .amenities__wrap_block_title {
+        font-size: calc(var(--fontsize-large) * 2.2);
+    }
+
+    .amenities__wrap_block_sub,
+    .amenities__wrap_block_name {
+        font-size: calc(var(--fontsize-unusual) * 1.1);
+    }
+
+    .amenities__wrap_block_name {
+        font-size: 40px;
+    }
+
+    .amenities__wrap_block_bot {
+        font-size: calc(var(--fontsize-medium) * 1.1);
+    }
+}
+
 /* Картинка на ПК — в рамках */
 .amenities__wrap_img {
     margin-left: 110px;

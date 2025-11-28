@@ -290,10 +290,11 @@ onBeforeUnmount(() => {
 }
 .chan__block__right_bot {
     margin-left: 20px;
-    color: var(--faded-color);
-    font-weight: 200;
-    font-size: var(--fontsize-small);
-    font-family: var(--font-core);
+    color: var(--white-color);
+    font-weight: 400;
+    font-size: var(--fontsize-unusual);
+    font-family: var(--font-main);
+    line-height: 140%;
     padding: 18px 22px;
     display: flex;
     flex-direction: column;
