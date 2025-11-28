@@ -83,11 +83,12 @@
   const Banya = resolveImage('core/optionally/Banya')
 
   const items = [
-    { img: Hld, title: 'Ваш праздник', price: 'от 3 000 ₽' },
-    { img: Napch, title: 'Наполнение чана', price: 'от 3 000 ₽' },
-    { img: Grill, title: 'Для мангала', price: 'от 500 ₽' },
-    { img: Banya, title: 'Для бани', price: 'от 500 ₽' },
-      ]
+    { img: Grill, title: 'Вязанка дров', price: '450 ₽' },
+    { img: Napch, title: 'Пачка углей', price: '350 ₽' },
+    { img: Hld, title: 'Жидкость для розжига', price: '150 ₽' },
+    { img: Banya, title: 'Банный веник', price: 'от 350 ₽' },
+    { img: Hld, title: 'Аренда колонки Алиса', price: '500 ₽ сутки' },
+  ]
 
   // ширина контейнера и количество видимых карточек
   const containerWidth = ref(1160)
