@@ -9,16 +9,16 @@
         </SectionBadge>
         <div class="heading__wrap">
             <div class="heading__wrap_block text-overlay">
-                <p class="heading__wrap_block_title">Коттеджи A-frame</p>
+                <p class="heading__wrap_block_title">Коттеджи А-фрейм</p>
                 <p class="heading__wrap_block_sub"> </p>
                 <p class="heading__wrap_block_name" @click="scrollTo('sunset')">
-                A-frame SUNSET
+                А-фрейм «Сансет»
                 </p>
                 <p class="heading__wrap_block_name" @click="scrollTo('ultramarine')">
-                A-frame ULTRAMARINE
+                А-фрейм «Ультрамарин»
                 </p>
                 <p class="heading__wrap_block_name" @click="scrollTo('emerald')">
-                A-frame EMERALD
+                А-фрейм «Эмеральд»
                 </p>
                 <p class="heading__wrap_block_bot">LAS NUBES VILLAGE — посуточная аренда коттеджей</p>
             </div>
