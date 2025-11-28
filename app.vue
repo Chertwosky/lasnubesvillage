@@ -2,6 +2,7 @@
 import AppHeader from '@/components/core/header.vue'
 import AppFooter from '@/components/core/footer.vue'
 import BookingModal from '@/components/blocks/BookingModal.vue'
+import DesktopPromoSlider from '@/components/blocks/DesktopPromoSlider.vue'
 import '@/assets/styles/global.css'
 import { useHead } from '#imports'
 
@@ -22,6 +23,8 @@ useHead({
     </main>
 
     <AppFooter />
+
+    <DesktopPromoSlider />
 
     <!-- модалка подключается глобально -->
     <BookingModal />
