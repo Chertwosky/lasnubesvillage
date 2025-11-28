@@ -79,10 +79,11 @@ const phoneIcon = resolveImage('core/header/phone')
 const Telegram = resolveImage('core/header/Telegram')
 
 const menuItems = [
-  { label: 'Коттеджи', to: '/cottages' },
-  { label: 'Услуги', to: '/services' },
+  { label: 'Главная', to: '/' },
   { label: 'Акции', to: { path: '/', hash: '#stocks' } },
-  { label: 'О нас', to: '/about' },
+  { label: 'Услуги', to: '/services' },
+  { label: 'Блог', to: '/about' },
+  { label: 'А-Фреймы', to: '/cottages' },
 ]
 
 const isMenuOpen = ref(false)
