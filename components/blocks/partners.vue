@@ -256,7 +256,7 @@ onUnmounted(() => {
 .partners__wrap_carousel_block_bot {
   background-color: #121d3c;
   color: var(--white-color);
-  font-size: 18px;
+  font-size: 20px;
   padding: 18px 20px 20px;
   border-radius: 0 0 16px 16px;
   position: relative;
@@ -277,19 +277,19 @@ onUnmounted(() => {
 
 .partners__wrap_carousel_block_bot-text--title {
   font-family: var(--font-secondary);
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 400;
 }
 
 .partners__wrap_carousel_block_bot-text--description {
-  font-size: 16px;
+  font-size: 18px;
   opacity: 0.9;
 }
 
 .partners__wrap_carousel_block_bot-text--price {
   font-weight: 600;
   margin-top: auto; /* цена всегда прижимается вниз */
-  font-size: 24px; /* как в "Удобствах" */
+  font-size: 26px; /* как в "Удобствах" */
 }
 
 .partners__wrap_carousel-arrow {
@@ -357,7 +357,7 @@ onUnmounted(() => {
 
 .partners__purchases_card-title {
   font-family: var(--font-secondary);
-  font-size: 20px;
+  font-size: 22px;
   margin: 0;
 }
 
@@ -365,6 +365,7 @@ onUnmounted(() => {
   font-family: var(--font-core);
   margin: 0;
   font-weight: 600;
+  font-size: 18px;
 }
 
 .partners__purchases_card-desc {
@@ -373,11 +374,28 @@ onUnmounted(() => {
   font-weight: 300;
   line-height: 1.4;
   color: rgba(255, 255, 255, 0.85);
+  font-size: 17px;
 }
 
 @media (max-width: 1024px) {
   .partners {
     padding: 0 var(--container-padding);
+  }
+
+  .partners__wrap_carousel_block_bot {
+    font-size: 18px;
+  }
+
+  .partners__wrap_carousel_block_bot-text--title {
+    font-size: 22px;
+  }
+
+  .partners__wrap_carousel_block_bot-text--description {
+    font-size: 16px;
+  }
+
+  .partners__wrap_carousel_block_bot-text--price {
+    font-size: 24px;
   }
 
   .partners__wrap_carousel-container {
@@ -390,6 +408,18 @@ onUnmounted(() => {
 
   .partners__wrap_carousel-arrow {
     width: 48px;
+  }
+
+  .partners__purchases_card-title {
+    font-size: 20px;
+  }
+
+  .partners__purchases_card-price {
+    font-size: 16px;
+  }
+
+  .partners__purchases_card-desc {
+    font-size: 16px;
   }
 }
 
