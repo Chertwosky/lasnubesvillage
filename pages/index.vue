@@ -3,6 +3,7 @@
       <main>
         <Sky />
         <Produce />
+        <Advantages />
         <Villages />
         <Rebate />
       </main>
@@ -11,6 +12,7 @@
 
   <script setup>
   import Produce from '~/components/blocks/produce.vue';
+  import Advantages from '~/components/blocks/advantages.vue';
   import Sky from '~/components/blocks/sky.vue';
   import Villages from '~/components/blocks/villages.vue';
   import Rebate from '~/components/blocks/rebate.vue';
