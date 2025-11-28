@@ -5,7 +5,7 @@
         gradient="linear-gradient(90deg,#0e0b27 0%, #0a0820 100%)"
         align="right"
       >
-        A-frame
+        А-фрейм
       </SectionBadge>
       <div class="villages__intro text-overlay">
         <h3 class="villages__intro_title">Домики с панорамными окнами</h3>
@@ -65,19 +65,19 @@
 
   const cards = [
     {
-      title: 'SUNSET A-frame',
+      title: 'А-фрейм «Сансет»',
       hash: '#sunset',
       img: getFirstImage('sunset'),
       features: ['Панорамные окна и звёздное небо', 'До 6 гостей', 'Уютная терраса с мангалом'],
     },
     {
-      title: 'ULTRAMARINE A-frame',
+      title: 'А-фрейм «Ультрамарин»',
       hash: '#ultramarine',
       img: getFirstImage('ultramarine'),
       features: ['Вид на горы', '2 спальни и гостиная', 'Собственная баня-бочка'],
     },
     {
-      title: 'EMERALD A-frame',
+      title: 'А-фрейм «Эмеральд»',
       hash: '#emerald',
       img: getFirstImage('emerald'),
       features: ['Просторная терраса', 'До 6 гостей', 'Светлая кухня-гостиная'],
