@@ -155,7 +155,7 @@ onBeforeUnmount(() => {
 .modal__title {
     text-align: center;
     font-family: var(--font-main);
-    font-size: clamp(18px, 2.5vw, 24px);
+    font-size: clamp(20px, 2.7vw, 26px);
     letter-spacing: 1.2px;
     color: #2f3443;
     margin: 0 0 16px;
@@ -165,12 +165,13 @@ onBeforeUnmount(() => {
     margin-bottom: 18px;
     color: #2f3443;
     font-family: var(--font-main);
-    line-height: 1.6;
+    line-height: 1.7;
+    font-size: 18px;
 }
 
 .modal__section h3 {
     margin: 0 0 8px;
-    font-size: 16px;
+    font-size: 18px;
     letter-spacing: 0.5px;
 }
 
@@ -188,7 +189,7 @@ onBeforeUnmount(() => {
     gap: 32px;
     justify-content: center;
     font-weight: 700;
-    font-size: 15px;
+    font-size: 17px;
 }
 
 .modal__section.notice {

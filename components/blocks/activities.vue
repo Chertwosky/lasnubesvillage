@@ -146,7 +146,7 @@
 .activities__track {
     display: grid;
     grid-auto-flow: column;
-    grid-auto-columns: minmax(260px, 1fr);
+    grid-auto-columns: minmax(360px, 1fr);
     gap: 18px;
     padding: 6px 4px 12px;
     overflow-x: auto;
@@ -243,7 +243,7 @@
     }
 
     .activities__track {
-        grid-auto-columns: minmax(240px, 1fr);
+        grid-auto-columns: minmax(340px, 1fr);
     }
 }
 
@@ -257,7 +257,7 @@
     }
 
     .activities__track {
-        grid-auto-columns: minmax(210px, 1fr);
+        grid-auto-columns: minmax(310px, 1fr);
         gap: 14px;
     }
 
@@ -272,6 +272,28 @@
 
     .activities__text {
         font-size: var(--fontsize-secondary);
+    }
+
+    .activities__slider {
+        position: relative;
+    }
+
+    .activities__arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 38px;
+        height: 38px;
+    }
+
+    .activities__slider > .activities__arrow:first-of-type {
+        left: 4px;
+        justify-self: auto;
+    }
+
+    .activities__slider > .activities__arrow:last-of-type {
+        right: 4px;
+        justify-self: auto;
     }
 }
 </style>
