@@ -1,13 +1,16 @@
 <template>
-    <section class="optionally" id="optionally">
-      <SectionBadge
-        class="optionally__badge"
-        gradient="linear-gradient(90deg, #061222 0%, #061222 100%)"
-        align="right"
-      >
-        Удобства
-      </SectionBadge>
-      <div class="optionally__wrap">
+  <section class="optionally" id="optionally">
+    <SectionBadge
+      class="optionally__badge"
+      gradient="linear-gradient(90deg, #061222 0%, #061222 100%)"
+      align="right"
+    >
+      Удобства
+    </SectionBadge>
+
+    <div class="optionally__wrap">
+      <!-- контейнер как в partners -->
+      <div class="optionally__wrap_carousel-container">
         <div class="optionally__wrap_carousel" :style="{ width: containerWidth + 'px' }">
           <!-- Стрелка влево -->
           <img
@@ -37,10 +40,19 @@
                   draggable="false"
                 />
                 <div class="optionally__wrap_carousel_block_bot">
-                  <p class="optionally__wrap_carousel_block_bot-text">
+                  <p
+                    class="optionally__wrap_carousel_block_bot-text optionally__wrap_carousel_block_bot-text--title"
+                  >
                     {{ item.title }}
                   </p>
-                  <p class="optionally__wrap_carousel_block_bot-text">
+                  <p
+                    class="optionally__wrap_carousel_block_bot-text optionally__wrap_carousel_block_bot-text--description"
+                  >
+                    {{ item.description }}
+                  </p>
+                  <p
+                    class="optionally__wrap_carousel_block_bot-text optionally__wrap_carousel_block_bot-text--price"
+                  >
                     {{ item.price }}
                   </p>
                 </div>
@@ -57,147 +69,184 @@
             @click="nextSlide"
           />
         </div>
+
         <BookingButton customClass="optionally__wrap_btn">
           Забронировать
         </BookingButton>
       </div>
-      <Cloud width="156px" top="-20px" left="-30px" />
-      <Cloud width="118px" top="-35px" right="15%" />
-      <Cloud width="118px" bottom="39%" left="23%" />
-      <Cloud width="118px" bottom="-5%" left="7%" />
-      <Cloud width="161px" bottom="-30px" right="9%" flipped />
-    </section>
-  </template>
+    </div>
 
-  <script setup>
-  import { ref, computed, onMounted, onUnmounted } from 'vue'
-  import { resolveImage } from '@/utils/resolveImage'
-  import BookingButton from '@/components/blocks/BookingButton.vue'
-  import Cloud from '@/components/blocks/Cloud.vue'
-  import SectionBadge from '@/components/ui/SectionBadge.vue'
+    <Cloud width="156px" top="180px" left="-30px" />
+    <Cloud width="118px" top="120px" right="15%" />
+    <Cloud width="118px" bottom="39%" left="33%" />
+    <Cloud width="118px" bottom="-5%" left="7%" />
+    <Cloud width="161px" bottom="-30px" right="9%" flipped />
+  </section>
+</template>
 
-  const Arrow = resolveImage('core/optionally/arrow')
-  const Grill = resolveImage('core/optionally/grill')
-  const Napch = resolveImage('core/optionally/napch')
-  const Hld = resolveImage('core/optionally/hld')
-  const Banya = resolveImage('core/optionally/Banya')
+<script setup>
+import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { resolveImage } from '@/utils/resolveImage'
+import BookingButton from '@/components/blocks/BookingButton.vue'
+import Cloud from '@/components/blocks/Cloud.vue'
+import SectionBadge from '@/components/ui/SectionBadge.vue'
 
-  const items = [
-    { img: Hld, title: 'Ваш праздник', price: 'от 3 000 ₽' },
-    { img: Napch, title: 'Наполнение чана', price: 'от 3 000 ₽' },
-    { img: Grill, title: 'Для мангала', price: 'от 500 ₽' },
-    { img: Banya, title: 'Для бани', price: 'от 500 ₽' },
-      ]
+const Arrow = resolveImage('core/optionally/arrow')
+const Grill = resolveImage('core/optionally/grill')
+const Napch = resolveImage('core/optionally/napch')
+const Hld = resolveImage('core/optionally/hld')
+const Banya = resolveImage('core/optionally/Banya')
 
-  // ширина контейнера и количество видимых карточек
-  const containerWidth = ref(1160)
-  const visibleSlides = ref(3)
-  const gap = 20
-  const slideWidth = computed(() =>
-    (containerWidth.value - (visibleSlides.value - 1) * gap) / visibleSlides.value
-  )
+const items = [
+  {
+    img: Napch,
+    title: 'Трансфер',
+    price: 'от 4000 ₽ за услугу',
+    description: 'Организуем встречу гостей из аэропорта или ж/д вокзала.',
+  },
+  {
+    img: Grill,
+    title: 'Вязанка дров',
+    price: '450 рублей',
+    description: 'Готовый запас дров для камина или мангала.',
+  },
+  {
+    img: Hld,
+    title: 'Пачка углей',
+    price: '350 рублей',
+    description: 'Уголь для мангала, чтобы быстро разжечь огонь.',
+  },
+  {
+    img: Grill,
+    title: 'Жидкость для розжига',
+    price: '150 рублей',
+    description: 'Удобная жидкость для быстрого розжига углей.',
+  },
+  {
+    img: Banya,
+    title: 'Банный веник',
+    price: 'от 350 рублей',
+    description: 'Веник для комфортного посещения бани.',
+  },
+  {
+    img: Napch,
+    title: 'Аренда колонки «Алиса»',
+    price: '500 рублей сутки',
+    description: 'Колонка для музыки и умных подсказок во время отдыха.',
+  },
+]
 
-  const currentIndex = ref(0)
-  const maxIndex = computed(() => Math.max(0, items.length - visibleSlides.value))
+// ширина контейнера и количество видимых карточек
+const containerWidth = ref(1160)
+const visibleSlides = ref(3)
+const gap = 20
+const slideWidth = computed(
+  () =>
+    (containerWidth.value - (visibleSlides.value - 1) * gap) /
+    visibleSlides.value
+)
 
-  const nextSlide = () => {
-    if (currentIndex.value < maxIndex.value) currentIndex.value++
-  }
-  const prevSlide = () => {
-    if (currentIndex.value > 0) currentIndex.value--
-  }
+const currentIndex = ref(0)
+const maxIndex = computed(() => Math.max(0, items.length - visibleSlides.value))
 
-  const updateSlides = () => {
-    if (typeof window === 'undefined') return
-    const w = window.innerWidth
-    const width = Math.min(w * 0.9, 1160)
-    containerWidth.value = Math.max(320, width)
-
-    if (w <= 768) {
-      visibleSlides.value = 1
-    } else if (w <= 1024) {
-      visibleSlides.value = 2
-    } else {
-      visibleSlides.value = 3
-    }
-
-    if (currentIndex.value > maxIndex.value) {
-      currentIndex.value = maxIndex.value
-    }
-  }
-
-  onMounted(() => {
-    updateSlides()
-    window.addEventListener('resize', updateSlides)
-  })
-
-  onUnmounted(() => {
-    window.removeEventListener('resize', updateSlides)
-  })
-  </script>
-
-  <style scoped>
-  .optionally {
-    margin: 50px auto 0 auto;
-    max-width: var(--container-width);
-    position: relative;
-    padding: 0 var(--container-padding) 60px;
-  }
-
-  .optionally__badge {
-    margin-bottom: 32px;
-    --badge-min-w: 245px;
-  }
-
-  .optionally__wrap {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .optionally__wrap_title {
-    font-size: 48px;
-    color: var(--white-color);
-    font-family: var(--font-secondary);
-    margin: 0 0 26px 0;
-    padding: 18px 24px;
-  }
-
-  .optionally__wrap_carousel {
-    display: flex;
-    align-items: center;
-    position: relative;
-    width: 100%;
-    max-width: 1160px;
-    overflow: hidden;
-  }
-
-  .optionally__wrap_carousel_view {
-    overflow: hidden;
-    width: 100%;
-  }
-
-  .optionally__wrap_carousel_inner {
-    display: flex;
-    transition: transform 0.5s ease;
-    gap: 20px;
-  }
-
-  .optionally__wrap_carousel_block {
-    flex-shrink: 0;
-    border-radius: 16px;
-    display: flex;
-    flex-direction: column;
+const nextSlide = () => {
+  if (currentIndex.value < maxIndex.value) currentIndex.value++
+}
+const prevSlide = () => {
+  if (currentIndex.value > 0) currentIndex.value--
 }
 
-  .optionally__wrap_carousel_block-reel {
-    width: 100%;
-    height: 237px;
-    border-radius: 16px 16px 0 0;
-    object-fit: cover;
+const updateSlides = () => {
+  if (typeof window === 'undefined') return
+  const w = window.innerWidth
+  const width = Math.min(w * 0.9, 1160)
+  containerWidth.value = Math.max(320, width)
+
+  if (w <= 768) {
+    visibleSlides.value = 1
+  } else if (w <= 1024) {
+    visibleSlides.value = 2
+  } else {
+    visibleSlides.value = 3
   }
 
-  .optionally__wrap_carousel_block_bot {
+  if (currentIndex.value > maxIndex.value) {
+    currentIndex.value = maxIndex.value
+  }
+}
+
+onMounted(() => {
+  updateSlides()
+  window.addEventListener('resize', updateSlides)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', updateSlides)
+})
+</script>
+
+<style scoped>
+.optionally {
+  margin: 50px auto 0 auto;
+  max-width: var(--container-width);
+  position: relative;
+  padding: 0 var(--container-padding) 60px;
+}
+
+.optionally__badge {
+  margin-bottom: 32px;
+  --badge-min-w: 245px;
+}
+
+.optionally__wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* как в partners */
+.optionally__wrap_carousel-container {
+  width: 100%;
+  max-width: 1160px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.optionally__wrap_carousel {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.optionally__wrap_carousel_view {
+  overflow: hidden;
+  width: 100%;
+}
+
+.optionally__wrap_carousel_inner {
+  display: flex;
+  transition: transform 0.5s ease;
+  gap: 20px;
+}
+
+.optionally__wrap_carousel_block {
+  flex-shrink: 0;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.optionally__wrap_carousel_block-reel {
+  width: 100%;
+  height: 237px;
+  border-radius: 16px 16px 0 0;
+  object-fit: cover;
+}
+
+.optionally__wrap_carousel_block_bot {
   background-color: #121d3c;
   color: var(--white-color);
   font-size: 24px;
@@ -206,14 +255,17 @@
   position: relative;
   width: 100%;
   box-sizing: border-box;
-  height: 127px;
-  overflow: hidden; /* чтобы градиент не вылезал за границы */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  /* ВАЖНО: без фиксированной height, чтобы высота карточек равнялась самой высокой */
 }
 
 .optionally__wrap_carousel_block_bot::before {
-  content: "";
+  content: '';
   position: absolute;
-  top: -40px; /* насколько вверх «заходит» градиент */
+  top: -40px;
   left: 0;
   right: 0;
   height: 40px;
@@ -224,107 +276,102 @@
   );
 }
 
+.optionally__wrap_carousel_block_bot-text {
+  margin: 0;
+  font-family: var(--font-core);
+  font-weight: 200;
+  position: relative;
+  z-index: 1;
+}
 
-  .optionally__wrap_carousel_block_bot-text {
-    margin: 0;
-    font-family: var(--font-core);
-    font-weight: 200;
-  }
+.optionally__wrap_carousel_block_bot-text--title {
+  font-weight: 400;
+  margin-bottom: 4px;
+}
 
-  .optionally__wrap_carousel_block_bot-text:last-of-type {
-    position: absolute;
-    right: 20px;
-    bottom: 36px;
-  }
+.optionally__wrap_carousel_block_bot-text--description {
+  font-size: 16px;
+  line-height: 1.4;
+  opacity: 0.9;
+  max-width: 80%;
+}
 
-  .optionally__wrap_carousel-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    z-index: 10;
-  }
+.optionally__wrap_carousel_block_bot-text--price {
+  font-weight: 600;
+  margin-top: auto; /* цена прижимается вниз, как в партнёрах */
+}
 
-  .optionally__wrap_carousel-arrow.left {
-    left: 0;
-    transform: rotate(180deg) translateY(50%);
-  }
+.optionally__wrap_carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  z-index: 10;
+}
 
-  .optionally__wrap_carousel-arrow.right {
-    right: 0;
+.optionally__wrap_carousel-arrow.left {
+  left: 0;
+  transform: rotate(180deg) translateY(50%);
+}
+
+.optionally__wrap_carousel-arrow.right {
+  right: 0;
+}
+
+.optionally__wrap_btn {
+  background-color: var(--green-color);
+  text-transform: uppercase;
+  color: var(--white-color);
+  padding: 7px 20px 9px 20px;
+  border-radius: var(--border-radius-container);
+  font-size: 33px;
+  font-family: var(--font-secondary);
+  line-height: 100%;
+  border: none;
+  margin-top: 20px;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+@media (max-width: 1024px) {
+  .optionally {
+    padding: 0 var(--container-padding);
   }
 
   .optionally__wrap_btn {
-    background-color: var(--green-color);
-    text-transform: uppercase;
-    color: var(--white-color);
-    padding: 7px 20px 9px 20px;
-    border-radius: var(--border-radius-container);
-    font-size: 33px;
-    font-family: var(--font-secondary);
-    line-height: 100%;
-    border: none;
-    margin-top: 20px;
-    cursor: pointer;
     align-self: flex-start;
   }
 
-  @media (max-width: 1024px) {
-    .optionally {
-      padding: 0 var(--container-padding);
-    }
+  .optionally__wrap_carousel-arrow {
+    width: 48px;
+  }
+}
 
-    .optionally__wrap_btn {
-      align-self: flex-start;
-    }
-
-    .optionally__wrap_title {
-      font-size: 40px;
-      text-align: left;
-      padding: 18px 20px;
-    }
-
-    .optionally__wrap_carousel-arrow {
-      width: 48px;
-    }
+@media (max-width: 640px) {
+  .optionally {
+    padding: 0 var(--container-padding);
   }
 
-  @media (max-width: 640px) {
-    .optionally {
-      padding: 0 var(--container-padding);
-    }
-
-    .optionally__wrap_carousel_block-reel {
-      height: 200px;
-    }
-
-    .optionally__wrap_carousel_block_bot {
-      font-size: var(--fontsize-primary);
-      min-height: 120px;
-    }
-
-    .optionally__wrap_carousel_block_bot-text:last-of-type {
-      bottom: 24px;
-    }
-
-    .optionally__wrap_btn {
-      font-size: 24px;
-      padding: 10px 24px;
-      width: 100%;
-      text-align: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .optionally__wrap_carousel-arrow {
-      width: 36px;
-    }
-
-    .optionally__wrap_title {
-      font-size: 32px;
-      padding: 16px 18px;
-      text-align: left;
-    }
+  .optionally__wrap_carousel_block-reel {
+    height: 200px;
   }
-  </style>
+
+  .optionally__wrap_carousel_block_bot {
+    font-size: var(--fontsize-primary);
+  }
+
+  .optionally__wrap_btn {
+    font-size: 24px;
+    padding: 10px 24px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .optionally__wrap_carousel-arrow {
+    width: 36px;
+  }
+}
+</style>
