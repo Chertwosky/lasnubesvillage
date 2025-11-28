@@ -1,5 +1,11 @@
 <template>
   <section class="yandex-widgets">
+    <SectionBadge
+      class="yandex-widgets__badge"
+      gradient="linear-gradient(90deg,#1d274b 0%, #0a0f24 100%)"
+    >
+      Местоположение и отзывы
+    </SectionBadge>
     <div class="yandex-widgets__container">
       <div class="yandex-widgets__map">
         <div class="yandex-widgets__map-frame">
@@ -48,11 +54,19 @@
   </section>
 </template>
 
+<script setup lang="ts">
+import SectionBadge from '@/components/ui/SectionBadge.vue'
+</script>
+
 <style scoped>
 .yandex-widgets {
   margin: 60px auto 0;
   max-width: var(--container-width);
   padding: 0 var(--container-padding);
+}
+
+.yandex-widgets__badge {
+  margin: 0 auto 24px;
 }
 
 .yandex-widgets__container {
