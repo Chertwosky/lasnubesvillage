@@ -89,7 +89,7 @@
         const gap = Number.parseFloat(styles.columnGap || styles.gap || '0')
         const step = (firstCard?.getBoundingClientRect().width || container.clientWidth) + gap
 
-        container.scrollBy({
+        sliderTrack.scrollBy({
             left: direction * step,
             behavior: 'smooth'
         })
