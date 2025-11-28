@@ -134,7 +134,7 @@
 .advantages__track {
     display: grid;
     grid-auto-flow: column;
-    grid-auto-columns: minmax(260px, 1fr);
+    grid-auto-columns: minmax(360px, 1fr);
     gap: 18px;
     padding: 6px 4px 12px;
     overflow-x: auto;
@@ -243,6 +243,34 @@
         margin-bottom: 24px;
     }
 
+    .advantages__slider {
+        position: relative;
+        padding: 0 44px;
+    }
+
+    .advantages__arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        order: initial;
+        width: 40px;
+        height: 40px;
+    }
+
+    .advantages__slider > .advantages__arrow:first-of-type {
+        left: 0;
+        justify-self: unset;
+    }
+
+    .advantages__slider > .advantages__arrow:last-of-type {
+        right: 0;
+        justify-self: unset;
+    }
+
+    .advantages__arrow:hover {
+        transform: translateY(calc(-50% - 2px));
+    }
+
     .advantages__track {
         grid-auto-columns: minmax(210px, 1fr);
         gap: 14px;
@@ -254,7 +282,7 @@
     }
 
     .advantages__title {
-        font-size: 18px;
+        font-size: 20px;
     }
 
     .advantages__text {

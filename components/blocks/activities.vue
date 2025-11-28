@@ -256,6 +256,34 @@
         margin-bottom: 24px;
     }
 
+    .activities__slider {
+        position: relative;
+        padding: 0 44px;
+    }
+
+    .activities__arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        order: initial;
+        width: 40px;
+        height: 40px;
+    }
+
+    .activities__slider > .activities__arrow:first-of-type {
+        left: 0;
+        justify-self: unset;
+    }
+
+    .activities__slider > .activities__arrow:last-of-type {
+        right: 0;
+        justify-self: unset;
+    }
+
+    .activities__arrow:hover {
+        transform: translateY(calc(-50% - 2px));
+    }
+
     .activities__track {
         grid-auto-columns: minmax(210px, 1fr);
         gap: 14px;
@@ -267,7 +295,7 @@
     }
 
     .activities__title {
-        font-size: 18px;
+        font-size: 20px;
     }
 
     .activities__text {

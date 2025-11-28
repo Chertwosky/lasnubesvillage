@@ -289,15 +289,17 @@ onBeforeUnmount(() => {
     gap: 8px;
 }
 .chan__block__right_bot {
-    margin-left: 20px;
+    margin-left: 0;
     color: var(--faded-color);
     font-weight: 200;
-    font-size: var(--fontsize-small);
-    font-family: var(--font-core);
+    font-size: var(--fontsize-unusual);
+    font-family: var(--font-main);
     padding: 18px 22px;
     display: flex;
     flex-direction: column;
     gap: 12px;
+    max-width: 420px;
+    align-self: flex-start;
 }
 .chan__block__right_text {
     color: var(--white-color);
