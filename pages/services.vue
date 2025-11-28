@@ -1,6 +1,6 @@
 <template>
     <div>
-       <main>
+       <main class="services-page">
         <Amenities />
         <Chan />
         <Bath />
@@ -35,5 +35,18 @@ useHead({
 
 
 <style scoped>
+.services-page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
 
+@media (max-width: 640px) {
+  .services-page {
+    padding: 0 var(--container-padding);
+  }
+}
 </style>
