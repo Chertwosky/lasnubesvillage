@@ -36,11 +36,18 @@
                   class="partners__wrap_carousel_block-reel"
                   draggable="false"
                 />
-                <div class="partners__wrap_carousel_block_bot">
-                  <p class="partners__wrap_carousel_block_bot-text partners__wrap_carousel_block_bot-text--title">
+                <div
+                  class="partners__wrap_carousel_block_bot"
+                  :style="cardsHeight ? { height: cardsHeight + 'px' } : {}"
+                >
+                  <p
+                    class="partners__wrap_carousel_block_bot-text partners__wrap_carousel_block_bot-text--title"
+                  >
                     {{ item.title }}
                   </p>
-                  <p class="partners__wrap_carousel_block_bot-text partners__wrap_carousel_block_bot-text--description">
+                  <p
+                    class="partners__wrap_carousel_block_bot-text partners__wrap_carousel_block_bot-text--description"
+                  >
                     {{ item.description }}
                   </p>
                   <p
@@ -69,7 +76,6 @@
       </div>
 
       <div class="partners__purchases">
-        
         <div class="partners__purchases_grid">
           <div
             v-for="item in purchaseItems"
@@ -93,7 +99,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue'
 import { resolveImage } from '@/utils/resolveImage'
 import BookingButton from '@/components/blocks/BookingButton.vue'
 import Cloud from '@/components/blocks/Cloud.vue'
@@ -104,45 +110,53 @@ const Grill = resolveImage('core/partners/grill')
 const Curd = resolveImage('core/partners/curd')
 const Vat = resolveImage('core/partners/vat')
 const Flowers = resolveImage('core/partners/flowers')
+const Excurssion = resolveImage('core/partners/Excurssion')
+const Breakfast = resolveImage('core/partners/br')
 
 const items = [
   {
     img: Vat,
     title: 'Конные прогулки',
     description: 'Конный клуб в 50 метрах от наших коттеджей.',
+    price: 'от 1500 ₽ за услугу',
   },
   {
     img: Curd,
     title: 'Джиппинг',
     description:
       'Возможность посетить самые труднодоступные красоты. Заберут от дома и привезут обратно.',
+    price: 'от 3000 ₽ за услугу',
   },
   {
     img: Grill,
     title: 'Рафтинг',
     description: 'Организуем сплав как для двоих, так и для большой компании.',
+    price: 'от 1700 ₽ за услугу',
   },
   {
-    img: Flowers,
+    img: Excurssion,
     title: 'Экскурсии',
     description:
       'Организуем экскурсии к главным достопримечательностям горной Адыгеи с опытным гидом.',
     price: 'от 4000 ₽ за услугу',
   },
   {
-    img: Grill,
+    img: Breakfast,
     title: 'Доставка завтрака',
     description:
       'Доставка вкусного и эстетичного завтрака из популярного кафе с авторской кухней.',
+    price: 'по меню*',
   },
   {
     img: Flowers,
     title: 'Букет к важному событию',
     description: 'Мы позаботимся о доставке букета к вашему важному событию.',
+    price: 'от 3000 ₽ за услугу',
   },
 ]
 
-
+// пример, если purchaseItems есть где-то выше
+const purchaseItems = []
 
 // слайдер
 const containerWidth = ref(1160)
@@ -156,6 +170,25 @@ const slideWidth = computed(
 
 const currentIndex = ref(0)
 const maxIndex = computed(() => Math.max(0, items.length - visibleSlides.value))
+
+// высота карточек (нижних блоков), чтобы все были как самая высокая
+const cardsHeight = ref(0)
+
+const measureCardsHeight = () => {
+  if (typeof window === 'undefined') return
+  nextTick(() => {
+    const nodes = document.querySelectorAll('.partners__wrap_carousel_block_bot')
+    if (!nodes.length) return
+    let max = 0
+    nodes.forEach((el) => {
+      if (el instanceof HTMLElement) {
+        const h = el.offsetHeight
+        if (h > max) max = h
+      }
+    })
+    cardsHeight.value = max
+  })
+}
 
 const nextSlide = () => {
   if (currentIndex.value < maxIndex.value) currentIndex.value++
@@ -181,11 +214,16 @@ const updateSlides = () => {
   if (currentIndex.value > maxIndex.value) {
     currentIndex.value = maxIndex.value
   }
+
+  // после перерасчёта ширины/кол-ва слайдов пересчитаем высоту карточек
+  measureCardsHeight()
 }
 
 onMounted(() => {
   updateSlides()
   window.addEventListener('resize', updateSlides)
+  // на всякий случай ещё раз замерим после первого рендера
+  measureCardsHeight()
 })
 
 onUnmounted(() => {
@@ -265,7 +303,7 @@ onUnmounted(() => {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  min-height: 150px; /* выравнивает высоту по самой заполненной карточке (подберёшь число под дизайн) */
+  /* ❌ убрали min-height, теперь высота задаётся через JS по max */
 }
 
 .partners__wrap_carousel_block_bot-text {
@@ -288,8 +326,8 @@ onUnmounted(() => {
 
 .partners__wrap_carousel_block_bot-text--price {
   font-weight: 600;
-  margin-top: auto; /* цена всегда прижимается вниз */
-  font-size: 26px; /* как в "Удобствах" */
+  margin-top: auto;
+  font-size: 26px;
 }
 
 .partners__wrap_carousel-arrow {
@@ -434,7 +472,7 @@ onUnmounted(() => {
 
   .partners__wrap_carousel_block_bot {
     font-size: var(--fontsize-primary);
-    min-height: 140px;
+    /* cardsHeight продолжит работать и тут */
   }
 
   .partners__wrap_btn {

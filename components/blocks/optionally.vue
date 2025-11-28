@@ -92,10 +92,13 @@ import Cloud from '@/components/blocks/Cloud.vue'
 import SectionBadge from '@/components/ui/SectionBadge.vue'
 
 const Arrow = resolveImage('core/optionally/arrow')
-const Grill = resolveImage('core/optionally/grill')
+const Grill = resolveImage('core/optionally/vd')
 const Napch = resolveImage('core/optionally/napch')
-const Hld = resolveImage('core/optionally/hld')
+const Coal = resolveImage('core/optionally/coal')
 const Banya = resolveImage('core/optionally/Banya')
+const Rozh = resolveImage('core/optionally/rozh')
+const Alice = resolveImage('core/optionally/Alice')
+
 
 const items = [
   {
@@ -111,13 +114,13 @@ const items = [
     description: 'Готовый запас дров для камина или мангала.',
   },
   {
-    img: Hld,
+    img: Coal,
     title: 'Пачка углей',
     price: '350 рублей',
     description: 'Уголь для мангала, чтобы быстро разжечь огонь.',
   },
   {
-    img: Grill,
+    img: Rozh,
     title: 'Жидкость для розжига',
     price: '150 рублей',
     description: 'Удобная жидкость для быстрого розжига углей.',
@@ -129,7 +132,7 @@ const items = [
     description: 'Веник для комфортного посещения бани.',
   },
   {
-    img: Napch,
+    img: Alice,
     title: 'Аренда колонки «Алиса»',
     price: '500 рублей сутки',
     description: 'Колонка для музыки и умных подсказок во время отдыха.',
