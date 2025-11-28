@@ -84,7 +84,7 @@ const scrollTo = (id: string) => {
 }
 
 .amenities__wrap_block_title {
-    font-size: calc(var(--fontsize-large)*2);
+    font-size: calc(var(--fontsize-large)*2.2);
     color: var(--white-color);
     font-family: var(--font-secondary);
     letter-spacing: 0;
@@ -98,7 +98,7 @@ const scrollTo = (id: string) => {
 
 .amenities__wrap_block_sub,
 .amenities__wrap_block_name {
-    font-size: var(--fontsize-unusual);
+    font-size: calc(var(--fontsize-unusual) * 1.1);
     color: var(--white-color);
 }
 
@@ -106,13 +106,13 @@ const scrollTo = (id: string) => {
     font-family: var(--font-secondary);
     margin: 0 0 10px 0;
     cursor: pointer;
-    font-size: 36px;
+    font-size: 38px;
 }
 
 .amenities__wrap_block_bot {
     font-family: var(--font-secondary);
     color: var(--white-color);
-    font-size: var(--fontsize-medium);
+    font-size: calc(var(--fontsize-medium) * 1.1);
     max-width: 500px;
     margin: 40px 0 0 0;
 }
@@ -136,6 +136,23 @@ const scrollTo = (id: string) => {
 @media (max-width: 1024px) {
     .amenities__wrap_img {
         max-width: 520px;
+    }
+
+    .amenities__wrap_block_title {
+        font-size: calc(var(--fontsize-large)*2);
+    }
+
+    .amenities__wrap_block_sub,
+    .amenities__wrap_block_name {
+        font-size: var(--fontsize-unusual);
+    }
+
+    .amenities__wrap_block_name {
+        font-size: 36px;
+    }
+
+    .amenities__wrap_block_bot {
+        font-size: var(--fontsize-medium);
     }
 }
 
