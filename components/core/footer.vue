@@ -75,9 +75,9 @@
                             >
                                 Акции
                             </NuxtLink>
+                            <NuxtLink to="/cottages" class="footer__wrap_column3_link" draggable="false">А-Фреймы</NuxtLink>
                             <NuxtLink to="/services" class="footer__wrap_column3_link" draggable="false"> Наши услуги</NuxtLink>
                             <NuxtLink to="/about" class="footer__wrap_column3_link" draggable="false">Блог</NuxtLink>
-                            <NuxtLink to="/cottages" class="footer__wrap_column3_link" draggable="false">А-Фреймы</NuxtLink>
                         </div>
                     </div>
                 </div>
