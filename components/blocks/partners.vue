@@ -39,10 +39,16 @@
                   draggable="false"
                 />
                 <div class="partners__wrap_carousel_block_bot">
-                  <p class="partners__wrap_carousel_block_bot-text">
+                  <p class="partners__wrap_carousel_block_bot-text partners__wrap_carousel_block_bot-text--title">
                     {{ item.title }}
                   </p>
                   <p class="partners__wrap_carousel_block_bot-text">
+                    {{ item.description }}
+                  </p>
+                  <p
+                    v-if="item.price"
+                    class="partners__wrap_carousel_block_bot-text partners__wrap_carousel_block_bot-text--price"
+                  >
                     {{ item.price }}
                   </p>
                 </div>
@@ -64,6 +70,16 @@
         <BookingButton customClass="partners__wrap_btn">
           Забронировать
         </BookingButton>
+      </div>
+      <div class="partners__purchases">
+        <p class="partners__purchases_title">У нас можно приобрести</p>
+        <div class="partners__purchases_grid">
+          <div v-for="item in purchaseItems" :key="item.title" class="partners__purchases_card">
+            <p class="partners__purchases_card-title">{{ item.title }}</p>
+            <p class="partners__purchases_card-price">{{ item.price }}</p>
+            <p class="partners__purchases_card-desc">{{ item.description }}</p>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -89,10 +105,70 @@ const Vat = resolveImage('core/partners/vat')
 const Flowers = resolveImage('core/partners/flowers')
 
 const items = [
-  { img: Vat, title: 'Джиппинг', price: 'от 2 000 ₽/чел.' },
-  { img: Curd, title: 'Конные прогулки', price: 'от 1 500 ₽/чел.' },
-  { img: Grill, title: 'Рафтинг', price: 'от 1700 ₽/чел.' },
-  { img: Flowers, title: 'Цветы', price: 'от 3000 ₽' },
+  {
+    img: Vat,
+    title: 'Конные прогулки',
+    description: 'Конный клуб в 50 метрах от наших коттеджей.',
+  },
+  {
+    img: Curd,
+    title: 'Джиппинг',
+    description: 'Возможность посетить самые труднодоступные красоты. Заберут от дома и привезут обратно.',
+  },
+  {
+    img: Grill,
+    title: 'Рафтинг',
+    description: 'Организуем сплав как для двоих, так и для большой компании.',
+  },
+  {
+    img: Flowers,
+    title: 'Экскурсии',
+    description: 'Организуем экскурсии к главным достопримечательностям горной Адыгеи с опытным гидом.',
+    price: 'от 4000 ₽ за услугу',
+  },
+  {
+    img: Grill,
+    title: 'Доставка завтрака',
+    description: 'Доставка вкусного и эстетичного завтрака из популярного кафе с авторской кухней.',
+  },
+  {
+    img: Flowers,
+    title: 'Букет к важному событию',
+    description: 'Мы позаботимся о доставке букета к вашему важному событию.',
+  },
+]
+
+const purchaseItems = [
+  {
+    title: 'Трансфер',
+    price: 'от 4000 ₽ за услугу',
+    description: 'Организуем встречу гостей из аэропорта или ж/д вокзала.',
+  },
+  {
+    title: 'Вязанка дров',
+    price: '450 рублей',
+    description: 'Готовый запас дров для камина или мангала.',
+  },
+  {
+    title: 'Пачка углей',
+    price: '350 рублей',
+    description: 'Уголь для мангала, чтобы быстро разжечь огонь.',
+  },
+  {
+    title: 'Жидкость для розжига',
+    price: '150 рублей',
+    description: 'Удобная жидкость для быстрого розжига углей.',
+  },
+  {
+    title: 'Банный веник',
+    price: 'от 350 рублей',
+    description: 'Веник для комфортного посещения бани.',
+  },
+  {
+    title: 'Аренда колонки «Алиса»',
+    price: '500 рублей сутки',
+    description: 'Колонка для музыки и умных подсказок во время отдыха.',
+  },
 ]
 
 const containerWidth = ref(1160)
@@ -212,14 +288,15 @@ onUnmounted(() => {
 .partners__wrap_carousel_block_bot {
   background-color: #121d3c;
   color: var(--white-color);
-  font-size: 24px;
-  padding: 16px 20px;
+  font-size: 18px;
+  padding: 18px 20px 20px;
   border-radius: 0 0 16px 16px;
   position: relative;
   width: 100%;
   box-sizing: border-box;
-  height: 127px;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .partners__wrap_carousel_block_bot::before {
@@ -239,13 +316,18 @@ onUnmounted(() => {
 .partners__wrap_carousel_block_bot-text {
   margin: 0;
   font-family: var(--font-core);
-  font-weight: 200;
+  font-weight: 300;
+  line-height: 1.4;
 }
 
-.partners__wrap_carousel_block_bot-text:last-of-type {
-  position: absolute;
-  right: 20px;
-  bottom: 36px;
+.partners__wrap_carousel_block_bot-text--title {
+  font-family: var(--font-secondary);
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.partners__wrap_carousel_block_bot-text--price {
+  font-weight: 600;
 }
 
 .partners__wrap_carousel-arrow {
@@ -277,6 +359,58 @@ onUnmounted(() => {
   border: none;
   margin-top: 20px;
   cursor: pointer;
+}
+
+.partners__purchases {
+  margin-top: 36px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.partners__purchases_title {
+  font-family: var(--font-secondary);
+  font-size: 32px;
+  color: var(--white-color);
+  margin: 0;
+}
+
+.partners__purchases_grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.partners__purchases_card {
+  background: #0d1330;
+  border-radius: 16px;
+  padding: 16px;
+  color: var(--white-color);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.partners__purchases_card-title {
+  font-family: var(--font-secondary);
+  font-size: 20px;
+  margin: 0;
+}
+
+.partners__purchases_card-price {
+  font-family: var(--font-core);
+  margin: 0;
+  font-weight: 600;
+}
+
+.partners__purchases_card-desc {
+  font-family: var(--font-core);
+  margin: 0;
+  font-weight: 300;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.85);
 }
 
 @media (max-width: 1024px) {
@@ -314,10 +448,6 @@ onUnmounted(() => {
   .partners__wrap_carousel_block_bot {
     font-size: var(--fontsize-primary);
     min-height: 120px;
-  }
-
-  .partners__wrap_carousel_block_bot-text:last-of-type {
-    bottom: 24px;
   }
 
   .partners__wrap_btn {
