@@ -48,8 +48,8 @@ import SectionBadge from '@/components/ui/SectionBadge.vue'
 
 // ✅ ИМПОРТ ВИДЕО КАК АССЕТА
 // проверь, что файл реально лежит по этому пути:
-// src/assets/images/core/heading/intro.mov
-import IntroVideo from '@/assets/images/core/heading/intro.mov'
+// src/assets/images/core/heading/intro.mp4
+import IntroVideo from '@/assets/images/core/heading/intro.mp4'
 
 const scrollTo = (id: string) => {
   const el = document.getElementById(id)
