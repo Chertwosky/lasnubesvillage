@@ -190,7 +190,7 @@ onUnmounted(() => {
   margin: 50px auto 0 auto;
   max-width: var(--container-width);
   position: relative;
-  padding: 0 var(--container-padding) 60px;
+  padding: 0 var(--container-padding) 10px;
 }
 
 .optionally__badge {
@@ -259,23 +259,9 @@ onUnmounted(() => {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  /* ВАЖНО: без фиксированной height, чтобы высота карточек равнялась самой высокой */
 }
 
-.optionally__wrap_carousel_block_bot::before {
-  content: '';
-  position: absolute;
-  top: -40px;
-  left: 0;
-  right: 0;
-  height: 40px;
-  background: linear-gradient(
-    to bottom,
-    rgba(18, 29, 60, 0) 0%,
-    rgba(18, 29, 60, 1) 100%
-  );
-}
-
+/* заголовок как в partners */
 .optionally__wrap_carousel_block_bot-text {
   margin: 0;
   font-family: var(--font-core);
@@ -285,6 +271,8 @@ onUnmounted(() => {
 }
 
 .optionally__wrap_carousel_block_bot-text--title {
+  font-family: var(--font-secondary);
+  font-size: 32px;
   font-weight: 400;
   margin-bottom: 4px;
 }
@@ -336,6 +324,11 @@ onUnmounted(() => {
 @media (max-width: 1024px) {
   .optionally {
     padding: 0 var(--container-padding);
+  }
+
+  /* как в partners — уменьшаем заголовок на планшетах */
+  .optionally__wrap_carousel_block_bot-text--title {
+    font-size: 22px;
   }
 
   .optionally__wrap_btn {

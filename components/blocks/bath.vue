@@ -275,36 +275,54 @@ onBeforeUnmount(() => {
 }
 .bath__block__right_bot_min {
     display: flex;
-    gap: 8px;
+    gap: 16px;
 }
+.bath__block__right_bot_min-reel {
+  width: 24px;   /* нужный размер по ширине */
+  height: 24px;  /* можно оставить авто, но так надёжнее */
+}
+.bath__block__right_bot_min-text {
+  margin: 0;  
+            /* полностью убрать отступы */
+  /* или, если нужно, задать свои: */
+  /* margin: 4px 0 0;  верхний 4px, остальное 0 */
+}
+.bath__block__right_bot_min-text {
+  font-size: 18px; /* твой размер */
+}
+.bath__block__right_bot-text {
+  font-size: 18px; /* твой размер */
+}
+
 .bath__block__right_bot {
     margin-left: 0;
     color: var(--faded-color);
-    font-weight: 200;
+    font-weight: 100;
     font-size: var(--fontsize-unusual);
     font-family: var(--font-main);
     padding: 18px 22px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    max-width: 420px;
+    gap: 0px;
+    width: 345px;
     align-self: flex-start;
 }
 .bath__block__right_text {
     color: var(--white-color);
     font-size: var(--fontsize-unusual);
     max-width: 508px;
-    line-height: 140%;
+    line-height: 100%;
     font-family: var(--font-main);
     padding: 24px 28px;
 }
 .bath__block__right_text-up {
     font-family: var(--font-secondary);
-    font-size: 36px;
+    font-size: 40px;
     text-transform: uppercase;
 }
 .bath__block__right_bot-text:first-of-type {
-    margin-bottom: 24px;
+    margin-bottom: 0px;
+    
 }
 
 .bath__carousel { position: relative; display: flex; align-items: center; overflow: hidden; width: 100%; }
@@ -384,8 +402,8 @@ onBeforeUnmount(() => {
     }
 
   .bath__block__left_btn {
-        font-size: 24px;
-        padding: 10px 24px;
+        font-size: 20px;
+        padding: 10px 20px;
         width: 100%;
         text-align: center;
         justify-content: center;
