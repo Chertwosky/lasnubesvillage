@@ -69,13 +69,6 @@
                         <p class="footer__wrap_column3_title">Страницы</p>
                         <div class="footer__wrap_column3_list">
                             <NuxtLink to="/" class="footer__wrap_column3_link" draggable="false">Главная</NuxtLink>
-                            <NuxtLink
-                                :to="{ path: '/', hash: '#stocks' }"
-                                class="footer__wrap_column3_link"
-                                draggable="false"
-                            >
-                                Акции
-                            </NuxtLink>
                             <NuxtLink to="/cottages" class="footer__wrap_column3_link" draggable="false">А-Фреймы</NuxtLink>
                             <NuxtLink to="/services" class="footer__wrap_column3_link" draggable="false"> Наши услуги</NuxtLink>
                             <NuxtLink to="/about" class="footer__wrap_column3_link" draggable="false">Блог</NuxtLink>
