@@ -45,7 +45,7 @@ const Games = resolveImage('core/pleasantly/games')
     max-width: var(--container-width);
     position: relative;
     padding: 80px var(--container-padding);
-    
+    display: none
 }
 
 .pleasantly__badge {
