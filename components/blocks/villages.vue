@@ -5,7 +5,7 @@
         gradient="linear-gradient(90deg,#0e0b27 0%, #0a0820 100%)"
         align="right"
       >
-        А-фрейм
+        А-фреймы
       </SectionBadge>
       <div class="villages__intro text-overlay">
         <h3 class="villages__intro_title">Домики с панорамными окнами</h3>
