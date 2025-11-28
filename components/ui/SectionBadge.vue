@@ -22,21 +22,17 @@ const props = defineProps({
   },
   align: {
     type: String as () => 'left' | 'center' | 'right',
-    default: 'right',
-  },
-  padRight: {
-    type: String,
-    default: '',
+    default: 'center',
   },
 })
 
 const badgeStyle = computed(() => ({
   ...(props.gradient ? { '--badge-bg': props.gradient } : {}),
-  ...(props.padRight ? { '--badge-pad-right': props.padRight } : {}),
 }))
 
 const badgeClasses = computed(() => ({
   'section-badge--right': props.align === 'right',
   'section-badge--left': props.align === 'left',
+  'section-badge--center': props.align === 'center',
 }))
 </script>
