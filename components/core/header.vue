@@ -80,7 +80,6 @@ const Telegram = resolveImage('core/header/Telegram')
 
 const menuItems = [
   { label: 'Главная', to: '/' },
-  { label: 'Акции', to: { path: '/', hash: '#stocks' } },
   { label: 'А-Фреймы', to: '/cottages' },
   { label: 'Услуги', to: '/services' },
   { label: 'Блог', to: '/about' },

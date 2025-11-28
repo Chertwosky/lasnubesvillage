@@ -149,7 +149,6 @@
 .advantages__card {
     background: var(--white-color);
     border-radius: var(--border-radius-container);
-    box-shadow: 0 18px 45px rgba(8, 23, 52, 0.12);
     padding: 24px;
     display: grid;
     grid-template-rows: auto auto 1fr;

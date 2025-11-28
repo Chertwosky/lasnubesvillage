@@ -7,11 +7,10 @@
     >
       Партнёры
     </SectionBadge>
+
     <div class="partners__wrap">
-      <!-- 👇 общий контейнер для слайдера и кнопки -->
       <div class="partners__wrap_carousel-container">
         <div class="partners__wrap_carousel" :style="{ width: containerWidth + 'px' }">
-          <!-- Стрелка влево -->
           <img
             v-if="currentIndex > 0"
             :src="Arrow"
@@ -20,7 +19,6 @@
             @click="prevSlide"
           />
 
-          <!-- Контейнер со слайдами -->
           <div class="partners__wrap_carousel_view">
             <div
               class="partners__wrap_carousel_inner"
@@ -42,7 +40,7 @@
                   <p class="partners__wrap_carousel_block_bot-text partners__wrap_carousel_block_bot-text--title">
                     {{ item.title }}
                   </p>
-                  <p class="partners__wrap_carousel_block_bot-text">
+                  <p class="partners__wrap_carousel_block_bot-text partners__wrap_carousel_block_bot-text--description">
                     {{ item.description }}
                   </p>
                   <p
@@ -56,7 +54,6 @@
             </div>
           </div>
 
-          <!-- Стрелка вправо -->
           <img
             v-if="currentIndex < maxIndex"
             :src="Arrow"
@@ -66,15 +63,19 @@
           />
         </div>
 
-        <!-- Кнопка теперь внутри контейнера -->
         <BookingButton customClass="partners__wrap_btn">
           Забронировать
         </BookingButton>
       </div>
+
       <div class="partners__purchases">
-        <p class="partners__purchases_title">У нас можно приобрести</p>
+        
         <div class="partners__purchases_grid">
-          <div v-for="item in purchaseItems" :key="item.title" class="partners__purchases_card">
+          <div
+            v-for="item in purchaseItems"
+            :key="item.title"
+            class="partners__purchases_card"
+          >
             <p class="partners__purchases_card-title">{{ item.title }}</p>
             <p class="partners__purchases_card-price">{{ item.price }}</p>
             <p class="partners__purchases_card-desc">{{ item.description }}</p>
@@ -113,7 +114,8 @@ const items = [
   {
     img: Curd,
     title: 'Джиппинг',
-    description: 'Возможность посетить самые труднодоступные красоты. Заберут от дома и привезут обратно.',
+    description:
+      'Возможность посетить самые труднодоступные красоты. Заберут от дома и привезут обратно.',
   },
   {
     img: Grill,
@@ -123,13 +125,15 @@ const items = [
   {
     img: Flowers,
     title: 'Экскурсии',
-    description: 'Организуем экскурсии к главным достопримечательностям горной Адыгеи с опытным гидом.',
+    description:
+      'Организуем экскурсии к главным достопримечательностям горной Адыгеи с опытным гидом.',
     price: 'от 4000 ₽ за услугу',
   },
   {
     img: Grill,
     title: 'Доставка завтрака',
-    description: 'Доставка вкусного и эстетичного завтрака из популярного кафе с авторской кухней.',
+    description:
+      'Доставка вкусного и эстетичного завтрака из популярного кафе с авторской кухней.',
   },
   {
     img: Flowers,
@@ -138,44 +142,16 @@ const items = [
   },
 ]
 
-const purchaseItems = [
-  {
-    title: 'Трансфер',
-    price: 'от 4000 ₽ за услугу',
-    description: 'Организуем встречу гостей из аэропорта или ж/д вокзала.',
-  },
-  {
-    title: 'Вязанка дров',
-    price: '450 рублей',
-    description: 'Готовый запас дров для камина или мангала.',
-  },
-  {
-    title: 'Пачка углей',
-    price: '350 рублей',
-    description: 'Уголь для мангала, чтобы быстро разжечь огонь.',
-  },
-  {
-    title: 'Жидкость для розжига',
-    price: '150 рублей',
-    description: 'Удобная жидкость для быстрого розжига углей.',
-  },
-  {
-    title: 'Банный веник',
-    price: 'от 350 рублей',
-    description: 'Веник для комфортного посещения бани.',
-  },
-  {
-    title: 'Аренда колонки «Алиса»',
-    price: '500 рублей сутки',
-    description: 'Колонка для музыки и умных подсказок во время отдыха.',
-  },
-]
 
+
+// слайдер
 const containerWidth = ref(1160)
 const visibleSlides = ref(3)
 const gap = 20
-const slideWidth = computed(() =>
-  (containerWidth.value - (visibleSlides.value - 1) * gap) / visibleSlides.value
+const slideWidth = computed(
+  () =>
+    (containerWidth.value - (visibleSlides.value - 1) * gap) /
+    visibleSlides.value
 )
 
 const currentIndex = ref(0)
@@ -236,21 +212,12 @@ onUnmounted(() => {
   align-items: flex-start;
 }
 
-.partners__wrap_title {
-  font-size: 48px;
-  color: var(--white-color);
-  font-family: var(--font-secondary);
-  margin: 0 0 26px 0;
-  padding: 18px 24px;
-}
-
-/* 👇 новый контейнер */
 .partners__wrap_carousel-container {
   width: 100%;
-  max-width: 1160px; /* ширина слайдера */
+  max-width: 1160px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* кнопка теперь прижата к левому краю */
+  align-items: flex-start;
 }
 
 .partners__wrap_carousel {
@@ -265,6 +232,7 @@ onUnmounted(() => {
   overflow: hidden;
   width: 100%;
 }
+
 .partners__wrap_carousel_inner {
   display: flex;
   transition: transform 0.5s ease;
@@ -297,20 +265,7 @@ onUnmounted(() => {
   display: flex;
   flex-direction: column;
   gap: 8px;
-}
-
-.partners__wrap_carousel_block_bot::before {
-  content: "";
-  position: absolute;
-  top: -40px;
-  left: 0;
-  right: 0;
-  height: 40px;
-  background: linear-gradient(
-    to bottom,
-    rgba(18, 29, 60, 0) 0%,
-    rgba(18, 29, 60, 1) 100%
-  );
+  min-height: 150px; /* выравнивает высоту по самой заполненной карточке (подберёшь число под дизайн) */
 }
 
 .partners__wrap_carousel_block_bot-text {
@@ -326,8 +281,15 @@ onUnmounted(() => {
   font-weight: 400;
 }
 
+.partners__wrap_carousel_block_bot-text--description {
+  font-size: 16px;
+  opacity: 0.9;
+}
+
 .partners__wrap_carousel_block_bot-text--price {
   font-weight: 600;
+  margin-top: auto; /* цена всегда прижимается вниз */
+  font-size: 24px; /* как в "Удобствах" */
 }
 
 .partners__wrap_carousel-arrow {
@@ -418,11 +380,6 @@ onUnmounted(() => {
     padding: 0 var(--container-padding);
   }
 
-  .partners__wrap_title {
-    text-align: left;
-    padding: 18px 20px;
-  }
-
   .partners__wrap_carousel-container {
     align-items: flex-start;
   }
@@ -447,7 +404,7 @@ onUnmounted(() => {
 
   .partners__wrap_carousel_block_bot {
     font-size: var(--fontsize-primary);
-    min-height: 120px;
+    min-height: 140px;
   }
 
   .partners__wrap_btn {
@@ -462,12 +419,6 @@ onUnmounted(() => {
 
   .partners__wrap_carousel-arrow {
     width: 36px;
-  }
-
-  .partners__wrap_title {
-    font-size: 32px;
-    padding: 16px 18px;
-    text-align: left;
   }
 }
 </style>
