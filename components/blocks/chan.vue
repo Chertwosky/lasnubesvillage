@@ -298,6 +298,7 @@ onBeforeUnmount(() => {
 }
 .chan__block__right_bot {
     margin-left: 0;
+    box-sizing: border-box;
     color: var(--faded-color);
     font-weight: 200;
     font-size: var(--fontsize-unusual);
@@ -306,7 +307,7 @@ onBeforeUnmount(() => {
     display: flex;
     flex-direction: column;
     gap: px;
-    width: 345px;
+    width: min(345px, 100%);
     align-self: flex-start;
 }
 .chan__block__right_bot-text {

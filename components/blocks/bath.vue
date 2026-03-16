@@ -296,6 +296,7 @@ onBeforeUnmount(() => {
 
 .bath__block__right_bot {
     margin-left: 0;
+    box-sizing: border-box;
     color: var(--faded-color);
     font-weight: 100;
     font-size: var(--fontsize-unusual);
@@ -304,7 +305,7 @@ onBeforeUnmount(() => {
     display: flex;
     flex-direction: column;
     gap: 0px;
-    width: 345px;
+    width: min(345px, 100%);
     align-self: flex-start;
 }
 .bath__block__right_text {
