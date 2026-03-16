@@ -162,8 +162,10 @@ const prevSlide = () => {
 const updateSlides = () => {
   if (typeof window === 'undefined') return
   const w = window.innerWidth
-  const width = Math.min(w * 0.9, 1160)
-  containerWidth.value = Math.max(320, width)
+  const rootStyles = getComputedStyle(document.documentElement)
+  const containerPadding = parseFloat(rootStyles.getPropertyValue('--container-padding')) || 0
+  const availableWidth = Math.max(280, w - containerPadding * 2)
+  containerWidth.value = Math.min(1160, availableWidth)
 
   if (w <= 768) {
     visibleSlides.value = 1
@@ -271,6 +273,8 @@ onUnmounted(() => {
   font-weight: 200;
   position: relative;
   z-index: 1;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .optionally__wrap_carousel_block_bot-text--title {
