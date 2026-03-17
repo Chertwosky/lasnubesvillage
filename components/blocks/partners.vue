@@ -239,6 +239,7 @@ onUnmounted(() => {
   max-width: var(--container-width);
   position: relative;
   padding: 0 var(--container-padding) 10px;
+  overflow-x: clip;
 }
 
 .partners__badge {
@@ -258,6 +259,7 @@ onUnmounted(() => {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  overflow-x: clip;
 }
 
 .partners__wrap_carousel {

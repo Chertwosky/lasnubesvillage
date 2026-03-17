@@ -229,6 +229,7 @@ onBeforeUnmount(() => {
     margin: 50px auto 0 auto;
     max-width: var(--container-width);
     padding: 40px var(--container-padding) 0 var(--container-padding);
+    overflow-x: clip;
 }
 
 .bath__badge {
@@ -250,6 +251,7 @@ onBeforeUnmount(() => {
 }
 .bath__block__left {
     align-items: flex-end;
+    overflow-x: clip;
 }
 .bath__block__left_btn {
     background-color: var(--green-color);
