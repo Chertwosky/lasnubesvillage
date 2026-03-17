@@ -68,13 +68,21 @@
               <span class="bungaloswrap_blockright_text-up">{{ item.upTitle }}</span>
               {{ item.text }}
             </p>
-            <ul class="bungalos__features text-overlay">
+            <div class="bungalos__palette text-overlay">
+              <span class="bungalos__palette-dot" :style="{ background: item.accentColor }" />
+              <p class="bungalos__palette-text">
+                Единая комплектация во всех A-frame домах. Отличается только настроение интерьера:
+                <strong>{{ item.palette }}</strong>
+              </p>
+            </div>
+            <ul class="bungalos__amenities text-overlay">
               <li
-                v-for="feature in item.features"
-                :key="feature"
-                class="bungalos__features-item"
+                v-for="amenity in sharedAmenities"
+                :key="amenity.label"
+                class="bungalos__amenities-item"
               >
-                {{ feature }}
+                <span class="bungalos__amenities-icon" aria-hidden="true">{{ amenity.icon }}</span>
+                <span>{{ amenity.label }}</span>
               </li>
             </ul>
             <div class="bungaloswrap_blockright_bot text-overlay">
@@ -161,19 +169,23 @@ const emeraldPhotos = import.meta.glob(
   { eager: true, import: 'default' }
 )
 
+const sharedAmenities = [
+  { icon: '🛏️', label: '2 спальни + кухня-гостиная с раскладным диваном' },
+  { icon: '📶', label: 'Стабильный Wi-Fi и 2 Smart TV' },
+  { icon: '🌡️', label: 'Водяное отопление, тёплый пол и кондиционер' },
+  { icon: '🍽️', label: 'Полностью оборудованная кухня с посудомоечной машиной' },
+  { icon: '🧺', label: 'Полотенца, косметические наборы, фен и тапочки' },
+]
+
 const items = [
   {
     id: 'sunset',
     badge: 'А-Фрейм Сансет',
     badgeGradient: 'linear-gradient(90deg,#1d254d 0%, #fb9062 10%, #fb9062 100%)',
     upTitle: 'А-фрейм «Сансет»',
-    text: ' — атмосферный дом с мягкой палитрой заката, панорамным остеклением и высоким вторым светом. Здесь приятно просыпаться с видом на горы, готовить в полностью оборудованной кухне-гостиной и отдыхать всей компанией в уютном общем пространстве.',
-    features: [
-      '2 спальни + кухня-гостиная с диваном',
-      '2 Smart TV и стабильный Wi-Fi',
-      'Тёплые полы, кондиционер, водяное отопление',
-      'Посудомойка, духовой шкаф и полный комплект посуды',
-    ],
+    text: ' — дом в тёплой палитре закатных оттенков с панорамным видом и вторым светом. Идеален для неспешного отдыха в мягкой, солнечной атмосфере.',
+    palette: 'тёплые закатные тона',
+    accentColor: '#fb9062',
     location: 'Вид на горы и поселок',
     beds: '2 спальни с двухместными кроватями, раскладной диван',
     guests: 'до 6 гостей',
@@ -184,13 +196,9 @@ const items = [
     badge: 'А-Фрейм Ультрамарин',
     badgeGradient: 'linear-gradient(90deg,#0e2c5c 0%, #060a18 100%)',
     upTitle: 'А-фрейм «Ультрамарин»',
-    text: ' — современный коттедж в морской гамме, где каждая зона продумана для спокойного отдыха. Панорамные окна наполняют дом светом, а приватная планировка с двумя спальнями делает его удобным для семьи или друзей.',
-    features: [
-      'Панорамные окна и высокий второй свет',
-      'Комфорт до 6 гостей',
-      'Ортопедические матрасы и сатиновое бельё',
-      'Горный чай, питьевая вода и приветственный набор',
-    ],
+    text: ' — дом в глубоких морских оттенках с тем же уровнем комфорта и оснащения. Спокойный и современный характер интерьера для тех, кто любит сдержанную эстетику.',
+    palette: 'морская ультрамариновая гамма',
+    accentColor: '#2958a3',
     location: 'Вид на горы и поселок',
     beds: '2 спальни с двухместными кроватями, раскладной диван',
     guests: 'до 6 гостей',
@@ -201,13 +209,9 @@ const items = [
     badge: 'А-Фрейм Эмеральд',
     badgeGradient: 'linear-gradient(90deg,#114633 0%, #07140f 100%)',
     upTitle: 'А-фрейм «Эмеральд»',
-    text: ' — уютный А-фрейм с изумрудными акцентами и вдохновляющим видом на ущелье Мишоко. Пространство сочетает тишину загородного отдыха и городской уровень оснащения: от климат-контроля до полноценной кухни.',
-    features: [
-      'Вид на горы, поселок и ущелье Мишоко',
-      'Душевный интерьер в природной цветовой гамме',
-      'Фен, полотенца, косметические наборы и тапочки',
-      'Идеален для семейного и романтического отдыха',
-    ],
+    text: ' — дом в природной изумрудной гамме с расслабляющей атмосферой и видом на ущелье Мишоко. Тот же набор удобств, но с более «живым» природным настроением.',
+    palette: 'изумрудные природные акценты',
+    accentColor: '#2e7d5a',
     location: 'Вид на горы, поселок и ущелье Мишоко',
     beds: '2 спальни с двухместными кроватями, раскладной диван',
     guests: 'до 6 гостей',
@@ -369,24 +373,56 @@ onBeforeUnmount(() => {
   margin-bottom: 8px;
 }
 
-.bungalos__features {
+.bungalos__palette {
+  max-width: 508px;
+  padding: 14px 16px;
+  margin: 0 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.bungalos__palette-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+}
+
+.bungalos__palette-text {
+  margin: 0;
+  color: var(--white-color);
+  font-size: 15px;
+  line-height: 1.35;
+}
+
+.bungalos__amenities {
   list-style: none;
   padding: 14px;
   margin: 0 0 16px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 8px;
   max-width: 508px;
 }
 
-.bungalos__features-item {
+.bungalos__amenities-item {
   color: var(--white-color);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 999px;
-  padding: 8px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 14px;
+  padding: 8px 12px;
   font-size: 14px;
-  line-height: 1.2;
+  line-height: 1.25;
   background: rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bungalos__amenities-icon {
+  font-size: 16px;
+  flex-shrink: 0;
 }
 
 /* Доп. блок (location / beds / guests) */
@@ -593,7 +629,8 @@ onBeforeUnmount(() => {
     padding: 20px 22px;
   }
 
-  .bungalos__features {
+  .bungalos__palette,
+  .bungalos__amenities {
     max-width: 100%;
   }
 
@@ -624,12 +661,21 @@ onBeforeUnmount(() => {
     margin: 0;
   }
 
-  .bungalos__features {
-    padding: 10px;
-    gap: 8px;
+  .bungalos__palette {
+    padding: 12px;
+    gap: 10px;
   }
 
-  .bungalos__features-item {
+  .bungalos__palette-text {
+    font-size: 14px;
+  }
+
+  .bungalos__amenities {
+    padding: 10px;
+    gap: 7px;
+  }
+
+  .bungalos__amenities-item {
     font-size: 13px;
     padding: 7px 10px;
   }
