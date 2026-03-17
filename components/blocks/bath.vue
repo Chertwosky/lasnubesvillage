@@ -194,8 +194,10 @@ const prevLightbox = () => {
 const updateContainerWidth = () => {
   if (typeof window === 'undefined') return
   const width = window.innerWidth
-  const base = Math.min(508, width * 0.9)
-  containerWidth.value = Math.max(280, base)
+  const rootStyles = getComputedStyle(document.documentElement)
+  const containerPadding = parseFloat(rootStyles.getPropertyValue('--container-padding')) || 0
+  const availableWidth = Math.max(280, width - containerPadding * 2)
+  containerWidth.value = Math.min(508, availableWidth)
 
   if (width <= 480) {
     photoHeight.value = 300
@@ -227,6 +229,7 @@ onBeforeUnmount(() => {
     margin: 50px auto 0 auto;
     max-width: var(--container-width);
     padding: 40px var(--container-padding) 0 var(--container-padding);
+    overflow-x: clip;
 }
 
 .bath__badge {
@@ -248,6 +251,7 @@ onBeforeUnmount(() => {
 }
 .bath__block__left {
     align-items: flex-end;
+    overflow-x: clip;
 }
 .bath__block__left_btn {
     background-color: var(--green-color);
@@ -292,6 +296,8 @@ onBeforeUnmount(() => {
 }
 .bath__block__right_bot-text {
   font-size: 18px; /* твой размер */
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .bath__block__right_bot {
@@ -315,6 +321,8 @@ onBeforeUnmount(() => {
     line-height: 100%;
     font-family: var(--font-main);
     padding: 24px 28px;
+    overflow-wrap: anywhere;
+    word-break: break-word;
 }
 .bath__block__right_text-up {
     font-family: var(--font-secondary);
