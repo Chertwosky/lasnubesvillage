@@ -15,7 +15,10 @@
 
         <!-- Контейнер под виджет -->
         <div id="_bn_widget_" class="bn-widget"></div>
-        <h3 class="modal__title"> LAS NUBES VILLAGE — посуточная аренда коттеджей </h3>
+        <div class="modal__footer">
+          <p class="modal__hint">Если дальше нужных дат календарь не дает выбрать период, значит все дома на эти даты уже забронированы.</p>
+          <h3 class="modal__title"> LAS NUBES VILLAGE — посуточная аренда коттеджей </h3>
+        </div>
       </div>
     </div>
   </template>
@@ -29,6 +32,8 @@
 
   const WIDGET_CONTAINER_ID = '_bn_widget_'
   const PRELOAD_CONTAINER_ID = '_bn_widget_preload'
+  const BNOVO_SCRIPT_ID = 'bnovo-widget-script'
+  const BNOVO_SCRIPT_SRC = 'https://widget.reservationsteps.ru/js/bnovo.js'
 
   const isOpen = ref(false)
   const widgetReady = ref(false)
@@ -108,6 +113,21 @@
     clearContainerById(PRELOAD_CONTAINER_ID)
   }
 
+  const loadBnovoScript = () => {
+    if (typeof window === 'undefined' || typeof document === 'undefined') return
+
+    if (window.Bnovo_Widget) return
+
+    const existingScript = document.getElementById(BNOVO_SCRIPT_ID)
+    if (existingScript) return
+
+    const script = document.createElement('script')
+    script.id = BNOVO_SCRIPT_ID
+    script.src = BNOVO_SCRIPT_SRC
+    script.async = true
+    document.head.appendChild(script)
+  }
+
   const ensureWidgetLoaded = () => {
     if (typeof window === 'undefined' || widgetReady.value) return
 
@@ -116,9 +136,11 @@
         preloadWidget()
         markWidgetReady()
       })
-    } else {
-      setTimeout(ensureWidgetLoaded, 300)
+      return
     }
+
+    loadBnovoScript()
+    setTimeout(ensureWidgetLoaded, 300)
   }
 
   const waitForWidget = async () => {
@@ -210,15 +232,43 @@
     margin: 0 auto;
 }
 
+  .modal__footer {
+    position: absolute;
+    right: 20px;
+    bottom: 16px;
+    left: 20px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 18px;
+    border-radius: 18px;
+    background: rgba(58, 86, 128, 0.84);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 10px 30px rgba(18, 30, 56, 0.22);
+    pointer-events: none;
+  }
+
+  .modal__hint {
+    max-width: 540px;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.96);
+    font-size: 14px;
+    line-height: 1.45;
+    text-align: center;
+    text-wrap: balance;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
+  }
 
   .modal__title {
+    margin: 0;
     font-family: var(--font-secondary);
-    font-size: 26px;
+    font-size: 24px;
+    line-height: 1.15;
     text-align: center;
     color: var(--white-color);
-    bottom: 2%;
-    right: 2%;
-   position: absolute;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
   }
 
   .modal__close {
@@ -231,14 +281,30 @@
     color: var(--white-color);
   }
 
-
-
-
   .cloud {
     z-index: 0; /* облака под виджетом */
   }
 
   .cloud_modal {
     z-index: 0 !important;
+  }
+
+  @media (max-width: 768px) {
+    .modal__footer {
+      right: 12px;
+      bottom: 12px;
+      left: 12px;
+      gap: 8px;
+      padding: 12px 14px;
+    }
+
+    .modal__hint {
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    .modal__title {
+      font-size: 18px;
+    }
   }
   </style>
