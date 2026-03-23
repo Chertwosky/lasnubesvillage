@@ -15,7 +15,10 @@
 
         <!-- Контейнер под виджет -->
         <div id="_bn_widget_" class="bn-widget"></div>
-        <h3 class="modal__title"> LAS NUBES VILLAGE — посуточная аренда коттеджей </h3>
+        <div class="modal__footer">
+          <p class="modal__hint">Если дальше нужных дат календарь не дает выбрать период, значит все дома на эти даты уже забронированы.</p>
+          <h3 class="modal__title"> LAS NUBES VILLAGE — посуточная аренда коттеджей </h3>
+        </div>
       </div>
     </div>
   </template>
@@ -210,15 +213,34 @@
     margin: 0 auto;
 }
 
+  .modal__footer {
+    position: absolute;
+    right: 24px;
+    bottom: 16px;
+    left: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    pointer-events: none;
+  }
+
+  .modal__hint {
+    max-width: 520px;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.86);
+    font-size: 13px;
+    line-height: 1.35;
+    text-align: center;
+    text-wrap: balance;
+  }
 
   .modal__title {
+    margin: 0;
     font-family: var(--font-secondary);
     font-size: 26px;
     text-align: center;
     color: var(--white-color);
-    bottom: 2%;
-    right: 2%;
-   position: absolute;
   }
 
   .modal__close {
@@ -231,14 +253,28 @@
     color: var(--white-color);
   }
 
-
-
-
   .cloud {
     z-index: 0; /* облака под виджетом */
   }
 
   .cloud_modal {
     z-index: 0 !important;
+  }
+
+  @media (max-width: 768px) {
+    .modal__footer {
+      right: 16px;
+      bottom: 16px;
+      left: 16px;
+      gap: 6px;
+    }
+
+    .modal__hint {
+      font-size: 12px;
+    }
+
+    .modal__title {
+      font-size: 20px;
+    }
   }
   </style>
