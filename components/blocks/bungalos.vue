@@ -68,6 +68,23 @@
               <span class="bungaloswrap_blockright_text-up">{{ item.upTitle }}</span>
               {{ item.text }}
             </p>
+            <div class="bungalos__palette text-overlay">
+              <span class="bungalos__palette-dot" :style="{ background: item.accentColor }" />
+              <p class="bungalos__palette-text">
+                Единая комплектация во всех A-frame домах. Отличается только настроение интерьера:
+                <strong>{{ item.palette }}</strong>
+              </p>
+            </div>
+            <ul class="bungalos__amenities text-overlay">
+              <li
+                v-for="amenity in sharedAmenities"
+                :key="amenity.label"
+                class="bungalos__amenities-item"
+              >
+                <span class="bungalos__amenities-icon" aria-hidden="true">{{ amenity.icon }}</span>
+                <span>{{ amenity.label }}</span>
+              </li>
+            </ul>
             <div class="bungaloswrap_blockright_bot text-overlay">
               <p class="bungaloswrap_blockright_bot-text">{{ item.location }}</p>
               <p class="bungaloswrap_blockright_bot-text">{{ item.beds }}</p>
@@ -152,13 +169,23 @@ const emeraldPhotos = import.meta.glob(
   { eager: true, import: 'default' }
 )
 
+const sharedAmenities = [
+  { icon: '🛏️', label: '2 спальни + кухня-гостиная с раскладным диваном' },
+  { icon: '📶', label: 'Стабильный Wi-Fi и 2 Smart TV' },
+  { icon: '🌡️', label: 'Водяное отопление, тёплый пол и кондиционер' },
+  { icon: '🍽️', label: 'Полностью оборудованная кухня с посудомоечной машиной' },
+  { icon: '🧺', label: 'Полотенца, косметические наборы, фен и тапочки' },
+]
+
 const items = [
   {
     id: 'sunset',
     badge: 'А-Фрейм Сансет',
     badgeGradient: 'linear-gradient(90deg,#1d254d 0%, #fb9062 10%, #fb9062 100%)',
     upTitle: 'А-фрейм «Сансет»',
-    text: ' — просторный светлый коттедж в солнечных тонах с панорамными окнами и вторым светом. Две спальни с двухместными кроватями, кухня-гостиная с раскладным диваном. Бесплатный wi-fi и два Smart TV, водяное отопление, теплый пол в санузле и кондиционер. Питьевая вода с фильтром, чайник, заварник, сахар и горный чай, холодильник, плита, микроволновка, духовой шкаф, посудомоечная машина, вся кухонная утварь и приборы. Гостям подготовлены тапочки, полотенца, белоснежное сатиновое белье, ортопедические матрасы, фен и косметические наборы.',
+    text: ' — дом в тёплой палитре закатных оттенков с панорамным видом и вторым светом. Идеален для неспешного отдыха в мягкой, солнечной атмосфере.',
+    palette: 'тёплые закатные тона',
+    accentColor: '#fb9062',
     location: 'Вид на горы и поселок',
     beds: '2 спальни с двухместными кроватями, раскладной диван',
     guests: 'до 6 гостей',
@@ -169,7 +196,9 @@ const items = [
     badge: 'А-Фрейм Ультрамарин',
     badgeGradient: 'linear-gradient(90deg,#0e2c5c 0%, #060a18 100%)',
     upTitle: 'А-фрейм «Ультрамарин»',
-    text: ' — просторный уютный коттедж с синими акцентами, панорамными окнами и вторым светом. Две спальни с двухместными кроватями и кухня-гостиная с раскладным диваном. Бесплатный wi-fi и два Smart TV, водяное отопление, теплый пол в санузле и кондиционер. Питьевая вода с фильтром, чайник, заварник, сахар и горный чай, полноценный набор техники: холодильник, плита, микроволновка, духовой шкаф и посудомоечная машина, а также вся необходимая утварь и приборы. Для комфорта гостей — удобные тапочки, полотенца, белоснежное сатиновое постельное белье, ортопедические матрасы, фен и косметические наборы.',
+    text: ' — дом в глубоких морских оттенках с тем же уровнем комфорта и оснащения. Спокойный и современный характер интерьера для тех, кто любит сдержанную эстетику.',
+    palette: 'морская ультрамариновая гамма',
+    accentColor: '#2958a3',
     location: 'Вид на горы и поселок',
     beds: '2 спальни с двухместными кроватями, раскладной диван',
     guests: 'до 6 гостей',
@@ -180,7 +209,9 @@ const items = [
     badge: 'А-Фрейм Эмеральд',
     badgeGradient: 'linear-gradient(90deg,#114633 0%, #07140f 100%)',
     upTitle: 'А-фрейм «Эмеральд»',
-    text: ' — просторный уютный коттедж с изумрудными акцентами, панорамными окнами и вторым светом. Две спальни с двухместными кроватями и кухня-гостиная с раскладным диваном. Бесплатный wi-fi и два Smart TV, водяное отопление, теплый пол в санузле и кондиционер. Питьевая вода «серебрянка» и фильтр, чайник, заварник, сахар и горный чай, полный набор техники: холодильник, плита, микроволновая печь, духовой шкаф, посудомоечная машина и весь комплект кухонной утвари. В коттедже ждут удобные тапочки, полотенца, белоснежное сатиновое белье, ортопедические матрасы, фен и косметические наборы.',
+    text: ' — дом в природной изумрудной гамме с расслабляющей атмосферой и видом на ущелье Мишоко. Тот же набор удобств, но с более «живым» природным настроением.',
+    palette: 'изумрудные природные акценты',
+    accentColor: '#2e7d5a',
     location: 'Вид на горы, поселок и ущелье Мишоко',
     beds: '2 спальни с двухместными кроватями, раскладной диван',
     guests: 'до 6 гостей',
@@ -286,7 +317,7 @@ onBeforeUnmount(() => {
 .bungalos__content {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: stretch;
   gap: 40px;
 }
 
@@ -331,6 +362,7 @@ onBeforeUnmount(() => {
   font-family: var(--font-main);
   padding: 24px 28px;
   line-height: 1.5;
+  margin: 0 0 16px;
 }
 
 .bungaloswrap_blockright_text-up {
@@ -341,21 +373,73 @@ onBeforeUnmount(() => {
   margin-bottom: 8px;
 }
 
-/* Доп. блок (location / beds / guests) — ТУТ МЕНЯЛИ */
+.bungalos__palette {
+  max-width: 508px;
+  padding: 14px 16px;
+  margin: 0 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.bungalos__palette-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+}
+
+.bungalos__palette-text {
+  margin: 0;
+  color: var(--white-color);
+  font-size: 15px;
+  line-height: 1.35;
+}
+
+.bungalos__amenities {
+  list-style: none;
+  padding: 14px;
+  margin: 0 0 16px;
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 8px;
+  max-width: 508px;
+}
+
+.bungalos__amenities-item {
+  color: var(--white-color);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 14px;
+  padding: 8px 12px;
+  font-size: 14px;
+  line-height: 1.25;
+  background: rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bungalos__amenities-icon {
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+/* Доп. блок (location / beds / guests) */
 .bungaloswrap_blockright_bot {
   margin-left: 0;
   color: var(--faded-color);
-  font-size: 16px;       /* увеличили шрифт */
-  line-height: 1.35;     /* чуть плотнее строки */
+  font-size: 16px;
+  line-height: 1.35;
   font-family: var(--font-core);
   padding: 18px 24px;
   display: flex;
   flex-direction: column;
-  gap: 6px;              /* уменьшили расстояние между пунктами */
+  gap: 8px;
 }
 
 .bungaloswrap_blockright_bot-text {
-  margin: 0;             /* убрали лишние отступы у p */
+  margin: 0;
 }
 
 .bungaloswrap_blockright_bot_min {
@@ -392,6 +476,7 @@ onBeforeUnmount(() => {
   flex-shrink: 0;
   border-radius: 16px;
   overflow: hidden;
+  box-shadow: 0 18px 32px rgba(8, 10, 23, 0.35);
 }
 
 .bungalos__carousel_img {
@@ -544,6 +629,11 @@ onBeforeUnmount(() => {
     padding: 20px 22px;
   }
 
+  .bungalos__palette,
+  .bungalos__amenities {
+    max-width: 100%;
+  }
+
   .bungaloswrap_blockright_bot {
     margin-left: 0;
     gap: 10px;
@@ -569,6 +659,25 @@ onBeforeUnmount(() => {
     font-size: var(--fontsize-primary);
     padding: 16px 18px;
     margin: 0;
+  }
+
+  .bungalos__palette {
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .bungalos__palette-text {
+    font-size: 14px;
+  }
+
+  .bungalos__amenities {
+    padding: 10px;
+    gap: 7px;
+  }
+
+  .bungalos__amenities-item {
+    font-size: 13px;
+    padding: 7px 10px;
   }
 
   .bungaloswrap_blockleft_btn {
