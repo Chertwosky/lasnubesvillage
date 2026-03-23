@@ -15,6 +15,9 @@
 
         <!-- Контейнер под виджет -->
         <div id="_bn_widget_" class="bn-widget"></div>
+        <p class="modal__hint">
+          Если дальше определённых дат не получается выбрать бронирование, значит на эти даты все дома уже заняты.
+        </p>
         <h3 class="modal__title"> LAS NUBES VILLAGE — посуточная аренда коттеджей </h3>
       </div>
     </div>
@@ -174,42 +177,54 @@
   }
 
   .modal {
-  background-color: var(--back-color);
-  padding: 40px 30px;
-  border-radius: 16px;
-  max-width: 800px;
-  height: 640px;       /* фиксированная высота */
-  width: 90%;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  overflow: visible;   /* 👈 позволяем выпадающим спискам */
-}
+    background-color: var(--back-color);
+    padding: 40px 30px;
+    border-radius: 16px;
+    max-width: 800px;
+    min-height: 640px;
+    width: 90%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+  }
 
-.bn-widget {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: visible;
-  margin:  -10px auto 0 auto !important;  /* 👈 убираем скролл и не обрезаем */
-}
+  .bn-widget {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+    margin: -10px auto 0 auto !important;
+  }
 
-.bn-widget--preload {
-  position: absolute;
-  width: 0;
-  height: 0;
-  overflow: hidden;
-  opacity: 0;
-  pointer-events: none;
-}
+  .bn-widget--preload {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+  }
 
-
-.modal__logo {
+  .modal__logo {
     width: 120px;
     margin: 0 auto;
-}
+  }
 
+  .modal__hint {
+    max-width: 420px;
+    margin: 12px auto 0;
+    padding: 10px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    font-size: 14px;
+    line-height: 1.4;
+    text-align: center;
+    color: var(--white-color);
+    backdrop-filter: blur(6px);
+  }
 
   .modal__title {
     font-family: var(--font-secondary);
@@ -218,7 +233,7 @@
     color: var(--white-color);
     bottom: 2%;
     right: 2%;
-   position: absolute;
+    position: absolute;
   }
 
   .modal__close {
@@ -231,14 +246,29 @@
     color: var(--white-color);
   }
 
-
-
-
   .cloud {
-    z-index: 0; /* облака под виджетом */
+    z-index: 0;
   }
 
   .cloud_modal {
     z-index: 0 !important;
+  }
+
+  @media (max-width: 800px) {
+    .modal {
+      min-height: 680px;
+      padding: 32px 20px;
+    }
+
+    .modal__hint {
+      margin-top: 16px;
+      font-size: 13px;
+    }
+
+    .modal__title {
+      position: static;
+      margin-top: 18px;
+      font-size: 22px;
+    }
   }
   </style>
