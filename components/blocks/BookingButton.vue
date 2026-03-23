@@ -14,10 +14,14 @@
   })
 
   const openBooking = () => {
+    if (typeof window === 'undefined') return
+
     if (window.openBooking) {
       window.openBooking()
-    } else {
-      console.warn("Bnovo widget ещё не готов")
+      return
     }
+
+    window.dispatchEvent(new CustomEvent('lasnubes:open-booking'))
+    console.warn('Bnovo widget ещё не готов, повторяем открытие через событие')
   }
   </script>

@@ -15,13 +15,14 @@
 
         <!-- Контейнер под виджет -->
         <div id="_bn_widget_" class="bn-widget"></div>
+        <p class="modal__hint">Если дальше нужных дат календарь не дает выбрать период, значит все дома уже забронированы.</p>
         <h3 class="modal__title"> LAS NUBES VILLAGE — посуточная аренда коттеджей </h3>
       </div>
     </div>
   </template>
 
   <script setup>
-  import { ref, onMounted, nextTick } from 'vue'
+  import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
   import { resolveImage } from '@/utils/resolveImage'
   import Cloud from '@/components/blocks/Cloud.vue' // 👈 твой компонент облака
 
@@ -29,6 +30,7 @@
 
   const WIDGET_CONTAINER_ID = '_bn_widget_'
   const PRELOAD_CONTAINER_ID = '_bn_widget_preload'
+  const OPEN_BOOKING_EVENT = 'lasnubes:open-booking'
 
   const isOpen = ref(false)
   const widgetReady = ref(false)
@@ -158,6 +160,17 @@
     await nextTick()
     ensureWidgetLoaded()
     window.openBooking = open
+    window.addEventListener(OPEN_BOOKING_EVENT, open)
+  })
+
+  onBeforeUnmount(() => {
+    if (typeof window === 'undefined') return
+
+    window.removeEventListener(OPEN_BOOKING_EVENT, open)
+
+    if (window.openBooking === open) {
+      delete window.openBooking
+    }
   })
   </script>
 
@@ -211,6 +224,23 @@
 }
 
 
+  .modal__hint {
+    position: absolute;
+    left: 50%;
+    bottom: 64px;
+    transform: translateX(-50%);
+    width: min(520px, calc(100% - 32px));
+    margin: 0;
+    padding: 8px 12px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--white-color);
+    font-size: 13px;
+    line-height: 1.35;
+    text-align: center;
+    pointer-events: none;
+  }
+
   .modal__title {
     font-family: var(--font-secondary);
     font-size: 26px;
@@ -240,5 +270,19 @@
 
   .cloud_modal {
     z-index: 0 !important;
+  }
+
+  @media (max-width: 768px) {
+    .modal__hint {
+      bottom: 74px;
+      font-size: 12px;
+    }
+
+    .modal__title {
+      left: 16px;
+      right: 16px;
+      bottom: 16px;
+      font-size: 20px;
+    }
   }
   </style>
