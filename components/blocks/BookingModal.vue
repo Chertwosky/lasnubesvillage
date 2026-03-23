@@ -14,7 +14,9 @@
         <Cloud width="170px" bottom="4%" right="65%" flipped class="cloud_modal"/>
 
         <!-- Контейнер под виджет -->
-        <div id="_bn_widget_" class="bn-widget"></div>
+        <div v-if="isWidgetLoading" class="modal__status">Загружаем календарь бронирования…</div>
+        <div v-else-if="widgetError" class="modal__status modal__status_error">{{ widgetError }}</div>
+        <div id="_bn_widget_" v-show="!isWidgetLoading && !widgetError" class="bn-widget"></div>
         <p class="modal__hint">
           Если дальше определённых дат не получается выбрать бронирование, значит на эти даты все дома уже заняты.
         </p>
@@ -24,7 +26,7 @@
   </template>
 
   <script setup>
-  import { ref, onMounted, nextTick } from 'vue'
+  import { ref, onMounted, onUnmounted, nextTick } from 'vue'
   import { resolveImage } from '@/utils/resolveImage'
   import Cloud from '@/components/blocks/Cloud.vue' // 👈 твой компонент облака
 
@@ -34,6 +36,8 @@
   const PRELOAD_CONTAINER_ID = '_bn_widget_preload'
 
   const isOpen = ref(false)
+  const isWidgetLoading = ref(false)
+  const widgetError = ref('')
   const widgetReady = ref(false)
   let resolveWidgetReady
   const createWidgetReadyPromise = () => new Promise((resolve) => { resolveWidgetReady = resolve })
@@ -125,31 +129,46 @@
   }
 
   const waitForWidget = async () => {
-    if (!widgetReady.value) {
-      await widgetReadyPromise
-    }
+    if (widgetReady.value) return
+
+    await Promise.race([
+      widgetReadyPromise,
+      new Promise((_, reject) => {
+        setTimeout(() => reject(new Error('timeout')), 10000)
+      }),
+    ])
   }
 
   const open = async () => {
-    ensureWidgetLoaded()
-    await waitForWidget()
-
     isOpen.value = true
+    isWidgetLoading.value = true
+    widgetError.value = ''
 
     const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth
     document.body.style.overflow = 'hidden'
     document.body.style.paddingRight = scrollBarWidth + 'px'
 
-    await nextTick()
+    ensureWidgetLoaded()
 
-    if (window.Bnovo_Widget && typeof window.Bnovo_Widget.open === 'function') {
-      clearWidgetContainer()
-      window.Bnovo_Widget.open(WIDGET_CONTAINER_ID, widgetConfig)
+    try {
+      await waitForWidget()
+      await nextTick()
+
+      if (window.Bnovo_Widget && typeof window.Bnovo_Widget.open === 'function') {
+        clearWidgetContainer()
+        window.Bnovo_Widget.open(WIDGET_CONTAINER_ID, widgetConfig)
+      }
+    } catch {
+      widgetError.value = 'Не удалось загрузить календарь бронирования. Попробуйте ещё раз через пару секунд.'
+    } finally {
+      isWidgetLoading.value = false
     }
   }
 
   const close = () => {
     isOpen.value = false
+    isWidgetLoading.value = false
+    widgetError.value = ''
     document.body.style.overflow = ''
     document.body.style.paddingRight = ''
 
@@ -161,6 +180,12 @@
     await nextTick()
     ensureWidgetLoaded()
     window.openBooking = open
+  })
+
+  onUnmounted(() => {
+    if (typeof window !== 'undefined' && window.openBooking === open) {
+      delete window.openBooking
+    }
   })
   </script>
 
@@ -187,6 +212,23 @@
     display: flex;
     flex-direction: column;
     overflow: visible;
+  }
+
+  .modal__status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 320px;
+    margin: 0 auto;
+    padding: 24px;
+    font-size: 16px;
+    line-height: 1.4;
+    text-align: center;
+    color: var(--white-color);
+  }
+
+  .modal__status_error {
+    max-width: 420px;
   }
 
   .bn-widget {
