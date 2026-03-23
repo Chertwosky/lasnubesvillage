@@ -32,6 +32,8 @@
 
   const WIDGET_CONTAINER_ID = '_bn_widget_'
   const PRELOAD_CONTAINER_ID = '_bn_widget_preload'
+  const BNOVO_SCRIPT_ID = 'bnovo-widget-script'
+  const BNOVO_SCRIPT_SRC = 'https://widget.reservationsteps.ru/js/bnovo.js'
 
   const isOpen = ref(false)
   const widgetReady = ref(false)
@@ -111,6 +113,21 @@
     clearContainerById(PRELOAD_CONTAINER_ID)
   }
 
+  const loadBnovoScript = () => {
+    if (typeof window === 'undefined' || typeof document === 'undefined') return
+
+    if (window.Bnovo_Widget) return
+
+    const existingScript = document.getElementById(BNOVO_SCRIPT_ID)
+    if (existingScript) return
+
+    const script = document.createElement('script')
+    script.id = BNOVO_SCRIPT_ID
+    script.src = BNOVO_SCRIPT_SRC
+    script.async = true
+    document.head.appendChild(script)
+  }
+
   const ensureWidgetLoaded = () => {
     if (typeof window === 'undefined' || widgetReady.value) return
 
@@ -119,9 +136,11 @@
         preloadWidget()
         markWidgetReady()
       })
-    } else {
-      setTimeout(ensureWidgetLoaded, 300)
+      return
     }
+
+    loadBnovoScript()
+    setTimeout(ensureWidgetLoaded, 300)
   }
 
   const waitForWidget = async () => {
